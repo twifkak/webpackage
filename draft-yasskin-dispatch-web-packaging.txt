@@ -4,8 +4,8 @@
 
 Dispatch                                                      J. Yasskin
 Internet-Draft                                                    Google
-Intended status: Standards Track                         August 15, 2017
-Expires: February 16, 2018
+Intended status: Standards Track                         August 25, 2017
+Expires: February 26, 2018
 
 
                              Web Packaging
@@ -32,7 +32,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on February 16, 2018.
+   This Internet-Draft will expire on February 26, 2018.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Yasskin                 Expires February 16, 2018               [Page 1]
+Yasskin                 Expires February 26, 2018               [Page 1]
 
 Internet-Draft                Web Packaging                  August 2017
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Yasskin                 Expires February 16, 2018               [Page 2]
+Yasskin                 Expires February 26, 2018               [Page 2]
 
 Internet-Draft                Web Packaging                  August 2017
 
@@ -165,7 +165,7 @@ Internet-Draft                Web Packaging                  August 2017
 
 
 
-Yasskin                 Expires February 16, 2018               [Page 3]
+Yasskin                 Expires February 26, 2018               [Page 3]
 
 Internet-Draft                Web Packaging                  August 2017
 
@@ -204,12 +204,12 @@ Internet-Draft                Web Packaging                  August 2017
    return data.
 
    webpackage = [
-     ; &#55356;&#57104;&#55357;&#56550; in UTF-8.
+     ; &#127760;&#128230; in UTF-8.
      magic1: h'F0 9F 8C 90 F0 9F 93 A6',
      section-offsets: { * (($section-name .within tstr) => uint) },
      sections: [ *$section ],
      length: uint,  ; Total number of bytes in the package.
-     ; &#55356;&#57104;&#55357;&#56550; in UTF-8.
+     ; &#127760;&#128230; in UTF-8.
      magic2: h'F0 9F 8C 90 F0 9F 93 A6',
    ]
 
@@ -221,7 +221,7 @@ Internet-Draft                Web Packaging                  August 2017
 
 
 
-Yasskin                 Expires February 16, 2018               [Page 4]
+Yasskin                 Expires February 26, 2018               [Page 4]
 
 Internet-Draft                Web Packaging                  August 2017
 
@@ -240,7 +240,7 @@ Internet-Draft                Web Packaging                  August 2017
    tail = (
      ; Total number of bytes in the package.
      length: uint,
-     ; &#55356;&#57104;&#55357;&#56550; in UTF-8.
+     ; &#127760;&#128230; in UTF-8.
      magic2: h'F0 9F 8C 90 F0 9F 93 A6',
    )
 
@@ -255,8 +255,8 @@ Internet-Draft                Web Packaging                  August 2017
 
    If the first 10 bytes of the package are not "85 48 F0 9F 8C 90 F0 9F
    93 A6" (the CBOR encoding of the 5-item array header and 8-byte
-   bytestring header, followed by &#55356;&#57104;&#55357;&#56550; in
-   UTF-8), parsing MUST fail.
+   bytestring header, followed by &#127760;&#128230; in UTF-8), parsing
+   MUST fail.
 
    Parse one CBOR item starting at the 11th byte of the package.  If
    this does not match the CDDL
@@ -277,7 +277,7 @@ Internet-Draft                Web Packaging                  August 2017
 
 
 
-Yasskin                 Expires February 16, 2018               [Page 5]
+Yasskin                 Expires February 26, 2018               [Page 5]
 
 Internet-Draft                Web Packaging                  August 2017
 
@@ -333,7 +333,7 @@ Internet-Draft                Web Packaging                  August 2017
 
 
 
-Yasskin                 Expires February 16, 2018               [Page 6]
+Yasskin                 Expires February 26, 2018               [Page 6]
 
 Internet-Draft                Web Packaging                  August 2017
 
@@ -389,7 +389,7 @@ Internet-Draft                Web Packaging                  August 2017
 
 
 
-Yasskin                 Expires February 16, 2018               [Page 7]
+Yasskin                 Expires February 26, 2018               [Page 7]
 
 Internet-Draft                Web Packaging                  August 2017
 
@@ -445,7 +445,7 @@ Internet-Draft                Web Packaging                  August 2017
 
 
 
-Yasskin                 Expires February 16, 2018               [Page 8]
+Yasskin                 Expires February 26, 2018               [Page 8]
 
 Internet-Draft                Web Packaging                  August 2017
 
@@ -501,7 +501,7 @@ Internet-Draft                Web Packaging                  August 2017
 
 
 
-Yasskin                 Expires February 16, 2018               [Page 9]
+Yasskin                 Expires February 26, 2018               [Page 9]
 
 Internet-Draft                Web Packaging                  August 2017
 
@@ -557,7 +557,7 @@ Internet-Draft                Web Packaging                  August 2017
 
 
 
-Yasskin                 Expires February 16, 2018              [Page 10]
+Yasskin                 Expires February 26, 2018              [Page 10]
 
 Internet-Draft                Web Packaging                  August 2017
 
@@ -613,7 +613,7 @@ Internet-Draft                Web Packaging                  August 2017
 
 
 
-Yasskin                 Expires February 16, 2018              [Page 11]
+Yasskin                 Expires February 26, 2018              [Page 11]
 
 Internet-Draft                Web Packaging                  August 2017
 
@@ -669,7 +669,7 @@ Internet-Draft                Web Packaging                  August 2017
 
 
 
-Yasskin                 Expires February 16, 2018              [Page 12]
+Yasskin                 Expires February 26, 2018              [Page 12]
 
 Internet-Draft                Web Packaging                  August 2017
 
@@ -725,7 +725,7 @@ Internet-Draft                Web Packaging                  August 2017
 
 
 
-Yasskin                 Expires February 16, 2018              [Page 13]
+Yasskin                 Expires February 26, 2018              [Page 13]
 
 Internet-Draft                Web Packaging                  August 2017
 
@@ -781,7 +781,7 @@ Internet-Draft                Web Packaging                  August 2017
 
 
 
-Yasskin                 Expires February 16, 2018              [Page 14]
+Yasskin                 Expires February 26, 2018              [Page 14]
 
 Internet-Draft                Web Packaging                  August 2017
 
@@ -813,7 +813,7 @@ Internet-Draft                Web Packaging                  August 2017
 
    [CBOR]     Bormann, C. and P. Hoffman, "Concise Binary Object
               Representation (CBOR)", RFC 7049, DOI 10.17487/RFC7049,
-              October 2013, <http://www.rfc-editor.org/info/rfc7049>.
+              October 2013, <https://www.rfc-editor.org/info/rfc7049>.
 
    [CDDL]     Birkholz, H., Vigano, C., and C. Bormann, "Concise data
               definition language (CDDL): a notational convention to
@@ -822,54 +822,54 @@ Internet-Draft                Web Packaging                  August 2017
 
    [HPACK]    Peon, R. and H. Ruellan, "HPACK: Header Compression for
               HTTP/2", RFC 7541, DOI 10.17487/RFC7541, May 2015,
-              <http://www.rfc-editor.org/info/rfc7541>.
+              <https://www.rfc-editor.org/info/rfc7541>.
 
    [HTTP2]    Belshe, M., Peon, R., and M. Thomson, Ed., "Hypertext
               Transfer Protocol Version 2 (HTTP/2)", RFC 7540,
-              DOI 10.17487/RFC7540, May 2015,
-              <http://www.rfc-editor.org/info/rfc7540>.
+              DOI 10.17487/RFC7540, May 2015, <https://www.rfc-
+              editor.org/info/rfc7540>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
-              DOI 10.17487/RFC2119, March 1997,
-              <http://www.rfc-editor.org/info/rfc2119>.
+              DOI 10.17487/RFC2119, March 1997, <https://www.rfc-
+              editor.org/info/rfc2119>.
 
 
 
 
-Yasskin                 Expires February 16, 2018              [Page 15]
+Yasskin                 Expires February 26, 2018              [Page 15]
 
 Internet-Draft                Web Packaging                  August 2017
 
 
    [RFC2818]  Rescorla, E., "HTTP Over TLS", RFC 2818,
-              DOI 10.17487/RFC2818, May 2000,
-              <http://www.rfc-editor.org/info/rfc2818>.
+              DOI 10.17487/RFC2818, May 2000, <https://www.rfc-
+              editor.org/info/rfc2818>.
 
    [RFC5280]  Cooper, D., Santesson, S., Farrell, S., Boeyen, S.,
               Housley, R., and W. Polk, "Internet X.509 Public Key
               Infrastructure Certificate and Certificate Revocation List
               (CRL) Profile", RFC 5280, DOI 10.17487/RFC5280, May 2008,
-              <http://www.rfc-editor.org/info/rfc5280>.
+              <https://www.rfc-editor.org/info/rfc5280>.
 
    [RFC6454]  Barth, A., "The Web Origin Concept", RFC 6454,
-              DOI 10.17487/RFC6454, December 2011,
-              <http://www.rfc-editor.org/info/rfc6454>.
+              DOI 10.17487/RFC6454, December 2011, <https://www.rfc-
+              editor.org/info/rfc6454>.
 
    [RFC6960]  Santesson, S., Myers, M., Ankney, R., Malpani, A.,
               Galperin, S., and C. Adams, "X.509 Internet Public Key
               Infrastructure Online Certificate Status Protocol - OCSP",
               RFC 6960, DOI 10.17487/RFC6960, June 2013,
-              <http://www.rfc-editor.org/info/rfc6960>.
+              <https://www.rfc-editor.org/info/rfc6960>.
 
    [RFC7231]  Fielding, R., Ed. and J. Reschke, Ed., "Hypertext Transfer
               Protocol (HTTP/1.1): Semantics and Content", RFC 7231,
-              DOI 10.17487/RFC7231, June 2014,
-              <http://www.rfc-editor.org/info/rfc7231>.
+              DOI 10.17487/RFC7231, June 2014, <https://www.rfc-
+              editor.org/info/rfc7231>.
 
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
-              May 2017, <http://www.rfc-editor.org/info/rfc8174>.
+              May 2017, <https://www.rfc-editor.org/info/rfc8174>.
 
    [SRI]      Akhawe, D., Braun, F., Marier, F., and J. Weinberger,
               "Subresource Integrity", World Wide Web Consortium
@@ -885,7 +885,7 @@ Internet-Draft                Web Packaging                  August 2017
    [RFC6838]  Freed, N., Klensin, J., and T. Hansen, "Media Type
               Specifications and Registration Procedures", BCP 13,
               RFC 6838, DOI 10.17487/RFC6838, January 2013,
-              <http://www.rfc-editor.org/info/rfc6838>.
+              <https://www.rfc-editor.org/info/rfc6838>.
 
 
 
@@ -893,7 +893,7 @@ Internet-Draft                Web Packaging                  August 2017
 
 
 
-Yasskin                 Expires February 16, 2018              [Page 16]
+Yasskin                 Expires February 26, 2018              [Page 16]
 
 Internet-Draft                Web Packaging                  August 2017
 
@@ -901,7 +901,7 @@ Internet-Draft                Web Packaging                  August 2017
    [RFC7233]  Fielding, R., Ed., Lafon, Y., Ed., and J. Reschke, Ed.,
               "Hypertext Transfer Protocol (HTTP/1.1): Range Requests",
               RFC 7233, DOI 10.17487/RFC7233, June 2014,
-              <http://www.rfc-editor.org/info/rfc7233>.
+              <https://www.rfc-editor.org/info/rfc7233>.
 
    [ServiceWorkers]
               Russell, A., Song, J., Archibald, J., and M.
@@ -949,7 +949,7 @@ Editorial Comments
 
 
 
-Yasskin                 Expires February 16, 2018              [Page 17]
+Yasskin                 Expires February 26, 2018              [Page 17]
 
 Internet-Draft                Web Packaging                  August 2017
 
@@ -1005,4 +1005,4 @@ Author's Address
 
 
 
-Yasskin                 Expires February 16, 2018              [Page 18]
+Yasskin                 Expires February 26, 2018              [Page 18]
