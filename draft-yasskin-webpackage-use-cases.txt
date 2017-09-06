@@ -4,8 +4,8 @@
 
 dispatch                                                      J. Yasskin
 Internet-Draft                                                    Google
-Intended status: Informational                           August 30, 2017
-Expires: March 3, 2018
+Intended status: Informational                        September 06, 2017
+Expires: March 10, 2018
 
 
               Use Cases and Requirements for Web Packages
@@ -40,7 +40,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on March 3, 2018.
+   This Internet-Draft will expire on March 10, 2018.
 
 Copyright Notice
 
@@ -53,9 +53,9 @@ Copyright Notice
 
 
 
-Yasskin                   Expires March 3, 2018                 [Page 1]
+Yasskin                  Expires March 10, 2018                 [Page 1]
 
-Internet-Draft Use Cases and Requirements for Web Packages   August 2017
+Internet-Draft Use Cases and Requirements for Web PackagesSeptember 2017
 
 
    publication of this document.  Please review these documents
@@ -73,7 +73,7 @@ Table of Contents
        2.1.1.  Offline installation  . . . . . . . . . . . . . . . .   3
        2.1.2.  Offline browsing  . . . . . . . . . . . . . . . . . .   5
        2.1.3.  Save and share a web page . . . . . . . . . . . . . .   5
-     2.2.  Nice-to-have  . . . . . . . . . . . . . . . . . . . . . .   5
+     2.2.  Nice-to-have  . . . . . . . . . . . . . . . . . . . . . .   6
        2.2.1.  Packaged Web Publications . . . . . . . . . . . . . .   6
        2.2.2.  Third-party security review . . . . . . . . . . . . .   7
        2.2.3.  Building packages from multiple libraries . . . . . .   7
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Yasskin                   Expires March 3, 2018                 [Page 2]
+Yasskin                  Expires March 10, 2018                 [Page 2]
 
-Internet-Draft Use Cases and Requirements for Web Packages   August 2017
+Internet-Draft Use Cases and Requirements for Web PackagesSeptember 2017
 
 
        3.2.11. External dependencies . . . . . . . . . . . . . . . .  13
@@ -121,11 +121,13 @@ Internet-Draft Use Cases and Requirements for Web Packages   August 2017
      4.2.  Generate packages on the fly  . . . . . . . . . . . . . .  14
      4.3.  Non-origin identity . . . . . . . . . . . . . . . . . . .  14
      4.4.  DRM . . . . . . . . . . . . . . . . . . . . . . . . . . .  14
-   5.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  14
-     5.1.  Informative References  . . . . . . . . . . . . . . . . .  14
-     5.2.  URIs  . . . . . . . . . . . . . . . . . . . . . . . . . .  15
-   Appendix A.  Acknowledgements . . . . . . . . . . . . . . . . . .  16
-   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  16
+   5.  Security Considerations . . . . . . . . . . . . . . . . . . .  14
+   6.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  14
+   7.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  14
+     7.1.  Informative References  . . . . . . . . . . . . . . . . .  15
+     7.2.  URIs  . . . . . . . . . . . . . . . . . . . . . . . . . .  16
+   Appendix A.  Acknowledgements . . . . . . . . . . . . . . . . . .  17
+   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  17
 
 1.  Introduction
 
@@ -159,16 +161,17 @@ Internet-Draft Use Cases and Requirements for Web Packages   August 2017
    Alex can download a file containing a website (a PWA [6]) including a
    Service Worker from origin "O", and transmit it to their peer Bailey,
    and then Bailey can install the Service Worker with a proof that it
+
+
+
+
+Yasskin                  Expires March 10, 2018                 [Page 3]
+
+Internet-Draft Use Cases and Requirements for Web PackagesSeptember 2017
+
+
    came from "O".  This saves Bailey the bandwidth costs of transferring
    the website.
-
-
-
-
-Yasskin                   Expires March 3, 2018                 [Page 3]
-
-Internet-Draft Use Cases and Requirements for Web Packages   August 2017
-
 
    Associated requirements:
 
@@ -216,15 +219,14 @@ Internet-Draft Use Cases and Requirements for Web Packages   August 2017
    they turn off internet except when intentionally downloading content,
    or because they use up their plan partway through each month.
 
-   Associated requirements beyond Offline installation:
 
 
-
-
-Yasskin                   Expires March 3, 2018                 [Page 4]
+Yasskin                  Expires March 10, 2018                 [Page 4]
 
-Internet-Draft Use Cases and Requirements for Web Packages   August 2017
+Internet-Draft Use Cases and Requirements for Web PackagesSeptember 2017
 
+
+   Associated requirements beyond Offline installation:
 
    o  Packaged validity information: Even without a direct internet
       connection, Bailey should be able to check that their package is
@@ -269,18 +271,18 @@ Internet-Draft Use Cases and Requirements for Web Packages   August 2017
    o  Response headers: The meaning of a resource is heavily influenced
       by its HTTP response headers.
 
-2.2.  Nice-to-have
 
 
 
 
 
 
-
-Yasskin                   Expires March 3, 2018                 [Page 5]
+Yasskin                  Expires March 10, 2018                 [Page 5]
 
-Internet-Draft Use Cases and Requirements for Web Packages   August 2017
+Internet-Draft Use Cases and Requirements for Web PackagesSeptember 2017
 
+
+2.2.  Nice-to-have
 
 2.2.1.  Packaged Web Publications
 
@@ -331,11 +333,9 @@ Internet-Draft Use Cases and Requirements for Web Packages   August 2017
 
 
 
-
-
-Yasskin                   Expires March 3, 2018                 [Page 6]
+Yasskin                  Expires March 10, 2018                 [Page 6]
 
-Internet-Draft Use Cases and Requirements for Web Packages   August 2017
+Internet-Draft Use Cases and Requirements for Web PackagesSeptember 2017
 
 
    o  Certificate revocation: The publisher's certificate might be
@@ -389,9 +389,9 @@ Internet-Draft Use Cases and Requirements for Web Packages   August 2017
 
 
 
-Yasskin                   Expires March 3, 2018                 [Page 7]
+Yasskin                  Expires March 10, 2018                 [Page 7]
 
-Internet-Draft Use Cases and Requirements for Web Packages   August 2017
+Internet-Draft Use Cases and Requirements for Web PackagesSeptember 2017
 
 
    Associated requirements:
@@ -445,9 +445,9 @@ Internet-Draft Use Cases and Requirements for Web Packages   August 2017
 
 
 
-Yasskin                   Expires March 3, 2018                 [Page 8]
+Yasskin                  Expires March 10, 2018                 [Page 8]
 
-Internet-Draft Use Cases and Requirements for Web Packages   August 2017
+Internet-Draft Use Cases and Requirements for Web PackagesSeptember 2017
 
 
 2.2.6.  Ergonomic replacement for HTTP/2 PUSH
@@ -501,9 +501,9 @@ Internet-Draft Use Cases and Requirements for Web Packages   August 2017
 
 
 
-Yasskin                   Expires March 3, 2018                 [Page 9]
+Yasskin                  Expires March 10, 2018                 [Page 9]
 
-Internet-Draft Use Cases and Requirements for Web Packages   August 2017
+Internet-Draft Use Cases and Requirements for Web PackagesSeptember 2017
 
 
 3.1.  Essential
@@ -557,9 +557,9 @@ Internet-Draft Use Cases and Requirements for Web Packages   August 2017
 
 
 
-Yasskin                   Expires March 3, 2018                [Page 10]
+Yasskin                  Expires March 10, 2018                [Page 10]
 
-Internet-Draft Use Cases and Requirements for Web Packages   August 2017
+Internet-Draft Use Cases and Requirements for Web PackagesSeptember 2017
 
 
    In any cryptographic system, the specification is responsible to make
@@ -613,9 +613,9 @@ Internet-Draft Use Cases and Requirements for Web Packages   August 2017
 
 
 
-Yasskin                   Expires March 3, 2018                [Page 11]
+Yasskin                  Expires March 10, 2018                [Page 11]
 
-Internet-Draft Use Cases and Requirements for Web Packages   August 2017
+Internet-Draft Use Cases and Requirements for Web PackagesSeptember 2017
 
 
 3.1.12.  Implementations are hard to get wrong
@@ -669,9 +669,9 @@ Internet-Draft Use Cases and Requirements for Web Packages   August 2017
 
 
 
-Yasskin                   Expires March 3, 2018                [Page 12]
+Yasskin                  Expires March 10, 2018                [Page 12]
 
-Internet-Draft Use Cases and Requirements for Web Packages   August 2017
+Internet-Draft Use Cases and Requirements for Web PackagesSeptember 2017
 
 
 3.2.6.  Compress transfers
@@ -725,9 +725,9 @@ Internet-Draft Use Cases and Requirements for Web Packages   August 2017
 
 
 
-Yasskin                   Expires March 3, 2018                [Page 13]
+Yasskin                  Expires March 10, 2018                [Page 13]
 
-Internet-Draft Use Cases and Requirements for Web Packages   August 2017
+Internet-Draft Use Cases and Requirements for Web PackagesSeptember 2017
 
 
 4.1.  Store confidential data
@@ -761,9 +761,32 @@ Internet-Draft Use Cases and Requirements for Web Packages   August 2017
    licensing.  Note that DRM systems can be shipped inside the package
    even if the packaging format doesn't specifically support them.
 
-5.  References
+5.  Security Considerations
 
-5.1.  Informative References
+   The security considerations will depend on the solution designed to
+   satisfy the above requirements.  See
+   [I-D.yasskin-dispatch-web-packaging] for one possible set of security
+   considerations.
+
+6.  IANA Considerations
+
+   This document has no actions for IANA.
+
+7.  References
+
+
+
+
+
+
+
+
+Yasskin                  Expires March 10, 2018                [Page 14]
+
+Internet-Draft Use Cases and Requirements for Web PackagesSeptember 2017
+
+
+7.1.  Informative References
 
    [I-D.burke-content-signature]
               Burke, B., "HTTP Header for digital signatures", draft-
@@ -778,13 +801,9 @@ Internet-Draft Use Cases and Requirements for Web Packages   August 2017
               draft-thomson-http-content-signature-00 (work in
               progress), July 2015.
 
-
-
-
-Yasskin                   Expires March 3, 2018                [Page 14]
-
-Internet-Draft Use Cases and Requirements for Web Packages   August 2017
-
+   [I-D.yasskin-dispatch-web-packaging]
+              Yasskin, J., "Web Packaging", draft-yasskin-dispatch-web-
+              packaging-00 (work in progress), June 2017.
 
    [JAR]      "JAR File Specification", 2014,
               <https://docs.oracle.com/javase/7/docs/technotes/guides/
@@ -812,6 +831,17 @@ Internet-Draft Use Cases and Requirements for Web Packages   August 2017
               DOI 10.17487/RFC7540, May 2015, <https://www.rfc-
               editor.org/info/rfc7540>.
 
+
+
+
+
+
+
+Yasskin                  Expires March 10, 2018                [Page 15]
+
+Internet-Draft Use Cases and Requirements for Web PackagesSeptember 2017
+
+
    [ServiceWorkers]
               Russell, A., Song, J., Archibald, J., and M.
               Kruisselbrink, "Service Workers 1", World Wide Web
@@ -829,18 +859,11 @@ Internet-Draft Use Cases and Requirements for Web Packages   August 2017
               2014, <https://pkware.cachefly.net/webdocs/casestudies/
               APPNOTE.TXT>.
 
-5.2.  URIs
+7.2.  URIs
 
    [1] https://www.mnot.net/blog/2010/02/18/resource_packages
 
    [2] https://w3ctag.github.io/packaging-on-the-web/
-
-
-
-Yasskin                   Expires March 3, 2018                [Page 15]
-
-Internet-Draft Use Cases and Requirements for Web Packages   August 2017
-
 
    [3] https://lists.w3.org/Archives/Public/public-web-
        perf/2015Jan/0038.html
@@ -865,6 +888,15 @@ Internet-Draft Use Cases and Requirements for Web Packages   August 2017
 
    [13] https://paragonie.com/blog/2017/03/jwt-json-web-tokens-is-bad-
         standard-that-everyone-should-avoid
+
+
+
+
+
+Yasskin                  Expires March 10, 2018                [Page 16]
+
+Internet-Draft Use Cases and Requirements for Web PackagesSeptember 2017
+
 
    [14] https://nakedsecurity.sophos.com/2013/07/10/anatomy-of-a-
         security-hole-googles-android-master-key-debacle-explained/
@@ -893,4 +925,28 @@ Author's Address
 
 
 
-Yasskin                   Expires March 3, 2018                [Page 16]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Yasskin                  Expires March 10, 2018                [Page 17]

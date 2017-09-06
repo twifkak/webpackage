@@ -1,0 +1,679 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head profile="http://www.w3.org/2006/03/hcard http://dublincore.org/documents/2008/08/04/dc-html/">
+  <meta http-equiv="Content-Type" content="text/html; charset=us-ascii" />
+
+  <title>Origin-signed HTTP Responses</title>
+
+  
+<style type="text/css">/*<![CDATA[*/
+@viewport {
+  zoom: 1.0;
+  width: extend-to-zoom;
+}
+@-ms-viewport {
+  width: extend-to-zoom;
+  zoom: 1.0;
+}
+
+@media screen and (min-width: 1024px) {
+  ul.toc, #rfc\.toc {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    right: calc(50vw - 500px);
+    width: 300px;
+    padding: 0 1em;
+    z-index: 1;
+  }
+  #rfc\.toc {
+    top: 16px;
+  }
+  ul.toc {
+    top: 80px;
+    overflow: auto;
+  }
+
+  body {
+    padding-left: 1.5em;
+    padding-right: 29em;
+  }
+}
+
+body {
+  font: 15px "Helvetica Neue",Helvetica,Arial,sans-serif;
+  color: #333;
+  font-size-adjust: 0.5;
+  line-height: 130%;
+  margin: 2.5em auto;
+  max-width: 724px;
+}
+
+.title, .filename, h1, h2, h3, h4 {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size-adjust: 0.5;
+  font-weight: 500;
+  color: #333;
+  line-height: 100%;
+  margin: 0.8em 0 0.3em;
+}
+.title { font-size: 36px; }
+h1 { font-size: 30px; }
+h2 { font-size: 24px; }
+h3, h4 { font-size: 18px; }
+h1 a[href], h2 a[href], h3 a[href], h4 a[href] {
+  color: #333;
+}
+
+ul.toc li {
+  list-style: none;
+  text-indent: -2.5em;
+  padding-left: 2.5em;
+  padding-bottom: 5px;
+  margin: 0;
+}
+ul.toc ul {
+  margin: 0;
+}
+/* xml2rfc nests ul directly inside ul which messes with the style badly */
+ul.toc, ul.toc>ul, ul.toc ul>ul {
+  margin: 0 0 0 1.5em;
+}
+
+table {
+  margin-left: 0em;
+  border-collapse: collapse;
+}
+th {
+  text-align: left;
+  border-bottom: 2px solid #ddd;
+}
+td {
+  border-top: 1px solid #ddd;
+  vertical-align: top;
+}
+tr:nth-child(2n+1) > td,
+tr:nth-child(2n+1) > th {
+  background-color: #f9f9f9;
+}
+td.reference {
+  max-width: 200px;
+  border-top: none;
+  padding-right: 1em;
+}
+.right {
+  text-align: right;
+}
+
+
+table.header {
+  width: 100%;
+}
+table.header td {
+  border: none;
+  background-color: transparent;
+  color: black;
+}
+.filename {
+  color: rgb(119, 119, 119);
+  font-size: 23px;
+  font-weight: normal;
+  height: auto;
+  line-height: 100%;
+}
+#rfc\.abstract+p {
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 130%;
+}
+
+samp, tt, code, pre {
+  font: 11pt consolas, monospace;
+  font-size-adjust: none;
+}
+pre {
+  background-color: #eee;
+  border: 1px solid #ddd;
+  overflow-x: auto;
+  padding: 5px;
+  margin: 5px;
+}
+.figure {
+  font-style: italic;
+  margin: 0 1.5em;
+}
+
+address {
+  margin: 10px 0 0;
+}
+.vcard {
+  font-style: normal;
+}
+.vcardline {
+  display: block;
+}
+.vcardline .fn {
+  font-weight: bold;
+}
+.vcardline .hidden {
+  display: none;
+}
+
+dl {
+  margin-left: 1em;
+}
+dl.dl-horizontal: {
+  margin-left: 0;
+}
+dl > dt {
+  float: left;
+  margin-right: 1em;
+}
+dl.nohang > dt {
+  float: none;
+}
+dl > dd {
+  margin-bottom: .5em;
+}
+dl.compact > dd {
+  margin-bottom: 0em;
+}
+dl > dd > dl {
+  margin-top: 0.5em;
+  margin-bottom: 0em;
+}
+ul.empty {
+  list-style-type: none;
+}
+ul.empty li {
+  margin-top: .5em;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid #eee;
+}
+
+a {
+  text-decoration: none;
+}
+a[href] {
+  color: #2a6496;
+}
+a[href]:hover {
+  background-color: #eee;
+}
+
+ol, ul, li, p {
+  padding: 0;
+  margin: 0.5em 0 0.5em 2em;
+}
+li, p {
+  margin-left: 0;
+}
+address {
+  font-style: normal;
+}
+
+.github-fork-ribbon-wrapper {
+  display: none;
+}
+@media screen and (min-width: 800px) {
+  /* "Fork me on GitHub" CSS ribbon based on
+   * https://github.com/simonwhitaker/github-fork-ribbon-css
+   */
+  .github-fork-ribbon {
+    position: absolute;
+    padding: 2px 0;
+    background-color: #a00;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
+    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.5);
+    font: 700 12px "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+    pointer-events: auto;
+
+    top: 38px;
+    right: -45px;
+
+    transform: rotate(45deg);
+  }
+
+  .github-fork-ribbon a[href],
+  .github-fork-ribbon a[href]:hover {
+    color: #fff;
+    background-color: transparent;
+    text-decoration: none;
+    text-shadow: 0 -1px rgba(0, 0, 0, 0.5);
+    text-align: center;
+
+    width: 190px;
+    line-height: 18px;
+
+    display: inline-block;
+    padding: 2px 0;
+
+    border: 1.5px dotted #fff;
+    border-color: rgba(255, 255, 255, 0.6);
+  }
+
+  .github-fork-ribbon-wrapper {
+    display: block;
+    width: 130px;
+    height: 130px;
+    position: absolute;
+    overflow: hidden;
+    top: 0; right: 0;
+    z-index: 2;
+    pointer-events: none;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .github-fork-ribbon-wrapper {
+    position: fixed;
+  }
+  /*]]>*/</style>
+
+
+  <link href="#rfc.toc" rel="Contents">
+<link href="#rfc.section.1" rel="Chapter" title="1 Introduction">
+<link href="#rfc.section.2" rel="Chapter" title="2 Terminology">
+<link href="#rfc.section.3" rel="Chapter" title="3 Use cases">
+<link href="#rfc.section.3.1" rel="Chapter" title="3.1 PUSHed subresources">
+<link href="#rfc.section.3.2" rel="Chapter" title="3.2 Explicit use of a CDN for subresources">
+<link href="#rfc.section.3.3" rel="Chapter" title="3.3 Subresource Integrity">
+<link href="#rfc.section.3.4" rel="Chapter" title="3.4 Offline websites">
+<link href="#rfc.section.4" rel="Chapter" title="4 Requirements and open questions">
+<link href="#rfc.section.4.1" rel="Chapter" title="4.1 Proof of origin">
+<link href="#rfc.section.4.1.1" rel="Chapter" title="4.1.1 The certificate and its chain">
+<link href="#rfc.section.4.2" rel="Chapter" title="4.2 How much to sign">
+<link href="#rfc.section.4.3" rel="Chapter" title="4.3 Response lifespan">
+<link href="#rfc.section.4.3.1" rel="Chapter" title="4.3.1 Certificate revocation">
+<link href="#rfc.section.4.3.2" rel="Chapter" title="4.3.2 Response downgrade attacks">
+<link href="#rfc.section.4.4" rel="Chapter" title="4.4 Conveying the signed headers">
+<link href="#rfc.section.5" rel="Chapter" title="5 Straw proposal">
+<link href="#rfc.section.6" rel="Chapter" title="6 Security considerations">
+<link href="#rfc.section.7" rel="Chapter" title="7 Privacy considerations">
+<link href="#rfc.section.8" rel="Chapter" title="8 IANA considerations">
+<link href="#rfc.references" rel="Chapter" title="9 References">
+<link href="#rfc.references.1" rel="Chapter" title="9.1 Normative References">
+<link href="#rfc.references.2" rel="Chapter" title="9.2 Informative References">
+<link href="#rfc.appendix.A" rel="Chapter" title="A Acknowledgements">
+<link href="#rfc.authors" rel="Chapter">
+
+
+  <meta name="generator" content="xml2rfc version 2.6.1 - http://tools.ietf.org/tools/xml2rfc" />
+  <link rel="schema.dct" href="http://purl.org/dc/terms/" />
+
+  <meta name="dct.creator" content="Yasskin, J." />
+  <meta name="dct.identifier" content="urn:ietf:id:draft-yasskin-http-origin-signed-responses-latest" />
+  <meta name="dct.issued" scheme="ISO8601" content="2017-9-06" />
+  <meta name="dct.abstract" content="This document explores how a server can send particular responses that are authoritative for an origin, when the server itself is not authoritative for that origin. For now, it focuses on the constraints covering any such mechanism." />
+  <meta name="description" content="This document explores how a server can send particular responses that are authoritative for an origin, when the server itself is not authoritative for that origin. For now, it focuses on the constraints covering any such mechanism." />
+
+</head>
+
+<body>
+
+  <table class="header">
+    <tbody>
+    
+    	<tr>
+<td class="left">http</td>
+<td class="right">J. Yasskin</td>
+</tr>
+<tr>
+<td class="left">Internet-Draft</td>
+<td class="right">Google</td>
+</tr>
+<tr>
+<td class="left">Intended status: Standards Track</td>
+<td class="right">September 06, 2017</td>
+</tr>
+<tr>
+<td class="left">Expires: March 10, 2018</td>
+<td class="right"></td>
+</tr>
+
+    	
+    </tbody>
+  </table>
+
+  <p class="title">Origin-signed HTTP Responses<br />
+  <span class="filename">draft-yasskin-http-origin-signed-responses-latest</span></p>
+  
+  <h1 id="rfc.abstract"><a href="#rfc.abstract">Abstract</a></h1>
+<p>This document explores how a server can send particular responses that are authoritative for an origin, when the server itself is not authoritative for that origin. For now, it focuses on the constraints covering any such mechanism.</p>
+<h1><a>Note to Readers</a></h1>
+<p>Discussion of this draft takes place on the HTTP working group mailing list (ietf-http-wg@w3.org), which is archived at <a href="https://lists.w3.org/Archives/Public/ietf-http-wg/">https://lists.w3.org/Archives/Public/ietf-http-wg/</a>.</p>
+<p>The source code and issues list for this draft can be found in <a href="https://github.com/WICG/webpackage">https://github.com/WICG/webpackage</a>.</p>
+<h1 id="rfc.status"><a href="#rfc.status">Status of This Memo</a></h1>
+<p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
+<p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at http://datatracker.ietf.org/drafts/current/.</p>
+<p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
+<p>This Internet-Draft will expire on March 10, 2018.</p>
+<h1 id="rfc.copyrightnotice"><a href="#rfc.copyrightnotice">Copyright Notice</a></h1>
+<p>Copyright (c) 2017 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
+<p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (http://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
+
+  
+  <hr class="noprint" />
+  <h1 class="np" id="rfc.toc"><a href="#rfc.toc">Table of Contents</a></h1>
+  <ul class="toc">
+
+  	<li>1.   <a href="#rfc.section.1">Introduction</a>
+</li>
+<li>2.   <a href="#rfc.section.2">Terminology</a>
+</li>
+<li>3.   <a href="#rfc.section.3">Use cases</a>
+</li>
+<ul><li>3.1.   <a href="#rfc.section.3.1">PUSHed subresources</a>
+</li>
+<li>3.2.   <a href="#rfc.section.3.2">Explicit use of a CDN for subresources</a>
+</li>
+<li>3.3.   <a href="#rfc.section.3.3">Subresource Integrity</a>
+</li>
+<li>3.4.   <a href="#rfc.section.3.4">Offline websites</a>
+</li>
+</ul><li>4.   <a href="#rfc.section.4">Requirements and open questions</a>
+</li>
+<ul><li>4.1.   <a href="#rfc.section.4.1">Proof of origin</a>
+</li>
+<ul><li>4.1.1.   <a href="#rfc.section.4.1.1">The certificate and its chain</a>
+</li>
+</ul><li>4.2.   <a href="#rfc.section.4.2">How much to sign</a>
+</li>
+<li>4.3.   <a href="#rfc.section.4.3">Response lifespan</a>
+</li>
+<ul><li>4.3.1.   <a href="#rfc.section.4.3.1">Certificate revocation</a>
+</li>
+<li>4.3.2.   <a href="#rfc.section.4.3.2">Response downgrade attacks</a>
+</li>
+</ul><li>4.4.   <a href="#rfc.section.4.4">Conveying the signed headers</a>
+</li>
+</ul><li>5.   <a href="#rfc.section.5">Straw proposal</a>
+</li>
+<li>6.   <a href="#rfc.section.6">Security considerations</a>
+</li>
+<li>7.   <a href="#rfc.section.7">Privacy considerations</a>
+</li>
+<li>8.   <a href="#rfc.section.8">IANA considerations</a>
+</li>
+<li>9.   <a href="#rfc.references">References</a>
+</li>
+<ul><li>9.1.   <a href="#rfc.references.1">Normative References</a>
+</li>
+<li>9.2.   <a href="#rfc.references.2">Informative References</a>
+</li>
+</ul><li>Appendix A.   <a href="#rfc.appendix.A">Acknowledgements</a>
+</li>
+<li><a href="#rfc.authors">Author's Address</a>
+</li>
+
+
+  </ul>
+
+  <h1 id="rfc.section.1">
+<a href="#rfc.section.1">1.</a> <a href="#introduction" id="introduction">Introduction</a>
+</h1>
+<p id="rfc.section.1.p.1">When I <a href="https://datatracker.ietf.org/doc/minutes-99-dispatch/">presented Web Packaging to DISPATCH</a>, folks thought it would make sense to split it into a way to sign individual HTTP responses as coming from a particular origin, and separately a way to bundle a collection of HTTP responses. This document explores the constraints on any method of signing HTTP responses and briefly sketches a possible solution to the constraints.</p>
+<h1 id="rfc.section.2">
+<a href="#rfc.section.2">2.</a> <a href="#terminology" id="terminology">Terminology</a>
+</h1>
+<p></p>
+
+<dl>
+<dt>Author</dt>
+<dd style="margin-left: 8">The entity that controls the server for a particular origin <a href="#RFC6454" class="xref">[RFC6454]</a>. The author can get a CA to issue certificates for their private keys and can run a TLS server for their origin.</dd>
+<dt>Intermediate</dt>
+<dd style="margin-left: 8">An entity that fetches signed HTTP responses from an author or another intermediate and forwards them to another intermediate or a client.</dd>
+<dt>Client</dt>
+<dd style="margin-left: 8">An entity that uses a signed HTTP response and needs to be able to prove that the author vouched for it as coming from its claimed origin.</dd>
+</dl>
+<p id="rfc.section.2.p.2">The key words &#8220;MUST&#8221;, &#8220;MUST NOT&#8221;, &#8220;REQUIRED&#8221;, &#8220;SHALL&#8221;, &#8220;SHALL NOT&#8221;, &#8220;SHOULD&#8221;, &#8220;SHOULD NOT&#8221;, &#8220;RECOMMENDED&#8221;, &#8220;NOT RECOMMENDED&#8221;, &#8220;MAY&#8221;, and &#8220;OPTIONAL&#8221; in this document are to be interpreted as described in BCP 14 <a href="#RFC2119" class="xref">[RFC2119]</a> <a href="#RFC8174" class="xref">[RFC8174]</a> when, and only when, they appear in all capitals, as shown here.</p>
+<h1 id="rfc.section.3">
+<a href="#rfc.section.3">3.</a> <a href="#use-cases" id="use-cases">Use cases</a>
+</h1>
+<h1 id="rfc.section.3.1">
+<a href="#rfc.section.3.1">3.1.</a> <a href="#uc-pushed-subresources" id="uc-pushed-subresources">PUSHed subresources</a>
+</h1>
+<p id="rfc.section.3.1.p.1">To reduce round trips, a server might use HTTP/2 PUSH to inject a subresource from another server into the client&#8217;s cache. If anything about the subresource is expired or can&#8217;t be verified, the client would fetch it from the original server.</p>
+<p id="rfc.section.3.1.p.2">For example, if <samp>https://example.com/index.html</samp> includes</p>
+<pre>
+&lt;script src="https://jquery.com/jquery-1.2.3.min.js"&gt;
+</pre>
+<p id="rfc.section.3.1.p.3">Then to avoid the need to look up and connect to <samp>jquery.com</samp> in the critical path, <samp>example.com</samp> might PUSH that resource (<a href="#RFC7540" class="xref">[RFC7540]</a>, section 8.2), signed by <samp>jquery.com</samp>.</p>
+<h1 id="rfc.section.3.2">
+<a href="#rfc.section.3.2">3.2.</a> <a href="#uc-explicit-cdn" id="uc-explicit-cdn">Explicit use of a CDN for subresources</a>
+</h1>
+<p id="rfc.section.3.2.p.1">In order to speed up loading but still maintain control over its content, an HTML page in a particular origin <samp>O.com</samp> could tell clients to load its subresources from an intermediate CDN that&#8217;s not authoritative, but require that those resources be signed by <samp>O.com</samp> so that the CDN couldn&#8217;t modify the resources.</p>
+<pre>
+&lt;img logicalsrc="https://O.com/img.png"
+     physicalsrc="https://cdn.com/O.com/img.png"&gt;
+</pre>
+<p id="rfc.section.3.2.p.2">To make it easier to configure the right CDN for a given request, computation of the <samp>physicalsrc</samp> could be encapsulated in a custom element:</p>
+<pre>
+&lt;cdn-img src="https://O.com/img.png"&gt;&lt;/cdn-img&gt;
+</pre>
+<p id="rfc.section.3.2.p.3">where the <samp>&lt;cdn-img&gt;</samp> implementation generates an appropriate <samp>&lt;img&gt;</samp> based on, for example, a <samp>&lt;meta name="cdn-base"&gt;</samp> tag elsewhere in the page.</p>
+<p id="rfc.section.3.2.p.4">This could be used for some of the same purposes as SRI (<a href="#uc-sri" class="xref">Section 3.3</a>).</p>
+<h1 id="rfc.section.3.3">
+<a href="#rfc.section.3.3">3.3.</a> <a href="#uc-sri" id="uc-sri">Subresource Integrity</a>
+</h1>
+<p id="rfc.section.3.3.p.1">The W3C WebAppSec group is investigating <a href="https://github.com/mikewest/signature-based-sri">using signatures</a> in <a href="#SRI" class="xref">[SRI]</a>.  They need a way to transmit the signature with the response, which this proposal could provide.</p>
+<p id="rfc.section.3.3.p.2">However, their needs also differ in some significant ways:</p>
+<p></p>
+
+<ol>
+<li>The <samp>integrity="ed25519-[public-key]"</samp> attribute and CSP-based ways of expressing a public key don&#8217;t need the signing key to be also trusted to sign arbitrary content for an origin.</li>
+<li>Some uses of SRI want to constrain subresources to be vouched for by a third-party, rather than just being signed by the subresource&#8217;s author.</li>
+</ol>
+<p id="rfc.section.3.3.p.4">While we can design this system to cover both origin-trusted and simple-key signatures, we should check that this is better than having two separate systems for the two kinds of signatures.</p>
+<p id="rfc.section.3.3.p.5">Note that while the current proposal for SRI describes signing only the content of a resource, <a href="https://github.com/mikewest/signature-based-sri/issues/5">they may need to sign its name as well, to prevent security vulnerabilities</a>.  The details of what they need to sign will affect whether and how they can use this proposal.</p>
+<h1 id="rfc.section.3.4">
+<a href="#rfc.section.3.4">3.4.</a> <a href="#uc-offline-websites" id="uc-offline-websites">Offline websites</a>
+</h1>
+<p id="rfc.section.3.4.p.1">See <a href="https://github.com/WICG/webpackage">https://github.com/WICG/webpackage</a> and <a href="#I-D.yasskin-dispatch-web-packaging" class="xref">[I-D.yasskin-dispatch-web-packaging]</a>. This use requires origin-signed resources to be bundled.</p>
+<h1 id="rfc.section.4">
+<a href="#rfc.section.4">4.</a> <a href="#requirements-and-open-questions" id="requirements-and-open-questions">Requirements and open questions</a>
+</h1>
+<h1 id="rfc.section.4.1">
+<a href="#rfc.section.4.1">4.1.</a> <a href="#proof-of-origin" id="proof-of-origin">Proof of origin</a>
+</h1>
+<p id="rfc.section.4.1.p.1">To verify that a thing came from a particular origin, for use in the same context as a TLS connection, we need someone to vouch for the signing key with as much verification as the signing keys used in TLS. The obvious way to do this is to re-use the web PKI and CA ecosystem.</p>
+<p id="rfc.section.4.1.p.2">We&#8217;ll improve adoption if we can re-use existing TLS server certificates, but if the risks of doing that are too high, we could define a new Extended Key Usage (<a href="#RFC5280" class="xref">[RFC5280]</a>, section 4.2.1.12) that requires CAs to issue new keys for this purpose. The rest of this document will assume we can re-use existing TLS server certificates.</p>
+<p id="rfc.section.4.1.p.3">It&#8217;s essential that an attacker who can convince the server to sign some resource, cannot cause those signed bytes to be interpreted as something else.  As a result, signatures here need to use the same format as TLS&#8217;s signatures, specified in <a href="#I-D.ietf-tls-tls13" class="xref">[I-D.ietf-tls-tls13]</a> section 4.4.3, with a context string that&#8217;s specific to this use.</p>
+<h1 id="rfc.section.4.1.1">
+<a href="#rfc.section.4.1.1">4.1.1.</a> <a href="#certificate-chain" id="certificate-chain">The certificate and its chain</a>
+</h1>
+<p id="rfc.section.4.1.1.p.1">The client needs to be able to find the certificate vouching for the signing key and a chain from that certificate to a trusted root. One approach would be to include the certificate and its chain in the signature metadata itself, but this wastes bytes when the same certificate is used for multiple HTTP responses. If we decide to put the signature in an HTTP header, certificates are also unusually large for that context.</p>
+<p id="rfc.section.4.1.1.p.2">Another option is to pass a URL that the client can fetch to retrieve the certificate and chain. To avoid extra round trips in fetching that URL, it could be <a href="#uc-offline-websites" class="xref">bundled</a> with the signed content or <a href="#uc-pushed-subresources" class="xref">PUSHed</a> with it.</p>
+<h1 id="rfc.section.4.2">
+<a href="#rfc.section.4.2">4.2.</a> <a href="#how-much-to-sign" id="how-much-to-sign">How much to sign</a>
+</h1>
+<p id="rfc.section.4.2.p.1">The previous <a href="#I-D.thomson-http-content-signature" class="xref">[I-D.thomson-http-content-signature]</a> and <a href="#I-D.burke-content-signature" class="xref">[I-D.burke-content-signature]</a> schemes signed just the content, while (<a href="#I-D.cavage-http-signatures" class="xref">[I-D.cavage-http-signatures]</a> could also sign the response headers and the request method and path. However, the same path, response headers, and content may mean something very different when retrieved from a different server, so this document expects to include the whole URL in the signed data as well.</p>
+<p id="rfc.section.4.2.p.2">The question of whether to include other request headers&#8212;primarily the <samp>accept*</samp> family&#8212;is still open. These headers need to be represented so that clients wanting a different language, say, can avoid using the wrong-language response, but it&#8217;s not obvious that there&#8217;s a security vulnerability if an attacker can spoof them. That said, it&#8217;s always safer to include everything in the signature.</p>
+<p id="rfc.section.4.2.p.3">In order to allow multiple clients to consume the same signed response, the response shouldn&#8217;t include the exact headers that any particular client sends.  For example, a Japanese resource wouldn&#8217;t include</p>
+<pre>
+accept-language: ja-JP, ja;q=0.9, en;q=0.8, zh;q=0.7, *;q=0.5
+</pre>
+<p id="rfc.section.4.2.p.4">Instead, it would probably include just</p>
+<pre>
+accept-language: ja-JP, ja
+</pre>
+<p id="rfc.section.4.2.p.5">and clients would use the same matching logic as for <a href="https://tools.ietf.org/html/rfc7540#section-8.2">PUSH_PROMISE</a> frame headers.</p>
+<p id="rfc.section.4.2.p.6">The rest of this document will assume that all request headers are included in the signature.</p>
+<h1 id="rfc.section.4.3">
+<a href="#rfc.section.4.3">4.3.</a> <a href="#response-lifespan" id="response-lifespan">Response lifespan</a>
+</h1>
+<p id="rfc.section.4.3.p.1">A normal HTTPS response is authoritative only for one client, for as long as its cache headers say it should live. A signed response can be re-used for many clients, and if it was generated while a server was compromised, it can continue compromising clients even if their requests happen after the server recovers.  This signing scheme needs to mitigate that risk.</p>
+<h1 id="rfc.section.4.3.1">
+<a href="#rfc.section.4.3.1">4.3.1.</a> <a href="#certificate-revocation" id="certificate-revocation">Certificate revocation</a>
+</h1>
+<p id="rfc.section.4.3.1.p.1">Certificates are mis-issued and private keys are stolen, and in response clients need to be able to stop trusting these certificates as promptly as possible.  Online revocation checks <a href="https://www.imperialviolet.org/2012/02/05/crlsets.html">don&#8217;t work</a>, so the industry has moved to pushed revocation lists and stapled OCSP responses <a href="#RFC6066" class="xref">[RFC6066]</a>.</p>
+<p id="rfc.section.4.3.1.p.2">Pushed revocation lists work as-is to block trust in the certificate signing a response, but the signatures need an explicit strategy to staple OCSP responses.  One option is to extend the certificate download (<a href="#certificate-chain" class="xref">Section 4.1.1</a>) to include the OCSP response too, perhaps in the <a href="https://tlswg.github.io/tls13-spec/draft-ietf-tls-tls13.html#ocsp-and-sct">TLS 1.3 CertificateEntry</a> format.</p>
+<h1 id="rfc.section.4.3.2">
+<a href="#rfc.section.4.3.2">4.3.2.</a> <a href="#downgrade" id="downgrade">Response downgrade attacks</a>
+</h1>
+<p id="rfc.section.4.3.2.p.1">The signed content in a response might be vulnerable to attacks, such as XSS, or might simply be discovered to be incorrect after publication. Once the author fixes those vulnerabilities or mistakes, clients should stop trusting the old signed content in a reasonable amount of time. Similar to certificate revocation, I expect the best option to be stapled &#8220;this version is still valid&#8221; assertions with short expiration times.</p>
+<p id="rfc.section.4.3.2.p.2">These assertions could be structured as:</p>
+<p></p>
+
+<ol>
+<li>A signed minimum version number or timestamp for a set of request headers: This requires that signed responses need to include a version number or timestamp, but allows a server to provide a single signature covering all valid versions.</li>
+<li>A replacement for the whole response&#8217;s signature. This requires the author to separately re-sign each valid version and requires each version to include a strong validator <a href="#RFC7232" class="xref">[RFC7232]</a>, but allows intermediates to serve less data.</li>
+<li>A replacement for the response&#8217;s signature and an update for the embedded <samp>expires</samp> and related cache-control HTTP headers <a href="#RFC7234" class="xref">[RFC7234]</a>. This naturally extends authors&#8217; intuitions about cache expiration and the existing cache revalidation behavior to signed responses. However, it also requires that the update procedure for the response headers on the client must produce something that&#8217;s bytewise identical to the updated headers on the server.</li>
+</ol>
+<p id="rfc.section.4.3.2.p.4">The signature also needs to include instructions to intermediates for how to fetch updated validity assertions.</p>
+<h1 id="rfc.section.4.4">
+<a href="#rfc.section.4.4">4.4.</a> <a href="#conveying-the-signed-headers" id="conveying-the-signed-headers">Conveying the signed headers</a>
+</h1>
+<p id="rfc.section.4.4.p.1">HTTP headers are traditionally munged by proxies, making it impossible to guarantee that the client will see the same sequence of bytes as the author wrote. In the HTTPS world, we have more end-to-end header integrity, but it&#8217;s still likely that there are enough TLS-terminating proxies that the author&#8217;s signatures would tend to break before getting to the client.</p>
+<p id="rfc.section.4.4.p.2">Since proxies don&#8217;t modify unknown content types, I expect to propose an <samp>application/http2</samp> format to serialize the request headers, response headers, and body so they can be signed. This could be as simple as a series of HTTP/2 frames, or could</p>
+<p></p>
+
+<ol>
+<li>Allow longer contiguous bodies than <a href="https://tools.ietf.org/html/rfc7540#section-4.2">HTTP/2&#8217;s 16MB frame limit</a>, and</li>
+<li>Use better compression than <a href="#RFC7541" class="xref">[RFC7541]</a> for the non-confidential headers.</li>
+</ol>
+<p id="rfc.section.4.4.p.4">To help the PUSHed subresources use case (<a href="#uc-pushed-subresources" class="xref">Section 3.1</a>), we might also want to extend the <samp>PUSH_PROMISE</samp> frame type to include a signature, and then there might be some way to include the request headers directly in that frame.</p>
+<h1 id="rfc.section.5">
+<a href="#rfc.section.5">5.</a> <a href="#straw-proposal" id="straw-proposal">Straw proposal</a>
+</h1>
+<p id="rfc.section.5.p.1">TBD</p>
+<h1 id="rfc.section.6">
+<a href="#rfc.section.6">6.</a> <a href="#security-considerations" id="security-considerations">Security considerations</a>
+</h1>
+<p id="rfc.section.6.p.1">Authors MUST NOT include confidential information in a signed response that an untrusted intermediate could forward, since the response is only signed and not encrypted. Intermediates can read the content.</p>
+<p id="rfc.section.6.p.2">Relaxing the requirement to consult DNS when determining authority for an origin means that an attacker who possesses a valid certificate no longer needs to be on-path to redirect traffic to them; instead of modifying DNS, they need only convince the user to visit another Web site in order to serve responses signed as the target. This consideration and mitigations for it are shared by <a href="#I-D.ietf-httpbis-origin-frame" class="xref">[I-D.ietf-httpbis-origin-frame]</a>.</p>
+<p id="rfc.section.6.p.3">Signing a bad response can affect more users than simply serving a bad response, since a served response will only affect users who make a request while the bad version is live, while an attacker can forward a signed response until its signature expires. Authors should consider shorter signature expiration times than they use for cache expiration times.</p>
+<h1 id="rfc.section.7">
+<a href="#rfc.section.7">7.</a> <a href="#privacy-considerations" id="privacy-considerations">Privacy considerations</a>
+</h1>
+<p id="rfc.section.7.p.1">Normally, when a client fetches <samp>https://o1.com/resource.js</samp>, <samp>o1.com</samp> learns that the client is interested in the resource. If <samp>o1.com</samp> signs <samp>resource.js</samp>, <samp>o2.com</samp> serves it as <samp>https://o2.com/o1resource.js</samp>, and the client fetches it from there, then <samp>o2.com</samp> learns that the client is interested, and if the client executes the Javascript, that could also report the client&#8217;s interest back to <samp>o1.com</samp>.</p>
+<p id="rfc.section.7.p.2">Often, <samp>o2.com</samp> already knew about the client&#8217;s interest, because it&#8217;s the entity that directed the client to <samp>o1resource.js</samp>, but there may be cases where this leaks extra information.</p>
+<p id="rfc.section.7.p.3">For non-executable resource types, a signed response can improve the privacy situation by hiding the client&#8217;s interest from the original author.</p>
+<h1 id="rfc.section.8">
+<a href="#rfc.section.8">8.</a> <a href="#iana-considerations" id="iana-considerations">IANA considerations</a>
+</h1>
+<p id="rfc.section.8.p.1">This document has no actions for IANA.</p>
+<h1 id="rfc.references">
+<a href="#rfc.references">9.</a> References</h1>
+<h1 id="rfc.references.1">
+<a href="#rfc.references.1">9.1.</a> Normative References</h1>
+<table><tbody>
+<tr>
+<td class="reference"><b id="RFC2119">[RFC2119]</b></td>
+<td class="top">
+<a>Bradner, S.</a>, "<a href="http://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>", BCP 14, RFC 2119, DOI 10.17487/RFC2119, March 1997.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC8174">[RFC8174]</b></td>
+<td class="top">
+<a>Leiba, B.</a>, "<a href="http://tools.ietf.org/html/rfc8174">Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words</a>", BCP 14, RFC 8174, DOI 10.17487/RFC8174, May 2017.</td>
+</tr>
+</tbody></table>
+<h1 id="rfc.references.2">
+<a href="#rfc.references.2">9.2.</a> Informative References</h1>
+<table><tbody>
+<tr>
+<td class="reference"><b id="I-D.burke-content-signature">[I-D.burke-content-signature]</b></td>
+<td class="top">
+<a>Burke, B.</a>, "<a href="http://tools.ietf.org/html/draft-burke-content-signature-00">HTTP Header for digital signatures</a>", Internet-Draft draft-burke-content-signature-00, March 2011.</td>
+</tr>
+<tr>
+<td class="reference"><b id="I-D.cavage-http-signatures">[I-D.cavage-http-signatures]</b></td>
+<td class="top">
+<a>Cavage, M.</a> and <a>M. Sporny</a>, "<a href="http://tools.ietf.org/html/draft-cavage-http-signatures-07">Signing HTTP Messages</a>", Internet-Draft draft-cavage-http-signatures-07, July 2017.</td>
+</tr>
+<tr>
+<td class="reference"><b id="I-D.ietf-httpbis-origin-frame">[I-D.ietf-httpbis-origin-frame]</b></td>
+<td class="top">
+<a>Nottingham, M.</a> and <a>E. Nygren</a>, "<a href="http://tools.ietf.org/html/draft-ietf-httpbis-origin-frame-04">The ORIGIN HTTP/2 Frame</a>", Internet-Draft draft-ietf-httpbis-origin-frame-04, August 2017.</td>
+</tr>
+<tr>
+<td class="reference"><b id="I-D.ietf-tls-tls13">[I-D.ietf-tls-tls13]</b></td>
+<td class="top">
+<a>Rescorla, E.</a>, "<a href="http://tools.ietf.org/html/draft-ietf-tls-tls13-21">The Transport Layer Security (TLS) Protocol Version 1.3</a>", Internet-Draft draft-ietf-tls-tls13-21, July 2017.</td>
+</tr>
+<tr>
+<td class="reference"><b id="I-D.thomson-http-content-signature">[I-D.thomson-http-content-signature]</b></td>
+<td class="top">
+<a>Thomson, M.</a>, "<a href="http://tools.ietf.org/html/draft-thomson-http-content-signature-00">Content-Signature Header Field for HTTP</a>", Internet-Draft draft-thomson-http-content-signature-00, July 2015.</td>
+</tr>
+<tr>
+<td class="reference"><b id="I-D.yasskin-dispatch-web-packaging">[I-D.yasskin-dispatch-web-packaging]</b></td>
+<td class="top">
+<a>Yasskin, J.</a>, "<a href="http://tools.ietf.org/html/draft-yasskin-dispatch-web-packaging-00">Web Packaging</a>", Internet-Draft draft-yasskin-dispatch-web-packaging-00, June 2017.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC5280">[RFC5280]</b></td>
+<td class="top">
+<a>Cooper, D.</a>, <a>Santesson, S.</a>, <a>Farrell, S.</a>, <a>Boeyen, S.</a>, <a>Housley, R.</a> and <a>W. Polk</a>, "<a href="http://tools.ietf.org/html/rfc5280">Internet X.509 Public Key Infrastructure Certificate and Certificate Revocation List (CRL) Profile</a>", RFC 5280, DOI 10.17487/RFC5280, May 2008.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC6066">[RFC6066]</b></td>
+<td class="top">
+<a>Eastlake 3rd, D.</a>, "<a href="http://tools.ietf.org/html/rfc6066">Transport Layer Security (TLS) Extensions: Extension Definitions</a>", RFC 6066, DOI 10.17487/RFC6066, January 2011.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC6454">[RFC6454]</b></td>
+<td class="top">
+<a>Barth, A.</a>, "<a href="http://tools.ietf.org/html/rfc6454">The Web Origin Concept</a>", RFC 6454, DOI 10.17487/RFC6454, December 2011.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC7232">[RFC7232]</b></td>
+<td class="top">
+<a>Fielding, R.</a> and <a>J. Reschke</a>, "<a href="http://tools.ietf.org/html/rfc7232">Hypertext Transfer Protocol (HTTP/1.1): Conditional Requests</a>", RFC 7232, DOI 10.17487/RFC7232, June 2014.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC7234">[RFC7234]</b></td>
+<td class="top">
+<a>Fielding, R.</a>, <a>Nottingham, M.</a> and <a>J. Reschke</a>, "<a href="http://tools.ietf.org/html/rfc7234">Hypertext Transfer Protocol (HTTP/1.1): Caching</a>", RFC 7234, DOI 10.17487/RFC7234, June 2014.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC7540">[RFC7540]</b></td>
+<td class="top">
+<a>Belshe, M.</a>, <a>Peon, R.</a> and <a>M. Thomson</a>, "<a href="http://tools.ietf.org/html/rfc7540">Hypertext Transfer Protocol Version 2 (HTTP/2)</a>", RFC 7540, DOI 10.17487/RFC7540, May 2015.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC7541">[RFC7541]</b></td>
+<td class="top">
+<a>Peon, R.</a> and <a>H. Ruellan</a>, "<a href="http://tools.ietf.org/html/rfc7541">HPACK: Header Compression for HTTP/2</a>", RFC 7541, DOI 10.17487/RFC7541, May 2015.</td>
+</tr>
+<tr>
+<td class="reference"><b id="SRI">[SRI]</b></td>
+<td class="top">
+<a>Akhawe, D.</a>, <a>Braun, F.</a>, <a>Marier, F.</a> and <a>J. Weinberger</a>, "<a href="http://www.w3.org/TR/2016/REC-SRI-20160623">Subresource Integrity</a>", World Wide Web Consortium Recommendation REC-SRI-20160623, June 2016.</td>
+</tr>
+</tbody></table>
+<h1 id="rfc.appendix.A">
+<a href="#rfc.appendix.A">Appendix A.</a> <a href="#acknowledgements" id="acknowledgements">Acknowledgements</a>
+</h1>
+<h1 id="rfc.authors"><a href="#rfc.authors">Author's Address</a></h1>
+<div class="avoidbreak">
+  <address class="vcard">
+	<span class="vcardline">
+	  <span class="fn">Jeffrey Yasskin</span> 
+	  <span class="n hidden">
+		<span class="family-name">Yasskin</span>
+	  </span>
+	</span>
+	<span class="org vcardline">Google</span>
+	<span class="adr">
+	  
+	  <span class="vcardline">
+		<span class="locality"></span> 
+		<span class="region"></span>
+		<span class="code"></span>
+	  </span>
+	  <span class="country-name vcardline"></span>
+	</span>
+	<span class="vcardline">EMail: <a href="mailto:jyasskin@chromium.org">jyasskin@chromium.org</a></span>
+
+  </address>
+</div>
+
+</body>
+</html>
