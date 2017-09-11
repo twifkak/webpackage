@@ -4,8 +4,8 @@
 
 Dispatch                                                      J. Yasskin
 Internet-Draft                                                    Google
-Intended status: Standards Track                      September 06, 2017
-Expires: March 10, 2018
+Intended status: Standards Track                      September 11, 2017
+Expires: March 15, 2018
 
 
                              Web Packaging
@@ -25,14 +25,14 @@ Status of This Memo
    Internet-Drafts are working documents of the Internet Engineering
    Task Force (IETF).  Note that other groups may also distribute
    working documents as Internet-Drafts.  The list of current Internet-
-   Drafts is at http://datatracker.ietf.org/drafts/current/.
+   Drafts is at https://datatracker.ietf.org/drafts/current/.
 
    Internet-Drafts are draft documents valid for a maximum of six months
    and may be updated, replaced, or obsoleted by other documents at any
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on March 10, 2018.
+   This Internet-Draft will expire on March 15, 2018.
 
 Copyright Notice
 
@@ -41,7 +41,7 @@ Copyright Notice
 
    This document is subject to BCP 78 and the IETF Trust's Legal
    Provisions Relating to IETF Documents
-   (http://trustee.ietf.org/license-info) in effect on the date of
+   (https://trustee.ietf.org/license-info) in effect on the date of
    publication of this document.  Please review these documents
    carefully, as they describe your rights and restrictions with respect
    to this document.  Code Components extracted from this document must
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Yasskin                  Expires March 10, 2018                 [Page 1]
+Yasskin                  Expires March 15, 2018                 [Page 1]
 
 Internet-Draft                Web Packaging               September 2017
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Yasskin                  Expires March 10, 2018                 [Page 2]
+Yasskin                  Expires March 15, 2018                 [Page 2]
 
 Internet-Draft                Web Packaging               September 2017
 
@@ -165,7 +165,7 @@ Internet-Draft                Web Packaging               September 2017
 
 
 
-Yasskin                  Expires March 10, 2018                 [Page 3]
+Yasskin                  Expires March 15, 2018                 [Page 3]
 
 Internet-Draft                Web Packaging               September 2017
 
@@ -221,7 +221,7 @@ Internet-Draft                Web Packaging               September 2017
 
 
 
-Yasskin                  Expires March 10, 2018                 [Page 4]
+Yasskin                  Expires March 15, 2018                 [Page 4]
 
 Internet-Draft                Web Packaging               September 2017
 
@@ -277,7 +277,7 @@ Internet-Draft                Web Packaging               September 2017
 
 
 
-Yasskin                  Expires March 10, 2018                 [Page 5]
+Yasskin                  Expires March 15, 2018                 [Page 5]
 
 Internet-Draft                Web Packaging               September 2017
 
@@ -333,7 +333,7 @@ Internet-Draft                Web Packaging               September 2017
 
 
 
-Yasskin                  Expires March 10, 2018                 [Page 6]
+Yasskin                  Expires March 15, 2018                 [Page 6]
 
 Internet-Draft                Web Packaging               September 2017
 
@@ -389,7 +389,7 @@ Internet-Draft                Web Packaging               September 2017
 
 
 
-Yasskin                  Expires March 10, 2018                 [Page 7]
+Yasskin                  Expires March 15, 2018                 [Page 7]
 
 Internet-Draft                Web Packaging               September 2017
 
@@ -445,7 +445,7 @@ Internet-Draft                Web Packaging               September 2017
 
 
 
-Yasskin                  Expires March 10, 2018                 [Page 8]
+Yasskin                  Expires March 15, 2018                 [Page 8]
 
 Internet-Draft                Web Packaging               September 2017
 
@@ -501,7 +501,7 @@ Internet-Draft                Web Packaging               September 2017
 
 
 
-Yasskin                  Expires March 10, 2018                 [Page 9]
+Yasskin                  Expires March 15, 2018                 [Page 9]
 
 Internet-Draft                Web Packaging               September 2017
 
@@ -557,7 +557,7 @@ Internet-Draft                Web Packaging               September 2017
 
 
 
-Yasskin                  Expires March 10, 2018                [Page 10]
+Yasskin                  Expires March 15, 2018                [Page 10]
 
 Internet-Draft                Web Packaging               September 2017
 
@@ -613,7 +613,7 @@ Internet-Draft                Web Packaging               September 2017
 
 
 
-Yasskin                  Expires March 10, 2018                [Page 11]
+Yasskin                  Expires March 15, 2018                [Page 11]
 
 Internet-Draft                Web Packaging               September 2017
 
@@ -669,7 +669,7 @@ Internet-Draft                Web Packaging               September 2017
 
 
 
-Yasskin                  Expires March 10, 2018                [Page 12]
+Yasskin                  Expires March 15, 2018                [Page 12]
 
 Internet-Draft                Web Packaging               September 2017
 
@@ -725,7 +725,7 @@ Internet-Draft                Web Packaging               September 2017
 
 
 
-Yasskin                  Expires March 10, 2018                [Page 13]
+Yasskin                  Expires March 15, 2018                [Page 13]
 
 Internet-Draft                Web Packaging               September 2017
 
@@ -748,7 +748,7 @@ Internet-Draft                Web Packaging               September 2017
 5.1.  Internet Media Type Registration
 
    IANA maintains the registry of Internet Media Types [RFC6838] at
-   https://www.iana.org/assignments/media-types.
+   https://www.iana.org/assignments/media-types [3].
 
    o  Type name: application
 
@@ -781,7 +781,7 @@ Internet-Draft                Web Packaging               September 2017
 
 
 
-Yasskin                  Expires March 10, 2018                [Page 14]
+Yasskin                  Expires March 15, 2018                [Page 14]
 
 Internet-Draft                Web Packaging               September 2017
 
@@ -826,25 +826,25 @@ Internet-Draft                Web Packaging               September 2017
 
    [HTTP2]    Belshe, M., Peon, R., and M. Thomson, Ed., "Hypertext
               Transfer Protocol Version 2 (HTTP/2)", RFC 7540,
-              DOI 10.17487/RFC7540, May 2015, <https://www.rfc-
-              editor.org/info/rfc7540>.
+              DOI 10.17487/RFC7540, May 2015,
+              <https://www.rfc-editor.org/info/rfc7540>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
-              DOI 10.17487/RFC2119, March 1997, <https://www.rfc-
-              editor.org/info/rfc2119>.
+              DOI 10.17487/RFC2119, March 1997,
+              <https://www.rfc-editor.org/info/rfc2119>.
 
 
 
 
-Yasskin                  Expires March 10, 2018                [Page 15]
+Yasskin                  Expires March 15, 2018                [Page 15]
 
 Internet-Draft                Web Packaging               September 2017
 
 
    [RFC2818]  Rescorla, E., "HTTP Over TLS", RFC 2818,
-              DOI 10.17487/RFC2818, May 2000, <https://www.rfc-
-              editor.org/info/rfc2818>.
+              DOI 10.17487/RFC2818, May 2000,
+              <https://www.rfc-editor.org/info/rfc2818>.
 
    [RFC5280]  Cooper, D., Santesson, S., Farrell, S., Boeyen, S.,
               Housley, R., and W. Polk, "Internet X.509 Public Key
@@ -853,8 +853,8 @@ Internet-Draft                Web Packaging               September 2017
               <https://www.rfc-editor.org/info/rfc5280>.
 
    [RFC6454]  Barth, A., "The Web Origin Concept", RFC 6454,
-              DOI 10.17487/RFC6454, December 2011, <https://www.rfc-
-              editor.org/info/rfc6454>.
+              DOI 10.17487/RFC6454, December 2011,
+              <https://www.rfc-editor.org/info/rfc6454>.
 
    [RFC6960]  Santesson, S., Myers, M., Ankney, R., Malpani, A.,
               Galperin, S., and C. Adams, "X.509 Internet Public Key
@@ -864,8 +864,8 @@ Internet-Draft                Web Packaging               September 2017
 
    [RFC7231]  Fielding, R., Ed. and J. Reschke, Ed., "Hypertext Transfer
               Protocol (HTTP/1.1): Semantics and Content", RFC 7231,
-              DOI 10.17487/RFC7231, June 2014, <https://www.rfc-
-              editor.org/info/rfc7231>.
+              DOI 10.17487/RFC7231, June 2014,
+              <https://www.rfc-editor.org/info/rfc7231>.
 
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
@@ -893,7 +893,7 @@ Internet-Draft                Web Packaging               September 2017
 
 
 
-Yasskin                  Expires March 10, 2018                [Page 16]
+Yasskin                  Expires March 15, 2018                [Page 16]
 
 Internet-Draft                Web Packaging               September 2017
 
@@ -907,14 +907,16 @@ Internet-Draft                Web Packaging               September 2017
               Russell, A., Song, J., Archibald, J., and M.
               Kruisselbrink, "Service Workers 1", World Wide Web
               Consortium WD WD-service-workers-1-20161011, October 2016,
-              <https://www.w3.org/TR/2016/WD-service-workers-
-              1-20161011>.
+              <https://www.w3.org/TR/2016/
+              WD-service-workers-1-20161011>.
 
 6.3.  URIs
 
    [1] https://github.com/WICG/webpackage/issues/45
 
    [2] https://www.imperialviolet.org/2012/02/05/crlsets.html
+
+   [3] https://www.iana.org/assignments/media-types
 
    [4] mailto:iesg@ietf.org
 
@@ -947,9 +949,7 @@ Editorial Comments
 
 
 
-
-
-Yasskin                  Expires March 10, 2018                [Page 17]
+Yasskin                  Expires March 15, 2018                [Page 17]
 
 Internet-Draft                Web Packaging               September 2017
 
@@ -1005,4 +1005,4 @@ Author's Address
 
 
 
-Yasskin                  Expires March 10, 2018                [Page 18]
+Yasskin                  Expires March 15, 2018                [Page 18]

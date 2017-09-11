@@ -4,8 +4,8 @@
 
 http                                                          J. Yasskin
 Internet-Draft                                                    Google
-Intended status: Standards Track                      September 06, 2017
-Expires: March 10, 2018
+Intended status: Standards Track                      September 11, 2017
+Expires: March 15, 2018
 
 
                       Origin-signed HTTP Responses
@@ -22,10 +22,10 @@ Note to Readers
 
    Discussion of this draft takes place on the HTTP working group
    mailing list (ietf-http-wg@w3.org), which is archived at
-   https://lists.w3.org/Archives/Public/ietf-http-wg/.
+   https://lists.w3.org/Archives/Public/ietf-http-wg/ [1].
 
    The source code and issues list for this draft can be found in
-   https://github.com/WICG/webpackage.
+   https://github.com/WICG/webpackage [2].
 
 Status of This Memo
 
@@ -35,14 +35,14 @@ Status of This Memo
    Internet-Drafts are working documents of the Internet Engineering
    Task Force (IETF).  Note that other groups may also distribute
    working documents as Internet-Drafts.  The list of current Internet-
-   Drafts is at http://datatracker.ietf.org/drafts/current/.
+   Drafts is at https://datatracker.ietf.org/drafts/current/.
 
    Internet-Drafts are draft documents valid for a maximum of six months
    and may be updated, replaced, or obsoleted by other documents at any
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on March 10, 2018.
+   This Internet-Draft will expire on March 15, 2018.
 
 Copyright Notice
 
@@ -53,14 +53,14 @@ Copyright Notice
 
 
 
-Yasskin                  Expires March 10, 2018                 [Page 1]
+Yasskin                  Expires March 15, 2018                 [Page 1]
 
 Internet-Draft        Origin-signed HTTP Responses        September 2017
 
 
    This document is subject to BCP 78 and the IETF Trust's Legal
    Provisions Relating to IETF Documents
-   (http://trustee.ietf.org/license-info) in effect on the date of
+   (https://trustee.ietf.org/license-info) in effect on the date of
    publication of this document.  Please review these documents
    carefully, as they describe your rights and restrictions with respect
    to this document.  Code Components extracted from this document must
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Yasskin                  Expires March 10, 2018                 [Page 2]
+Yasskin                  Expires March 15, 2018                 [Page 2]
 
 Internet-Draft        Origin-signed HTTP Responses        September 2017
 
@@ -165,7 +165,7 @@ Internet-Draft        Origin-signed HTTP Responses        September 2017
 
 
 
-Yasskin                  Expires March 10, 2018                 [Page 3]
+Yasskin                  Expires March 15, 2018                 [Page 3]
 
 Internet-Draft        Origin-signed HTTP Responses        September 2017
 
@@ -210,7 +210,7 @@ Internet-Draft        Origin-signed HTTP Responses        September 2017
 
 3.4.  Offline websites
 
-   See https://github.com/WICG/webpackage and
+   See https://github.com/WICG/webpackage [6] and
    [I-D.yasskin-dispatch-web-packaging].  This use requires origin-
    signed resources to be bundled.
 
@@ -221,7 +221,7 @@ Internet-Draft        Origin-signed HTTP Responses        September 2017
 
 
 
-Yasskin                  Expires March 10, 2018                 [Page 4]
+Yasskin                  Expires March 15, 2018                 [Page 4]
 
 Internet-Draft        Origin-signed HTTP Responses        September 2017
 
@@ -277,7 +277,7 @@ Internet-Draft        Origin-signed HTTP Responses        September 2017
 
 
 
-Yasskin                  Expires March 10, 2018                 [Page 5]
+Yasskin                  Expires March 15, 2018                 [Page 5]
 
 Internet-Draft        Origin-signed HTTP Responses        September 2017
 
@@ -333,7 +333,7 @@ Internet-Draft        Origin-signed HTTP Responses        September 2017
 
 
 
-Yasskin                  Expires March 10, 2018                 [Page 6]
+Yasskin                  Expires March 15, 2018                 [Page 6]
 
 Internet-Draft        Origin-signed HTTP Responses        September 2017
 
@@ -389,7 +389,7 @@ Internet-Draft        Origin-signed HTTP Responses        September 2017
 
 
 
-Yasskin                  Expires March 10, 2018                 [Page 7]
+Yasskin                  Expires March 15, 2018                 [Page 7]
 
 Internet-Draft        Origin-signed HTTP Responses        September 2017
 
@@ -445,7 +445,7 @@ Internet-Draft        Origin-signed HTTP Responses        September 2017
 
 
 
-Yasskin                  Expires March 10, 2018                 [Page 8]
+Yasskin                  Expires March 15, 2018                 [Page 8]
 
 Internet-Draft        Origin-signed HTTP Responses        September 2017
 
@@ -468,8 +468,8 @@ Internet-Draft        Origin-signed HTTP Responses        September 2017
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
-              DOI 10.17487/RFC2119, March 1997, <https://www.rfc-
-              editor.org/info/rfc2119>.
+              DOI 10.17487/RFC2119, March 1997,
+              <https://www.rfc-editor.org/info/rfc2119>.
 
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
@@ -501,7 +501,7 @@ Internet-Draft        Origin-signed HTTP Responses        September 2017
 
 
 
-Yasskin                  Expires March 10, 2018                 [Page 9]
+Yasskin                  Expires March 15, 2018                 [Page 9]
 
 Internet-Draft        Origin-signed HTTP Responses        September 2017
 
@@ -523,17 +523,17 @@ Internet-Draft        Origin-signed HTTP Responses        September 2017
 
    [RFC6066]  Eastlake 3rd, D., "Transport Layer Security (TLS)
               Extensions: Extension Definitions", RFC 6066,
-              DOI 10.17487/RFC6066, January 2011, <https://www.rfc-
-              editor.org/info/rfc6066>.
+              DOI 10.17487/RFC6066, January 2011,
+              <https://www.rfc-editor.org/info/rfc6066>.
 
    [RFC6454]  Barth, A., "The Web Origin Concept", RFC 6454,
-              DOI 10.17487/RFC6454, December 2011, <https://www.rfc-
-              editor.org/info/rfc6454>.
+              DOI 10.17487/RFC6454, December 2011,
+              <https://www.rfc-editor.org/info/rfc6454>.
 
    [RFC7232]  Fielding, R., Ed. and J. Reschke, Ed., "Hypertext Transfer
               Protocol (HTTP/1.1): Conditional Requests", RFC 7232,
-              DOI 10.17487/RFC7232, June 2014, <https://www.rfc-
-              editor.org/info/rfc7232>.
+              DOI 10.17487/RFC7232, June 2014,
+              <https://www.rfc-editor.org/info/rfc7232>.
 
    [RFC7234]  Fielding, R., Ed., Nottingham, M., Ed., and J. Reschke,
               Ed., "Hypertext Transfer Protocol (HTTP/1.1): Caching",
@@ -542,8 +542,8 @@ Internet-Draft        Origin-signed HTTP Responses        September 2017
 
    [RFC7540]  Belshe, M., Peon, R., and M. Thomson, Ed., "Hypertext
               Transfer Protocol Version 2 (HTTP/2)", RFC 7540,
-              DOI 10.17487/RFC7540, May 2015, <https://www.rfc-
-              editor.org/info/rfc7540>.
+              DOI 10.17487/RFC7540, May 2015,
+              <https://www.rfc-editor.org/info/rfc7540>.
 
    [RFC7541]  Peon, R. and H. Ruellan, "HPACK: Header Compression for
               HTTP/2", RFC 7541, DOI 10.17487/RFC7541, May 2015,
@@ -557,27 +557,33 @@ Internet-Draft        Origin-signed HTTP Responses        September 2017
 
 
 
-Yasskin                  Expires March 10, 2018                [Page 10]
+Yasskin                  Expires March 15, 2018                [Page 10]
 
 Internet-Draft        Origin-signed HTTP Responses        September 2017
 
 
 9.3.  URIs
 
-   [1] https://datatracker.ietf.org/doc/minutes-99-dispatch/
+   [1] https://lists.w3.org/Archives/Public/ietf-http-wg/
 
-   [2] https://github.com/mikewest/signature-based-sri
+   [2] https://github.com/WICG/webpackage
 
-   [3] https://github.com/mikewest/signature-based-sri/issues/5
+   [3] https://datatracker.ietf.org/doc/minutes-99-dispatch/
 
-   [5] https://tools.ietf.org/html/rfc7540#section-8.2
+   [4] https://github.com/mikewest/signature-based-sri
 
-   [6] https://www.imperialviolet.org/2012/02/05/crlsets.html
+   [5] https://github.com/mikewest/signature-based-sri/issues/5
 
-   [7] https://tlswg.github.io/tls13-spec/draft-ietf-tls-
+   [6] https://github.com/WICG/webpackage
+
+   [7] https://tools.ietf.org/html/rfc7540#section-8.2
+
+   [8] https://www.imperialviolet.org/2012/02/05/crlsets.html
+
+   [9] https://tlswg.github.io/tls13-spec/draft-ietf-tls-
        tls13.html#ocsp-and-sct
 
-   [8] https://tools.ietf.org/html/rfc7540#section-4.2
+   [10] https://tools.ietf.org/html/rfc7540#section-4.2
 
 Appendix A.  Acknowledgements
 
@@ -607,10 +613,4 @@ Author's Address
 
 
 
-
-
-
-
-
-
-Yasskin                  Expires March 10, 2018                [Page 11]
+Yasskin                  Expires March 15, 2018                [Page 11]

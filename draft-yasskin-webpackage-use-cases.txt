@@ -4,8 +4,8 @@
 
 dispatch                                                      J. Yasskin
 Internet-Draft                                                    Google
-Intended status: Informational                        September 06, 2017
-Expires: March 10, 2018
+Intended status: Informational                        September 11, 2017
+Expires: March 15, 2018
 
 
               Use Cases and Requirements for Web Packages
@@ -20,10 +20,10 @@ Note to Readers
 
    Discussion of this draft takes place on the ART area mailing list
    (art@ietf.org), which is archived at
-   https://mailarchive.ietf.org/arch/search/?email_list=art.
+   https://mailarchive.ietf.org/arch/search/?email_list=art [1].
 
    The source code and issues list for this draft can be found in
-   https://github.com/WICG/webpackage.
+   https://github.com/WICG/webpackage [2].
 
 Status of This Memo
 
@@ -33,14 +33,14 @@ Status of This Memo
    Internet-Drafts are working documents of the Internet Engineering
    Task Force (IETF).  Note that other groups may also distribute
    working documents as Internet-Drafts.  The list of current Internet-
-   Drafts is at http://datatracker.ietf.org/drafts/current/.
+   Drafts is at https://datatracker.ietf.org/drafts/current/.
 
    Internet-Drafts are draft documents valid for a maximum of six months
    and may be updated, replaced, or obsoleted by other documents at any
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on March 10, 2018.
+   This Internet-Draft will expire on March 15, 2018.
 
 Copyright Notice
 
@@ -49,11 +49,11 @@ Copyright Notice
 
    This document is subject to BCP 78 and the IETF Trust's Legal
    Provisions Relating to IETF Documents
-   (http://trustee.ietf.org/license-info) in effect on the date of
+   (https://trustee.ietf.org/license-info) in effect on the date of
 
 
 
-Yasskin                  Expires March 10, 2018                 [Page 1]
+Yasskin                  Expires March 15, 2018                 [Page 1]
 
 Internet-Draft Use Cases and Requirements for Web PackagesSeptember 2017
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Yasskin                  Expires March 10, 2018                 [Page 2]
+Yasskin                  Expires March 15, 2018                 [Page 2]
 
 Internet-Draft Use Cases and Requirements for Web PackagesSeptember 2017
 
@@ -165,7 +165,7 @@ Internet-Draft Use Cases and Requirements for Web PackagesSeptember 2017
 
 
 
-Yasskin                  Expires March 10, 2018                 [Page 3]
+Yasskin                  Expires March 15, 2018                 [Page 3]
 
 Internet-Draft Use Cases and Requirements for Web PackagesSeptember 2017
 
@@ -221,7 +221,7 @@ Internet-Draft Use Cases and Requirements for Web PackagesSeptember 2017
 
 
 
-Yasskin                  Expires March 10, 2018                 [Page 4]
+Yasskin                  Expires March 15, 2018                 [Page 4]
 
 Internet-Draft Use Cases and Requirements for Web PackagesSeptember 2017
 
@@ -277,7 +277,7 @@ Internet-Draft Use Cases and Requirements for Web PackagesSeptember 2017
 
 
 
-Yasskin                  Expires March 10, 2018                 [Page 5]
+Yasskin                  Expires March 15, 2018                 [Page 5]
 
 Internet-Draft Use Cases and Requirements for Web PackagesSeptember 2017
 
@@ -333,7 +333,7 @@ Internet-Draft Use Cases and Requirements for Web PackagesSeptember 2017
 
 
 
-Yasskin                  Expires March 10, 2018                 [Page 6]
+Yasskin                  Expires March 15, 2018                 [Page 6]
 
 Internet-Draft Use Cases and Requirements for Web PackagesSeptember 2017
 
@@ -389,7 +389,7 @@ Internet-Draft Use Cases and Requirements for Web PackagesSeptember 2017
 
 
 
-Yasskin                  Expires March 10, 2018                 [Page 7]
+Yasskin                  Expires March 15, 2018                 [Page 7]
 
 Internet-Draft Use Cases and Requirements for Web PackagesSeptember 2017
 
@@ -445,7 +445,7 @@ Internet-Draft Use Cases and Requirements for Web PackagesSeptember 2017
 
 
 
-Yasskin                  Expires March 10, 2018                 [Page 8]
+Yasskin                  Expires March 15, 2018                 [Page 8]
 
 Internet-Draft Use Cases and Requirements for Web PackagesSeptember 2017
 
@@ -501,7 +501,7 @@ Internet-Draft Use Cases and Requirements for Web PackagesSeptember 2017
 
 
 
-Yasskin                  Expires March 10, 2018                 [Page 9]
+Yasskin                  Expires March 15, 2018                 [Page 9]
 
 Internet-Draft Use Cases and Requirements for Web PackagesSeptember 2017
 
@@ -557,7 +557,7 @@ Internet-Draft Use Cases and Requirements for Web PackagesSeptember 2017
 
 
 
-Yasskin                  Expires March 10, 2018                [Page 10]
+Yasskin                  Expires March 15, 2018                [Page 10]
 
 Internet-Draft Use Cases and Requirements for Web PackagesSeptember 2017
 
@@ -613,7 +613,7 @@ Internet-Draft Use Cases and Requirements for Web PackagesSeptember 2017
 
 
 
-Yasskin                  Expires March 10, 2018                [Page 11]
+Yasskin                  Expires March 15, 2018                [Page 11]
 
 Internet-Draft Use Cases and Requirements for Web PackagesSeptember 2017
 
@@ -669,7 +669,7 @@ Internet-Draft Use Cases and Requirements for Web PackagesSeptember 2017
 
 
 
-Yasskin                  Expires March 10, 2018                [Page 12]
+Yasskin                  Expires March 15, 2018                [Page 12]
 
 Internet-Draft Use Cases and Requirements for Web PackagesSeptember 2017
 
@@ -725,7 +725,7 @@ Internet-Draft Use Cases and Requirements for Web PackagesSeptember 2017
 
 
 
-Yasskin                  Expires March 10, 2018                [Page 13]
+Yasskin                  Expires March 15, 2018                [Page 13]
 
 Internet-Draft Use Cases and Requirements for Web PackagesSeptember 2017
 
@@ -781,7 +781,7 @@ Internet-Draft Use Cases and Requirements for Web PackagesSeptember 2017
 
 
 
-Yasskin                  Expires March 10, 2018                [Page 14]
+Yasskin                  Expires March 15, 2018                [Page 14]
 
 Internet-Draft Use Cases and Requirements for Web PackagesSeptember 2017
 
@@ -815,8 +815,8 @@ Internet-Draft Use Cases and Requirements for Web PackagesSeptember 2017
               <https://www.rfc-editor.org/info/rfc2557>.
 
    [RFC6454]  Barth, A., "The Web Origin Concept", RFC 6454,
-              DOI 10.17487/RFC6454, December 2011, <https://www.rfc-
-              editor.org/info/rfc6454>.
+              DOI 10.17487/RFC6454, December 2011,
+              <https://www.rfc-editor.org/info/rfc6454>.
 
    [RFC6962]  Laurie, B., Langley, A., and E. Kasper, "Certificate
               Transparency", RFC 6962, DOI 10.17487/RFC6962, June 2013,
@@ -828,8 +828,8 @@ Internet-Draft Use Cases and Requirements for Web PackagesSeptember 2017
 
    [RFC7540]  Belshe, M., Peon, R., and M. Thomson, Ed., "Hypertext
               Transfer Protocol Version 2 (HTTP/2)", RFC 7540,
-              DOI 10.17487/RFC7540, May 2015, <https://www.rfc-
-              editor.org/info/rfc7540>.
+              DOI 10.17487/RFC7540, May 2015,
+              <https://www.rfc-editor.org/info/rfc7540>.
 
 
 
@@ -837,7 +837,7 @@ Internet-Draft Use Cases and Requirements for Web PackagesSeptember 2017
 
 
 
-Yasskin                  Expires March 10, 2018                [Page 15]
+Yasskin                  Expires March 15, 2018                [Page 15]
 
 Internet-Draft Use Cases and Requirements for Web PackagesSeptember 2017
 
@@ -846,8 +846,8 @@ Internet-Draft Use Cases and Requirements for Web PackagesSeptember 2017
               Russell, A., Song, J., Archibald, J., and M.
               Kruisselbrink, "Service Workers 1", World Wide Web
               Consortium WD WD-service-workers-1-20161011, October 2016,
-              <https://www.w3.org/TR/2016/WD-service-workers-
-              1-20161011>.
+              <https://www.w3.org/TR/2016/
+              WD-service-workers-1-20161011>.
 
    [W3C.WD-appmanifest-20170828]
               Caceres, M., Christiansen, K., Lamouri, M., Kostiainen,
@@ -861,55 +861,58 @@ Internet-Draft Use Cases and Requirements for Web PackagesSeptember 2017
 
 7.2.  URIs
 
-   [1] https://www.mnot.net/blog/2010/02/18/resource_packages
+   [1] https://mailarchive.ietf.org/arch/search/?email_list=art
 
-   [2] https://w3ctag.github.io/packaging-on-the-web/
+   [2] https://github.com/WICG/webpackage
 
-   [3] https://lists.w3.org/Archives/Public/public-web-
+   [3] https://www.mnot.net/blog/2010/02/18/resource_packages
+
+   [4] https://w3ctag.github.io/packaging-on-the-web/
+
+   [5] https://lists.w3.org/Archives/Public/public-web-
        perf/2015Jan/0038.html
 
-   [4] https://developers.google.com/web/progressive-web-apps/checklist
+   [6] https://developers.google.com/web/progressive-web-apps/checklist
 
-   [5] https://www.w3.org/publishing/groups/publ-wg/
+   [7] https://www.w3.org/publishing/groups/publ-wg/
 
-   [6] https://www.w3.org/TR/pwp-ucr/#pwp
+   [8] https://www.w3.org/TR/pwp-ucr/#pwp
 
-   [7] https://html.spec.whatwg.org/multipage/origin.html#same-origin
+   [9] https://html.spec.whatwg.org/multipage/origin.html#same-origin
 
-   [8] https://electron.atom.io/
+   [10] https://electron.atom.io/
 
-   [9] https://nodejs.org/en/
+   [11] https://nodejs.org/en/
 
-   [10] https://www.mnot.net/blog/2010/02/18/resource_packages
+   [12] https://www.mnot.net/blog/2010/02/18/resource_packages
 
-   [11] https://w3ctag.github.io/packaging-on-the-web/
+   [13] https://w3ctag.github.io/packaging-on-the-web/
 
-   [12] http://httpwg.org/specs/rfc7540.html#PUSH_PROMISE
-
-   [13] https://paragonie.com/blog/2017/03/jwt-json-web-tokens-is-bad-
-        standard-that-everyone-should-avoid
+   [14] http://httpwg.org/specs/rfc7540.html#PUSH_PROMISE
 
 
 
 
-
-Yasskin                  Expires March 10, 2018                [Page 16]
+Yasskin                  Expires March 15, 2018                [Page 16]
 
 Internet-Draft Use Cases and Requirements for Web PackagesSeptember 2017
 
 
-   [14] https://nakedsecurity.sophos.com/2013/07/10/anatomy-of-a-
+   [15] https://paragonie.com/blog/2017/03/jwt-json-web-tokens-is-bad-
+        standard-that-everyone-should-avoid
+
+   [16] https://nakedsecurity.sophos.com/2013/07/10/anatomy-of-a-
         security-hole-googles-android-master-key-debacle-explained/
 
-   [15] https://blog.gerv.net/2016/09/introducing-deliberate-protocol-
+   [17] https://blog.gerv.net/2016/09/introducing-deliberate-protocol-
         errors-langleys-law/
 
-   [16] https://github.com/WICG/webpackage/issues/35
+   [18] https://github.com/WICG/webpackage/issues/35
 
-   [17] https://github.com/WICG/webpackage/
+   [19] https://github.com/WICG/webpackage/
         issues/6#issuecomment-275746125
 
-   [18] https://html.spec.whatwg.org/multipage/browsers.html#concept-
+   [20] https://html.spec.whatwg.org/multipage/browsers.html#concept-
         origin
 
 Appendix A.  Acknowledgements
@@ -946,7 +949,4 @@ Author's Address
 
 
 
-
-
-
-Yasskin                  Expires March 10, 2018                [Page 17]
+Yasskin                  Expires March 15, 2018                [Page 17]
