@@ -456,7 +456,7 @@ address {
   <h1 id="rfc.section.1">
 <a href="#rfc.section.1">1.</a> <a href="#introduction" id="introduction">Introduction</a>
 </h1>
-<p id="rfc.section.1.p.1">When I <a href="https://datatracker.ietf.org/doc/minutes-99-dispatch/">presented Web Packaging to DISPATCH</a>, folks thought it would make sense to split it into a way to sign individual HTTP responses as coming from a particular origin, and separately a way to bundle a collection of HTTP responses. This document explores the constraints on any method of signing HTTP responses and briefly sketches a possible solution to the constraints.</p>
+<p id="rfc.section.1.p.1">When I <a href="https://datatracker.ietf.org/doc/minutes-99-dispatch/">presented Web Packaging to DISPATCH</a>, folks thought it would make sense to split it into a way to sign individual HTTP responses as coming from a particular origin, and separately a way to bundle a collection of HTTP responses. This document explores the constraints on any method of signing HTTP responses and sketches a possible solution to the constraints.</p>
 <h1 id="rfc.section.2">
 <a href="#rfc.section.2">2.</a> <a href="#terminology" id="terminology">Terminology</a>
 </h1>
@@ -468,9 +468,9 @@ address {
 <dt>Exchange (noun)</dt>
 <dd style="margin-left: 8">An HTTP request from a client and the matching response from a server. These make up an entire HTTP/2 stream or a contiguous block of an HTTP/1 connection.  Defined by <a href="#RFC7540" class="xref">[RFC7540]</a> section 8.</dd>
 <dt>Intermediate</dt>
-<dd style="margin-left: 8">An entity that fetches signed HTTP responses from an author or another intermediate and forwards them to another intermediate or a client.</dd>
+<dd style="margin-left: 8">An entity that fetches signed HTTP exchanges from an author or another intermediate and forwards them to another intermediate or a client.</dd>
 <dt>Client</dt>
-<dd style="margin-left: 8">An entity that uses a signed HTTP response and needs to be able to prove that the author vouched for it as coming from its claimed origin.</dd>
+<dd style="margin-left: 8">An entity that uses a signed HTTP exchange and needs to be able to prove that the author vouched for it as coming from its claimed origin.</dd>
 <dt>Unix time</dt>
 <dd style="margin-left: 8">Defined by <a href="#POSIX" class="xref">[POSIX]</a> <a href="http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap04.html#tag_04_16">section 4.16</a>.</dd>
 </dl>
@@ -572,12 +572,12 @@ accept-language: ja-JP, ja
 <h1 id="rfc.section.4.3">
 <a href="#rfc.section.4.3">4.3.</a> <a href="#response-lifespan" id="response-lifespan">Response lifespan</a>
 </h1>
-<p id="rfc.section.4.3.p.1">A normal HTTPS response is authoritative only for one client, for as long as its cache headers say it should live. A signed response can be re-used for many clients, and if it was generated while a server was compromised, it can continue compromising clients even if their requests happen after the server recovers.  This signing scheme needs to mitigate that risk.</p>
+<p id="rfc.section.4.3.p.1">A normal HTTPS response is authoritative only for one client, for as long as its cache headers say it should live. A signed exchange can be re-used for many clients, and if it was generated while a server was compromised, it can continue compromising clients even if their requests happen after the server recovers.  This signing scheme needs to mitigate that risk.</p>
 <h1 id="rfc.section.4.3.1">
 <a href="#rfc.section.4.3.1">4.3.1.</a> <a href="#certificate-revocation" id="certificate-revocation">Certificate revocation</a>
 </h1>
 <p id="rfc.section.4.3.1.p.1">Certificates are mis-issued and private keys are stolen, and in response clients need to be able to stop trusting these certificates as promptly as possible.  Online revocation checks <a href="https://www.imperialviolet.org/2012/02/05/crlsets.html">don&#8217;t work</a>, so the industry has moved to pushed revocation lists and stapled OCSP responses <a href="#RFC6066" class="xref">[RFC6066]</a>.</p>
-<p id="rfc.section.4.3.1.p.2">Pushed revocation lists work as-is to block trust in the certificate signing a response, but the signatures need an explicit strategy to staple OCSP responses.  One option is to extend the certificate download (<a href="#certificate-chain" class="xref">Section 4.1.3</a>) to include the OCSP response too, perhaps in the <a href="https://tlswg.github.io/tls13-spec/draft-ietf-tls-tls13.html#ocsp-and-sct">TLS 1.3 CertificateEntry</a> format.</p>
+<p id="rfc.section.4.3.1.p.2">Pushed revocation lists work as-is to block trust in the certificate signing an exchange, but the signatures need an explicit strategy to staple OCSP responses.  One option is to extend the certificate download (<a href="#certificate-chain" class="xref">Section 4.1.3</a>) to include the OCSP response too, perhaps in the <a href="https://tlswg.github.io/tls13-spec/draft-ietf-tls-tls13.html#ocsp-and-sct">TLS 1.3 CertificateEntry</a> format.</p>
 <h1 id="rfc.section.4.3.2">
 <a href="#rfc.section.4.3.2">4.3.2.</a> <a href="#downgrade" id="downgrade">Response downgrade attacks</a>
 </h1>
@@ -587,8 +587,8 @@ accept-language: ja-JP, ja
 
 <ol>
 <li>A signed minimum version number or timestamp for a set of request headers: This requires that signed responses need to include a version number or timestamp, but allows a server to provide a single signature covering all valid versions.</li>
-<li>A replacement for the whole response&#8217;s signature. This requires the author to separately re-sign each valid version and requires each version to include a strong validator <a href="#RFC7232" class="xref">[RFC7232]</a>, but allows intermediates to serve less data.</li>
-<li>A replacement for the response&#8217;s signature and an update for the embedded <samp>expires</samp> and related cache-control HTTP headers <a href="#RFC7234" class="xref">[RFC7234]</a>. This naturally extends authors&#8217; intuitions about cache expiration and the existing cache revalidation behavior to signed responses. However, it also requires that the update procedure for the response headers on the client must produce something that&#8217;s bytewise identical to the updated headers on the server.</li>
+<li>A replacement for the whole exchange&#8217;s signature. This requires the author to separately re-sign each valid version and requires each version to include a strong validator <a href="#RFC7232" class="xref">[RFC7232]</a>, but allows intermediates to serve less data.</li>
+<li>A replacement for the exchange&#8217;s signature and an update for the embedded <samp>expires</samp> and related cache-control HTTP headers <a href="#RFC7234" class="xref">[RFC7234]</a>. This naturally extends authors&#8217; intuitions about cache expiration and the existing cache revalidation behavior to signed exchanges. However, it also requires that the update procedure for the response headers on the client must produce something that&#8217;s bytewise identical to the updated headers on the server.</li>
 </ol>
 <p id="rfc.section.4.3.2.p.4">The signature also needs to include instructions to intermediates for how to fetch updated validity assertions.</p>
 <h1 id="rfc.section.4.4">
