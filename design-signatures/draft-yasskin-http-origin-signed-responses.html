@@ -303,7 +303,8 @@ address {
 <link href="#rfc.section.5.4.1" rel="Chapter" title="5.4.1 Example">
 <link href="#rfc.section.5.5" rel="Chapter" title="5.5 Significant parts of an exchange">
 <link href="#rfc.section.5.6" rel="Chapter" title="5.6 Signature validity">
-<link href="#rfc.section.5.6.1" rel="Chapter" title="5.6.1 Open Questions">
+<link href="#rfc.section.5.6.1" rel="Chapter" title="5.6.1 Validating a certificate chain for an authority">
+<link href="#rfc.section.5.6.2" rel="Chapter" title="5.6.2 Open Questions">
 <link href="#rfc.section.5.7" rel="Chapter" title="5.7 Updating signature validity">
 <link href="#rfc.section.5.7.1" rel="Chapter" title="5.7.1 Examples">
 <link href="#rfc.section.6" rel="Chapter" title="6 Security considerations">
@@ -427,7 +428,9 @@ address {
 </li>
 <li>5.6.   <a href="#rfc.section.5.6">Signature validity</a>
 </li>
-<ul><li>5.6.1.   <a href="#rfc.section.5.6.1">Open Questions</a>
+<ul><li>5.6.1.   <a href="#rfc.section.5.6.1">Validating a certificate chain for an authority</a>
+</li>
+<li>5.6.2.   <a href="#rfc.section.5.6.2">Open Questions</a>
 </li>
 </ul><li>5.7.   <a href="#rfc.section.5.7">Updating signature validity</a>
 </li>
@@ -619,18 +622,24 @@ accept-language: ja-JP, ja
 </h1>
 <p id="rfc.section.5.2.p.1">The <samp>Signature</samp> header conveys a signature for an exchange and information about how to determine the authority of and refresh that signature.</p>
 <p id="rfc.section.5.2.p.2">The <samp>Signature</samp> header is a Structured Header as defined by <a href="#I-D.nottingham-structured-headers" class="xref">[I-D.nottingham-structured-headers]</a>. Its value MUST be a dictionary (<a href="#I-D.nottingham-structured-headers" class="xref">[I-D.nottingham-structured-headers]</a>, section 4.7).</p>
-<p id="rfc.section.5.2.p.3">The dictionary MUST contain:</p>
+<p id="rfc.section.5.2.p.3">The dictionary MUST contain members named &#8220;validityUrl&#8221;, &#8220;date&#8221;, &#8220;expires&#8221;, and &#8220;sig&#8221;, and either &#8220;certUrl&#8221; and &#8220;certSha256&#8221; members or an &#8220;ed25519Key&#8221; member.  The present members MUST have the following values:</p>
 <p></p>
 
-<ul>
-<li>A member whose key is &#8220;certUrl&#8221; and whose value is a string (<a href="#I-D.nottingham-structured-headers" class="xref">[I-D.nottingham-structured-headers]</a>, section 4.2) containing a <a href="https://url.spec.whatwg.org/#valid-url-string">valid URL string</a>.</li>
-<li>A member whose key is &#8220;certSha256&#8221; and whose value is binary content (<a href="#I-D.nottingham-structured-headers" class="xref">[I-D.nottingham-structured-headers]</a>, section 4.5) holding the SHA-256 hash of the first certificate found at &#8220;certUrl&#8221;.</li>
-<li>
-<a name="signature-validityurl"></a>A member whose key is &#8220;validityUrl&#8221; and whose value is a string (<a href="#I-D.nottingham-structured-headers" class="xref">[I-D.nottingham-structured-headers]</a>, section 4.2) containing a <a href="https://url.spec.whatwg.org/#valid-url-string">valid URL string</a>.</li>
-<li>A member whose key is &#8220;date&#8221; and whose value is an unsigned integer (<a href="#I-D.nottingham-structured-headers" class="xref">[I-D.nottingham-structured-headers]</a>, section 4.1) representing a Unix time.</li>
-<li>A member whose key is &#8220;expires&#8221; and whose value is an unsigned integer (<a href="#I-D.nottingham-structured-headers" class="xref">[I-D.nottingham-structured-headers]</a>, section 4.1) representing a Unix time.</li>
-<li>A member whose key is &#8220;sig&#8221; and whose value is binary content (<a href="#I-D.nottingham-structured-headers" class="xref">[I-D.nottingham-structured-headers]</a>, section 4.5) holding the signature of most of this header and the significant parts of the exchange <a href="#significant-parts" class="xref">Section 5.5</a>.</li>
-</ul>
+<dl>
+<dt>&#8220;certUrl&#8221;</dt>
+<dd style="margin-left: 8">A string (<a href="#I-D.nottingham-structured-headers" class="xref">[I-D.nottingham-structured-headers]</a>, section 4.2) containing a <a href="https://url.spec.whatwg.org/#valid-url-string">valid URL string</a>.</dd>
+<dt>&#8220;certSha256&#8221;</dt>
+<dd style="margin-left: 8">Binary content (<a href="#I-D.nottingham-structured-headers" class="xref">[I-D.nottingham-structured-headers]</a>, section 4.5) holding the SHA-256 hash of the first certificate found at &#8220;certUrl&#8221;.</dd>
+<dt>&#8220;ed25519Key&#8221;</dt>
+<dd style="margin-left: 8">Binary content (<a href="#I-D.nottingham-structured-headers" class="xref">[I-D.nottingham-structured-headers]</a>, section 4.5) holding an Ed25519 public key (<a href="#RFC8032" class="xref">[RFC8032]</a>).</dd>
+<dt>&#8220;validityUrl&#8221;</dt>
+<dd style="margin-left: 8">
+<a name="signature-validityurl"></a>A string (<a href="#I-D.nottingham-structured-headers" class="xref">[I-D.nottingham-structured-headers]</a>, section 4.2) containing a <a href="https://url.spec.whatwg.org/#valid-url-string">valid URL string</a>.</dd>
+<dt>&#8220;date&#8221; and &#8220;expires</dt>
+<dd style="margin-left: 8">An unsigned integer (<a href="#I-D.nottingham-structured-headers" class="xref">[I-D.nottingham-structured-headers]</a>, section 4.1) representing a Unix time.</dd>
+<dt>&#8220;sig&#8221;</dt>
+<dd style="margin-left: 8">Binary content (<a href="#I-D.nottingham-structured-headers" class="xref">[I-D.nottingham-structured-headers]</a>, section 4.5) holding the signature of most of this header and the significant parts of the exchange <a href="#significant-parts" class="xref">Section 5.5</a>.</dd>
+</dl>
 <p id="rfc.section.5.2.p.5">The &#8220;certUrl&#8221; and &#8220;validityUrl&#8221; members are <em>not</em> signed, so intermediates can update them with pointers to cached versions.</p>
 <h1 id="rfc.section.5.2.1">
 <a href="#rfc.section.5.2.1">5.2.1.</a> <a href="#open-questions" id="open-questions">Open Questions</a>
@@ -738,18 +747,26 @@ accept-language: ja-JP, ja
 <h1 id="rfc.section.5.6">
 <a href="#rfc.section.5.6">5.6.</a> <a href="#signature-validity" id="signature-validity">Signature validity</a>
 </h1>
-<p id="rfc.section.5.6.p.1">The client MUST use the following algorithm to determine whether each <samp>Signature</samp> header field (<a href="#signature-header" class="xref">Section 5.2</a>) is valid or invalid.</p>
+<p id="rfc.section.5.6.p.1">The client MUST use the following algorithm to determine whether each <samp>Signature</samp> header field (<a href="#signature-header" class="xref">Section 5.2</a>) is invalid or potentially-valid.  Potentially-valid results include:</p>
+<p></p>
+
+<ul>
+<li>The signed parts of the exchange so that higher-level protocols can avoid relying on unsigned headers, and</li>
+<li>Either a certificate chain or a public key so that a higher-level protocol can determine whether it&#8217;s actually valid.</li>
+</ul>
+<p id="rfc.section.5.6.p.3"><a name="force-fetch"></a>This algorithm accepts a <samp>forceFetch</samp> flag that avoids the cache when fetching URLs. A client that determines that a potentially-valid certificate chain is actually invalid due to expired OCSP responses MAY retry with <samp>forceFetch</samp> set to retrieve updated OCSPs from the original server.</p>
 <p></p>
 
 <ol>
 <li>Let <samp>exchange</samp> be the significant parts (<a href="#significant-parts" class="xref">Section 5.5</a>) of the <samp>Signature</samp> header&#8217;s exchange. If <samp>exchange</samp> is a failure, then return &#8220;invalid&#8221;.</li>
-<li>Let <samp>authority</samp> be the &#8220;:authority&#8221; request header from <samp>exchange</samp>.</li>
 <li>If an error is thrown while parsing the <samp>Signature</samp> header as the dictionary described in <a href="#signature-header" class="xref">Section 5.2</a>  (<a href="#I-D.nottingham-structured-headers" class="xref">[I-D.nottingham-structured-headers]</a>, section 4.7.1), return &#8220;invalid&#8221;.</li>
 <li>Let: <ul>
 <li>
-<samp>certUrl</samp> be the header&#8217;s &#8220;certUrl&#8221; member</li>
+<samp>certUrl</samp> be the header&#8217;s &#8220;certUrl&#8221; member, if any</li>
 <li>
-<samp>certSha256</samp> be the header&#8217;s &#8220;certSha256&#8221; member</li>
+<samp>certSha256</samp> be the header&#8217;s &#8220;certSha256&#8221; member, if any</li>
+<li>
+<samp>ed25519Key</samp> be the header&#8217;s &#8220;ed25519Key&#8221; member, if any</li>
 <li>
 <samp>date</samp> be the header&#8217;s &#8220;date&#8221; member, interpreted as a Unix time</li>
 <li>
@@ -758,17 +775,13 @@ accept-language: ja-JP, ja
 <samp>signature</samp> be the header&#8217;s &#8220;sig&#8221; member</li>
 </ul>
 </li>
-<li>Let <samp>certificate-chain</samp> be the result of fetching (<a href="#FETCH" class="xref">[FETCH]</a>) <samp>certUrl</samp> and parsing it as a TLS 1.3 Certificate message (<a href="#I-D.ietf-tls-tls13" class="xref">[I-D.ietf-tls-tls13]</a>, section 4.4.2) containing X.509v3 certificates. The fetch can be fulfilled from a cache using normal HTTP semantics <a href="#RFC7234" class="xref">[RFC7234]</a>. If this fetch or parse fails, return &#8220;invalid&#8221;.</li>
+<li>Set <samp>publicKey</samp> and <samp>signing-alg</samp> depending on which key fields are present: <ol>
+<li>If <samp>certUrl</samp> is present: <ol>
+<li>Let <samp>certificate-chain</samp> be the result of fetching (<a href="#FETCH" class="xref">[FETCH]</a>) <samp>certUrl</samp> and parsing it as a TLS 1.3 Certificate message (<a href="#I-D.ietf-tls-tls13" class="xref">[I-D.ietf-tls-tls13]</a>, section 4.4.2) containing X.509v3 certificates. If <samp>forceFetch</samp> is <em>not</em> set, the fetch can be fulfilled from a cache using normal HTTP semantics <a href="#RFC7234" class="xref">[RFC7234]</a>. If this fetch or parse fails, return &#8220;invalid&#8221;.</li>
 <li>Let <samp>main-certificate</samp> be the first certificate in <samp>certificate-chain</samp>.</li>
-<li>
-<a name="validate-certificate"></a>Validate <samp>main-certificate</samp>. If any of these substeps fails and the <samp>certUrl</samp> was fetched from a cache, the client MAY invalidate that cache entry and restart this algorithm. Otherwise, a failure in a substep means to return &#8220;invalid&#8221;.  <ol>
-<li>Validate that the SHA-256 hash of <samp>main-certificate</samp>&#8217;s <samp>cert_data</samp> is equal to <samp>certSha256</samp>. See the <a href="#hash-whole-chain" class="xref">open questions</a>.</li>
-<li>Use <samp>certificate-chain</samp> to validate that <samp>main-certificate</samp> is trusted as <samp>authority</samp>&#8217;s server certificate (<a href="#RFC5280" class="xref">[RFC5280]</a> and other undocumented conventions). Let <samp>path</samp> be the path that was used from the <samp>main-certificate</samp> to a trusted root, including the <samp>main-certificate</samp> but excluding the root.</li>
-<li>Validate that all certificates in <samp>path</samp> include &#8220;status_request&#8221; extensions with valid OCSP responses. (<a href="#RFC6960" class="xref">[RFC6960]</a>)</li>
-<li>Validate that all certificates in <samp>path</samp> include &#8220;signed_certificate_timestamp&#8221; extensions containing valid SCTs from trusted logs. (<a href="#RFC6962" class="xref">[RFC6962]</a>)</li>
-</ol>
-</li>
-<li>The client MUST define a partial function from public key types to signing algorithms, and this function must at the minimum include the following mappings:  <dl>
+<li>If the SHA-256 hash of <samp>main-certificate</samp>&#8217;s <samp>cert_data</samp> is not equal to <samp>certSha256</samp>, return &#8220;invalid&#8221;. See the <a href="#hash-whole-chain" class="xref">open questions</a>.</li>
+<li>Set <samp>publicKey</samp> to <samp>main-certificate</samp>&#8217;s public key</li>
+<li>The client MUST define a partial function from public key types to signing algorithms, and this function must at the minimum include the following mappings:          <dl>
 <dt>RSA, 2048 bits:</dt>
 <dd style="margin-left: 8">rsa_pss_sha256 as defined in Section 4.2.3 of <a href="#I-D.ietf-tls-tls13" class="xref">[I-D.ietf-tls-tls13]</a>.</dd>
 <dt>EC, with the secp256r1 curve:</dt>
@@ -776,8 +789,14 @@ accept-language: ja-JP, ja
 <dt>EC, with the secp384r1 curve:</dt>
 <dd style="margin-left: 8">ecdsa_secp384r1_sha384 as defined in Section 4.2.3 of <a href="#I-D.ietf-tls-tls13" class="xref">[I-D.ietf-tls-tls13]</a>.</dd>
 </dl>
-<p> Let </p>
-<samp>signing-alg</samp> be the result of applying this function to type of <samp>main-certificate</samp>&#8217;s public key. If the function is undefined on this input, return &#8220;invalid&#8221;.</li>
+<p> Set </p>
+<samp>signing-alg</samp> to the result of applying this function to type of <samp>main-certificate</samp>&#8217;s public key. If the function is undefined on this input, return &#8220;invalid&#8221;.</li>
+</ol>
+</li>
+<li>If <samp>ed25519Key</samp> is present, set <samp>publicKey</samp> to <samp>ed25519Key</samp> and <samp>signing-alg</samp> to ed25519, as defined by <a href="#RFC8032" class="xref">[RFC8032]</a>
+</li>
+</ol>
+</li>
 <li>If <samp>expires</samp> is more than 7 days (604800 seconds) after <samp>date</samp>, return &#8220;invalid&#8221;.</li>
 <li>If the current time is before <samp>date</samp> or after <samp>expires</samp>, return &#8220;invalid&#8221;.</li>
 <li>Let <samp>message</samp> be the concatenation of the following byte strings. This matches the <a href="#I-D.ietf-tls-tls13" class="xref">[I-D.ietf-tls-tls13]</a> format to avoid cross-protocol attacks when TLS certificates are used to sign manifests.  <ol>
@@ -797,18 +816,35 @@ accept-language: ja-JP, ja
 </li>
 </ol>
 </li>
-<li>If <samp>signature</samp> is <samp>message</samp>&#8217;s signature by <samp>main-certificate</samp>&#8217;s public key using <samp>signing-alg</samp>, return &#8220;valid&#8221;. Otherwise, return &#8220;invalid&#8221;.</li>
+<li>If <samp>signature</samp> is <samp>message</samp>&#8217;s signature by <samp>main-certificate</samp>&#8217;s public key using <samp>signing-alg</samp>, return &#8220;potentially-valid&#8221; with <samp>exchange</samp> and whichever is present of <samp>certificate-chain</samp> or <samp>ed25519Key</samp>. Otherwise, return &#8220;invalid&#8221;.</li>
 </ol>
 <h1 id="rfc.section.5.6.1">
-<a href="#rfc.section.5.6.1">5.6.1.</a> <a href="#open-questions-1" id="open-questions-1">Open Questions</a>
+<a href="#rfc.section.5.6.1">5.6.1.</a> <a href="#validating-a-certificate-chain-for-an-authority" id="validating-a-certificate-chain-for-an-authority">Validating a certificate chain for an authority</a>
 </h1>
-<p id="rfc.section.5.6.1.p.1"><a name="hash-whole-chain"></a>TLS 1.3 signs the entire certificate chain, but doing that here would preclude updating the OCSP signatures without replacing all <samp>Signature</samp> header fields at the same time. What attack do I allow by hashing only the end-entity certificate?</p>
-<p id="rfc.section.5.6.1.p.2"><a name="incremental-validity"></a>Including the entire exchange in the signed data forces a client to download the whole thing before trusting any of it. <a href="#I-D.thomson-http-mice" class="xref">[I-D.thomson-http-mice]</a> is designed to let us check the validity of just the <samp>MI</samp> header up front and then incrementally check blocks of the payload as they arrive. What&#8217;s the best way to integrate that? Maybe make the <a href="#significant-parts" class="xref">Section 5.5</a> omit the actual payload when there&#8217;s an <samp>MI</samp> header with a matching <samp>Content-Encoding</samp> and warn clients to enforce the <samp>MI</samp> header when using the body?</p>
+<p id="rfc.section.5.6.1.p.1">When the physical request is different from the logical request, clients will often want to verify that a potentially-valid certificate chain is trusted for the logical request. They can use the following algorithm to do so:</p>
+<p></p>
+
+<ol>
+<li>Run <a href="#signature-validity" class="xref">Section 5.6</a> over the <samp>Signature</samp> header, getting <samp>exchange</samp> and <samp>certificate-chain</samp> back. If this returned &#8220;invalid&#8221;, return &#8220;invalid&#8221;.</li>
+<li>Let <samp>authority</samp> be the &#8220;:authority&#8221; request header from <samp>exchange</samp>. If <samp>exchange</samp> doesn&#8217;t include its &#8220;:authority&#8221; header, return &#8220;invalid&#8221;.</li>
+<li>Validate the <samp>certificate-chain</samp> using the following substeps. If any of them fail, re-run <a href="#signature-validity" class="xref">Section 5.6</a> once over the <samp>Signature</samp> header with the <samp>forceFetch</samp> flag set, and restart from step 2.  <ol>
+<li>Use <samp>certificate-chain</samp> to validate that its first entry, <samp>main-certificate</samp> is trusted as <samp>authority</samp>&#8217;s server certificate (<a href="#RFC5280" class="xref">[RFC5280]</a> and other undocumented conventions). Let <samp>path</samp> be the path that was used from the <samp>main-certificate</samp> to a trusted root, including the <samp>main-certificate</samp> but excluding the root.</li>
+<li>Validate that all certificates in <samp>path</samp> include &#8220;status_request&#8221; extensions with valid OCSP responses. (<a href="#RFC6960" class="xref">[RFC6960]</a>)</li>
+<li>Validate that all certificates in <samp>path</samp> include &#8220;signed_certificate_timestamp&#8221; extensions containing valid SCTs from trusted logs. (<a href="#RFC6962" class="xref">[RFC6962]</a>)</li>
+</ol>
+</li>
+<li>Return &#8220;valid&#8221;.</li>
+</ol>
+<h1 id="rfc.section.5.6.2">
+<a href="#rfc.section.5.6.2">5.6.2.</a> <a href="#open-questions-1" id="open-questions-1">Open Questions</a>
+</h1>
+<p id="rfc.section.5.6.2.p.1"><a name="hash-whole-chain"></a>TLS 1.3 signs the entire certificate chain, but doing that here would preclude updating the OCSP signatures without replacing all <samp>Signature</samp> header fields at the same time. What attack do I allow by hashing only the end-entity certificate?</p>
+<p id="rfc.section.5.6.2.p.2"><a name="incremental-validity"></a>Including the entire exchange in the signed data forces a client to download the whole thing before trusting any of it. <a href="#I-D.thomson-http-mice" class="xref">[I-D.thomson-http-mice]</a> is designed to let us check the validity of just the <samp>MI</samp> header up front and then incrementally check blocks of the payload as they arrive. What&#8217;s the best way to integrate that? Maybe make the <a href="#significant-parts" class="xref">Section 5.5</a> omit the actual payload when there&#8217;s an <samp>MI</samp> header with a matching <samp>Content-Encoding</samp> and warn clients to enforce the <samp>MI</samp> header when using the body?</p>
 <h1 id="rfc.section.5.7">
 <a href="#rfc.section.5.7">5.7.</a> <a href="#updating-validity" id="updating-validity">Updating signature validity</a>
 </h1>
 <p id="rfc.section.5.7.p.1">Both OCSP responses and <samp>Signature</samp> header fields are designed to expire a short time after they&#8217;re signed, so that revoked certificates and signed exchanges with known vulnerabilities are distrusted promptly.</p>
-<p id="rfc.section.5.7.p.2">This specification provides no way to update OCSP responses by themselves.  Instead, <a href="#validate-certificate" class="xref">clients need to re-fetch the &#8220;certUrl&#8221;</a> to get a chain including newer OCSPs.</p>
+<p id="rfc.section.5.7.p.2">This specification provides no way to update OCSP responses by themselves.  Instead, <a href="#force-fetch" class="xref">clients need to re-fetch the &#8220;certUrl&#8221;</a> to get a chain including newer OCSPs.</p>
 <p id="rfc.section.5.7.p.3">The <a href="#signature-validityurl" class="xref">&#8220;validityUrl&#8221; member</a> of the <samp>Signature</samp> header provides a way to fetch new signatures or learn where to fetch a complete updated package.</p>
 <p id="rfc.section.5.7.p.4">Each version of a signed exchange SHOULD have its own validity URLs, since each version needs different signatures and becomes obsolete at different times.</p>
 <p id="rfc.section.5.7.p.5">The resource at a &#8220;validityUrl&#8221; is &#8220;validity data&#8221;, a CBOR map matching the following CDDL (<a href="#I-D.ietf-cbor-cddl" class="xref">[I-D.ietf-cbor-cddl]</a>):</p>
@@ -891,7 +927,7 @@ Signature: validityUrl="https://thirdparty.example.com/resource.validity",
 <h1 id="rfc.section.8">
 <a href="#rfc.section.8">8.</a> <a href="#iana-considerations" id="iana-considerations">IANA considerations</a>
 </h1>
-<p id="rfc.section.8.p.1">This document has no actions for IANA.</p>
+<p id="rfc.section.8.p.1">TODO: register application/http2 and possibly the validityUrl format.</p>
 <h1 id="rfc.references">
 <a href="#rfc.references">9.</a> References</h1>
 <h1 id="rfc.references.1">
@@ -966,6 +1002,11 @@ Signature: validityUrl="https://thirdparty.example.com/resource.validity",
 <td class="reference"><b id="RFC7540">[RFC7540]</b></td>
 <td class="top">
 <a>Belshe, M.</a>, <a>Peon, R.</a> and <a>M. Thomson</a>, "<a href="https://tools.ietf.org/html/rfc7540">Hypertext Transfer Protocol Version 2 (HTTP/2)</a>", RFC 7540, DOI 10.17487/RFC7540, May 2015.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC8032">[RFC8032]</b></td>
+<td class="top">
+<a>Josefsson, S.</a> and <a>I. Liusvaara</a>, "<a href="https://tools.ietf.org/html/rfc8032">Edwards-Curve Digital Signature Algorithm (EdDSA)</a>", RFC 8032, DOI 10.17487/RFC8032, January 2017.</td>
 </tr>
 <tr>
 <td class="reference"><b id="RFC8174">[RFC8174]</b></td>

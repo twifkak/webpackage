@@ -97,15 +97,15 @@ Table of Contents
        5.4.1.  Example . . . . . . . . . . . . . . . . . . . . . . .  13
      5.5.  Significant parts of an exchange  . . . . . . . . . . . .  13
      5.6.  Signature validity  . . . . . . . . . . . . . . . . . . .  14
-       5.6.1.  Open Questions  . . . . . . . . . . . . . . . . . . .  17
-     5.7.  Updating signature validity . . . . . . . . . . . . . . .  17
-       5.7.1.  Examples  . . . . . . . . . . . . . . . . . . . . . .  18
+       5.6.1.  Validating a certificate chain for an authority . . .  17
+       5.6.2.  Open Questions  . . . . . . . . . . . . . . . . . . .  18
+     5.7.  Updating signature validity . . . . . . . . . . . . . . .  18
+       5.7.1.  Examples  . . . . . . . . . . . . . . . . . . . . . .  19
    6.  Security considerations . . . . . . . . . . . . . . . . . . .  20
-   7.  Privacy considerations  . . . . . . . . . . . . . . . . . . .  20
+   7.  Privacy considerations  . . . . . . . . . . . . . . . . . . .  21
    8.  IANA considerations . . . . . . . . . . . . . . . . . . . . .  21
    9.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  21
      9.1.  Normative References  . . . . . . . . . . . . . . . . . .  21
-     9.2.  Informative References  . . . . . . . . . . . . . . . . .  22
 
 
 
@@ -114,9 +114,10 @@ Yasskin                   Expires May 25, 2018                  [Page 2]
 Internet-Draft        Origin-signed HTTP Responses         November 2017
 
 
+     9.2.  Informative References  . . . . . . . . . . . . . . . . .  23
      9.3.  URIs  . . . . . . . . . . . . . . . . . . . . . . . . . .  24
-   Appendix A.  Acknowledgements . . . . . . . . . . . . . . . . . .  24
-   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  24
+   Appendix A.  Acknowledgements . . . . . . . . . . . . . . . . . .  25
+   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  25
 
 1.  Introduction
 
@@ -160,8 +161,7 @@ Internet-Draft        Origin-signed HTTP Responses         November 2017
 
    To reduce round trips, a server might use HTTP/2 PUSH to inject a
    subresource from another server into the client's cache.  If anything
-   about the subresource is expired or can't be verified, the client
-   would fetch it from the original server.
+
 
 
 
@@ -169,6 +169,9 @@ Yasskin                   Expires May 25, 2018                  [Page 3]
 
 Internet-Draft        Origin-signed HTTP Responses         November 2017
 
+
+   about the subresource is expired or can't be verified, the client
+   would fetch it from the original server.
 
    For example, if "https://example.com/index.html" includes
 
@@ -214,9 +217,6 @@ Internet-Draft        Origin-signed HTTP Responses         November 2017
        ways of expressing a public key don't need the signing key to be
        also trusted to sign arbitrary content for an origin.
 
-   2.  Some uses of SRI want to constrain subresources to be vouched for
-       by a third-party, rather than just being signed by the
-       subresource's author.
 
 
 
@@ -225,6 +225,10 @@ Yasskin                   Expires May 25, 2018                  [Page 4]
 
 Internet-Draft        Origin-signed HTTP Responses         November 2017
 
+
+   2.  Some uses of SRI want to constrain subresources to be vouched for
+       by a third-party, rather than just being signed by the
+       subresource's author.
 
    While we can design this system to cover both origin-trusted and
    simple-key signatures, we should check that this is better than
@@ -270,10 +274,6 @@ Internet-Draft        Origin-signed HTTP Responses         November 2017
    EKU would probably require CAs to also issue new intermediate
    certificates because of how browsers trust EKUs.  Both an EKU and a
    new extension take a long time to deploy and allow CAs to charge
-   package-signers more than normal server operators, which will reduce
-   adoption.
-
-
 
 
 
@@ -281,6 +281,9 @@ Yasskin                   Expires May 25, 2018                  [Page 5]
 
 Internet-Draft        Origin-signed HTTP Responses         November 2017
 
+
+   package-signers more than normal server operators, which will reduce
+   adoption.
 
    The rest of this document will assume we can re-use existing TLS
    server certificates.
@@ -327,9 +330,6 @@ Internet-Draft        Origin-signed HTTP Responses         November 2017
    the intended one, the content of the certificate chain should be
    included in the signed data, like TLS does ([I-D.ietf-tls-tls13],
    section 4.4.3).
-
-
-
 
 
 
@@ -533,27 +533,27 @@ Internet-Draft        Origin-signed HTTP Responses         November 2017
    [I-D.nottingham-structured-headers].  Its value MUST be a dictionary
    ([I-D.nottingham-structured-headers], section 4.7).
 
-   The dictionary MUST contain:
+   The dictionary MUST contain members named "validityUrl", "date",
+   "expires", and "sig", and either "certUrl" and "certSha256" members
+   or an "ed25519Key" member.  The present members MUST have the
+   following values:
 
-   o  A member whose key is "certUrl" and whose value is a string
-      ([I-D.nottingham-structured-headers], section 4.2) containing a
-      valid URL string [12].
+   "certUrl"  A string ([I-D.nottingham-structured-headers], section
+      4.2) containing a valid URL string [12].
 
-   o  A member whose key is "certSha256" and whose value is binary
-      content ([I-D.nottingham-structured-headers], section 4.5) holding
-      the SHA-256 hash of the first certificate found at "certUrl".
+   "certSha256"  Binary content ([I-D.nottingham-structured-headers],
+      section 4.5) holding the SHA-256 hash of the first certificate
+      found at "certUrl".
 
-   o  A member whose key is "validityUrl" and whose value is a string
-      ([I-D.nottingham-structured-headers], section 4.2) containing a
-      valid URL string [13].
+   "ed25519Key"  Binary content ([I-D.nottingham-structured-headers],
+      section 4.5) holding an Ed25519 public key ([RFC8032]).
 
-   o  A member whose key is "date" and whose value is an unsigned
-      integer ([I-D.nottingham-structured-headers], section 4.1)
-      representing a Unix time.
+   "validityUrl"  A string ([I-D.nottingham-structured-headers], section
+      4.2) containing a valid URL string [13].
 
-   o  A member whose key is "expires" and whose value is an unsigned
-      integer ([I-D.nottingham-structured-headers], section 4.1)
-      representing a Unix time.
+   "date" and "expires  An unsigned integer
+      ([I-D.nottingham-structured-headers], section 4.1) representing a
+      Unix time.
 
 
 
@@ -562,10 +562,9 @@ Yasskin                   Expires May 25, 2018                 [Page 10]
 Internet-Draft        Origin-signed HTTP Responses         November 2017
 
 
-   o  A member whose key is "sig" and whose value is binary content
-      ([I-D.nottingham-structured-headers], section 4.5) holding the
-      signature of most of this header and the significant parts of the
-      exchange Section 5.5.
+   "sig"  Binary content ([I-D.nottingham-structured-headers], section
+      4.5) holding the signature of most of this header and the
+      significant parts of the exchange Section 5.5.
 
    The "certUrl" and "validityUrl" members are _not_ signed, so
    intermediates can update them with pointers to cached versions.
@@ -609,6 +608,7 @@ Internet-Draft        Origin-signed HTTP Responses         November 2017
    strings, [RFC7049], section 2.1), and member values, each consisting
    of a single CBOR item with a type and meaning determined by the
    member name.
+
 
 
 
@@ -771,11 +771,11 @@ Internet-Draft        Origin-signed HTTP Responses         November 2017
 5.6.  Signature validity
 
    The client MUST use the following algorithm to determine whether each
-   "Signature" header field (Section 5.2) is valid or invalid.
+   "Signature" header field (Section 5.2) is invalid or potentially-
+   valid.  Potentially-valid results include:
 
-   1.   Let "exchange" be the significant parts (Section 5.5) of the
-        "Signature" header's exchange.  If "exchange" is a failure, then
-        return "invalid".
+   o  The signed parts of the exchange so that higher-level protocols
+      can avoid relying on unsigned headers, and
 
 
 
@@ -786,52 +786,52 @@ Yasskin                   Expires May 25, 2018                 [Page 14]
 Internet-Draft        Origin-signed HTTP Responses         November 2017
 
 
-   2.   Let "authority" be the ":authority" request header from
-        "exchange".
+   o  Either a certificate chain or a public key so that a higher-level
+      protocol can determine whether it's actually valid.
 
-   3.   If an error is thrown while parsing the "Signature" header as
-        the dictionary described in Section 5.2
-        ([I-D.nottingham-structured-headers], section 4.7.1), return
-        "invalid".
+   This algorithm accepts a "forceFetch" flag that avoids the cache when
+   fetching URLs.  A client that determines that a potentially-valid
+   certificate chain is actually invalid due to expired OCSP responses
+   MAY retry with "forceFetch" set to retrieve updated OCSPs from the
+   original server.
 
-   4.   Let:
+   1.  Let "exchange" be the significant parts (Section 5.5) of the
+       "Signature" header's exchange.  If "exchange" is a failure, then
+       return "invalid".
 
-        *  "certUrl" be the header's "certUrl" member
+   2.  If an error is thrown while parsing the "Signature" header as the
+       dictionary described in Section 5.2
+       ([I-D.nottingham-structured-headers], section 4.7.1), return
+       "invalid".
 
-        *  "certSha256" be the header's "certSha256" member
+   3.  Let:
 
-        *  "date" be the header's "date" member, interpreted as a Unix
-           time
+       *  "certUrl" be the header's "certUrl" member, if any
 
-        *  "expires" be the header's "expires" member, interpreted as a
-           Unix time
+       *  "certSha256" be the header's "certSha256" member, if any
 
-        *  "signature" be the header's "sig" member
+       *  "ed25519Key" be the header's "ed25519Key" member, if any
 
-   5.   Let "certificate-chain" be the result of fetching ([FETCH])
-        "certUrl" and parsing it as a TLS 1.3 Certificate message
-        ([I-D.ietf-tls-tls13], section 4.4.2) containing X.509v3
-        certificates.  The fetch can be fulfilled from a cache using
-        normal HTTP semantics [RFC7234].  If this fetch or parse fails,
-        return "invalid".
+       *  "date" be the header's "date" member, interpreted as a Unix
+          time
 
-   6.   Let "main-certificate" be the first certificate in "certificate-
-        chain".
+       *  "expires" be the header's "expires" member, interpreted as a
+          Unix time
 
-   7.   Validate "main-certificate".  If any of these substeps fails and
-        the "certUrl" was fetched from a cache, the client MAY
-        invalidate that cache entry and restart this algorithm.
-        Otherwise, a failure in a substep means to return "invalid".
+       *  "signature" be the header's "sig" member
 
-        1.  Validate that the SHA-256 hash of "main-certificate"'s
-            "cert_data" is equal to "certSha256".  See the open
-            questions (Section 5.6.1, Paragraph 1).
+   4.  Set "publicKey" and "signing-alg" depending on which key fields
+       are present:
 
-        2.  Use "certificate-chain" to validate that "main-certificate"
-            is trusted as "authority"'s server certificate ([RFC5280]
-            and other undocumented conventions).  Let "path" be the path
-            that was used from the "main-certificate" to a trusted root,
-            including the "main-certificate" but excluding the root.
+       1.  If "certUrl" is present:
+
+           1.  Let "certificate-chain" be the result of fetching
+               ([FETCH]) "certUrl" and parsing it as a TLS 1.3
+               Certificate message ([I-D.ietf-tls-tls13], section 4.4.2)
+               containing X.509v3 certificates.  If "forceFetch" is
+               _not_ set, the fetch can be fulfilled from a cache using
+               normal HTTP semantics [RFC7234].  If this fetch or parse
+               fails, return "invalid".
 
 
 
@@ -842,54 +842,54 @@ Yasskin                   Expires May 25, 2018                 [Page 15]
 Internet-Draft        Origin-signed HTTP Responses         November 2017
 
 
-        3.  Validate that all certificates in "path" include
-            "status_request" extensions with valid OCSP responses.
-            ([RFC6960])
+           2.  Let "main-certificate" be the first certificate in
+               "certificate-chain".
 
-        4.  Validate that all certificates in "path" include
-            "signed_certificate_timestamp" extensions containing valid
-            SCTs from trusted logs.  ([RFC6962])
+           3.  If the SHA-256 hash of "main-certificate"'s "cert_data"
+               is not equal to "certSha256", return "invalid".  See the
+               open questions (Section 5.6.2, Paragraph 1).
 
-   8.   The client MUST define a partial function from public key types
-        to signing algorithms, and this function must at the minimum
-        include the following mappings:
+           4.  Set "publicKey" to "main-certificate"'s public key
 
-        RSA, 2048 bits:  rsa_pss_sha256 as defined in Section 4.2.3 of
-           [I-D.ietf-tls-tls13].
+           5.  The client MUST define a partial function from public key
+               types to signing algorithms, and this function must at
+               the minimum include the following mappings:
 
-        EC, with the secp256r1 curve:  ecdsa_secp256r1_sha256 as defined
-           in Section 4.2.3 of [I-D.ietf-tls-tls13].
+               RSA, 2048 bits:  rsa_pss_sha256 as defined in
+                  Section 4.2.3 of [I-D.ietf-tls-tls13].
 
-        EC, with the secp384r1 curve:  ecdsa_secp384r1_sha384 as defined
-           in Section 4.2.3 of [I-D.ietf-tls-tls13].
+               EC, with the secp256r1 curve:  ecdsa_secp256r1_sha256 as
+                  defined in Section 4.2.3 of [I-D.ietf-tls-tls13].
 
-        Let "signing-alg" be the result of applying this function to
-        type of "main-certificate"'s public key.  If the function is
-        undefined on this input, return "invalid".
+               EC, with the secp384r1 curve:  ecdsa_secp384r1_sha384 as
+                  defined in Section 4.2.3 of [I-D.ietf-tls-tls13].
 
-   9.   If "expires" is more than 7 days (604800 seconds) after "date",
-        return "invalid".
+               Set "signing-alg" to the result of applying this function
+               to type of "main-certificate"'s public key.  If the
+               function is undefined on this input, return "invalid".
 
-   10.  If the current time is before "date" or after "expires", return
-        "invalid".
+       2.  If "ed25519Key" is present, set "publicKey" to "ed25519Key"
+           and "signing-alg" to ed25519, as defined by [RFC8032]
 
-   11.  Let "message" be the concatenation of the following byte
-        strings.  This matches the [I-D.ietf-tls-tls13] format to avoid
-        cross-protocol attacks when TLS certificates are used to sign
-        manifests.
+   5.  If "expires" is more than 7 days (604800 seconds) after "date",
+       return "invalid".
 
-        1.  A string that consists of octet 32 (0x20) repeated 64 times.
+   6.  If the current time is before "date" or after "expires", return
+       "invalid".
 
-        2.  A context string: the ASCII encoding of "HTTP Exchange".
+   7.  Let "message" be the concatenation of the following byte strings.
+       This matches the [I-D.ietf-tls-tls13] format to avoid cross-
+       protocol attacks when TLS certificates are used to sign
+       manifests.
 
-        3.  A single 0 byte which serves as a separator.
+       1.  A string that consists of octet 32 (0x20) repeated 64 times.
 
-        4.  The bytes of the canonical CBOR encoding of a CBOR array
-            consisting of:
+       2.  A context string: the ASCII encoding of "HTTP Exchange".
 
-            1.  The text string "certSha256".
+       3.  A single 0 byte which serves as a separator.
 
-            2.  The byte string "certSha256".
+       4.  The bytes of the canonical CBOR encoding of a CBOR array
+           consisting of:
 
 
 
@@ -898,24 +898,73 @@ Yasskin                   Expires May 25, 2018                 [Page 16]
 Internet-Draft        Origin-signed HTTP Responses         November 2017
 
 
-            3.  The text string "date".
+           1.  The text string "certSha256".
 
-            4.  The integer value of "date".
+           2.  The byte string "certSha256".
 
-            5.  The text string "expires".
+           3.  The text string "date".
 
-            6.  The integer value of "expires".
+           4.  The integer value of "date".
 
-            7.  The text string "exchange".
+           5.  The text string "expires".
 
-            8.  The CBOR item "exchange".  See the open questions
-                (Section 5.6.1, Paragraph 2).
+           6.  The integer value of "expires".
 
-   12.  If "signature" is "message"'s signature by "main-certificate"'s
-        public key using "signing-alg", return "valid".  Otherwise,
-        return "invalid".
+           7.  The text string "exchange".
 
-5.6.1.  Open Questions
+           8.  The CBOR item "exchange".  See the open questions
+               (Section 5.6.2, Paragraph 2).
+
+   8.  If "signature" is "message"'s signature by "main-certificate"'s
+       public key using "signing-alg", return "potentially-valid" with
+       "exchange" and whichever is present of "certificate-chain" or
+       "ed25519Key".  Otherwise, return "invalid".
+
+5.6.1.  Validating a certificate chain for an authority
+
+   When the physical request is different from the logical request,
+   clients will often want to verify that a potentially-valid
+   certificate chain is trusted for the logical request.  They can use
+   the following algorithm to do so:
+
+   1.  Run Section 5.6 over the "Signature" header, getting "exchange"
+       and "certificate-chain" back.  If this returned "invalid", return
+       "invalid".
+
+   2.  Let "authority" be the ":authority" request header from
+       "exchange".  If "exchange" doesn't include its ":authority"
+       header, return "invalid".
+
+   3.  Validate the "certificate-chain" using the following substeps.
+       If any of them fail, re-run Section 5.6 once over the "Signature"
+       header with the "forceFetch" flag set, and restart from step 2.
+
+       1.  Use "certificate-chain" to validate that its first entry,
+           "main-certificate" is trusted as "authority"'s server
+           certificate ([RFC5280] and other undocumented conventions).
+           Let "path" be the path that was used from the "main-
+           certificate" to a trusted root, including the "main-
+           certificate" but excluding the root.
+
+
+
+
+Yasskin                   Expires May 25, 2018                 [Page 17]
+
+Internet-Draft        Origin-signed HTTP Responses         November 2017
+
+
+       2.  Validate that all certificates in "path" include
+           "status_request" extensions with valid OCSP responses.
+           ([RFC6960])
+
+       3.  Validate that all certificates in "path" include
+           "signed_certificate_timestamp" extensions containing valid
+           SCTs from trusted logs.  ([RFC6962])
+
+   4.  Return "valid".
+
+5.6.2.  Open Questions
 
    TLS 1.3 signs the entire certificate chain, but doing that here would
    preclude updating the OCSP signatures without replacing all
@@ -940,19 +989,11 @@ Internet-Draft        Origin-signed HTTP Responses         November 2017
 
    This specification provides no way to update OCSP responses by
    themselves.  Instead, clients need to re-fetch the "certUrl"
-   (Paragraph 7) to get a chain including newer OCSPs.
+   (Section 5.6, Paragraph 3) to get a chain including newer OCSPs.
 
-   The "validityUrl" member (Paragraph 3) of the "Signature" header
+   The "validityUrl" member (Paragraph 4) of the "Signature" header
    provides a way to fetch new signatures or learn where to fetch a
    complete updated package.
-
-
-
-
-Yasskin                   Expires May 25, 2018                 [Page 17]
-
-Internet-Draft        Origin-signed HTTP Responses         November 2017
-
 
    Each version of a signed exchange SHOULD have its own validity URLs,
    since each version needs different signatures and becomes obsolete at
@@ -960,6 +1001,14 @@ Internet-Draft        Origin-signed HTTP Responses         November 2017
 
    The resource at a "validityUrl" is "validity data", a CBOR map
    matching the following CDDL ([I-D.ietf-cbor-cddl]):
+
+
+
+
+Yasskin                   Expires May 25, 2018                 [Page 18]
+
+Internet-Draft        Origin-signed HTTP Responses         November 2017
+
 
    validity = {
      ? signatures: [ + bytes ]
@@ -989,27 +1038,6 @@ Internet-Draft        Origin-signed HTTP Responses         November 2017
    For example, if a signed exchange has the following "Signature"
    header fields:
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Yasskin                   Expires May 25, 2018                 [Page 18]
-
-Internet-Draft        Origin-signed HTTP Responses         November 2017
-
-
 Signature: validityUrl="https://example.com/resource.validity",
   certUrl="https://example.com/certs",
   certSha256=*W7uB969dFW3Mb5ZefPS9Tq5ZbH5iSmOILpjv2qEArmI,
@@ -1027,6 +1055,16 @@ Signature: validityUrl="https://thirdparty.example.com/resource.validity",
   sig=*MEYCIQCNxJzn6Rh2fNxsobktir8TkiaJYQFhWTuWI1i4PewQaQIhAMs2TVjc4rTshDtXbgQEOwgj2mRXALhfXPztXgPupii+
 
    https://example.com/resource.validity might contain:
+
+
+
+
+
+
+Yasskin                   Expires May 25, 2018                 [Page 19]
+
+Internet-Draft        Origin-signed HTTP Responses         November 2017
+
 
 {
   "signatures": [
@@ -1059,13 +1097,6 @@ Signature: validityUrl="https://thirdparty.example.com/resource.validity",
   date=1511301183, expires=1511905983,
   sig=*MEYCIQCNxJzn6Rh2fNxsobktir8TkiaJYQFhWTuWI1i4PewQaQIhAMs2TVjc4rTshDtXbgQEOwgj2mRXALhfXPztXgPupii+
 
-
-
-Yasskin                   Expires May 25, 2018                 [Page 19]
-
-Internet-Draft        Origin-signed HTTP Responses         November 2017
-
-
    https://example.com/resource.validity could also expand the set of
    "Signature" header fields if its "signatures" array contained more
    than 2 elements.
@@ -1082,6 +1113,15 @@ Internet-Draft        Origin-signed HTTP Responses         November 2017
    certificate no longer needs to be on-path to redirect traffic to
    them; instead of modifying DNS, they need only convince the user to
    visit another Web site in order to serve responses signed as the
+
+
+
+
+Yasskin                   Expires May 25, 2018                 [Page 20]
+
+Internet-Draft        Origin-signed HTTP Responses         November 2017
+
+
    target.  This consideration and mitigations for it are shared by
    [I-D.ietf-httpbis-origin-frame].
 
@@ -1114,21 +1154,13 @@ Internet-Draft        Origin-signed HTTP Responses         November 2017
    it's the entity that directed the client to "o1resource.js", but
    there may be cases where this leaks extra information.
 
-
-
-
-Yasskin                   Expires May 25, 2018                 [Page 20]
-
-Internet-Draft        Origin-signed HTTP Responses         November 2017
-
-
    For non-executable resource types, a signed response can improve the
    privacy situation by hiding the client's interest from the original
    author.
 
 8.  IANA considerations
 
-   This document has no actions for IANA.
+   TODO: register application/http2 and possibly the validityUrl format.
 
 9.  References
 
@@ -1136,6 +1168,15 @@ Internet-Draft        Origin-signed HTTP Responses         November 2017
 
    [FETCH]    WHATWG, "Fetch", November 2017,
               <https://fetch.spec.whatwg.org/>.
+
+
+
+
+
+Yasskin                   Expires May 25, 2018                 [Page 21]
+
+Internet-Draft        Origin-signed HTTP Responses         November 2017
+
 
    [I-D.ietf-cbor-cddl]
               Birkholz, H., Vigano, C., and C. Bormann, "Concise data
@@ -1170,14 +1211,6 @@ Internet-Draft        Origin-signed HTTP Responses         November 2017
               (CRL) Profile", RFC 5280, DOI 10.17487/RFC5280, May 2008,
               <https://www.rfc-editor.org/info/rfc5280>.
 
-
-
-
-Yasskin                   Expires May 25, 2018                 [Page 21]
-
-Internet-Draft        Origin-signed HTTP Responses         November 2017
-
-
    [RFC6960]  Santesson, S., Myers, M., Ankney, R., Malpani, A.,
               Galperin, S., and C. Adams, "X.509 Internet Public Key
               Infrastructure Online Certificate Status Protocol - OCSP",
@@ -1191,6 +1224,15 @@ Internet-Draft        Origin-signed HTTP Responses         November 2017
    [RFC7049]  Bormann, C. and P. Hoffman, "Concise Binary Object
               Representation (CBOR)", RFC 7049, DOI 10.17487/RFC7049,
               October 2013, <https://www.rfc-editor.org/info/rfc7049>.
+
+
+
+
+
+Yasskin                   Expires May 25, 2018                 [Page 22]
+
+Internet-Draft        Origin-signed HTTP Responses         November 2017
+
 
    [RFC7230]  Fielding, R., Ed. and J. Reschke, Ed., "Hypertext Transfer
               Protocol (HTTP/1.1): Message Syntax and Routing",
@@ -1212,6 +1254,11 @@ Internet-Draft        Origin-signed HTTP Responses         November 2017
               DOI 10.17487/RFC7540, May 2015,
               <https://www.rfc-editor.org/info/rfc7540>.
 
+   [RFC8032]  Josefsson, S. and I. Liusvaara, "Edwards-Curve Digital
+              Signature Algorithm (EdDSA)", RFC 8032,
+              DOI 10.17487/RFC8032, January 2017,
+              <https://www.rfc-editor.org/info/rfc8032>.
+
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/info/rfc8174>.
@@ -1227,17 +1274,21 @@ Internet-Draft        Origin-signed HTTP Responses         November 2017
               cavage-http-signatures-09 (work in progress), November
               2017.
 
-
-
-Yasskin                   Expires May 25, 2018                 [Page 22]
-
-Internet-Draft        Origin-signed HTTP Responses         November 2017
-
-
    [I-D.ietf-httpbis-origin-frame]
               Nottingham, M. and E. Nygren, "The ORIGIN HTTP/2 Frame",
               draft-ietf-httpbis-origin-frame-04 (work in progress),
               August 2017.
+
+
+
+
+
+
+
+Yasskin                   Expires May 25, 2018                 [Page 23]
+
+Internet-Draft        Origin-signed HTTP Responses         November 2017
+
 
    [I-D.thomson-http-content-signature]
               Thomson, M., "Content-Signature Header Field for HTTP",
@@ -1280,16 +1331,6 @@ Internet-Draft        Origin-signed HTTP Responses         November 2017
               Recommendation REC-SRI-20160623, June 2016,
               <http://www.w3.org/TR/2016/REC-SRI-20160623>.
 
-
-
-
-
-
-Yasskin                   Expires May 25, 2018                 [Page 23]
-
-Internet-Draft        Origin-signed HTTP Responses         November 2017
-
-
 9.3.  URIs
 
    [1] https://lists.w3.org/Archives/Public/ietf-http-wg/
@@ -1297,6 +1338,13 @@ Internet-Draft        Origin-signed HTTP Responses         November 2017
    [2] https://github.com/WICG/webpackage
 
    [3] https://datatracker.ietf.org/doc/minutes-99-dispatch/
+
+
+
+Yasskin                   Expires May 25, 2018                 [Page 24]
+
+Internet-Draft        Origin-signed HTTP Responses         November 2017
+
 
    [4] http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/
        V1_chap04.html#tag_04_16
@@ -1341,4 +1389,12 @@ Author's Address
 
 
 
-Yasskin                   Expires May 25, 2018                 [Page 24]
+
+
+
+
+
+
+
+
+Yasskin                   Expires May 25, 2018                 [Page 25]
