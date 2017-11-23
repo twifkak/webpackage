@@ -4,8 +4,8 @@
 
 dispatch                                                      J. Yasskin
 Internet-Draft                                                    Google
-Intended status: Informational                         November 20, 2017
-Expires: May 24, 2018
+Intended status: Informational                         November 23, 2017
+Expires: May 27, 2018
 
 
               Use Cases and Requirements for Web Packages
@@ -40,7 +40,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on May 24, 2018.
+   This Internet-Draft will expire on May 27, 2018.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Yasskin                   Expires May 24, 2018                  [Page 1]
+Yasskin                   Expires May 27, 2018                  [Page 1]
 
 Internet-Draft Use Cases and Requirements for Web Packages November 2017
 
@@ -77,11 +77,11 @@ Table of Contents
        2.2.1.  Packaged Web Publications . . . . . . . . . . . . . .   6
        2.2.2.  Third-party security review . . . . . . . . . . . . .   7
        2.2.3.  Building packages from multiple libraries . . . . . .   7
-       2.2.4.  CDNs  . . . . . . . . . . . . . . . . . . . . . . . .   8
+       2.2.4.  Content Distributors  . . . . . . . . . . . . . . . .   8
        2.2.5.  Installation from a self-extracting executable  . . .   8
        2.2.6.  Ergonomic replacement for HTTP/2 PUSH . . . . . . . .   9
        2.2.7.  Packages in version control . . . . . . . . . . . . .   9
-   3.  Requirements  . . . . . . . . . . . . . . . . . . . . . . . .   9
+   3.  Requirements  . . . . . . . . . . . . . . . . . . . . . . . .  10
      3.1.  Essential . . . . . . . . . . . . . . . . . . . . . . . .  10
        3.1.1.  Indexed by URL  . . . . . . . . . . . . . . . . . . .  10
        3.1.2.  Request headers . . . . . . . . . . . . . . . . . . .  10
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Yasskin                   Expires May 24, 2018                  [Page 2]
+Yasskin                   Expires May 27, 2018                  [Page 2]
 
 Internet-Draft Use Cases and Requirements for Web Packages November 2017
 
@@ -165,7 +165,7 @@ Internet-Draft Use Cases and Requirements for Web Packages November 2017
 
 
 
-Yasskin                   Expires May 24, 2018                  [Page 3]
+Yasskin                   Expires May 27, 2018                  [Page 3]
 
 Internet-Draft Use Cases and Requirements for Web Packages November 2017
 
@@ -221,7 +221,7 @@ Internet-Draft Use Cases and Requirements for Web Packages November 2017
 
 
 
-Yasskin                   Expires May 24, 2018                  [Page 4]
+Yasskin                   Expires May 27, 2018                  [Page 4]
 
 Internet-Draft Use Cases and Requirements for Web Packages November 2017
 
@@ -277,7 +277,7 @@ Internet-Draft Use Cases and Requirements for Web Packages November 2017
 
 
 
-Yasskin                   Expires May 24, 2018                  [Page 5]
+Yasskin                   Expires May 27, 2018                  [Page 5]
 
 Internet-Draft Use Cases and Requirements for Web Packages November 2017
 
@@ -333,7 +333,7 @@ Internet-Draft Use Cases and Requirements for Web Packages November 2017
 
 
 
-Yasskin                   Expires May 24, 2018                  [Page 6]
+Yasskin                   Expires May 27, 2018                  [Page 6]
 
 Internet-Draft Use Cases and Requirements for Web Packages November 2017
 
@@ -389,7 +389,7 @@ Internet-Draft Use Cases and Requirements for Web Packages November 2017
 
 
 
-Yasskin                   Expires May 24, 2018                  [Page 7]
+Yasskin                   Expires May 27, 2018                  [Page 7]
 
 Internet-Draft Use Cases and Requirements for Web Packages November 2017
 
@@ -398,35 +398,39 @@ Internet-Draft Use Cases and Requirements for Web Packages November 2017
 
    o  External dependencies
 
-2.2.4.  CDNs
+2.2.4.  Content Distributors
 
-   CDNs want to re-publish other origins' content so readers can access
-   it more quickly or more privately.  Currently, to attribute that
-   content to the original origin, they need the full ability to publish
-   arbitrary content under that origin's name.  There should be a way to
-   let them attribute only the exact content that the original origin
-   published.
+   Content distributors want to re-publish other origins' content so
+   readers can access it more quickly or more privately.  Currently, to
+   attribute that content to the original origin, they need to be full
+   CDNs with the ability to publish arbitrary content under that
+   origin's name.  There should be a way to let them attribute only the
+   exact content that the original origin published.
 
-   Web Packages would allow CDNs to publish content as another site as
-   long as the user visited a URL explicitly mentioning the CDN.
+   Web Packages would allow distributors to publish another site's
+   signed content as long as the user visited a URL explicitly
+   mentioning the distributor.
 
-   CDNs want to serve only the bytes that most optimally represent the
-   content the current user needs, even though the origin needs to
-   provide representations for all users.  Think PNG vs WebP and small
-   vs large resolutions.
+   Content distributors want to serve only the bytes that most optimally
+   represent the content the current user needs, even though the origin
+   needs to provide representations for all users.  Think PNG vs WebP
+   and small vs large resolutions.
+
+   This use case is also addressed by
+   [I-D.yasskin-http-origin-signed-responses].
 
    Associated requirements:
 
    o  Streamed loading: To get optimal performance, the browser should
-      be able to start loading early resources before the CDN finishes
-      sending the whole package.
+      be able to start loading early resources before the distributor
+      finishes sending the whole package.
 
    o  Signing as an origin: To prove the content came from the original
       origin.
 
    o  Subsetting and reordering: If a package includes both WebP and PNG
-      versions of an image, the CDN should be able to select the best
-      one to send to each client.
+      versions of an image, the distributor should be able to select the
+      best one to send to each client.
 
    o  Compress transfers
 
@@ -438,17 +442,17 @@ Internet-Draft Use Cases and Requirements for Web Packages November 2017
    of the executable, have the executable look for a length at its own
    end, and seek backwards from there for the start of the package.
 
-   Associated requirements:
-
-   o  Trailing length
 
 
 
-
-Yasskin                   Expires May 24, 2018                  [Page 8]
+Yasskin                   Expires May 27, 2018                  [Page 8]
 
 Internet-Draft Use Cases and Requirements for Web Packages November 2017
 
+
+   Associated requirements:
+
+   o  Trailing length
 
 2.2.6.  Ergonomic replacement for HTTP/2 PUSH
 
@@ -493,18 +497,16 @@ Internet-Draft Use Cases and Requirements for Web Packages November 2017
 
    o  Binary
 
-3.  Requirements
 
 
 
 
-
-
-
-Yasskin                   Expires May 24, 2018                  [Page 9]
+Yasskin                   Expires May 27, 2018                  [Page 9]
 
 Internet-Draft Use Cases and Requirements for Web Packages November 2017
 
+
+3.  Requirements
 
 3.1.  Essential
 
@@ -552,15 +554,16 @@ Internet-Draft Use Cases and Requirements for Web Packages November 2017
    should use a signature to prove that a resource comes from a
    particular origin, and they're probably not usable for that purpose.
 
-   This would require an extension to the [ZIP] format, similar to
-   [JAR]'s signatures.
 
 
 
-Yasskin                   Expires May 24, 2018                 [Page 10]
+Yasskin                   Expires May 27, 2018                 [Page 10]
 
 Internet-Draft Use Cases and Requirements for Web Packages November 2017
 
+
+   This would require an extension to the [ZIP] format, similar to
+   [JAR]'s signatures.
 
    In any cryptographic system, the specification is responsible to make
    correct implementations easier to deploy than incorrect
@@ -610,10 +613,7 @@ Internet-Draft Use Cases and Requirements for Web Packages November 2017
 
 
 
-
-
-
-Yasskin                   Expires May 24, 2018                 [Page 11]
+Yasskin                   Expires May 27, 2018                 [Page 11]
 
 Internet-Draft Use Cases and Requirements for Web Packages November 2017
 
@@ -669,7 +669,7 @@ Internet-Draft Use Cases and Requirements for Web Packages November 2017
 
 
 
-Yasskin                   Expires May 24, 2018                 [Page 12]
+Yasskin                   Expires May 27, 2018                 [Page 12]
 
 Internet-Draft Use Cases and Requirements for Web Packages November 2017
 
@@ -725,7 +725,7 @@ Internet-Draft Use Cases and Requirements for Web Packages November 2017
 
 
 
-Yasskin                   Expires May 24, 2018                 [Page 13]
+Yasskin                   Expires May 27, 2018                 [Page 13]
 
 Internet-Draft Use Cases and Requirements for Web Packages November 2017
 
@@ -781,7 +781,7 @@ Internet-Draft Use Cases and Requirements for Web Packages November 2017
 
 
 
-Yasskin                   Expires May 24, 2018                 [Page 14]
+Yasskin                   Expires May 27, 2018                 [Page 14]
 
 Internet-Draft Use Cases and Requirements for Web Packages November 2017
 
@@ -806,6 +806,11 @@ Internet-Draft Use Cases and Requirements for Web Packages November 2017
               Yasskin, J., "Web Packaging", draft-yasskin-dispatch-web-
               packaging-00 (work in progress), June 2017.
 
+   [I-D.yasskin-http-origin-signed-responses]
+              Yasskin, J., "Origin-signed HTTP Responses", draft-
+              yasskin-http-origin-signed-responses-00 (work in
+              progress), August 2017.
+
    [JAR]      "JAR File Specification", 2014,
               <https://docs.oracle.com/javase/7/docs/technotes/guides/
               jar/jar.html>.
@@ -827,20 +832,20 @@ Internet-Draft Use Cases and Requirements for Web Packages November 2017
               Signature (JWS)", RFC 7515, DOI 10.17487/RFC7515, May
               2015, <https://www.rfc-editor.org/info/rfc7515>.
 
+
+
+
+
+
+Yasskin                   Expires May 27, 2018                 [Page 15]
+
+Internet-Draft Use Cases and Requirements for Web Packages November 2017
+
+
    [RFC7540]  Belshe, M., Peon, R., and M. Thomson, Ed., "Hypertext
               Transfer Protocol Version 2 (HTTP/2)", RFC 7540,
               DOI 10.17487/RFC7540, May 2015,
               <https://www.rfc-editor.org/info/rfc7540>.
-
-
-
-
-
-
-Yasskin                   Expires May 24, 2018                 [Page 15]
-
-Internet-Draft Use Cases and Requirements for Web Packages November 2017
-
 
    [ServiceWorkers]
               Russell, A., Song, J., Archibald, J., and M.
@@ -886,17 +891,16 @@ Internet-Draft Use Cases and Requirements for Web Packages November 2017
 
    [12] https://www.mnot.net/blog/2010/02/18/resource_packages
 
-   [13] https://w3ctag.github.io/packaging-on-the-web/
-
-   [14] http://httpwg.org/specs/rfc7540.html#PUSH_PROMISE
 
 
-
-
-Yasskin                   Expires May 24, 2018                 [Page 16]
+Yasskin                   Expires May 27, 2018                 [Page 16]
 
 Internet-Draft Use Cases and Requirements for Web Packages November 2017
 
+
+   [13] https://w3ctag.github.io/packaging-on-the-web/
+
+   [14] http://httpwg.org/specs/rfc7540.html#PUSH_PROMISE
 
    [15] https://paragonie.com/blog/2017/03/jwt-json-web-tokens-is-bad-
         standard-that-everyone-should-avoid
@@ -945,8 +949,4 @@ Author's Address
 
 
 
-
-
-
-
-Yasskin                   Expires May 24, 2018                 [Page 17]
+Yasskin                   Expires May 27, 2018                 [Page 17]

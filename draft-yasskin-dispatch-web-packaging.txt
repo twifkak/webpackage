@@ -4,8 +4,8 @@
 
 Dispatch                                                      J. Yasskin
 Internet-Draft                                                    Google
-Intended status: Standards Track                       November 20, 2017
-Expires: May 24, 2018
+Intended status: Standards Track                       November 23, 2017
+Expires: May 27, 2018
 
 
                              Web Packaging
@@ -32,7 +32,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on May 24, 2018.
+   This Internet-Draft will expire on May 27, 2018.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Yasskin                   Expires May 24, 2018                  [Page 1]
+Yasskin                   Expires May 27, 2018                  [Page 1]
 
 Internet-Draft                Web Packaging                November 2017
 
@@ -61,20 +61,16 @@ Internet-Draft                Web Packaging                November 2017
 Table of Contents
 
    1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
-     1.1.  Use Cases . . . . . . . . . . . . . . . . . . . . . . . .   3
-       1.1.1.  Offline Installation  . . . . . . . . . . . . . . . .   3
-       1.1.2.  Snapshot packages . . . . . . . . . . . . . . . . . .   3
-       1.1.3.  CDNs  . . . . . . . . . . . . . . . . . . . . . . . .   3
-       1.1.4.  ... . . . . . . . . . . . . . . . . . . . . . . . . .   3
+     1.1.  Use Cases . . . . . . . . . . . . . . . . . . . . . . . .   2
      1.2.  Why not ZIP?  . . . . . . . . . . . . . . . . . . . . . .   3
      1.3.  The Need for Standardization  . . . . . . . . . . . . . .   3
      1.4.  Terminology . . . . . . . . . . . . . . . . . . . . . . .   3
-   2.  Format  . . . . . . . . . . . . . . . . . . . . . . . . . . .   4
-     2.1.  Mode of specification . . . . . . . . . . . . . . . . . .   4
-     2.2.  Top-level structure . . . . . . . . . . . . . . . . . . .   4
-       2.2.1.  From the end  . . . . . . . . . . . . . . . . . . . .   5
+   2.  Format  . . . . . . . . . . . . . . . . . . . . . . . . . . .   3
+     2.1.  Mode of specification . . . . . . . . . . . . . . . . . .   3
+     2.2.  Top-level structure . . . . . . . . . . . . . . . . . . .   3
+       2.2.1.  From the end  . . . . . . . . . . . . . . . . . . . .   4
        2.2.2.  From the beginning  . . . . . . . . . . . . . . . . .   5
-     2.3.  Parsing the index . . . . . . . . . . . . . . . . . . . .   6
+     2.3.  Parsing the index . . . . . . . . . . . . . . . . . . . .   5
      2.4.  Parsing the manifest  . . . . . . . . . . . . . . . . . .   7
        2.4.1.  Sub-packages  . . . . . . . . . . . . . . . . . . . .  10
      2.5.  Parsing a resource  . . . . . . . . . . . . . . . . . . .  11
@@ -104,47 +100,19 @@ Table of Contents
    standardize the overall format.  More details can be found in that
    repository.
 
+1.1.  Use Cases
+
+   See [I-D.yasskin-webpackage-use-cases].
 
 
 
 
 
-Yasskin                   Expires May 24, 2018                  [Page 2]
+
+Yasskin                   Expires May 27, 2018                  [Page 2]
 
 Internet-Draft                Web Packaging                November 2017
 
-
-1.1.  Use Cases
-
-1.1.1.  Offline Installation
-
-   People with expensive or intermittent internet connections are used
-   to sharing files via P2P links and shared SD cards.  They should be
-   able to install web applications they received this way.  Installing
-   a web application requires a guarantee of the same kind as an HTTPS
-   connection that it came from and can use data owned by a particular
-   origin.
-
-1.1.2.  Snapshot packages
-
-   Verification of the origin of the content isn't always necessary.
-   For example, users currently share screenshots and MHTML documents
-   with their peers, with no guarantee that the shared content is
-   authentic.  However, these formats have low fidelity (screenshots)
-   and/or aren't interoperable (MHTML).  We'd like an interoperable
-   format that lets both publishers and readers package such content for
-   use in an untrusted mode.
-
-1.1.3.  CDNs
-
-   CDNs want to re-publish other origins' content so readers can access
-   it more quickly or more privately.  Currently, to attribute that
-   content to the original origin, they need the full ability to publish
-   arbitrary content under that origin's name.  There should be a way to
-   let them attribute only the exact content that the original origin
-   published.
-
-1.1.4.  ...
 
 1.2.  Why not ZIP?
 
@@ -162,13 +130,6 @@ Internet-Draft                Web Packaging                November 2017
    "OPTIONAL" in this document are to be interpreted as described in BCP
    14 [RFC2119] [RFC8174] when, and only when, they appear in all
    capitals, as shown here.
-
-
-
-Yasskin                   Expires May 24, 2018                  [Page 3]
-
-Internet-Draft                Web Packaging                November 2017
-
 
 2.  Format
 
@@ -200,6 +161,15 @@ Internet-Draft                Web Packaging                November 2017
    but package parsers are required to successfully parse some byte
    strings that aren't valid CBOR.  For example, sections may have
    padding between them, or even overlap, as long as the embedded
+
+
+
+
+Yasskin                   Expires May 27, 2018                  [Page 3]
+
+Internet-Draft                Web Packaging                November 2017
+
+
    relative offsets cause the parsing algorithm in this specification to
    return data.
 
@@ -218,13 +188,6 @@ Internet-Draft                Web Packaging                November 2017
    $section /= indexed-content / signed-manifest
 
    indexed-content = [index, [*response]]
-
-
-
-Yasskin                   Expires May 24, 2018                  [Page 4]
-
-Internet-Draft                Web Packaging                November 2017
-
 
    The parser MAY begin parsing at either the beginning (Section 2.2.2)
    or end (Section 2.2.1) of the byte string representing the package.
@@ -251,6 +214,18 @@ Internet-Draft                Web Packaging                November 2017
    the string were the beginning of the package, and the parser were a
    from the beginning (Section 2.2.2) parser.
 
+
+
+
+
+
+
+
+Yasskin                   Expires May 27, 2018                  [Page 4]
+
+Internet-Draft                Web Packaging                November 2017
+
+
 2.2.2.  From the beginning
 
    If the first 10 bytes of the package are not "85 48 F0 9F 8C 90 F0 9F
@@ -272,15 +247,6 @@ Internet-Draft                Web Packaging                November 2017
 
    This specification defines two section names: "indexed-content" and
    "manifest".
-
-
-
-
-
-Yasskin                   Expires May 24, 2018                  [Page 5]
-
-Internet-Draft                Web Packaging                November 2017
-
 
    If "section-offsets"["indexed-content"] is not present, parsing MUST
    fail.
@@ -308,6 +274,14 @@ Internet-Draft                Web Packaging                November 2017
    The main content of a package is an index of HTTP requests pointing
    to HTTP responses.  These request/response pairs hold the manifests
    of sub-packages and the resources in the package and all of its sub-
+
+
+
+Yasskin                   Expires May 27, 2018                  [Page 5]
+
+Internet-Draft                Web Packaging                November 2017
+
+
    packages.  Both the requests and responses can appear in any order,
    usually chosen to optimize loading while the package is streamed.
 
@@ -329,14 +303,6 @@ Internet-Draft                Web Packaging                November 2017
 
    If the item doesn't match this CDDL, or it is not a Canonical CBOR
    item (Section 3.9 of [CBOR]), the parser MUST fail.
-
-
-
-
-Yasskin                   Expires May 24, 2018                  [Page 6]
-
-Internet-Draft                Web Packaging                November 2017
-
 
    Let _resources-start_ be the offset immediately after the "index"
    item.  For example, if _index-start_ were 75 and the "index" item
@@ -363,6 +329,15 @@ Internet-Draft                Web Packaging                November 2017
        ":" character or is not lower-case ascii ([HTTP2],
        Section 8.1.2).
 
+
+
+
+
+Yasskin                   Expires May 27, 2018                  [Page 6]
+
+Internet-Draft                Web Packaging                November 2017
+
+
    5.  Any two decoded "resource-key"s are the same.  Note that header
        lists with the same header fields in a different order are not
        the same.
@@ -386,19 +361,38 @@ Internet-Draft                Web Packaging                November 2017
    that UAs can trust that it comes from its claimed origin.  [ednote-
    manifest-name]
 
-
-
-
-Yasskin                   Expires May 24, 2018                  [Page 7]
-
-Internet-Draft                Web Packaging                November 2017
-
-
    To parse a manifest starting at _manifest-start_, a parser MUST do
    the following:
 
    Load one CBOR item starting at _manifest-start_ as a "signed-
    manifest" from the following CDDL:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Yasskin                   Expires May 27, 2018                  [Page 7]
+
+Internet-Draft                Web Packaging                November 2017
+
 
    signed-manifest = {
      manifest: manifest,
@@ -440,16 +434,6 @@ Internet-Draft                Web Packaging                November 2017
    [RFC5280] profile.  If any certificate fails to parse, parsing MUST
    fail.
 
-
-
-
-
-
-Yasskin                   Expires May 24, 2018                  [Page 8]
-
-Internet-Draft                Web Packaging                November 2017
-
-
    Let _message_ be the concatenation of the following byte strings.
    This matches the [TLS1.3] format to avoid cross-protocol attacks when
    TLS certificates are used to sign manifests.
@@ -457,6 +441,14 @@ Internet-Draft                Web Packaging                November 2017
    1.  A string that consists of octet 32 (0x20) repeated 64 times.
 
    2.  A context string: the ASCII encoding of "Web Package Manifest".
+
+
+
+
+Yasskin                   Expires May 27, 2018                  [Page 8]
+
+Internet-Draft                Web Packaging                November 2017
+
 
    3.  A single 0 byte which serves as a separator.
 
@@ -497,15 +489,6 @@ Internet-Draft                Web Packaging                November 2017
 
    Let _origin_ be "manifest"["metadata"]["origin"].
 
-
-
-
-
-Yasskin                   Expires May 24, 2018                  [Page 9]
-
-Internet-Draft                Web Packaging                November 2017
-
-
    Iterate through _signing-certificates_ until one is found that has an
    identity ([RFC2818], Section 3.1) matching _origin_'s hostname, and
    that is trusted for serverAuth ([RFC5280], Section 4.2.1.12) using
@@ -514,6 +497,14 @@ Internet-Draft                Web Packaging                November 2017
    package is not already trusted as received from _origin_'s hostname,
    for example because it was received over a TLS connection to that
    host, then parsing MUST fail.
+
+
+
+
+Yasskin                   Expires May 27, 2018                  [Page 9]
+
+Internet-Draft                Web Packaging                November 2017
+
 
    *TODO:* Process the "subpackages" item by fetching those manifests
    via the index, and checking their signatures and dates/hashes,
@@ -554,14 +545,6 @@ Internet-Draft                Web Packaging                November 2017
    [32("https://example.com/loginsdk.package"),
     {"notbefore": 1(1486429554)}]
 
-
-
-
-Yasskin                   Expires May 24, 2018                 [Page 10]
-
-Internet-Draft                Web Packaging                November 2017
-
-
    Constraining packages with their date makes it possible to link
    together sub-packages with common dependencies, even if the sub-
    packages were built at different times.
@@ -569,6 +552,15 @@ Internet-Draft                Web Packaging                November 2017
    If the main package wants to be certain it's loading the exact
    version of a sub-package that it was built with, it can constrain the
    sub-package with a hash of its manifest:
+
+
+
+
+
+Yasskin                   Expires May 27, 2018                 [Page 10]
+
+Internet-Draft                Web Packaging                November 2017
+
 
    [32("https://example.com/loginsdk.package"),
     {"hash": {"sha256":
@@ -611,19 +603,20 @@ Internet-Draft                Web Packaging                November 2017
 
    response = [response-headers: http-headers, body: bstr]
 
-
-
-Yasskin                   Expires May 24, 2018                 [Page 11]
-
-Internet-Draft                Web Packaging                November 2017
-
-
    If the item doesn't match the CDDL or it's not a Canonical CBOR item
    (Section 3.9 of [CBOR]), parsing MUST fail.
 
    Decode the "response-headers" field using [HPACK], with an initially-
    empty dynamic table.  The decoded "response-headers" is a header list
    ([HPACK], Section 1.3), an ordered list of name-value pairs.
+
+
+
+
+Yasskin                   Expires May 27, 2018                 [Page 11]
+
+Internet-Draft                Web Packaging                November 2017
+
 
    The parser MUST fail if any of the following is true:
 
@@ -667,18 +660,19 @@ Internet-Draft                Web Packaging                November 2017
    unless its author can guarantee the network won't change or reorder
    the headers.
 
-
-
-Yasskin                   Expires May 24, 2018                 [Page 12]
-
-Internet-Draft                Web Packaging                November 2017
-
-
    If the _package_ contains a _manifest_:
 
    1.  *TODO:* Let _origin-manifest_ be the signed manifest for
        _origin_, found by searching through _manifest_'s subpackages for
        a matching origin.
+
+
+
+
+Yasskin                   Expires May 27, 2018                 [Page 12]
+
+Internet-Draft                Web Packaging                November 2017
+
 
    2.  Let _alg_ be one of the "hash-algorithm"s within _origin-
        manifest_. The parser SHOULD select the most collision-resistant
@@ -721,21 +715,20 @@ Internet-Draft                Web Packaging                November 2017
    example within the last 7-30 days.  *TODO:* These version constraints
    aren't designed yet.
 
-
-
-
-
-Yasskin                   Expires May 24, 2018                 [Page 13]
-
-Internet-Draft                Web Packaging                November 2017
-
-
    Relaxing the requirement to consult DNS when determining authority
    for an origin means that an attacker who possesses a valid
    certificate no longer needs to be on-path to redirect traffic to
    them; instead of modifying DNS, they need only convince the user to
    visit another Web site, in order to serve packages signed as the
    target.
+
+
+
+
+Yasskin                   Expires May 27, 2018                 [Page 13]
+
+Internet-Draft                Web Packaging                November 2017
+
 
    All subpackages that mention a particular origin need to be validated
    before loading resources from that origin.  Otherwise, package A
@@ -779,19 +772,19 @@ Internet-Draft                Web Packaging                November 2017
 
       *  File extension(s): .wpk
 
-
-
-Yasskin                   Expires May 24, 2018                 [Page 14]
-
-Internet-Draft                Web Packaging                November 2017
-
-
       *  Macintosh file type code(s): N/A
 
    o  Person & email address to contact for further information: See the
       Author's Address section of this specification.
 
    o  Intended usage: COMMON
+
+
+
+Yasskin                   Expires May 27, 2018                 [Page 14]
+
+Internet-Draft                Web Packaging                November 2017
+
 
    o  Restrictions on usage: N/A
 
@@ -834,17 +827,20 @@ Internet-Draft                Web Packaging                November 2017
               DOI 10.17487/RFC2119, March 1997,
               <https://www.rfc-editor.org/info/rfc2119>.
 
-
-
-
-Yasskin                   Expires May 24, 2018                 [Page 15]
-
-Internet-Draft                Web Packaging                November 2017
-
-
    [RFC2818]  Rescorla, E., "HTTP Over TLS", RFC 2818,
               DOI 10.17487/RFC2818, May 2000,
               <https://www.rfc-editor.org/info/rfc2818>.
+
+
+
+
+
+
+
+Yasskin                   Expires May 27, 2018                 [Page 15]
+
+Internet-Draft                Web Packaging                November 2017
+
 
    [RFC5280]  Cooper, D., Santesson, S., Farrell, S., Boeyen, S.,
               Housley, R., and W. Polk, "Internet X.509 Public Key
@@ -882,6 +878,11 @@ Internet-Draft                Web Packaging                November 2017
 
 6.2.  Informative References
 
+   [I-D.yasskin-webpackage-use-cases]
+              Yasskin, J., "Use Cases and Requirements for Web
+              Packages", draft-yasskin-webpackage-use-cases-00 (work in
+              progress), August 2017.
+
    [RFC6838]  Freed, N., Klensin, J., and T. Hansen, "Media Type
               Specifications and Registration Procedures", BCP 13,
               RFC 6838, DOI 10.17487/RFC6838, January 2013,
@@ -892,8 +893,7 @@ Internet-Draft                Web Packaging                November 2017
 
 
 
-
-Yasskin                   Expires May 24, 2018                 [Page 16]
+Yasskin                   Expires May 27, 2018                 [Page 16]
 
 Internet-Draft                Web Packaging                November 2017
 
@@ -949,7 +949,7 @@ Editorial Comments
 
 
 
-Yasskin                   Expires May 24, 2018                 [Page 17]
+Yasskin                   Expires May 27, 2018                 [Page 17]
 
 Internet-Draft                Web Packaging                November 2017
 
@@ -1005,4 +1005,4 @@ Author's Address
 
 
 
-Yasskin                   Expires May 24, 2018                 [Page 18]
+Yasskin                   Expires May 27, 2018                 [Page 18]

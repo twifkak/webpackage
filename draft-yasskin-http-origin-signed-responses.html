@@ -281,7 +281,7 @@ address {
 <link href="#rfc.section.2" rel="Chapter" title="2 Terminology">
 <link href="#rfc.section.3" rel="Chapter" title="3 Use cases">
 <link href="#rfc.section.3.1" rel="Chapter" title="3.1 PUSHed subresources">
-<link href="#rfc.section.3.2" rel="Chapter" title="3.2 Explicit use of a CDN for subresources">
+<link href="#rfc.section.3.2" rel="Chapter" title="3.2 Explicit use of a content distributor for subresources">
 <link href="#rfc.section.3.3" rel="Chapter" title="3.3 Subresource Integrity">
 <link href="#rfc.section.3.4" rel="Chapter" title="3.4 Offline websites">
 <link href="#rfc.section.4" rel="Chapter" title="4 Requirements and open questions">
@@ -310,7 +310,7 @@ address {
 
   <meta name="dct.creator" content="Yasskin, J." />
   <meta name="dct.identifier" content="urn:ietf:id:draft-yasskin-http-origin-signed-responses-latest" />
-  <meta name="dct.issued" scheme="ISO8601" content="2017-11-20" />
+  <meta name="dct.issued" scheme="ISO8601" content="2017-11-23" />
   <meta name="dct.abstract" content="This document explores how a server can send particular responses that are authoritative for an origin, when the server itself is not authoritative for that origin. For now, it focuses on the constraints covering any such mechanism." />
   <meta name="description" content="This document explores how a server can send particular responses that are authoritative for an origin, when the server itself is not authoritative for that origin. For now, it focuses on the constraints covering any such mechanism." />
 
@@ -331,10 +331,10 @@ address {
 </tr>
 <tr>
 <td class="left">Intended status: Standards Track</td>
-<td class="right">November 20, 2017</td>
+<td class="right">November 23, 2017</td>
 </tr>
 <tr>
-<td class="left">Expires: May 24, 2018</td>
+<td class="left">Expires: May 27, 2018</td>
 <td class="right"></td>
 </tr>
 
@@ -354,7 +354,7 @@ address {
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at https://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on May 24, 2018.</p>
+<p>This Internet-Draft will expire on May 27, 2018.</p>
 <h1 id="rfc.copyrightnotice"><a href="#rfc.copyrightnotice">Copyright Notice</a></h1>
 <p>Copyright (c) 2017 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
 <p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (https://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
@@ -372,7 +372,7 @@ address {
 </li>
 <ul><li>3.1.   <a href="#rfc.section.3.1">PUSHed subresources</a>
 </li>
-<li>3.2.   <a href="#rfc.section.3.2">Explicit use of a CDN for subresources</a>
+<li>3.2.   <a href="#rfc.section.3.2">Explicit use of a content distributor for subresources</a>
 </li>
 <li>3.3.   <a href="#rfc.section.3.3">Subresource Integrity</a>
 </li>
@@ -451,18 +451,18 @@ address {
 </pre>
 <p id="rfc.section.3.1.p.3">Then to avoid the need to look up and connect to <samp>jquery.com</samp> in the critical path, <samp>example.com</samp> might PUSH that resource (<a href="#RFC7540" class="xref">[RFC7540]</a>, section 8.2), signed by <samp>jquery.com</samp>.</p>
 <h1 id="rfc.section.3.2">
-<a href="#rfc.section.3.2">3.2.</a> <a href="#uc-explicit-cdn" id="uc-explicit-cdn">Explicit use of a CDN for subresources</a>
+<a href="#rfc.section.3.2">3.2.</a> <a href="#uc-explicit-distributor" id="uc-explicit-distributor">Explicit use of a content distributor for subresources</a>
 </h1>
-<p id="rfc.section.3.2.p.1">In order to speed up loading but still maintain control over its content, an HTML page in a particular origin <samp>O.com</samp> could tell clients to load its subresources from an intermediate CDN that&#8217;s not authoritative, but require that those resources be signed by <samp>O.com</samp> so that the CDN couldn&#8217;t modify the resources.</p>
+<p id="rfc.section.3.2.p.1">In order to speed up loading but still maintain control over its content, an HTML page in a particular origin <samp>O.com</samp> could tell clients to load its subresources from an intermediate content distributor that&#8217;s not authoritative, but require that those resources be signed by <samp>O.com</samp> so that the distributor couldn&#8217;t modify the resources. This is more constrained than the common CDN case where <samp>O.com</samp> has a CNAME granting the CDN the right to serve arbitrary content as <samp>O.com</samp>.</p>
 <pre>
 &lt;img logicalsrc="https://O.com/img.png"
-     physicalsrc="https://cdn.com/O.com/img.png"&gt;
+     physicalsrc="https://distributor.com/O.com/img.png"&gt;
 </pre>
-<p id="rfc.section.3.2.p.2">To make it easier to configure the right CDN for a given request, computation of the <samp>physicalsrc</samp> could be encapsulated in a custom element:</p>
+<p id="rfc.section.3.2.p.2">To make it easier to configure the right distributor for a given request, computation of the <samp>physicalsrc</samp> could be encapsulated in a custom element:</p>
 <pre>
-&lt;cdn-img src="https://O.com/img.png"&gt;&lt;/cdn-img&gt;
+&lt;dist-img src="https://O.com/img.png"&gt;&lt;/dist-img&gt;
 </pre>
-<p id="rfc.section.3.2.p.3">where the <samp>&lt;cdn-img&gt;</samp> implementation generates an appropriate <samp>&lt;img&gt;</samp> based on, for example, a <samp>&lt;meta name="cdn-base"&gt;</samp> tag elsewhere in the page.</p>
+<p id="rfc.section.3.2.p.3">where the <samp>&lt;dist-img&gt;</samp> implementation generates an appropriate <samp>&lt;img&gt;</samp> based on, for example, a <samp>&lt;meta name="dist-base"&gt;</samp> tag elsewhere in the page.</p>
 <p id="rfc.section.3.2.p.4">This could be used for some of the same purposes as SRI (<a href="#uc-sri" class="xref">Section 3.3</a>).</p>
 <h1 id="rfc.section.3.3">
 <a href="#rfc.section.3.3">3.3.</a> <a href="#uc-sri" id="uc-sri">Subresource Integrity</a>

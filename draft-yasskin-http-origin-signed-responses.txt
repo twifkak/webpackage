@@ -4,8 +4,8 @@
 
 http                                                          J. Yasskin
 Internet-Draft                                                    Google
-Intended status: Standards Track                       November 20, 2017
-Expires: May 24, 2018
+Intended status: Standards Track                       November 23, 2017
+Expires: May 27, 2018
 
 
                       Origin-signed HTTP Responses
@@ -42,7 +42,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on May 24, 2018.
+   This Internet-Draft will expire on May 27, 2018.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Yasskin                   Expires May 24, 2018                  [Page 1]
+Yasskin                   Expires May 27, 2018                  [Page 1]
 
 Internet-Draft        Origin-signed HTTP Responses         November 2017
 
@@ -74,7 +74,7 @@ Table of Contents
    2.  Terminology . . . . . . . . . . . . . . . . . . . . . . . . .   3
    3.  Use cases . . . . . . . . . . . . . . . . . . . . . . . . . .   3
      3.1.  PUSHed subresources . . . . . . . . . . . . . . . . . . .   3
-     3.2.  Explicit use of a CDN for subresources  . . . . . . . . .   3
+     3.2.  Explicit use of a content distributor for subresources  .   3
      3.3.  Subresource Integrity . . . . . . . . . . . . . . . . . .   4
      3.4.  Offline websites  . . . . . . . . . . . . . . . . . . . .   4
    4.  Requirements and open questions . . . . . . . . . . . . . . .   5
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Yasskin                   Expires May 24, 2018                  [Page 2]
+Yasskin                   Expires May 27, 2018                  [Page 2]
 
 Internet-Draft        Origin-signed HTTP Responses         November 2017
 
@@ -151,34 +151,37 @@ Internet-Draft        Origin-signed HTTP Responses         November 2017
    critical path, "example.com" might PUSH that resource ([RFC7540],
    section 8.2), signed by "jquery.com".
 
-3.2.  Explicit use of a CDN for subresources
+3.2.  Explicit use of a content distributor for subresources
 
    In order to speed up loading but still maintain control over its
    content, an HTML page in a particular origin "O.com" could tell
-   clients to load its subresources from an intermediate CDN that's not
-   authoritative, but require that those resources be signed by "O.com"
-   so that the CDN couldn't modify the resources.
-
-   <img logicalsrc="https://O.com/img.png"
-        physicalsrc="https://cdn.com/O.com/img.png">
-
-
+   clients to load its subresources from an intermediate content
+   distributor that's not authoritative, but require that those
+   resources be signed by "O.com" so that the distributor couldn't
+   modify the resources.  This is more constrained than the common CDN
+   case where "O.com" has a CNAME granting the CDN the right to serve
+   arbitrary content as "O.com".
 
 
-Yasskin                   Expires May 24, 2018                  [Page 3]
+
+
+Yasskin                   Expires May 27, 2018                  [Page 3]
 
 Internet-Draft        Origin-signed HTTP Responses         November 2017
 
 
-   To make it easier to configure the right CDN for a given request,
-   computation of the "physicalsrc" could be encapsulated in a custom
-   element:
+   <img logicalsrc="https://O.com/img.png"
+        physicalsrc="https://distributor.com/O.com/img.png">
 
-   <cdn-img src="https://O.com/img.png"></cdn-img>
+   To make it easier to configure the right distributor for a given
+   request, computation of the "physicalsrc" could be encapsulated in a
+   custom element:
 
-   where the "<cdn-img>" implementation generates an appropriate "<img>"
-   based on, for example, a "<meta name="cdn-base">" tag elsewhere in
-   the page.
+   <dist-img src="https://O.com/img.png"></dist-img>
+
+   where the "<dist-img>" implementation generates an appropriate
+   "<img>" based on, for example, a "<meta name="dist-base">" tag
+   elsewhere in the page.
 
    This could be used for some of the same purposes as SRI
    (Section 3.3).
@@ -218,10 +221,7 @@ Internet-Draft        Origin-signed HTTP Responses         November 2017
 
 
 
-
-
-
-Yasskin                   Expires May 24, 2018                  [Page 4]
+Yasskin                   Expires May 27, 2018                  [Page 4]
 
 Internet-Draft        Origin-signed HTTP Responses         November 2017
 
@@ -277,7 +277,7 @@ Internet-Draft        Origin-signed HTTP Responses         November 2017
 
 
 
-Yasskin                   Expires May 24, 2018                  [Page 5]
+Yasskin                   Expires May 27, 2018                  [Page 5]
 
 Internet-Draft        Origin-signed HTTP Responses         November 2017
 
@@ -333,7 +333,7 @@ Internet-Draft        Origin-signed HTTP Responses         November 2017
 
 
 
-Yasskin                   Expires May 24, 2018                  [Page 6]
+Yasskin                   Expires May 27, 2018                  [Page 6]
 
 Internet-Draft        Origin-signed HTTP Responses         November 2017
 
@@ -389,7 +389,7 @@ Internet-Draft        Origin-signed HTTP Responses         November 2017
 
 
 
-Yasskin                   Expires May 24, 2018                  [Page 7]
+Yasskin                   Expires May 27, 2018                  [Page 7]
 
 Internet-Draft        Origin-signed HTTP Responses         November 2017
 
@@ -445,7 +445,7 @@ Internet-Draft        Origin-signed HTTP Responses         November 2017
 
 
 
-Yasskin                   Expires May 24, 2018                  [Page 8]
+Yasskin                   Expires May 27, 2018                  [Page 8]
 
 Internet-Draft        Origin-signed HTTP Responses         November 2017
 
@@ -501,7 +501,7 @@ Internet-Draft        Origin-signed HTTP Responses         November 2017
 
 
 
-Yasskin                   Expires May 24, 2018                  [Page 9]
+Yasskin                   Expires May 27, 2018                  [Page 9]
 
 Internet-Draft        Origin-signed HTTP Responses         November 2017
 
@@ -557,7 +557,7 @@ Internet-Draft        Origin-signed HTTP Responses         November 2017
 
 
 
-Yasskin                   Expires May 24, 2018                 [Page 10]
+Yasskin                   Expires May 27, 2018                 [Page 10]
 
 Internet-Draft        Origin-signed HTTP Responses         November 2017
 
@@ -613,7 +613,7 @@ Internet-Draft        Origin-signed HTTP Responses         November 2017
 
 
 
-Yasskin                   Expires May 24, 2018                 [Page 11]
+Yasskin                   Expires May 27, 2018                 [Page 11]
 
 Internet-Draft        Origin-signed HTTP Responses         November 2017
 
@@ -669,4 +669,4 @@ Author's Address
 
 
 
-Yasskin                   Expires May 24, 2018                 [Page 12]
+Yasskin                   Expires May 27, 2018                 [Page 12]
