@@ -289,8 +289,7 @@ address {
 <link href="#rfc.section.2.2.3" rel="Chapter" title="2.2.3 Building packages from multiple libraries">
 <link href="#rfc.section.2.2.4" rel="Chapter" title="2.2.4 Content Distributors">
 <link href="#rfc.section.2.2.5" rel="Chapter" title="2.2.5 Installation from a self-extracting executable">
-<link href="#rfc.section.2.2.6" rel="Chapter" title="2.2.6 Ergonomic replacement for HTTP/2 PUSH">
-<link href="#rfc.section.2.2.7" rel="Chapter" title="2.2.7 Packages in version control">
+<link href="#rfc.section.2.2.6" rel="Chapter" title="2.2.6 Packages in version control">
 <link href="#rfc.section.3" rel="Chapter" title="3 Requirements">
 <link href="#rfc.section.3.1" rel="Chapter" title="3.1 Essential">
 <link href="#rfc.section.3.1.1" rel="Chapter" title="3.1.1 Indexed by URL">
@@ -323,6 +322,7 @@ address {
 <link href="#rfc.section.4.2" rel="Chapter" title="4.2 Generate packages on the fly">
 <link href="#rfc.section.4.3" rel="Chapter" title="4.3 Non-origin identity">
 <link href="#rfc.section.4.4" rel="Chapter" title="4.4 DRM">
+<link href="#rfc.section.4.5" rel="Chapter" title="4.5 Ergonomic replacement for HTTP/2 PUSH">
 <link href="#rfc.section.5" rel="Chapter" title="5 Security Considerations">
 <link href="#rfc.section.6" rel="Chapter" title="6 IANA Considerations">
 <link href="#rfc.references" rel="Chapter" title="7 Informative References">
@@ -335,7 +335,7 @@ address {
 
   <meta name="dct.creator" content="Yasskin, J." />
   <meta name="dct.identifier" content="urn:ietf:id:draft-yasskin-webpackage-use-cases-latest" />
-  <meta name="dct.issued" scheme="ISO8601" content="2017-11-23" />
+  <meta name="dct.issued" scheme="ISO8601" content="2017-12-01" />
   <meta name="dct.abstract" content="This document lists use cases for signing and/or bundling collections of web pages, and extracts a set of requirements from them." />
   <meta name="description" content="This document lists use cases for signing and/or bundling collections of web pages, and extracts a set of requirements from them." />
 
@@ -356,10 +356,10 @@ address {
 </tr>
 <tr>
 <td class="left">Intended status: Informational</td>
-<td class="right">November 23, 2017</td>
+<td class="right">December 01, 2017</td>
 </tr>
 <tr>
-<td class="left">Expires: May 27, 2018</td>
+<td class="left">Expires: June 4, 2018</td>
 <td class="right"></td>
 </tr>
 
@@ -379,7 +379,7 @@ address {
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at https://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on May 27, 2018.</p>
+<p>This Internet-Draft will expire on June 4, 2018.</p>
 <h1 id="rfc.copyrightnotice"><a href="#rfc.copyrightnotice">Copyright Notice</a></h1>
 <p>Copyright (c) 2017 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
 <p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (https://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
@@ -413,9 +413,7 @@ address {
 </li>
 <li>2.2.5.   <a href="#rfc.section.2.2.5">Installation from a self-extracting executable</a>
 </li>
-<li>2.2.6.   <a href="#rfc.section.2.2.6">Ergonomic replacement for HTTP/2 PUSH</a>
-</li>
-<li>2.2.7.   <a href="#rfc.section.2.2.7">Packages in version control</a>
+<li>2.2.6.   <a href="#rfc.section.2.2.6">Packages in version control</a>
 </li>
 </ul></ul><li>3.   <a href="#rfc.section.3">Requirements</a>
 </li>
@@ -480,6 +478,8 @@ address {
 <li>4.3.   <a href="#rfc.section.4.3">Non-origin identity</a>
 </li>
 <li>4.4.   <a href="#rfc.section.4.4">DRM</a>
+</li>
+<li>4.5.   <a href="#rfc.section.4.5">Ergonomic replacement for HTTP/2 PUSH</a>
 </li>
 </ul><li>5.   <a href="#rfc.section.5">Security Considerations</a>
 </li>
@@ -676,31 +676,10 @@ address {
 
 <ul><li><a href="#trailing-length" class="xref">Trailing length</a></li></ul>
 <h1 id="rfc.section.2.2.6">
-<a href="#rfc.section.2.2.6">2.2.6.</a> <a href="#push-replacement" id="push-replacement">Ergonomic replacement for HTTP/2 PUSH</a>
+<a href="#rfc.section.2.2.6">2.2.6.</a> <a href="#version-control" id="version-control">Packages in version control</a>
 </h1>
-<p id="rfc.section.2.2.6.p.1">HTTP/2 PUSH (<a href="#RFC7540" class="xref">[RFC7540]</a>, section 8.2) is hard for developers to configure, and an explicit package format might be easier.</p>
-<p id="rfc.section.2.2.6.p.2">Trying to bundle resources in order to speed up page loads has a long history, including <a href="https://www.mnot.net/blog/2010/02/18/resource_packages">Resource Packages</a> from 2010 and the <a href="https://w3ctag.github.io/packaging-on-the-web/">W3C TAG&#8217;s packaging proposal</a> from 2015.</p>
-<p id="rfc.section.2.2.6.p.3">However, the HTTPWG is doing a lot of work to let servers optimize the PUSHed data, and packaging would either have to re-do that or accept lower performance.  Accepting lower performance might be worthwhile if it allows more developers to adopt the smaller optimization.</p>
-<p id="rfc.section.2.2.6.p.4">Associated requirements:</p>
-<p></p>
-
-<ul>
-<li>
-<a href="#streamed-loading" class="xref">Streamed loading</a>: If the whole package has to be downloaded before the browser can load a piece, this will definitely be slower than PUSH.</li>
-<li>
-<a href="#transfer-compression" class="xref">Compress transfers</a>: I believe PUSHed resources cannot keep a single compression state across resource boundaries, so this might be an advantage for packaging.</li>
-<li>
-<a href="#urls" class="xref">Indexed by URL</a>: Resources on the web are addressed by URL.</li>
-<li>
-<a href="#request-headers" class="xref">Request headers</a>: <a href="http://httpwg.org/specs/rfc7540.html#PUSH_PROMISE">PUSH_PROMISE</a> (<a href="#RFC7540" class="xref">[RFC7540]</a>, section 6.6) includes request headers.</li>
-<li>
-<a href="#response-headers" class="xref">Response headers</a>: PUSHed resources include their response headers.</li>
-</ul>
-<h1 id="rfc.section.2.2.7">
-<a href="#rfc.section.2.2.7">2.2.7.</a> <a href="#version-control" id="version-control">Packages in version control</a>
-</h1>
-<p id="rfc.section.2.2.7.p.1">Once packages are generated, they should be stored in version control. Many popular VC systems auto-detect text files in order to &#8220;fix&#8221; their line endings.  If the first bytes of a package look like text, while later bytes store binary data, VC may break the package.</p>
-<p id="rfc.section.2.2.7.p.2">Associated requirements:</p>
+<p id="rfc.section.2.2.6.p.1">Once packages are generated, they should be stored in version control. Many popular VC systems auto-detect text files in order to &#8220;fix&#8221; their line endings.  If the first bytes of a package look like text, while later bytes store binary data, VC may break the package.</p>
+<p id="rfc.section.2.2.6.p.2">Associated requirements:</p>
 <p></p>
 
 <ul><li><a href="#binary" class="xref">Binary</a></li></ul>
@@ -851,6 +830,35 @@ address {
 <a href="#rfc.section.4.4">4.4.</a> <a href="#drm" id="drm">DRM</a>
 </h1>
 <p id="rfc.section.4.4.p.1">Special support for blocking access to downloaded content based on licensing. Note that DRM systems can be shipped inside the package even if the packaging format doesn&#8217;t specifically support them.</p>
+<h1 id="rfc.section.4.5">
+<a href="#rfc.section.4.5">4.5.</a> <a href="#push-replacement" id="push-replacement">Ergonomic replacement for HTTP/2 PUSH</a>
+</h1>
+<p id="rfc.section.4.5.p.1">HTTP/2 PUSH (<a href="#RFC7540" class="xref">[RFC7540]</a>, section 8.2) is hard for developers to configure, and an explicit package format might be easier. However, experts in this area believe we should focus on improving PUSH directly instead of routing around it with a bundling format.</p>
+<p id="rfc.section.4.5.p.2">Trying to bundle resources in order to speed up page loads has a long history, including <a href="https://www.mnot.net/blog/2010/02/18/resource_packages">Resource Packages</a> from 2010 and the <a href="https://w3ctag.github.io/packaging-on-the-web/">W3C TAG&#8217;s packaging proposal</a> from 2015.</p>
+<p id="rfc.section.4.5.p.3">However, the HTTPWG is doing a lot of work to let servers optimize the PUSHed data, and packaging would either have to re-do that or accept lower performance.  For example:</p>
+<p></p>
+
+<ul>
+<li>
+<a href="#I-D.vkrasnov-h2-compression-dictionaries" class="xref">[I-D.vkrasnov-h2-compression-dictionaries]</a> should allow individual small resources to be compressed as well as they would be in a bundle.</li>
+<li>
+<a href="#I-D.ietf-httpbis-cache-digest" class="xref">[I-D.ietf-httpbis-cache-digest]</a> tells the server which resources it doesn&#8217;t need to PUSH.</li>
+</ul>
+<p id="rfc.section.4.5.p.5">Associated requirements:</p>
+<p></p>
+
+<ul>
+<li>
+<a href="#streamed-loading" class="xref">Streamed loading</a>: If the whole package has to be downloaded before the browser can load a piece, this will definitely be slower than PUSH.</li>
+<li>
+<a href="#transfer-compression" class="xref">Compress transfers</a>: Keep up with <a href="#I-D.vkrasnov-h2-compression-dictionaries" class="xref">[I-D.vkrasnov-h2-compression-dictionaries]</a>.</li>
+<li>
+<a href="#urls" class="xref">Indexed by URL</a>: Resources on the web are addressed by URL.</li>
+<li>
+<a href="#request-headers" class="xref">Request headers</a>: <a href="http://httpwg.org/specs/rfc7540.html#PUSH_PROMISE">PUSH_PROMISE</a> (<a href="#RFC7540" class="xref">[RFC7540]</a>, section 6.6) includes request headers.</li>
+<li>
+<a href="#response-headers" class="xref">Response headers</a>: PUSHed resources include their response headers.</li>
+</ul>
 <h1 id="rfc.section.5">
 <a href="#rfc.section.5">5.</a> <a href="#security-considerations" id="security-considerations">Security Considerations</a>
 </h1>
@@ -873,9 +881,19 @@ address {
 <a>Cavage, M.</a> and <a>M. Sporny</a>, "<a href="https://tools.ietf.org/html/draft-cavage-http-signatures-09">Signing HTTP Messages</a>", Internet-Draft draft-cavage-http-signatures-09, November 2017.</td>
 </tr>
 <tr>
+<td class="reference"><b id="I-D.ietf-httpbis-cache-digest">[I-D.ietf-httpbis-cache-digest]</b></td>
+<td class="top">
+<a>Oku, K.</a> and <a>M. Nottingham</a>, "<a href="https://tools.ietf.org/html/draft-ietf-httpbis-cache-digest-02">Cache Digests for HTTP/2</a>", Internet-Draft draft-ietf-httpbis-cache-digest-02, May 2017.</td>
+</tr>
+<tr>
 <td class="reference"><b id="I-D.thomson-http-content-signature">[I-D.thomson-http-content-signature]</b></td>
 <td class="top">
 <a>Thomson, M.</a>, "<a href="https://tools.ietf.org/html/draft-thomson-http-content-signature-00">Content-Signature Header Field for HTTP</a>", Internet-Draft draft-thomson-http-content-signature-00, July 2015.</td>
+</tr>
+<tr>
+<td class="reference"><b id="I-D.vkrasnov-h2-compression-dictionaries">[I-D.vkrasnov-h2-compression-dictionaries]</b></td>
+<td class="top">
+<a>Krasnov, V.</a>, "<a href="https://tools.ietf.org/html/draft-vkrasnov-h2-compression-dictionaries-02">Compression Dictionaries for HTTP/2</a>", Internet-Draft draft-vkrasnov-h2-compression-dictionaries-02, March 2017.</td>
 </tr>
 <tr>
 <td class="reference"><b id="I-D.yasskin-dispatch-web-packaging">[I-D.yasskin-dispatch-web-packaging]</b></td>

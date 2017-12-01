@@ -4,8 +4,8 @@
 
 http                                                          J. Yasskin
 Internet-Draft                                                    Google
-Intended status: Standards Track                       November 23, 2017
-Expires: May 27, 2018
+Intended status: Standards Track                       December 01, 2017
+Expires: June 4, 2018
 
 
                       Origin-signed HTTP Responses
@@ -42,7 +42,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on May 27, 2018.
+   This Internet-Draft will expire on June 4, 2018.
 
 Copyright Notice
 
@@ -53,9 +53,9 @@ Copyright Notice
 
 
 
-Yasskin                   Expires May 27, 2018                  [Page 1]
+Yasskin                   Expires June 4, 2018                  [Page 1]
 
-Internet-Draft        Origin-signed HTTP Responses         November 2017
+Internet-Draft        Origin-signed HTTP Responses         December 2017
 
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Yasskin                   Expires May 27, 2018                  [Page 2]
+Yasskin                   Expires June 4, 2018                  [Page 2]
 
-Internet-Draft        Origin-signed HTTP Responses         November 2017
+Internet-Draft        Origin-signed HTTP Responses         December 2017
 
 
 2.  Terminology
@@ -165,9 +165,9 @@ Internet-Draft        Origin-signed HTTP Responses         November 2017
 
 
 
-Yasskin                   Expires May 27, 2018                  [Page 3]
+Yasskin                   Expires June 4, 2018                  [Page 3]
 
-Internet-Draft        Origin-signed HTTP Responses         November 2017
+Internet-Draft        Origin-signed HTTP Responses         December 2017
 
 
    <img logicalsrc="https://O.com/img.png"
@@ -221,9 +221,9 @@ Internet-Draft        Origin-signed HTTP Responses         November 2017
 
 
 
-Yasskin                   Expires May 27, 2018                  [Page 4]
+Yasskin                   Expires June 4, 2018                  [Page 4]
 
-Internet-Draft        Origin-signed HTTP Responses         November 2017
+Internet-Draft        Origin-signed HTTP Responses         December 2017
 
 
 4.  Requirements and open questions
@@ -277,9 +277,9 @@ Internet-Draft        Origin-signed HTTP Responses         November 2017
 
 
 
-Yasskin                   Expires May 27, 2018                  [Page 5]
+Yasskin                   Expires June 4, 2018                  [Page 5]
 
-Internet-Draft        Origin-signed HTTP Responses         November 2017
+Internet-Draft        Origin-signed HTTP Responses         December 2017
 
 
    The specification also needs to define which signing algorithm to
@@ -333,9 +333,9 @@ Internet-Draft        Origin-signed HTTP Responses         November 2017
 
 
 
-Yasskin                   Expires May 27, 2018                  [Page 6]
+Yasskin                   Expires June 4, 2018                  [Page 6]
 
-Internet-Draft        Origin-signed HTTP Responses         November 2017
+Internet-Draft        Origin-signed HTTP Responses         December 2017
 
 
    particular client sends.  For example, a Japanese resource wouldn't
@@ -389,9 +389,9 @@ Internet-Draft        Origin-signed HTTP Responses         November 2017
 
 
 
-Yasskin                   Expires May 27, 2018                  [Page 7]
+Yasskin                   Expires June 4, 2018                  [Page 7]
 
-Internet-Draft        Origin-signed HTTP Responses         November 2017
+Internet-Draft        Origin-signed HTTP Responses         December 2017
 
 
    These assertions could be structured as:
@@ -445,9 +445,9 @@ Internet-Draft        Origin-signed HTTP Responses         November 2017
 
 
 
-Yasskin                   Expires May 27, 2018                  [Page 8]
+Yasskin                   Expires June 4, 2018                  [Page 8]
 
-Internet-Draft        Origin-signed HTTP Responses         November 2017
+Internet-Draft        Origin-signed HTTP Responses         December 2017
 
 
    To help the PUSHed subresources use case (Section 3.1), we might also
@@ -501,9 +501,9 @@ Internet-Draft        Origin-signed HTTP Responses         November 2017
 
 
 
-Yasskin                   Expires May 27, 2018                  [Page 9]
+Yasskin                   Expires June 4, 2018                  [Page 9]
 
-Internet-Draft        Origin-signed HTTP Responses         November 2017
+Internet-Draft        Origin-signed HTTP Responses         December 2017
 
 
    Often, "o2.com" already knew about the client's interest, because
@@ -549,17 +549,17 @@ Internet-Draft        Origin-signed HTTP Responses         November 2017
 
    [I-D.ietf-tls-tls13]
               Rescorla, E., "The Transport Layer Security (TLS) Protocol
-              Version 1.3", draft-ietf-tls-tls13-21 (work in progress),
-              July 2017.
+              Version 1.3", draft-ietf-tls-tls13-22 (work in progress),
+              November 2017.
 
 
 
 
 
 
-Yasskin                   Expires May 27, 2018                 [Page 10]
+Yasskin                   Expires June 4, 2018                 [Page 10]
 
-Internet-Draft        Origin-signed HTTP Responses         November 2017
+Internet-Draft        Origin-signed HTTP Responses         December 2017
 
 
    [I-D.thomson-http-content-signature]
@@ -613,9 +613,9 @@ Internet-Draft        Origin-signed HTTP Responses         November 2017
 
 
 
-Yasskin                   Expires May 27, 2018                 [Page 11]
+Yasskin                   Expires June 4, 2018                 [Page 11]
 
-Internet-Draft        Origin-signed HTTP Responses         November 2017
+Internet-Draft        Origin-signed HTTP Responses         December 2017
 
 
    [RFC7541]  Peon, R. and H. Ruellan, "HPACK: Header Compression for
@@ -669,4 +669,4 @@ Author's Address
 
 
 
-Yasskin                   Expires May 27, 2018                 [Page 12]
+Yasskin                   Expires June 4, 2018                 [Page 12]
