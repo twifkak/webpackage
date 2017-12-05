@@ -504,7 +504,7 @@ address {
 <p id="rfc.section.3.1.p.1">The <samp>Signed-Headers</samp> header field identifies an ordered list of response header fields to include in a signature. The request URL and response status are included unconditionally. This allows a TLS-terminating intermediate to reorder headers without breaking the signature. This <em>can</em> also allow the intermediate to add headers that will be ignored by some higher-level protocols, but <a href="#signature-validity" class="xref">Section 3.6</a> provides a hook to let other higher-level protocols reject such insecure headers.</p>
 <p id="rfc.section.3.1.p.2">This header field appears once instead of being incorporated into the signatures&#8217; parameters because the significant header fields need to be consistent across all signatures of an exchange, to avoid forcing higher-level protocols to merge the header field lists of valid signatures.</p>
 <p id="rfc.section.3.1.p.3">See <a href="#how-much-to-sign" class="xref">Appendix B.2</a> for a discussion of why only the URL from the request is included and not other request headers.</p>
-<p><samp>Signed-Headers</samp> is a Structured Header as defined by <a href="#I-D.ietf-httpbis-header-structure" class="xref">[I-D.ietf-httpbis-header-structure]</a>. Its value MUST be a list (<a href="#I-D.ietf-httpbis-header-structure" class="xref">[I-D.ietf-httpbis-header-structure]</a>, section 4.8) of lowercase strings (<a href="#I-D.ietf-httpbis-header-structure" class="xref">[I-D.ietf-httpbis-header-structure]</a>, section 4.2) naming HTTP response header fields. Pseudo-header field names (<a href="#RFC7540" class="xref">[RFC7540]</a>, section 8.1.2.1) MUST not appear in this list.</p>
+<p><samp>Signed-Headers</samp> is a Structured Header as defined by <a href="#I-D.ietf-httpbis-header-structure" class="xref">[I-D.ietf-httpbis-header-structure]</a>. Its value MUST be a list (<a href="#I-D.ietf-httpbis-header-structure" class="xref">[I-D.ietf-httpbis-header-structure]</a>, section 4.8) of lowercase strings (<a href="#I-D.ietf-httpbis-header-structure" class="xref">[I-D.ietf-httpbis-header-structure]</a>, section 4.2) naming HTTP response header fields. Pseudo-header field names (<a href="#RFC7540" class="xref">[RFC7540]</a>, section 8.1.2.1) MUST NOT appear in this list.</p>
 <p id="rfc.section.3.1.p.5">Higher-level protocols SHOULD place requirements on the minimum set of headers to include in the <samp>Signed-Headers</samp> header field.</p>
 <h1 id="rfc.section.3.2">
 <a href="#rfc.section.3.2">3.2.</a> <a href="#signature-header" id="signature-header">The Signature Header</a>
@@ -592,11 +592,11 @@ address {
 <p id="rfc.section.3.4.1.p.1">Given the HTTP exchange:</p>
 <pre>
 GET https://example.com/ HTTP/1.1
-accept = */*
+Accept: */*
 
 HTTP/1.1 200
-content-type = text/html
-signed-headers = "content-type"
+Content-Type: text/html
+Signed-Headers: "content-type"
 
 &lt;!doctype html&gt;
 &lt;html&gt;
@@ -958,11 +958,6 @@ Signature: sig3;
 <a>Yasskin, J.</a>, "<a href="https://tools.ietf.org/html/draft-yasskin-dispatch-web-packaging-00">Web Packaging</a>", Internet-Draft draft-yasskin-dispatch-web-packaging-00, June 2017.</td>
 </tr>
 <tr>
-<td class="reference"><b id="RFC2437">[RFC2437]</b></td>
-<td class="top">
-<a>Kaliski, B.</a> and <a>J. Staddon</a>, "<a href="https://tools.ietf.org/html/rfc2437">PKCS #1: RSA Cryptography Specifications Version 2.0</a>", RFC 2437, DOI 10.17487/RFC2437, October 1998.</td>
-</tr>
-<tr>
 <td class="reference"><b id="RFC6066">[RFC6066]</b></td>
 <td class="top">
 <a>Eastlake 3rd, D.</a>, "<a href="https://tools.ietf.org/html/rfc6066">Transport Layer Security (TLS) Extensions: Extension Definitions</a>", RFC 6066, DOI 10.17487/RFC6066, January 2011.</td>
@@ -976,6 +971,11 @@ Signature: sig3;
 <td class="reference"><b id="RFC7541">[RFC7541]</b></td>
 <td class="top">
 <a>Peon, R.</a> and <a>H. Ruellan</a>, "<a href="https://tools.ietf.org/html/rfc7541">HPACK: Header Compression for HTTP/2</a>", RFC 7541, DOI 10.17487/RFC7541, May 2015.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC8017">[RFC8017]</b></td>
+<td class="top">
+<a>Moriarty, K.</a>, <a>Kaliski, B.</a>, <a>Jonsson, J.</a> and <a>A. Rusch</a>, "<a href="https://tools.ietf.org/html/rfc8017">PKCS #1: RSA Cryptography Specifications Version 2.2</a>", RFC 8017, DOI 10.17487/RFC8017, November 2016.</td>
 </tr>
 <tr>
 <td class="reference"><b id="SRI">[SRI]</b></td>
@@ -1053,7 +1053,7 @@ Signature: sig3;
 <p></p>
 
 <ol>
-<li>Avoid key types that are used for non-TLS protocols whose output could be confused with a signature. That may be just the <samp>rsaEncryption</samp> OID from <a href="#RFC2437" class="xref">[RFC2437]</a>.</li>
+<li>Avoid key types that are used for non-TLS protocols whose output could be confused with a signature. That may be just the <samp>rsaEncryption</samp> OID from <a href="#RFC8017" class="xref">[RFC8017]</a>.</li>
 <li>Use the same format as TLS&#8217;s signatures, specified in <a href="#I-D.ietf-tls-tls13" class="xref">[I-D.ietf-tls-tls13]</a> section 4.4.3, with a context string that&#8217;s specific to this use.</li>
 </ol>
 <p id="rfc.section.B.1.2.p.3">The specification also needs to define which signing algorithm to use. I expect to define that as a function from the key type, instead of allowing attacker-controlled data to specify it.</p>
@@ -1125,13 +1125,13 @@ accept-language: ja-JP, ja
 <p id="rfc.section.C.1.p.1">For example, given a stored exchange of:</p>
 <pre>
 GET https://example.com/ HTTP/1.1
-accept = */*
+Accept: */*
 
 HTTP/1.1 200
-date = Mon, 20 Nov 2017 10:00:00 UTC
-content-type = text/html
-date = Tue, 21 Nov 2017 10:00:00 UTC
-expires = Sun, 26 Nov 2017 10:00:00 UTC
+Date: Mon, 20 Nov 2017 10:00:00 UTC
+Content-Type: text/html
+Date: Tue, 21 Nov 2017 10:00:00 UTC
+Expires: Sun, 26 Nov 2017 10:00:00 UTC
 
 &lt;!doctype html&gt;
 &lt;html&gt;
@@ -1139,18 +1139,18 @@ expires = Sun, 26 Nov 2017 10:00:00 UTC
 </pre>
 <p id="rfc.section.C.1.p.2">And an update listing the following headers:</p>
 <pre>
-expires = Fri, 1 Dec 2017 10:00:00 UTC
-date = Sat, 25 Nov 2017 10:00:00 UTC
+Expires: Fri, 1 Dec 2017 10:00:00 UTC
+Date: Sat, 25 Nov 2017 10:00:00 UTC
 </pre>
 <p id="rfc.section.C.1.p.3">The resulting stored exchange would be:</p>
 <pre>
 GET https://example.com/ HTTP/1.1
-accept = */*
+Accept: */*
 
 HTTP/1.1 200
-content-type = text/html
-expires = Fri, 1 Dec 2017 10:00:00 UTC
-date = Sat, 25 Nov 2017 10:00:00 UTC
+Content-Type: text/html
+Expires: Fri, 1 Dec 2017 10:00:00 UTC
+Date: Sat, 25 Nov 2017 10:00:00 UTC
 
 &lt;!doctype html&gt;
 &lt;html&gt;

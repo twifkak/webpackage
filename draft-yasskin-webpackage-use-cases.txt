@@ -831,8 +831,8 @@ Internet-Draft Use Cases and Requirements for Web Packages December 2017
 
    [I-D.yasskin-http-origin-signed-responses]
               Yasskin, J., "Origin-signed HTTP Responses", draft-
-              yasskin-http-origin-signed-responses-00 (work in
-              progress), August 2017.
+              yasskin-http-origin-signed-responses-01 (work in
+              progress), December 2017.
 
 
 

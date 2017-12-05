@@ -216,7 +216,7 @@ Internet-Draft        Origin-signed HTTP Responses         December 2017
    ([I-D.ietf-httpbis-header-structure], section 4.8) of lowercase
    strings ([I-D.ietf-httpbis-header-structure], section 4.2) naming
    HTTP response header fields.  Pseudo-header field names ([RFC7540],
-   section 8.1.2.1) MUST not appear in this list.
+   section 8.1.2.1) MUST NOT appear in this list.
 
 
 
@@ -403,11 +403,11 @@ Internet-Draft        Origin-signed HTTP Responses         December 2017
    Given the HTTP exchange:
 
    GET https://example.com/ HTTP/1.1
-   accept = */*
+   Accept: */*
 
    HTTP/1.1 200
-   content-type = text/html
-   signed-headers = "content-type"
+   Content-Type: text/html
+   Signed-Headers: "content-type"
 
    <!doctype html>
    <html>
@@ -1044,11 +1044,6 @@ Internet-Draft        Origin-signed HTTP Responses         December 2017
               Yasskin, J., "Web Packaging", draft-yasskin-dispatch-web-
               packaging-00 (work in progress), June 2017.
 
-   [RFC2437]  Kaliski, B. and J. Staddon, "PKCS #1: RSA Cryptography
-              Specifications Version 2.0", RFC 2437,
-              DOI 10.17487/RFC2437, October 1998,
-              <https://www.rfc-editor.org/info/rfc2437>.
-
    [RFC6066]  Eastlake 3rd, D., "Transport Layer Security (TLS)
               Extensions: Extension Definitions", RFC 6066,
               DOI 10.17487/RFC6066, January 2011,
@@ -1058,6 +1053,11 @@ Internet-Draft        Origin-signed HTTP Responses         December 2017
               DOI 10.17487/RFC6454, December 2011,
               <https://www.rfc-editor.org/info/rfc6454>.
 
+   [RFC7541]  Peon, R. and H. Ruellan, "HPACK: Header Compression for
+              HTTP/2", RFC 7541, DOI 10.17487/RFC7541, May 2015,
+              <https://www.rfc-editor.org/info/rfc7541>.
+
+
 
 
 
@@ -1066,9 +1066,10 @@ Yasskin                   Expires June 8, 2018                 [Page 19]
 Internet-Draft        Origin-signed HTTP Responses         December 2017
 
 
-   [RFC7541]  Peon, R. and H. Ruellan, "HPACK: Header Compression for
-              HTTP/2", RFC 7541, DOI 10.17487/RFC7541, May 2015,
-              <https://www.rfc-editor.org/info/rfc7541>.
+   [RFC8017]  Moriarty, K., Ed., Kaliski, B., Jonsson, J., and A. Rusch,
+              "PKCS #1: RSA Cryptography Specifications Version 2.2",
+              RFC 8017, DOI 10.17487/RFC8017, November 2016,
+              <https://www.rfc-editor.org/info/rfc8017>.
 
    [SRI]      Akhawe, D., Braun, F., Marier, F., and J. Weinberger,
               "Subresource Integrity", World Wide Web Consortium
@@ -1113,7 +1114,6 @@ A.1.  PUSHed subresources
    subresource from another server into the client's cache.  If anything
    about the subresource is expired or can't be verified, the client
    would fetch it from the original server.
-
 
 
 
@@ -1252,7 +1252,7 @@ B.1.2.  Signature constraints
 
    1.  Avoid key types that are used for non-TLS protocols whose output
        could be confused with a signature.  That may be just the
-       "rsaEncryption" OID from [RFC2437].
+       "rsaEncryption" OID from [RFC8017].
 
    2.  Use the same format as TLS's signatures, specified in
        [I-D.ietf-tls-tls13] section 4.4.3, with a context string that's
@@ -1472,13 +1472,13 @@ C.1.  Example of updating cache control
    For example, given a stored exchange of:
 
    GET https://example.com/ HTTP/1.1
-   accept = */*
+   Accept: */*
 
    HTTP/1.1 200
-   date = Mon, 20 Nov 2017 10:00:00 UTC
-   content-type = text/html
-   date = Tue, 21 Nov 2017 10:00:00 UTC
-   expires = Sun, 26 Nov 2017 10:00:00 UTC
+   Date: Mon, 20 Nov 2017 10:00:00 UTC
+   Content-Type: text/html
+   Date: Tue, 21 Nov 2017 10:00:00 UTC
+   Expires: Sun, 26 Nov 2017 10:00:00 UTC
 
    <!doctype html>
    <html>
@@ -1486,18 +1486,18 @@ C.1.  Example of updating cache control
 
    And an update listing the following headers:
 
-   expires = Fri, 1 Dec 2017 10:00:00 UTC
-   date = Sat, 25 Nov 2017 10:00:00 UTC
+   Expires: Fri, 1 Dec 2017 10:00:00 UTC
+   Date: Sat, 25 Nov 2017 10:00:00 UTC
 
    The resulting stored exchange would be:
 
    GET https://example.com/ HTTP/1.1
-   accept = */*
+   Accept: */*
 
    HTTP/1.1 200
-   content-type = text/html
-   expires = Fri, 1 Dec 2017 10:00:00 UTC
-   date = Sat, 25 Nov 2017 10:00:00 UTC
+   Content-Type: text/html
+   Expires: Fri, 1 Dec 2017 10:00:00 UTC
+   Date: Sat, 25 Nov 2017 10:00:00 UTC
 
    <!doctype html>
    <html>
