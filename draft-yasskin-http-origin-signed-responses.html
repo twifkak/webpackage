@@ -1026,7 +1026,7 @@ Signature: sig3;
 </pre>
 <p id="rfc.section.A.2.p.3">where the <samp>&lt;dist-img&gt;</samp> implementation generates an appropriate <samp>&lt;img&gt;</samp> based on, for example, a <samp>&lt;meta name="dist-base"&gt;</samp> tag elsewhere in the page.</p>
 <p id="rfc.section.A.2.p.4">This could be used for some of the same purposes as SRI (<a href="#uc-sri" class="xref">Appendix A.3</a>).</p>
-<p id="rfc.section.A.2.p.5">Note that the current proposal doesn&#8217;t support this use case because there&#8217;s no way aside from a Server Push to override the physical request URL.</p>
+<p id="rfc.section.A.2.p.5">To implement this with the current proposal, the distributor would respond to the physical request to <samp>https://distributor.com/O.com/img.png</samp> with first a signed PUSH_PROMISE for <samp>https://O.com/img.png</samp> and then a redirect to <samp>https://O.com/img.png</samp>.</p>
 <h1 id="rfc.appendix.A.3">
 <a href="#rfc.appendix.A.3">A.3.</a> <a href="#uc-sri" id="uc-sri">Subresource Integrity</a>
 </h1>

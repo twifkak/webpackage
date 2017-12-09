@@ -1187,9 +1187,10 @@ Internet-Draft        Origin-signed HTTP Responses         December 2017
    This could be used for some of the same purposes as SRI
    (Appendix A.3).
 
-   Note that the current proposal doesn't support this use case because
-   there's no way aside from a Server Push to override the physical
-   request URL.
+   To implement this with the current proposal, the distributor would
+   respond to the physical request to "https://distributor.com/O.com/
+   img.png" with first a signed PUSH_PROMISE for "https://O.com/img.png"
+   and then a redirect to "https://O.com/img.png".
 
 A.3.  Subresource Integrity
 
@@ -1221,7 +1222,6 @@ A.4.  Offline websites
    See https://github.com/WICG/webpackage [9] and
    [I-D.yasskin-dispatch-web-packaging].  This use requires origin-
    signed resources to be bundled.
-
 
 
 
