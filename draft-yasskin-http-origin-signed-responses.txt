@@ -4,8 +4,8 @@
 
 http                                                          J. Yasskin
 Internet-Draft                                                    Google
-Intended status: Standards Track                       December 05, 2017
-Expires: June 8, 2018
+Intended status: Standards Track                       December 09, 2017
+Expires: June 12, 2018
 
 
                       Origin-signed HTTP Responses
@@ -43,7 +43,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on June 8, 2018.
+   This Internet-Draft will expire on June 12, 2018.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Yasskin                   Expires June 8, 2018                  [Page 1]
+Yasskin                   Expires June 12, 2018                 [Page 1]
 
 Internet-Draft        Origin-signed HTTP Responses         December 2017
 
@@ -90,34 +90,35 @@ Table of Contents
      4.1.  Aspects of the straw proposal . . . . . . . . . . . . . .  16
    5.  Privacy considerations  . . . . . . . . . . . . . . . . . . .  16
    6.  IANA considerations . . . . . . . . . . . . . . . . . . . . .  17
+     6.1.  Signature Header Field Registration . . . . . . . . . . .  17
    7.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  17
      7.1.  Normative References  . . . . . . . . . . . . . . . . . .  17
      7.2.  Informative References  . . . . . . . . . . . . . . . . .  19
      7.3.  URIs  . . . . . . . . . . . . . . . . . . . . . . . . . .  20
-   Appendix A.  Use cases  . . . . . . . . . . . . . . . . . . . . .  20
-     A.1.  PUSHed subresources . . . . . . . . . . . . . . . . . . .  20
+   Appendix A.  Use cases  . . . . . . . . . . . . . . . . . . . . .  21
+     A.1.  PUSHed subresources . . . . . . . . . . . . . . . . . . .  21
      A.2.  Explicit use of a content distributor for subresources  .  21
-     A.3.  Subresource Integrity . . . . . . . . . . . . . . . . . .  21
+     A.3.  Subresource Integrity . . . . . . . . . . . . . . . . . .  22
      A.4.  Offline websites  . . . . . . . . . . . . . . . . . . . .  22
-   Appendix B.  Requirements . . . . . . . . . . . . . . . . . . . .  22
-     B.1.  Proof of origin . . . . . . . . . . . . . . . . . . . . .  22
-       B.1.1.  Certificate constraints . . . . . . . . . . . . . . .  22
+   Appendix B.  Requirements . . . . . . . . . . . . . . . . . . . .  23
+     B.1.  Proof of origin . . . . . . . . . . . . . . . . . . . . .  23
+       B.1.1.  Certificate constraints . . . . . . . . . . . . . . .  23
        B.1.2.  Signature constraints . . . . . . . . . . . . . . . .  23
-       B.1.3.  Retrieving the certificate  . . . . . . . . . . . . .  23
+       B.1.3.  Retrieving the certificate  . . . . . . . . . . . . .  24
      B.2.  How much to sign  . . . . . . . . . . . . . . . . . . . .  24
-       B.2.1.  Conveying the signed headers  . . . . . . . . . . . .  24
 
 
 
-Yasskin                   Expires June 8, 2018                  [Page 2]
+Yasskin                   Expires June 12, 2018                 [Page 2]
 
 Internet-Draft        Origin-signed HTTP Responses         December 2017
 
 
-     B.3.  Response lifespan . . . . . . . . . . . . . . . . . . . .  25
-       B.3.1.  Certificate revocation  . . . . . . . . . . . . . . .  25
+       B.2.1.  Conveying the signed headers  . . . . . . . . . . . .  25
+     B.3.  Response lifespan . . . . . . . . . . . . . . . . . . . .  26
+       B.3.1.  Certificate revocation  . . . . . . . . . . . . . . .  26
        B.3.2.  Response downgrade attacks  . . . . . . . . . . . . .  26
-   Appendix C.  Determining validity using cache control . . . . . .  26
+   Appendix C.  Determining validity using cache control . . . . . .  27
      C.1.  Example of updating cache control . . . . . . . . . . . .  27
      C.2.  Downsides of updating cache control . . . . . . . . . . .  28
    Appendix D.  Acknowledgements . . . . . . . . . . . . . . . . . .  28
@@ -164,8 +165,7 @@ Internet-Draft        Origin-signed HTTP Responses         December 2017
 
 
 
-
-Yasskin                   Expires June 8, 2018                  [Page 3]
+Yasskin                   Expires June 12, 2018                 [Page 3]
 
 Internet-Draft        Origin-signed HTTP Responses         December 2017
 
@@ -221,7 +221,7 @@ Internet-Draft        Origin-signed HTTP Responses         December 2017
 
 
 
-Yasskin                   Expires June 8, 2018                  [Page 4]
+Yasskin                   Expires June 12, 2018                 [Page 4]
 
 Internet-Draft        Origin-signed HTTP Responses         December 2017
 
@@ -277,7 +277,7 @@ Internet-Draft        Origin-signed HTTP Responses         December 2017
 
 
 
-Yasskin                   Expires June 8, 2018                  [Page 5]
+Yasskin                   Expires June 12, 2018                 [Page 5]
 
 Internet-Draft        Origin-signed HTTP Responses         December 2017
 
@@ -333,7 +333,7 @@ Internet-Draft        Origin-signed HTTP Responses         December 2017
 
 
 
-Yasskin                   Expires June 8, 2018                  [Page 6]
+Yasskin                   Expires June 12, 2018                 [Page 6]
 
 Internet-Draft        Origin-signed HTTP Responses         December 2017
 
@@ -389,7 +389,7 @@ Internet-Draft        Origin-signed HTTP Responses         December 2017
 
 
 
-Yasskin                   Expires June 8, 2018                  [Page 7]
+Yasskin                   Expires June 12, 2018                 [Page 7]
 
 Internet-Draft        Origin-signed HTTP Responses         December 2017
 
@@ -445,7 +445,7 @@ Internet-Draft        Origin-signed HTTP Responses         December 2017
 
 
 
-Yasskin                   Expires June 8, 2018                  [Page 8]
+Yasskin                   Expires June 12, 2018                 [Page 8]
 
 Internet-Draft        Origin-signed HTTP Responses         December 2017
 
@@ -501,7 +501,7 @@ Internet-Draft        Origin-signed HTTP Responses         December 2017
 
 
 
-Yasskin                   Expires June 8, 2018                  [Page 9]
+Yasskin                   Expires June 12, 2018                 [Page 9]
 
 Internet-Draft        Origin-signed HTTP Responses         December 2017
 
@@ -557,7 +557,7 @@ Internet-Draft        Origin-signed HTTP Responses         December 2017
 
 
 
-Yasskin                   Expires June 8, 2018                 [Page 10]
+Yasskin                   Expires June 12, 2018                [Page 10]
 
 Internet-Draft        Origin-signed HTTP Responses         December 2017
 
@@ -613,7 +613,7 @@ Internet-Draft        Origin-signed HTTP Responses         December 2017
 
 
 
-Yasskin                   Expires June 8, 2018                 [Page 11]
+Yasskin                   Expires June 12, 2018                [Page 11]
 
 Internet-Draft        Origin-signed HTTP Responses         December 2017
 
@@ -669,7 +669,7 @@ Internet-Draft        Origin-signed HTTP Responses         December 2017
 
 
 
-Yasskin                   Expires June 8, 2018                 [Page 12]
+Yasskin                   Expires June 12, 2018                [Page 12]
 
 Internet-Draft        Origin-signed HTTP Responses         December 2017
 
@@ -725,7 +725,7 @@ Internet-Draft        Origin-signed HTTP Responses         December 2017
 
 
 
-Yasskin                   Expires June 8, 2018                 [Page 13]
+Yasskin                   Expires June 12, 2018                [Page 13]
 
 Internet-Draft        Origin-signed HTTP Responses         December 2017
 
@@ -781,7 +781,7 @@ Signature: sig3;
 
 
 
-Yasskin                   Expires June 8, 2018                 [Page 14]
+Yasskin                   Expires June 12, 2018                [Page 14]
 
 Internet-Draft        Origin-signed HTTP Responses         December 2017
 
@@ -837,7 +837,7 @@ Signature: sig3;
 
 
 
-Yasskin                   Expires June 8, 2018                 [Page 15]
+Yasskin                   Expires June 12, 2018                [Page 15]
 
 Internet-Draft        Origin-signed HTTP Responses         December 2017
 
@@ -893,7 +893,7 @@ Internet-Draft        Origin-signed HTTP Responses         December 2017
 
 
 
-Yasskin                   Expires June 8, 2018                 [Page 16]
+Yasskin                   Expires June 12, 2018                [Page 16]
 
 Internet-Draft        Origin-signed HTTP Responses         December 2017
 
@@ -909,6 +909,21 @@ Internet-Draft        Origin-signed HTTP Responses         December 2017
 6.  IANA considerations
 
    TODO: possibly register the validityUrl format.
+
+6.1.  Signature Header Field Registration
+
+   This section registers the "Signature" header field in the "Permanent
+   Message Header Field Names" registry ([RFC3864]).
+
+   Header field name: "Signature"
+
+   Applicable protocol: http
+
+   Status: standard
+
+   Author/Change controller: IETF
+
+   Specification document(s): Section 3.2 of this document
 
 7.  References
 
@@ -928,6 +943,17 @@ Internet-Draft        Origin-signed HTTP Responses         December 2017
               draft-ietf-httpbis-header-structure-02 (work in progress),
               November 2017.
 
+
+
+
+
+
+
+Yasskin                   Expires June 12, 2018                [Page 17]
+
+Internet-Draft        Origin-signed HTTP Responses         December 2017
+
+
    [I-D.ietf-tls-tls13]
               Rescorla, E., "The Transport Layer Security (TLS) Protocol
               Version 1.3", draft-ietf-tls-tls13-22 (work in progress),
@@ -944,15 +970,10 @@ Internet-Draft        Origin-signed HTTP Responses         December 2017
               DOI 10.17487/RFC2119, March 1997,
               <https://www.rfc-editor.org/info/rfc2119>.
 
-
-
-
-
-
-Yasskin                   Expires June 8, 2018                 [Page 17]
-
-Internet-Draft        Origin-signed HTTP Responses         December 2017
-
+   [RFC3864]  Klyne, G., Nottingham, M., and J. Mogul, "Registration
+              Procedures for Message Header Fields", BCP 90, RFC 3864,
+              DOI 10.17487/RFC3864, September 2004,
+              <https://www.rfc-editor.org/info/rfc3864>.
 
    [RFC5280]  Cooper, D., Santesson, S., Farrell, S., Boeyen, S.,
               Housley, R., and W. Polk, "Internet X.509 Public Key
@@ -979,6 +1000,16 @@ Internet-Draft        Origin-signed HTTP Responses         December 2017
               RFC 7230, DOI 10.17487/RFC7230, June 2014,
               <https://www.rfc-editor.org/info/rfc7230>.
 
+
+
+
+
+
+Yasskin                   Expires June 12, 2018                [Page 18]
+
+Internet-Draft        Origin-signed HTTP Responses         December 2017
+
+
    [RFC7231]  Fielding, R., Ed. and J. Reschke, Ed., "Hypertext Transfer
               Protocol (HTTP/1.1): Semantics and Content", RFC 7231,
               DOI 10.17487/RFC7231, June 2014,
@@ -1002,13 +1033,6 @@ Internet-Draft        Origin-signed HTTP Responses         December 2017
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/info/rfc8174>.
-
-
-
-Yasskin                   Expires June 8, 2018                 [Page 18]
-
-Internet-Draft        Origin-signed HTTP Responses         December 2017
-
 
 7.2.  Informative References
 
@@ -1035,6 +1059,13 @@ Internet-Draft        Origin-signed HTTP Responses         December 2017
               Thomson, M., "Merkle Integrity Content Encoding", draft-
               thomson-http-mice-02 (work in progress), October 2016.
 
+
+
+Yasskin                   Expires June 12, 2018                [Page 19]
+
+Internet-Draft        Origin-signed HTTP Responses         December 2017
+
+
    [I-D.vkrasnov-h2-compression-dictionaries]
               Krasnov, V., "Compression Dictionaries for HTTP/2", draft-
               vkrasnov-h2-compression-dictionaries-02 (work in
@@ -1056,15 +1087,6 @@ Internet-Draft        Origin-signed HTTP Responses         December 2017
    [RFC7541]  Peon, R. and H. Ruellan, "HPACK: Header Compression for
               HTTP/2", RFC 7541, DOI 10.17487/RFC7541, May 2015,
               <https://www.rfc-editor.org/info/rfc7541>.
-
-
-
-
-
-Yasskin                   Expires June 8, 2018                 [Page 19]
-
-Internet-Draft        Origin-signed HTTP Responses         December 2017
-
 
    [RFC8017]  Moriarty, K., Ed., Kaliski, B., Jonsson, J., and A. Rusch,
               "PKCS #1: RSA Cryptography Specifications Version 2.2",
@@ -1093,6 +1115,13 @@ Internet-Draft        Origin-signed HTTP Responses         December 2017
 
    [7] https://github.com/mikewest/signature-based-sri
 
+
+
+Yasskin                   Expires June 12, 2018                [Page 20]
+
+Internet-Draft        Origin-signed HTTP Responses         December 2017
+
+
    [8] https://github.com/mikewest/signature-based-sri/issues/5
 
    [9] https://github.com/WICG/webpackage
@@ -1114,13 +1143,6 @@ A.1.  PUSHed subresources
    subresource from another server into the client's cache.  If anything
    about the subresource is expired or can't be verified, the client
    would fetch it from the original server.
-
-
-
-Yasskin                   Expires June 8, 2018                 [Page 20]
-
-Internet-Draft        Origin-signed HTTP Responses         December 2017
-
 
    For example, if "https://example.com/index.html" includes
 
@@ -1148,6 +1170,14 @@ A.2.  Explicit use of a content distributor for subresources
    request, computation of the "physicalsrc" could be encapsulated in a
    custom element:
 
+
+
+
+Yasskin                   Expires June 12, 2018                [Page 21]
+
+Internet-Draft        Origin-signed HTTP Responses         December 2017
+
+
    <dist-img src="https://O.com/img.png"></dist-img>
 
    where the "<dist-img>" implementation generates an appropriate
@@ -1168,15 +1198,6 @@ A.3.  Subresource Integrity
    which this proposal could provide.
 
    However, their needs also differ in some significant ways:
-
-
-
-
-
-Yasskin                   Expires June 8, 2018                 [Page 21]
-
-Internet-Draft        Origin-signed HTTP Responses         December 2017
-
 
    1.  The "integrity="ed25519-[public-key]"" attribute and CSP-based
        ways of expressing a public key don't need the signing key to be
@@ -1200,6 +1221,18 @@ A.4.  Offline websites
    See https://github.com/WICG/webpackage [9] and
    [I-D.yasskin-dispatch-web-packaging].  This use requires origin-
    signed resources to be bundled.
+
+
+
+
+
+
+
+
+Yasskin                   Expires June 12, 2018                [Page 22]
+
+Internet-Draft        Origin-signed HTTP Responses         December 2017
+
 
 Appendix B.  Requirements
 
@@ -1226,14 +1259,6 @@ B.1.1.  Certificate constraints
 
    If these risks are too high, we could define a new Extended Key Usage
    ([RFC5280], section 4.2.1.12) that requires CAs to issue new keys for
-
-
-
-Yasskin                   Expires June 8, 2018                 [Page 22]
-
-Internet-Draft        Origin-signed HTTP Responses         December 2017
-
-
    this purpose or a new certificate extension to do the same.  A new
    EKU would probably require CAs to also issue new intermediate
    certificates because of how browsers trust EKUs.  Both an EKU and a
@@ -1257,6 +1282,13 @@ B.1.2.  Signature constraints
    2.  Use the same format as TLS's signatures, specified in
        [I-D.ietf-tls-tls13] section 4.4.3, with a context string that's
        specific to this use.
+
+
+
+Yasskin                   Expires June 12, 2018                [Page 23]
+
+Internet-Draft        Origin-signed HTTP Responses         December 2017
+
 
    The specification also needs to define which signing algorithm to
    use.  I expect to define that as a function from the key type,
@@ -1282,14 +1314,6 @@ B.1.3.  Retrieving the certificate
    package and fetch the certificates it references, can also get the
    client to perform those fetches by loading other HTML.
 
-
-
-
-Yasskin                   Expires June 8, 2018                 [Page 23]
-
-Internet-Draft        Origin-signed HTTP Responses         December 2017
-
-
    To avoid using an unintended certificate with the same public key as
    the intended one, the content of the certificate chain should be
    included in the signed data, like TLS does ([I-D.ietf-tls-tls13],
@@ -1314,6 +1338,14 @@ B.2.  How much to sign
    there's a security vulnerability if an attacker can spoof them.  For
    now, the proposal (Section 3) omits other request headers.
 
+
+
+
+Yasskin                   Expires June 12, 2018                [Page 24]
+
+Internet-Draft        Origin-signed HTTP Responses         December 2017
+
+
    In order to allow multiple clients to consume the same signed
    exchange, the exchange shouldn't include the exact request headers
    that any particular client sends.  For example, a Japanese resource
@@ -1336,15 +1368,6 @@ B.2.1.  Conveying the signed headers
    end header integrity, but it's still likely that there are enough
    TLS-terminating proxies that the author's signatures would tend to
    break before getting to the client.
-
-
-
-
-
-Yasskin                   Expires June 8, 2018                 [Page 24]
-
-Internet-Draft        Origin-signed HTTP Responses         December 2017
-
 
    There's also no way in current HTTP for the response to a client-
    initiated request ([RFC7540], section 8.1) to convey the request
@@ -1370,6 +1393,15 @@ Internet-Draft        Origin-signed HTTP Responses         December 2017
    signature, and that could tell intermediates not to change the
    ensuing headers.
 
+
+
+
+
+Yasskin                   Expires June 12, 2018                [Page 25]
+
+Internet-Draft        Origin-signed HTTP Responses         December 2017
+
+
 B.3.  Response lifespan
 
    A normal HTTPS response is authoritative only for one client, for as
@@ -1392,15 +1424,6 @@ B.3.1.  Certificate revocation
    staple OCSP responses.  One option is to extend the certificate
    download (Appendix B.1.3) to include the OCSP response too, perhaps
    in the TLS 1.3 CertificateEntry [13] format.
-
-
-
-
-
-Yasskin                   Expires June 8, 2018                 [Page 25]
-
-Internet-Draft        Origin-signed HTTP Responses         December 2017
-
 
 B.3.2.  Response downgrade attacks
 
@@ -1427,6 +1450,14 @@ B.3.2.  Response downgrade attacks
 
    3.  A replacement for the exchange's signature and an update for the
        embedded "expires" and related cache-control HTTP headers
+
+
+
+Yasskin                   Expires June 12, 2018                [Page 26]
+
+Internet-Draft        Origin-signed HTTP Responses         December 2017
+
+
        [RFC7234].  This naturally extends authors' intuitions about
        cache expiration and the existing cache revalidation behavior to
        signed exchanges.  This is sketched and its downsides explored in
@@ -1450,14 +1481,6 @@ Appendix C.  Determining validity using cache control
    and initialize "expires" from either the "Expires" header field
    ([RFC7234] section 5.3) or the "Cache-Control" header field's "max-
    age" directive ([RFC7234] section 5.2.2.8) (added to "date"),
-
-
-
-Yasskin                   Expires June 8, 2018                 [Page 26]
-
-Internet-Draft        Origin-signed HTTP Responses         December 2017
-
-
    whichever is present, preferring "max-age" (or failing) if both are
    present.
 
@@ -1484,6 +1507,13 @@ C.1.  Example of updating cache control
    <html>
    ...
 
+
+
+Yasskin                   Expires June 12, 2018                [Page 27]
+
+Internet-Draft        Origin-signed HTTP Responses         December 2017
+
+
    And an update listing the following headers:
 
    Expires: Fri, 1 Dec 2017 10:00:00 UTC
@@ -1502,17 +1532,6 @@ C.1.  Example of updating cache control
    <!doctype html>
    <html>
    ...
-
-
-
-
-
-
-
-Yasskin                   Expires June 8, 2018                 [Page 27]
-
-Internet-Draft        Origin-signed HTTP Responses         December 2017
-
 
 C.2.  Downsides of updating cache control
 
@@ -1546,23 +1565,4 @@ Author's Address
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Yasskin                   Expires June 8, 2018                 [Page 28]
+Yasskin                   Expires June 12, 2018                [Page 28]
