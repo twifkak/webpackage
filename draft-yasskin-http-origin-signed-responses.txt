@@ -142,7 +142,7 @@ Internet-Draft        Origin-signed HTTP Responses         December 2017
    Exchange (noun)  An HTTP request/response pair.  This can either be a
       request from a client and the matching response from a server or
       the request in a PUSH_PROMISE and its matching response stream.
-      Defined by [RFC7540] section 8.
+      Defined by Section 8 of [RFC7540].
 
    Intermediate  An entity that fetches signed HTTP exchanges from an
       author or another intermediate and forwards them to another
@@ -172,8 +172,8 @@ Internet-Draft        Origin-signed HTTP Responses         December 2017
 
 3.  Straw proposal
 
-   As a response to an HTTP request or as a Server Push ([RFC7540],
-   section 8.2) the server MAY include a "Signed-Headers" header field
+   As a response to an HTTP request or as a Server Push (Section 8.2 of
+   [RFC7540]) the server MAY include a "Signed-Headers" header field
    (Section 3.1) identifying significant (Section 3.3) header fields and
    a "Signature" header field (Section 3.2) holding a list of one or
    more parameterised signatures that vouch for the content of the
@@ -213,10 +213,10 @@ Internet-Draft        Origin-signed HTTP Responses         December 2017
 
    "Signed-Headers" is a Structured Header as defined by
    [I-D.ietf-httpbis-header-structure].  Its value MUST be a list
-   ([I-D.ietf-httpbis-header-structure], section 4.8) of lowercase
-   strings ([I-D.ietf-httpbis-header-structure], section 4.2) naming
-   HTTP response header fields.  Pseudo-header field names ([RFC7540],
-   section 8.1.2.1) MUST NOT appear in this list.
+   (Section 4.8 of [I-D.ietf-httpbis-header-structure]) of lowercase
+   strings (Section 4.2 of [I-D.ietf-httpbis-header-structure]) naming
+   HTTP response header fields.  Pseudo-header field names
+   (Section 8.1.2.1 of [RFC7540]) MUST NOT appear in this list.
 
 
 
@@ -237,8 +237,8 @@ Internet-Draft        Origin-signed HTTP Responses         December 2017
 
    The "Signature" header is a Structured Header as defined by
    [I-D.ietf-httpbis-header-structure].  Its value MUST be a list
-   ([I-D.ietf-httpbis-header-structure], section 4.8) of parameterised
-   labels ([I-D.ietf-httpbis-header-structure], section 4.4).
+   (Section 4.8 of [I-D.ietf-httpbis-header-structure]) of parameterised
+   labels (Section 4.4 of [I-D.ietf-httpbis-header-structure]).
 
    Each parameterised label MUST have parameters named "sig",
    "validityUrl", "date", and "expires", and either "certUrl" and
@@ -248,32 +248,32 @@ Internet-Draft        Origin-signed HTTP Responses         December 2017
    Section 3.2.1, Paragraph 1).  The present parameters MUST have the
    following values:
 
-   "sig"  Binary content ([I-D.ietf-httpbis-header-structure], section
-      4.5) holding the signature of most of these parameters and the
-      significant parts of the exchange (Section 3.3).
+   "sig"  Binary content (Section 4.5 of
+      [I-D.ietf-httpbis-header-structure]) holding the signature of most
+      of these parameters and the significant parts of the exchange
+      (Section 3.3).
 
-   "certUrl"  A string ([I-D.ietf-httpbis-header-structure], section
-      4.2) containing a valid URL string [5].
+   "certUrl"  A string (Section 4.2 of
+      [I-D.ietf-httpbis-header-structure]) containing a valid URL string
+      [5].
 
-   "certSha256"  Binary content ([I-D.ietf-httpbis-header-structure],
-      section 4.5) holding the SHA-256 hash of the first certificate
-      found at "certUrl".
+   "certSha256"  Binary content (Section 4.5 of
+      [I-D.ietf-httpbis-header-structure]) holding the SHA-256 hash of
+      the first certificate found at "certUrl".
 
-   "ed25519Key"  Binary content ([I-D.ietf-httpbis-header-structure],
-      section 4.5) holding an Ed25519 public key ([RFC8032]).
+   "ed25519Key"  Binary content (Section 4.5 of
+      [I-D.ietf-httpbis-header-structure]) holding an Ed25519 public key
+      ([RFC8032]).
 
-   "validityUrl"  A string ([I-D.ietf-httpbis-header-structure], section
-      4.2) containing a valid URL string [6].
+   "validityUrl"  A string (Section 4.2 of
+      [I-D.ietf-httpbis-header-structure]) containing a valid URL string
+      [6].
 
-   "date" and "expires"  An unsigned integer
-      ([I-D.ietf-httpbis-header-structure], section 4.1) representing a
-      Unix time.
+   "date" and "expires"  An unsigned integer (Section 4.1 of
+      [I-D.ietf-httpbis-header-structure]) representing a Unix time.
 
    The "certUrl" and "validityUrl" parameters are _not_ signed, so
    intermediates can update them with pointers to cached versions.
-
-
-
 
 
 
@@ -305,17 +305,17 @@ Internet-Draft        Origin-signed HTTP Responses         December 2017
 
    The significant parts of an exchange are:
 
-   o  The method ([RFC7231], section 4) and effective request URI
-      ([RFC7230], section 5.5) of the request.
+   o  The method (Section 4 of [RFC7231]) and effective request URI
+      (Section 5.5 of [RFC7230]) of the request.
 
-   o  The response status code ([RFC7231], section 6) and the response
+   o  The response status code (Section 6 of [RFC7231]) and the response
       header fields whose names are listed in that exchange's "Signed-
       Headers" header field (Section 3.1), in the order they appear in
       that header field.  If a response header field name from "Signed-
       Headers" does not appear in the exchange's response header fields,
       the exchange has no significant parts.
 
-   o  The exchange's payload body ([RFC7230], section 3.3).  Note that
+   o  The exchange's payload body (Section 3.3 of [RFC7230]).  Note that
       the payload body is the message body with any transfer encodings
       removed.
 
@@ -395,8 +395,8 @@ Internet-Draft        Origin-signed HTTP Responses         December 2017
 
 
        6.  The byte string containing the response's payload body
-           ([RFC7230], section 3.3).  Note that the payload body is the
-           message body with any transfer encodings removed.
+           (Section 3.3 of [RFC7230]).  Note that the payload body is
+           the message body with any transfer encodings removed.
 
 3.4.1.  Example
 
@@ -435,7 +435,7 @@ Internet-Draft        Origin-signed HTTP Responses         December 2017
 3.5.  Canonical CBOR serialization
 
    Within this specification, the canonical serialization of a CBOR item
-   uses the following rules derived from section 3.9 of [RFC7049]:
+   uses the following rules derived from Section 3.9 of [RFC7049]:
 
    o  Integers and the lengths of arrays and strings MUST use the
       smallest possible encoding.
@@ -458,11 +458,10 @@ Internet-Draft        Origin-signed HTTP Responses         December 2017
 3.6.  Signature validity
 
    The client MUST parse the "Signature" header field as the list of
-   parameterised values described in Section 3.2
-   ([I-D.ietf-httpbis-header-structure], section 4.8.1).  If an error is
-   thrown during this parsing, the exchange has no valid signatures.
-   Otherwise, each member of this list represents a signature with
-   parameters.
+   parameterised values described in Section 3.2 (Section 4.8.1 of
+   [I-D.ietf-httpbis-header-structure]).  If an error is thrown during
+   this parsing, the exchange has no valid signatures.  Otherwise, each
+   member of this list represents a signature with parameters.
 
    The client MUST use the following algorithm to determine whether each
    signature with parameters is invalid or potentially-valid.
@@ -501,6 +500,7 @@ Internet-Draft        Origin-signed HTTP Responses         December 2017
 
 
 
+
 Yasskin                   Expires June 14, 2018                 [Page 9]
 
 Internet-Draft        Origin-signed HTTP Responses         December 2017
@@ -527,11 +527,11 @@ Internet-Draft        Origin-signed HTTP Responses         December 2017
 
            1.  Let "certificate-chain" be the result of fetching
                ([FETCH]) "certUrl" and parsing it as a TLS 1.3
-               Certificate message ([I-D.ietf-tls-tls13], section 4.4.2)
-               containing X.509v3 certificates.  If "forceFetch" is
-               _not_ set, the fetch can be fulfilled from a cache using
-               normal HTTP semantics [RFC7234].  If this fetch or parse
-               fails, return "invalid".
+               Certificate message (Section 4.4.2 of
+               [I-D.ietf-tls-tls13]) containing X.509v3 certificates.
+               If "forceFetch" is _not_ set, the fetch can be fulfilled
+               from a cache using normal HTTP semantics [RFC7234].  If
+               this fetch or parse fails, return "invalid".
 
            2.  Let "main-certificate" be the first certificate in
                "certificate-chain".
@@ -628,7 +628,7 @@ Internet-Draft        Origin-signed HTTP Responses         December 2017
 
 3.6.1.  Validating a certificate chain for an authority
 
-   [RFC7540] section 8.2 includes the rule:
+   Section 8.2 of [RFC7540] includes the rule:
 
       The server MUST include a value in the :authority pseudo-header
       field for which the server is authoritative (see Section 10.1).  A
@@ -864,7 +864,7 @@ Internet-Draft        Origin-signed HTTP Responses         December 2017
 
    The use of a single "Signed-Headers" header field prevents us from
    signing aspects of the request other than its effective request URI
-   ([RFC7230], section 5.5).  For example, if an author signs both
+   (Section 5.5 of [RFC7230]).  For example, if an author signs both
    "Content-Encoding: br" and "Content-Encoding: gzip" variants of a
    response, what's the impact if an attacker serves the brotli one for
    a request with "Accept-Encoding: gzip"?
@@ -1149,8 +1149,8 @@ A.1.  PUSHed subresources
    <script src="https://jquery.com/jquery-1.2.3.min.js">
 
    Then to avoid the need to look up and connect to "jquery.com" in the
-   critical path, "example.com" might PUSH that resource ([RFC7540],
-   section 8.2), signed by "jquery.com".
+   critical path, "example.com" might PUSH that resource (Section 8.2 of
+   [RFC7540]), signed by "jquery.com".
 
 A.2.  Explicit use of a content distributor for subresources
 
@@ -1258,9 +1258,9 @@ B.1.1.  Certificate constraints
        vice versa.
 
    If these risks are too high, we could define a new Extended Key Usage
-   ([RFC5280], section 4.2.1.12) that requires CAs to issue new keys for
-   this purpose or a new certificate extension to do the same.  A new
-   EKU would probably require CAs to also issue new intermediate
+   (Section 4.2.1.12 of [RFC5280]) that requires CAs to issue new keys
+   for this purpose or a new certificate extension to do the same.  A
+   new EKU would probably require CAs to also issue new intermediate
    certificates because of how browsers trust EKUs.  Both an EKU and a
    new extension take a long time to deploy and allow CAs to charge
    package-signers more than normal server operators, which will reduce
@@ -1280,8 +1280,8 @@ B.1.2.  Signature constraints
        "rsaEncryption" OID from [RFC8017].
 
    2.  Use the same format as TLS's signatures, specified in
-       [I-D.ietf-tls-tls13] section 4.4.3, with a context string that's
-       specific to this use.
+       Section 4.4.3 of [I-D.ietf-tls-tls13] , with a context string
+       that's specific to this use.
 
 
 
@@ -1309,15 +1309,15 @@ B.1.3.  Retrieving the certificate
    the certificate and chain.  To avoid extra round trips in fetching
    that URL, it could be bundled (Appendix A.4) with the signed content
    or PUSHed (Appendix A.1) with it.  The risks from the
-   "client_certificate_url" extension ([RFC6066] section 11.3) don't
+   "client_certificate_url" extension (Section 11.3 of [RFC6066]) don't
    seem to apply here, since an attacker who can get a client to load a
    package and fetch the certificates it references, can also get the
    client to perform those fetches by loading other HTML.
 
    To avoid using an unintended certificate with the same public key as
    the intended one, the content of the certificate chain should be
-   included in the signed data, like TLS does ([I-D.ietf-tls-tls13],
-   section 4.4.3).
+   included in the signed data, like TLS does (Section 4.4.3 of
+   [I-D.ietf-tls-tls13]).
 
 B.2.  How much to sign
 
@@ -1370,9 +1370,9 @@ B.2.1.  Conveying the signed headers
    break before getting to the client.
 
    There's also no way in current HTTP for the response to a client-
-   initiated request ([RFC7540], section 8.1) to convey the request
-   headers it expected to respond to.  A PUSH_PROMISE ([RFC7540],
-   section 8.2) does not have this problem, and it would be possible to
+   initiated request (Section 8.1 of [RFC7540]) to convey the request
+   headers it expected to respond to.  A PUSH_PROMISE (Section 8.2 of
+   [RFC7540]) does not have this problem, and it would be possible to
    introduce a response header to convey the expected request headers.
 
    Since proxies don't modify unknown content types, we could wrap the
@@ -1477,12 +1477,12 @@ Appendix C.  Determining validity using cache control
    longer contain "date" or "expires" fields.
 
    The validity-checking algorithm (Section 3.6) would initialize "date"
-   from the resource's "Date" header field ([RFC7231], section 7.1.1.2)
-   and initialize "expires" from either the "Expires" header field
-   ([RFC7234] section 5.3) or the "Cache-Control" header field's "max-
-   age" directive ([RFC7234] section 5.2.2.8) (added to "date"),
-   whichever is present, preferring "max-age" (or failing) if both are
-   present.
+   from the resource's "Date" header field (Section 7.1.1.2 of
+   [RFC7231]) and initialize "expires" from either the "Expires" header
+   field (Section 5.3 of [RFC7234]) or the "Cache-Control" header
+   field's "max-age" directive (Section 5.2.2.8 of [RFC7234]) (added to
+   "date"), whichever is present, preferring "max-age" (or failing) if
+   both are present.
 
    Validity updates (Section 3.7) would include a list of replacement
    response header fields.  For each header field name in this list, the
