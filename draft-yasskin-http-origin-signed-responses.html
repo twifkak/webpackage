@@ -327,7 +327,7 @@ address {
 
   <meta name="dct.creator" content="Yasskin, J." />
   <meta name="dct.identifier" content="urn:ietf:id:draft-yasskin-http-origin-signed-responses-latest" />
-  <meta name="dct.issued" scheme="ISO8601" content="2017-12-11" />
+  <meta name="dct.issued" scheme="ISO8601" content="2017-12-15" />
   <meta name="dct.abstract" content="This document explores how a server can send particular responses that are authoritative for an origin, when the server itself is not authoritative for that origin. For now, the appendices containing use cases and requirements should be treated as more confident than the proposal itself." />
   <meta name="description" content="This document explores how a server can send particular responses that are authoritative for an origin, when the server itself is not authoritative for that origin. For now, the appendices containing use cases and requirements should be treated as more confident than the proposal itself." />
 
@@ -348,10 +348,10 @@ address {
 </tr>
 <tr>
 <td class="left">Intended status: Standards Track</td>
-<td class="right">December 11, 2017</td>
+<td class="right">December 15, 2017</td>
 </tr>
 <tr>
-<td class="left">Expires: June 14, 2018</td>
+<td class="left">Expires: June 18, 2018</td>
 <td class="right"></td>
 </tr>
 
@@ -371,7 +371,7 @@ address {
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at https://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on June 14, 2018.</p>
+<p>This Internet-Draft will expire on June 18, 2018.</p>
 <h1 id="rfc.copyrightnotice"><a href="#rfc.copyrightnotice">Copyright Notice</a></h1>
 <p>Copyright (c) 2017 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
 <p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (https://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
@@ -644,7 +644,7 @@ Signed-Headers: "content-type"
 <li>The signed parts of the exchange so that higher-level protocols can avoid relying on unsigned headers, and</li>
 <li>Either a certificate chain or a public key so that a higher-level protocol can determine whether it&#8217;s actually valid.</li>
 </ul>
-<p id="rfc.section.3.6.p.4"><a name="force-fetch"></a>This algorithm accepts a <samp>forceFetch</samp> flag that avoids the cache when fetching URLs. A client that determines that a potentially-valid certificate chain is actually invalid due to expired OCSP responses MAY retry with <samp>forceFetch</samp> set to retrieve updated OCSPs from the original server.</p>
+<p id="rfc.section.3.6.p.4"><a name="force-fetch"></a>This algorithm accepts a <samp>forceFetch</samp> flag that avoids the cache when fetching URLs. A client that determines that a potentially-valid certificate chain is actually invalid due to an expired OCSP response MAY retry with <samp>forceFetch</samp> set to retrieve an updated OCSP from the original server.</p>
 <p id="rfc.section.3.6.p.5">This algorithm also accepts an <samp>allResponseHeaders</samp> flag, which insists that there are no non-significant response header fields in the exchange.</p>
 <p></p>
 
@@ -669,9 +669,9 @@ Signed-Headers: "content-type"
 </li>
 <li>Set <samp>publicKey</samp> and <samp>signing-alg</samp> depending on which key fields are present: <ol>
 <li>If <samp>certUrl</samp> is present: <ol>
-<li>Let <samp>certificate-chain</samp> be the result of fetching (<a href="#FETCH" class="xref">[FETCH]</a>) <samp>certUrl</samp> and parsing it as a TLS 1.3 Certificate message (Section 4.4.2 of <a href="#I-D.ietf-tls-tls13" class="xref">[I-D.ietf-tls-tls13]</a>) containing X.509v3 certificates. If <samp>forceFetch</samp> is <em>not</em> set, the fetch can be fulfilled from a cache using normal HTTP semantics <a href="#RFC7234" class="xref">[RFC7234]</a>. If this fetch or parse fails, return &#8220;invalid&#8221;.</li>
+<li>Let <samp>certificate-chain</samp> be the result of fetching (<a href="#FETCH" class="xref">[FETCH]</a>) <samp>certUrl</samp> and parsing it as a TLS 1.3 Certificate message (Section 4.4.2 of <a href="#I-D.ietf-tls-tls13" class="xref">[I-D.ietf-tls-tls13]</a>) containing X.509v3 certificates. If <samp>forceFetch</samp> is <em>not</em> set, the fetch can be fulfilled from a cache using normal HTTP semantics <a href="#RFC7234" class="xref">[RFC7234]</a>. If this fetch or parse fails, return &#8220;invalid&#8221;.          <br><br> Parsing notes: 1. This does not include the 4-byte header that would appear in a Handshake message.  1. Since this fetch is not in response to a CertificateRequest, the certificate_request_context MUST be empty, and a non-empty value MUST cause the parse to fail.</li>
 <li>Let <samp>main-certificate</samp> be the first certificate in <samp>certificate-chain</samp>.</li>
-<li>If the SHA-256 hash of <samp>main-certificate</samp>&#8217;s <samp>cert_data</samp> is not equal to <samp>certSha256</samp>, return &#8220;invalid&#8221;. Note that this intentionally differs from TLS 1.3, which signs the entire certificate chain in its Certificate Verify (Section 4.4.3 of <a href="#I-D.ietf-tls-tls13" class="xref">[I-D.ietf-tls-tls13]</a>), in order to allow updating stapled OCSP responses without updating signatures at the same time.</li>
+<li>If the SHA-256 hash of <samp>main-certificate</samp>&#8217;s <samp>cert_data</samp> is not equal to <samp>certSha256</samp>, return &#8220;invalid&#8221;. Note that this intentionally differs from TLS 1.3, which signs the entire certificate chain in its Certificate Verify (Section 4.4.3 of <a href="#I-D.ietf-tls-tls13" class="xref">[I-D.ietf-tls-tls13]</a>), in order to allow updating the stapled OCSP response without updating signatures at the same time.</li>
 <li>Set <samp>publicKey</samp> to <samp>main-certificate</samp>&#8217;s public key</li>
 <li>The client MUST define a partial function from public key types to signing algorithms, and this function must at the minimum include the following mappings:          <dl>
 <dt>RSA, 2048 bits:</dt>
@@ -696,8 +696,11 @@ Signed-Headers: "content-type"
 <li>A context string: the ASCII encoding of &#8220;HTTP Exchange&#8221;.</li>
 <li>A single 0 byte which serves as a separator.</li>
 <li>The bytes of the canonical CBOR serialization (<a href="#canonical-cbor" class="xref">Section 3.5</a>) of a CBOR array consisting of: <ol>
+<li>If <samp>certSha256</samp> is set: <ol>
 <li>The text string &#8220;certSha256&#8221;.</li>
 <li>The byte string <samp>certSha256</samp>.</li>
+</ol>
+</li>
 <li>The text string &#8220;date&#8221;.</li>
 <li>The integer value of <samp>date</samp>.</li>
 <li>The text string &#8220;expires&#8221;.</li>
@@ -725,7 +728,7 @@ Signed-Headers: "content-type"
 <li>Let <samp>authority</samp> be the host component of <samp>exchange</samp>&#8217;s effective request URI.</li>
 <li>Validate the <samp>certificate-chain</samp> using the following substeps. If any of them fail, re-run <a href="#signature-validity" class="xref">Section 3.6</a> once over the signature with both the <samp>forceFetch</samp> flag and the <samp>allResponseHeaders</samp> flag set, and restart from step 2. If a substep fails again, return &#8220;invalid&#8221;.  <ol>
 <li>Use <samp>certificate-chain</samp> to validate that its first entry, <samp>main-certificate</samp> is trusted as <samp>authority</samp>&#8217;s server certificate (<a href="#RFC5280" class="xref">[RFC5280]</a> and other undocumented conventions). Let <samp>path</samp> be the path that was used from the <samp>main-certificate</samp> to a trusted root, including the <samp>main-certificate</samp> but excluding the root.</li>
-<li>Validate that all certificates in <samp>path</samp> include &#8220;status_request&#8221; extensions with valid OCSP responses. (<a href="#RFC6960" class="xref">[RFC6960]</a>)</li>
+<li>Validate that <samp>main-certificate</samp> includes a &#8220;status_request&#8221; extension with a valid OCSP response whose lifetime (<samp>nextUpdate - thisUpdate</samp>) is less than 7 days (<a href="#RFC6960" class="xref">[RFC6960]</a>). Note that this does not check for revocation of intermediate certificates, and clients SHOULD implement another mechanism for that.</li>
 <li>Validate that all certificates in <samp>path</samp> include &#8220;signed_certificate_timestamp&#8221; extensions containing valid SCTs from trusted logs. (<a href="#RFC6962" class="xref">[RFC6962]</a>)</li>
 </ol>
 </li>
@@ -739,7 +742,7 @@ Signed-Headers: "content-type"
 <a href="#rfc.section.3.7">3.7.</a> <a href="#updating-validity" id="updating-validity">Updating signature validity</a>
 </h1>
 <p id="rfc.section.3.7.p.1">Both OCSP responses and signatures are designed to expire a short time after they&#8217;re signed, so that revoked certificates and signed exchanges with known vulnerabilities are distrusted promptly.</p>
-<p id="rfc.section.3.7.p.2">This specification provides no way to update OCSP responses by themselves.  Instead, <a href="#force-fetch" class="xref">clients need to re-fetch the &#8220;certUrl&#8221;</a> to get a chain including newer OCSPs.</p>
+<p id="rfc.section.3.7.p.2">This specification provides no way to update OCSP responses by themselves.  Instead, <a href="#force-fetch" class="xref">clients need to re-fetch the &#8220;certUrl&#8221;</a> to get a chain including a newer OCSP response.</p>
 <p id="rfc.section.3.7.p.3">The <a href="#signature-validityurl" class="xref">&#8220;validityUrl&#8221; parameter</a> of the signatures provides a way to fetch new signatures or learn where to fetch a complete updated package.</p>
 <p id="rfc.section.3.7.p.4">Each version of a signed exchange SHOULD have its own validity URLs, since each version needs different signatures and becomes obsolete at different times.</p>
 <p id="rfc.section.3.7.p.5">The resource at a &#8220;validityUrl&#8221; is &#8220;validity data&#8221;, a CBOR map matching the following CDDL (<a href="#I-D.ietf-cbor-cddl" class="xref">[I-D.ietf-cbor-cddl]</a>):</p>
@@ -818,7 +821,7 @@ Signature: sig3;
 <p id="rfc.section.4.p.1">Authors MUST NOT include confidential information in a signed response that an untrusted intermediate could forward, since the response is only signed and not encrypted. Intermediates can read the content.</p>
 <p id="rfc.section.4.p.2">Relaxing the requirement to consult DNS when determining authority for an origin means that an attacker who possesses a valid certificate no longer needs to be on-path to redirect traffic to them; instead of modifying DNS, they need only convince the user to visit another Web site in order to serve responses signed as the target. This consideration and mitigations for it are shared by <a href="#I-D.ietf-httpbis-origin-frame" class="xref">[I-D.ietf-httpbis-origin-frame]</a>.</p>
 <p id="rfc.section.4.p.3">Signing a bad response can affect more users than simply serving a bad response, since a served response will only affect users who make a request while the bad version is live, while an attacker can forward a signed response until its signature expires. Authors should consider shorter signature expiration times than they use for cache expiration times.</p>
-<p id="rfc.section.4.p.4">An attacker with temporary access to a signing oracle can sign &#8220;still valid&#8221; assertions with arbitrary timestamps and expiration times. As a result, when a signing oracle is removed, the keys it provided access to SHOULD be revoked so that, even if the attacker used them to sign future-dated package validity assertions, the key&#8217;s OCSP assertions will expire, causing the package as a whole to become untrusted.</p>
+<p id="rfc.section.4.p.4">An attacker with temporary access to a signing oracle can sign &#8220;still valid&#8221; assertions with arbitrary timestamps and expiration times. As a result, when a signing oracle is removed, the keys it provided access to SHOULD be revoked so that, even if the attacker used them to sign future-dated package validity assertions, the key&#8217;s OCSP assertion will expire, causing the package as a whole to become untrusted.</p>
 <h1 id="rfc.section.4.1">
 <a href="#rfc.section.4.1">4.1.</a> <a href="#aspects-of-the-straw-proposal" id="aspects-of-the-straw-proposal">Aspects of the straw proposal</a>
 </h1>
