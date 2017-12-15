@@ -288,18 +288,25 @@ address {
 <link href="#rfc.section.3.4.1" rel="Chapter" title="3.4.1 Example">
 <link href="#rfc.section.3.5" rel="Chapter" title="3.5 Canonical CBOR serialization">
 <link href="#rfc.section.3.6" rel="Chapter" title="3.6 Signature validity">
-<link href="#rfc.section.3.6.1" rel="Chapter" title="3.6.1 Validating a certificate chain for an authority">
-<link href="#rfc.section.3.6.2" rel="Chapter" title="3.6.2 Open Questions">
+<link href="#rfc.section.3.6.1" rel="Chapter" title="3.6.1 Open Questions">
 <link href="#rfc.section.3.7" rel="Chapter" title="3.7 Updating signature validity">
 <link href="#rfc.section.3.7.1" rel="Chapter" title="3.7.1 Examples">
-<link href="#rfc.section.4" rel="Chapter" title="4 Security considerations">
-<link href="#rfc.section.4.1" rel="Chapter" title="4.1 Aspects of the straw proposal">
-<link href="#rfc.section.5" rel="Chapter" title="5 Privacy considerations">
-<link href="#rfc.section.6" rel="Chapter" title="6 IANA considerations">
-<link href="#rfc.section.6.1" rel="Chapter" title="6.1 Signature Header Field Registration">
-<link href="#rfc.references" rel="Chapter" title="7 References">
-<link href="#rfc.references.1" rel="Chapter" title="7.1 Normative References">
-<link href="#rfc.references.2" rel="Chapter" title="7.2 Informative References">
+<link href="#rfc.section.4" rel="Chapter" title="4 HTTP/2 extension for cross-origin Server Push">
+<link href="#rfc.section.4.1" rel="Chapter" title="4.1 Indicating support for cross-origin Server Push">
+<link href="#rfc.section.4.2" rel="Chapter" title="4.2 NO_TRUSTED_EXCHANGE_SIGNATURE error code">
+<link href="#rfc.section.4.2.1" rel="Chapter" title="4.2.1 Open Questions">
+<link href="#rfc.section.4.3" rel="Chapter" title="4.3 Validating a cross-origin Push">
+<link href="#rfc.section.4.3.1" rel="Chapter" title="4.3.1 Validating a certificate chain for an authority">
+<link href="#rfc.section.5" rel="Chapter" title="5 Security considerations">
+<link href="#rfc.section.5.1" rel="Chapter" title="5.1 Aspects of the straw proposal">
+<link href="#rfc.section.6" rel="Chapter" title="6 Privacy considerations">
+<link href="#rfc.section.7" rel="Chapter" title="7 IANA considerations">
+<link href="#rfc.section.7.1" rel="Chapter" title="7.1 Signature Header Field Registration">
+<link href="#rfc.section.7.2" rel="Chapter" title="7.2 HTTP/2 Settings">
+<link href="#rfc.section.7.3" rel="Chapter" title="7.3 HTTP/2 Error code">
+<link href="#rfc.references" rel="Chapter" title="8 References">
+<link href="#rfc.references.1" rel="Chapter" title="8.1 Normative References">
+<link href="#rfc.references.2" rel="Chapter" title="8.2 Informative References">
 <link href="#rfc.appendix.A" rel="Chapter" title="A Use cases">
 <link href="#rfc.appendix.A.1" rel="Chapter" title="A.1 PUSHed subresources">
 <link href="#rfc.appendix.A.2" rel="Chapter" title="A.2 Explicit use of a content distributor for subresources">
@@ -405,29 +412,43 @@ address {
 </li>
 <li>3.6.   <a href="#rfc.section.3.6">Signature validity</a>
 </li>
-<ul><li>3.6.1.   <a href="#rfc.section.3.6.1">Validating a certificate chain for an authority</a>
-</li>
-<li>3.6.2.   <a href="#rfc.section.3.6.2">Open Questions</a>
+<ul><li>3.6.1.   <a href="#rfc.section.3.6.1">Open Questions</a>
 </li>
 </ul><li>3.7.   <a href="#rfc.section.3.7">Updating signature validity</a>
 </li>
 <ul><li>3.7.1.   <a href="#rfc.section.3.7.1">Examples</a>
 </li>
-</ul></ul><li>4.   <a href="#rfc.section.4">Security considerations</a>
+</ul></ul><li>4.   <a href="#rfc.section.4">HTTP/2 extension for cross-origin Server Push</a>
 </li>
-<ul><li>4.1.   <a href="#rfc.section.4.1">Aspects of the straw proposal</a>
+<ul><li>4.1.   <a href="#rfc.section.4.1">Indicating support for cross-origin Server Push</a>
 </li>
-</ul><li>5.   <a href="#rfc.section.5">Privacy considerations</a>
+<li>4.2.   <a href="#rfc.section.4.2">NO_TRUSTED_EXCHANGE_SIGNATURE error code</a>
 </li>
-<li>6.   <a href="#rfc.section.6">IANA considerations</a>
+<ul><li>4.2.1.   <a href="#rfc.section.4.2.1">Open Questions</a>
 </li>
-<ul><li>6.1.   <a href="#rfc.section.6.1">Signature Header Field Registration</a>
+</ul><li>4.3.   <a href="#rfc.section.4.3">Validating a cross-origin Push</a>
 </li>
-</ul><li>7.   <a href="#rfc.references">References</a>
+<ul><li>4.3.1.   <a href="#rfc.section.4.3.1">Validating a certificate chain for an authority</a>
 </li>
-<ul><li>7.1.   <a href="#rfc.references.1">Normative References</a>
+</ul></ul><li>5.   <a href="#rfc.section.5">Security considerations</a>
 </li>
-<li>7.2.   <a href="#rfc.references.2">Informative References</a>
+<ul><li>5.1.   <a href="#rfc.section.5.1">Aspects of the straw proposal</a>
+</li>
+</ul><li>6.   <a href="#rfc.section.6">Privacy considerations</a>
+</li>
+<li>7.   <a href="#rfc.section.7">IANA considerations</a>
+</li>
+<ul><li>7.1.   <a href="#rfc.section.7.1">Signature Header Field Registration</a>
+</li>
+<li>7.2.   <a href="#rfc.section.7.2">HTTP/2 Settings</a>
+</li>
+<li>7.3.   <a href="#rfc.section.7.3">HTTP/2 Error code</a>
+</li>
+</ul><li>8.   <a href="#rfc.references">References</a>
+</li>
+<ul><li>8.1.   <a href="#rfc.references.1">Normative References</a>
+</li>
+<li>8.2.   <a href="#rfc.references.2">Informative References</a>
 </li>
 </ul><li>Appendix A.   <a href="#rfc.appendix.A">Use cases</a>
 </li>
@@ -714,30 +735,9 @@ Signed-Headers: "content-type"
 <li>If <samp>signature</samp> is <samp>message</samp>&#8217;s signature by <samp>main-certificate</samp>&#8217;s public key using <samp>signing-alg</samp>, return &#8220;potentially-valid&#8221; with <samp>exchange</samp> and whichever is present of <samp>certificate-chain</samp> or <samp>ed25519Key</samp>. Otherwise, return &#8220;invalid&#8221;.</li>
 </ol>
 <h1 id="rfc.section.3.6.1">
-<a href="#rfc.section.3.6.1">3.6.1.</a> <a href="#authority-chain-validation" id="authority-chain-validation">Validating a certificate chain for an authority</a>
+<a href="#rfc.section.3.6.1">3.6.1.</a> <a href="#open-questions-2" id="open-questions-2">Open Questions</a>
 </h1>
-<p id="rfc.section.3.6.1.p.1">Section 8.2 of <a href="#RFC7540" class="xref">[RFC7540]</a> includes the rule:</p>
-<p></p>
-
-<ul class="empty"><li>The server MUST include a value in the :authority pseudo-header field for which the server is authoritative (see Section 10.1). A client MUST treat a PUSH_PROMISE for which the server is not authoritative as a stream error (Section 5.4.2) of type PROTOCOL_ERROR.</li></ul>
-<p id="rfc.section.3.6.1.p.3">If the Server Push contains a signed exchange for which the server is not authoritative, instead of treating it as a stream error, the client MAY search for a signature for which the following algorithm returns &#8220;valid&#8221;. If such a signature is found, the client MAY treat the server as authoritative for this particular exchange and store the exchange as described by <a href="#RFC7540" class="xref">[RFC7540]</a>. If not, the client MUST treat the exchange as a stream error as described by <a href="#RFC7540" class="xref">[RFC7540]</a>.</p>
-<p></p>
-
-<ol>
-<li>Run <a href="#signature-validity" class="xref">Section 3.6</a> over the signature with the <samp>allResponseHeaders</samp> flag set, getting <samp>exchange</samp> and <samp>certificate-chain</samp> back. If this returned &#8220;invalid&#8221; or didn&#8217;t return a certificate chain, return &#8220;invalid&#8221;.</li>
-<li>Let <samp>authority</samp> be the host component of <samp>exchange</samp>&#8217;s effective request URI.</li>
-<li>Validate the <samp>certificate-chain</samp> using the following substeps. If any of them fail, re-run <a href="#signature-validity" class="xref">Section 3.6</a> once over the signature with both the <samp>forceFetch</samp> flag and the <samp>allResponseHeaders</samp> flag set, and restart from step 2. If a substep fails again, return &#8220;invalid&#8221;.  <ol>
-<li>Use <samp>certificate-chain</samp> to validate that its first entry, <samp>main-certificate</samp> is trusted as <samp>authority</samp>&#8217;s server certificate (<a href="#RFC5280" class="xref">[RFC5280]</a> and other undocumented conventions). Let <samp>path</samp> be the path that was used from the <samp>main-certificate</samp> to a trusted root, including the <samp>main-certificate</samp> but excluding the root.</li>
-<li>Validate that <samp>main-certificate</samp> includes a &#8220;status_request&#8221; extension with a valid OCSP response whose lifetime (<samp>nextUpdate - thisUpdate</samp>) is less than 7 days (<a href="#RFC6960" class="xref">[RFC6960]</a>). Note that this does not check for revocation of intermediate certificates, and clients SHOULD implement another mechanism for that.</li>
-<li>Validate that all certificates in <samp>path</samp> include &#8220;signed_certificate_timestamp&#8221; extensions containing valid SCTs from trusted logs. (<a href="#RFC6962" class="xref">[RFC6962]</a>)</li>
-</ol>
-</li>
-<li>Return &#8220;valid&#8221;.</li>
-</ol>
-<h1 id="rfc.section.3.6.2">
-<a href="#rfc.section.3.6.2">3.6.2.</a> <a href="#open-questions-2" id="open-questions-2">Open Questions</a>
-</h1>
-<p id="rfc.section.3.6.2.p.1"><a name="incremental-validity"></a>Including the entire exchange in the signed data forces a client to download the whole thing before trusting any of it. <a href="#I-D.thomson-http-mice" class="xref">[I-D.thomson-http-mice]</a> is designed to let us check the validity of just the <samp>MI</samp> header up front and then incrementally check blocks of the payload as they arrive. What&#8217;s the best way to integrate that? Maybe add a flag to the <samp>Signature</samp> header field or its signatures saying that the payload is guarded by some other header field, so isn&#8217;t included in the significant parts (<a href="#significant-parts" class="xref">Section 3.3</a>).</p>
+<p id="rfc.section.3.6.1.p.1"><a name="incremental-validity"></a>Including the entire exchange in the signed data forces a client to download the whole thing before trusting any of it. <a href="#I-D.thomson-http-mice" class="xref">[I-D.thomson-http-mice]</a> is designed to let us check the validity of just the <samp>MI</samp> header up front and then incrementally check blocks of the payload as they arrive. What&#8217;s the best way to integrate that? Maybe add a flag to the <samp>Signature</samp> header field or its signatures saying that the payload is guarded by some other header field, so isn&#8217;t included in the significant parts (<a href="#significant-parts" class="xref">Section 3.3</a>).</p>
 <h1 id="rfc.section.3.7">
 <a href="#rfc.section.3.7">3.7.</a> <a href="#updating-validity" id="updating-validity">Updating signature validity</a>
 </h1>
@@ -816,41 +816,97 @@ Signature: sig3;
 </pre>
 <p id="rfc.section.3.7.1.p.4">https://example.com/resource.validity could also expand the set of signatures if its <samp>signatures</samp> array contained more than 2 elements.</p>
 <h1 id="rfc.section.4">
-<a href="#rfc.section.4">4.</a> <a href="#security-considerations" id="security-considerations">Security considerations</a>
+<a href="#rfc.section.4">4.</a> <a href="#cross-origin-push" id="cross-origin-push">HTTP/2 extension for cross-origin Server Push</a>
 </h1>
-<p id="rfc.section.4.p.1">Authors MUST NOT include confidential information in a signed response that an untrusted intermediate could forward, since the response is only signed and not encrypted. Intermediates can read the content.</p>
-<p id="rfc.section.4.p.2">Relaxing the requirement to consult DNS when determining authority for an origin means that an attacker who possesses a valid certificate no longer needs to be on-path to redirect traffic to them; instead of modifying DNS, they need only convince the user to visit another Web site in order to serve responses signed as the target. This consideration and mitigations for it are shared by <a href="#I-D.ietf-httpbis-origin-frame" class="xref">[I-D.ietf-httpbis-origin-frame]</a>.</p>
-<p id="rfc.section.4.p.3">Signing a bad response can affect more users than simply serving a bad response, since a served response will only affect users who make a request while the bad version is live, while an attacker can forward a signed response until its signature expires. Authors should consider shorter signature expiration times than they use for cache expiration times.</p>
-<p id="rfc.section.4.p.4">An attacker with temporary access to a signing oracle can sign &#8220;still valid&#8221; assertions with arbitrary timestamps and expiration times. As a result, when a signing oracle is removed, the keys it provided access to SHOULD be revoked so that, even if the attacker used them to sign future-dated package validity assertions, the key&#8217;s OCSP assertion will expire, causing the package as a whole to become untrusted.</p>
+<p id="rfc.section.4.p.1">To allow servers to Server-Push (Section 8.2 of <a href="#RFC7540" class="xref">[RFC7540]</a>) signed exchanges (<a href="#proposal" class="xref">Section 3</a>) signed by an authority for which the server is not authoritative (Section 9.1 of <a href="#RFC7230" class="xref">[RFC7230]</a>), this section defines an HTTP/2 extension.</p>
 <h1 id="rfc.section.4.1">
-<a href="#rfc.section.4.1">4.1.</a> <a href="#aspects-of-the-straw-proposal" id="aspects-of-the-straw-proposal">Aspects of the straw proposal</a>
+<a href="#rfc.section.4.1">4.1.</a> <a href="#setting" id="setting">Indicating support for cross-origin Server Push</a>
 </h1>
-<p id="rfc.section.4.1.p.1">The use of a single <samp>Signed-Headers</samp> header field prevents us from signing aspects of the request other than its effective request URI (Section 5.5 of <a href="#RFC7230" class="xref">[RFC7230]</a>). For example, if an author signs both <samp>Content-Encoding: br</samp> and <samp>Content-Encoding: gzip</samp> variants of a response, what&#8217;s the impact if an attacker serves the brotli one for a request with <samp>Accept-Encoding: gzip</samp>?</p>
-<p id="rfc.section.4.1.p.2">The simple form of <samp>Signed-Headers</samp> also prevents us from signing less than the full request URL. The SRI use case (<a href="#uc-sri" class="xref">Appendix A.3</a>) may benefit from being able to leave the authority less constrained.</p>
-<p><a href="#signature-validity" class="xref">Section 3.6</a> can succeed when some delivered headers aren&#8217;t included in the signed set. This accommodates current TLS-terminating intermediates and may be useful for SRI (<a href="#uc-sri" class="xref">Appendix A.3</a>), but is risky for trusting cross-origin responses (<a href="#uc-pushed-subresources" class="xref">Appendix A.1</a>, <a href="#uc-explicit-distributor" class="xref">Appendix A.2</a>, and <a href="#uc-offline-websites" class="xref">Appendix A.4</a>). <a href="#authority-chain-validation" class="xref">Section 3.6.1</a> requires all headers to be included in the signature before trusting cross-origin pushed resources, at Ryan Sleevi&#8217;s recommendation.</p>
+<p id="rfc.section.4.1.p.1">Clients that might accept signed Server Pushes with an authority for which the server is not authoritative indicate this using the HTTP/2 SETTINGS parameter ENABLE_CROSS_ORIGIN_PUSH (0xSETTING-TBD).</p>
+<p id="rfc.section.4.1.p.2">An ENABLE_CROSS_ORIGIN_PUSH value of 0 indicates that the client does not support cross-origin Push. A value of 1 indicates that the client does support cross-origin Push.</p>
+<p id="rfc.section.4.1.p.3">A client MUST NOT send a ENABLE_CROSS_ORIGIN_PUSH setting with a value other than 0 or 1 or a value of 0 after previously sending a value of 1. If a server receives a value that violates these rules, it MUST treat it as a connection error (Section 5.4.1 of <a href="#RFC7540" class="xref">[RFC7540]</a>) of type PROTOCOL_ERROR.</p>
+<p id="rfc.section.4.1.p.4">The use of a SETTINGS parameter to opt-in to an otherwise incompatible protocol change is a use of &#8220;Extending HTTP/2&#8221; defined by Section 5.5 of <a href="#RFC7540" class="xref">[RFC7540]</a>. If a server were to send a cross-origin Push without first receiving a ENABLE_CROSS_ORIGIN_PUSH setting with the value of 1 it would be a protocol violation.</p>
+<h1 id="rfc.section.4.2">
+<a href="#rfc.section.4.2">4.2.</a> <a href="#error-code" id="error-code">NO_TRUSTED_EXCHANGE_SIGNATURE error code</a>
+</h1>
+<p id="rfc.section.4.2.p.1">The signatures on a Pushed cross-origin exchange may be untrusted for several reasons, for example that the certificate could not be fetched, that the certificate does not chain to a trusted root, that the signature itself doesn&#8217;t validate, that the signature is expired, etc. This draft conflates all of these possible failures into one error code, NO_TRUSTED_EXCHANGE_SIGNATURE (0xERROR-TBD).</p>
+<h1 id="rfc.section.4.2.1">
+<a href="#rfc.section.4.2.1">4.2.1.</a> <a href="#open-questions-3" id="open-questions-3">Open Questions</a>
+</h1>
+<p id="rfc.section.4.2.1.p.1">How fine-grained should this specification&#8217;s error codes be?</p>
+<h1 id="rfc.section.4.3">
+<a href="#rfc.section.4.3">4.3.</a> <a href="#validating-cross-origin-push" id="validating-cross-origin-push">Validating a cross-origin Push</a>
+</h1>
+<p id="rfc.section.4.3.p.1">If the client has set the ENABLE_CROSS_ORIGIN_PUSH setting to 1, the server MAY Push a signed exchange for which it is not authoritative, and the client MUST NOT treat a PUSH_PROMISE for which the server is not authoritative as a stream error (Section 5.4.2 of <a href="#RFC7540" class="xref">[RFC7540]</a>) of type PROTOCOL_ERROR, as described in Section 8.2 of <a href="#RFC7540" class="xref">[RFC7540]</a>.</p>
+<p id="rfc.section.4.3.p.2">Instead, the client MUST validate such a PUSH_PROMISE and its response by parsing the <samp>Signature</samp> header into a list of signatures according to the instructions in <a href="#signature-validity" class="xref">Section 3.6</a>, and searching that list for a valid signature using the algorithm in <a href="#authority-chain-validation" class="xref">Section 4.3.1</a>. If no valid signature is found, the client MUST treat the response as a stream error (Section 5.4.2 of <a href="#RFC7540" class="xref">[RFC7540]</a>) of type NO_TRUSTED_EXCHANGE_SIGNATURE.  Otherwise, the client MUST treat the pushed response as if the server were authoritative for the PUSH_PROMISE&#8217;s authority.</p>
+<h1 id="rfc.section.4.3.1">
+<a href="#rfc.section.4.3.1">4.3.1.</a> <a href="#authority-chain-validation" id="authority-chain-validation">Validating a certificate chain for an authority</a>
+</h1>
+<p></p>
+
+<ol>
+<li>Run <a href="#signature-validity" class="xref">Section 3.6</a> over the signature with the <samp>allResponseHeaders</samp> flag set, getting <samp>exchange</samp> and <samp>certificate-chain</samp> back. If this returned &#8220;invalid&#8221; or didn&#8217;t return a certificate chain, return &#8220;invalid&#8221;.</li>
+<li>Let <samp>authority</samp> be the host component of <samp>exchange</samp>&#8217;s effective request URI.</li>
+<li>Validate the <samp>certificate-chain</samp> using the following substeps. If any of them fail, re-run <a href="#signature-validity" class="xref">Section 3.6</a> once over the signature with both the <samp>forceFetch</samp> flag and the <samp>allResponseHeaders</samp> flag set, and restart from step 2. If a substep fails again, return &#8220;invalid&#8221;.  <ol>
+<li>Use <samp>certificate-chain</samp> to validate that its first entry, <samp>main-certificate</samp> is trusted as <samp>authority</samp>&#8217;s server certificate (<a href="#RFC5280" class="xref">[RFC5280]</a> and other undocumented conventions). Let <samp>path</samp> be the path that was used from the <samp>main-certificate</samp> to a trusted root, including the <samp>main-certificate</samp> but excluding the root.</li>
+<li>Validate that <samp>main-certificate</samp> includes a &#8220;status_request&#8221; extension with a valid OCSP response whose lifetime (<samp>nextUpdate - thisUpdate</samp>) is less than 7 days (<a href="#RFC6960" class="xref">[RFC6960]</a>). Note that this does not check for revocation of intermediate certificates, and clients SHOULD implement another mechanism for that.</li>
+<li>Validate that all certificates in <samp>path</samp> include &#8220;signed_certificate_timestamp&#8221; extensions containing valid SCTs from trusted logs. (<a href="#RFC6962" class="xref">[RFC6962]</a>)</li>
+</ol>
+</li>
+<li>Return &#8220;valid&#8221;.</li>
+</ol>
 <h1 id="rfc.section.5">
-<a href="#rfc.section.5">5.</a> <a href="#privacy-considerations" id="privacy-considerations">Privacy considerations</a>
+<a href="#rfc.section.5">5.</a> <a href="#security-considerations" id="security-considerations">Security considerations</a>
 </h1>
-<p id="rfc.section.5.p.1">Normally, when a client fetches <samp>https://o1.com/resource.js</samp>, <samp>o1.com</samp> learns that the client is interested in the resource. If <samp>o1.com</samp> signs <samp>resource.js</samp>, <samp>o2.com</samp> serves it as <samp>https://o2.com/o1resource.js</samp>, and the client fetches it from there, then <samp>o2.com</samp> learns that the client is interested, and if the client executes the Javascript, that could also report the client&#8217;s interest back to <samp>o1.com</samp>.</p>
-<p id="rfc.section.5.p.2">Often, <samp>o2.com</samp> already knew about the client&#8217;s interest, because it&#8217;s the entity that directed the client to <samp>o1resource.js</samp>, but there may be cases where this leaks extra information.</p>
-<p id="rfc.section.5.p.3">For non-executable resource types, a signed response can improve the privacy situation by hiding the client&#8217;s interest from the original author.</p>
+<p id="rfc.section.5.p.1">Authors MUST NOT include confidential information in a signed response that an untrusted intermediate could forward, since the response is only signed and not encrypted. Intermediates can read the content.</p>
+<p id="rfc.section.5.p.2">Relaxing the requirement to consult DNS when determining authority for an origin means that an attacker who possesses a valid certificate no longer needs to be on-path to redirect traffic to them; instead of modifying DNS, they need only convince the user to visit another Web site in order to serve responses signed as the target. This consideration and mitigations for it are shared by <a href="#I-D.ietf-httpbis-origin-frame" class="xref">[I-D.ietf-httpbis-origin-frame]</a>.</p>
+<p id="rfc.section.5.p.3">Signing a bad response can affect more users than simply serving a bad response, since a served response will only affect users who make a request while the bad version is live, while an attacker can forward a signed response until its signature expires. Authors should consider shorter signature expiration times than they use for cache expiration times.</p>
+<p id="rfc.section.5.p.4">An attacker with temporary access to a signing oracle can sign &#8220;still valid&#8221; assertions with arbitrary timestamps and expiration times. As a result, when a signing oracle is removed, the keys it provided access to SHOULD be revoked so that, even if the attacker used them to sign future-dated package validity assertions, the key&#8217;s OCSP assertion will expire, causing the package as a whole to become untrusted.</p>
+<h1 id="rfc.section.5.1">
+<a href="#rfc.section.5.1">5.1.</a> <a href="#aspects-of-the-straw-proposal" id="aspects-of-the-straw-proposal">Aspects of the straw proposal</a>
+</h1>
+<p id="rfc.section.5.1.p.1">The use of a single <samp>Signed-Headers</samp> header field prevents us from signing aspects of the request other than its effective request URI (Section 5.5 of <a href="#RFC7230" class="xref">[RFC7230]</a>). For example, if an author signs both <samp>Content-Encoding: br</samp> and <samp>Content-Encoding: gzip</samp> variants of a response, what&#8217;s the impact if an attacker serves the brotli one for a request with <samp>Accept-Encoding: gzip</samp>?</p>
+<p id="rfc.section.5.1.p.2">The simple form of <samp>Signed-Headers</samp> also prevents us from signing less than the full request URL. The SRI use case (<a href="#uc-sri" class="xref">Appendix A.3</a>) may benefit from being able to leave the authority less constrained.</p>
+<p><a href="#signature-validity" class="xref">Section 3.6</a> can succeed when some delivered headers aren&#8217;t included in the signed set. This accommodates current TLS-terminating intermediates and may be useful for SRI (<a href="#uc-sri" class="xref">Appendix A.3</a>), but is risky for trusting cross-origin responses (<a href="#uc-pushed-subresources" class="xref">Appendix A.1</a>, <a href="#uc-explicit-distributor" class="xref">Appendix A.2</a>, and <a href="#uc-offline-websites" class="xref">Appendix A.4</a>). <a href="#cross-origin-push" class="xref">Section 4</a> requires all headers to be included in the signature before trusting cross-origin pushed resources, at Ryan Sleevi&#8217;s recommendation.</p>
 <h1 id="rfc.section.6">
-<a href="#rfc.section.6">6.</a> <a href="#iana-considerations" id="iana-considerations">IANA considerations</a>
+<a href="#rfc.section.6">6.</a> <a href="#privacy-considerations" id="privacy-considerations">Privacy considerations</a>
 </h1>
-<p id="rfc.section.6.p.1">TODO: possibly register the validityUrl format.</p>
-<h1 id="rfc.section.6.1">
-<a href="#rfc.section.6.1">6.1.</a> <a href="#signature-header-field-registration" id="signature-header-field-registration">Signature Header Field Registration</a>
+<p id="rfc.section.6.p.1">Normally, when a client fetches <samp>https://o1.com/resource.js</samp>, <samp>o1.com</samp> learns that the client is interested in the resource. If <samp>o1.com</samp> signs <samp>resource.js</samp>, <samp>o2.com</samp> serves it as <samp>https://o2.com/o1resource.js</samp>, and the client fetches it from there, then <samp>o2.com</samp> learns that the client is interested, and if the client executes the Javascript, that could also report the client&#8217;s interest back to <samp>o1.com</samp>.</p>
+<p id="rfc.section.6.p.2">Often, <samp>o2.com</samp> already knew about the client&#8217;s interest, because it&#8217;s the entity that directed the client to <samp>o1resource.js</samp>, but there may be cases where this leaks extra information.</p>
+<p id="rfc.section.6.p.3">For non-executable resource types, a signed response can improve the privacy situation by hiding the client&#8217;s interest from the original author.</p>
+<h1 id="rfc.section.7">
+<a href="#rfc.section.7">7.</a> <a href="#iana-considerations" id="iana-considerations">IANA considerations</a>
 </h1>
-<p id="rfc.section.6.1.p.1">This section registers the <samp>Signature</samp> header field in the &#8220;Permanent Message Header Field Names&#8221; registry (<a href="#RFC3864" class="xref">[RFC3864]</a>).</p>
-<p id="rfc.section.6.1.p.2">Header field name:  <samp>Signature</samp></p>
-<p id="rfc.section.6.1.p.3">Applicable protocol:  http</p>
-<p id="rfc.section.6.1.p.4">Status:  standard</p>
-<p id="rfc.section.6.1.p.5">Author/Change controller:  IETF</p>
-<p id="rfc.section.6.1.p.6">Specification document(s):  <a href="#signature-header" class="xref">Section 3.2</a> of this document</p>
+<p id="rfc.section.7.p.1">TODO: possibly register the validityUrl format.</p>
+<h1 id="rfc.section.7.1">
+<a href="#rfc.section.7.1">7.1.</a> <a href="#signature-header-field-registration" id="signature-header-field-registration">Signature Header Field Registration</a>
+</h1>
+<p id="rfc.section.7.1.p.1">This section registers the <samp>Signature</samp> header field in the &#8220;Permanent Message Header Field Names&#8221; registry (<a href="#RFC3864" class="xref">[RFC3864]</a>).</p>
+<p id="rfc.section.7.1.p.2">Header field name:  <samp>Signature</samp></p>
+<p id="rfc.section.7.1.p.3">Applicable protocol:  http</p>
+<p id="rfc.section.7.1.p.4">Status:  standard</p>
+<p id="rfc.section.7.1.p.5">Author/Change controller:  IETF</p>
+<p id="rfc.section.7.1.p.6">Specification document(s):  <a href="#signature-header" class="xref">Section 3.2</a> of this document</p>
+<h1 id="rfc.section.7.2">
+<a href="#rfc.section.7.2">7.2.</a> <a href="#http2-settings" id="http2-settings">HTTP/2 Settings</a>
+</h1>
+<p id="rfc.section.7.2.p.1">This section establishes an entry for the HTTP/2 Settings Registry that was established by Section 11.3 of <a href="#RFC7540" class="xref">[RFC7540]</a></p>
+<p id="rfc.section.7.2.p.2">Name: ENABLE_CROSS_ORIGIN_PUSH</p>
+<p id="rfc.section.7.2.p.3">Code: 0xSETTING-TBD</p>
+<p id="rfc.section.7.2.p.4">Initial Value: 0</p>
+<p id="rfc.section.7.2.p.5">Specification: This document</p>
+<h1 id="rfc.section.7.3">
+<a href="#rfc.section.7.3">7.3.</a> <a href="#http2-error-code" id="http2-error-code">HTTP/2 Error code</a>
+</h1>
+<p id="rfc.section.7.3.p.1">This section establishes an entry for the HTTP/2 Error Code Registry that was established by Section 11.4 of <a href="#RFC7540" class="xref">[RFC7540]</a></p>
+<p id="rfc.section.7.3.p.2">Name: NO_TRUSTED_EXCHANGE_SIGNATURE</p>
+<p id="rfc.section.7.3.p.3">Code: 0xERROR-TBD</p>
+<p id="rfc.section.7.3.p.4">Description: The client does not trust the signature for a cross-origin Pushed signed exchange.</p>
+<p id="rfc.section.7.3.p.5">Specification: This document</p>
 <h1 id="rfc.references">
-<a href="#rfc.references">7.</a> References</h1>
+<a href="#rfc.references">8.</a> References</h1>
 <h1 id="rfc.references.1">
-<a href="#rfc.references.1">7.1.</a> Normative References</h1>
+<a href="#rfc.references.1">8.1.</a> Normative References</h1>
 <table><tbody>
 <tr>
 <td class="reference"><b id="FETCH">[FETCH]</b></td>
@@ -939,7 +995,7 @@ Signature: sig3;
 </tr>
 </tbody></table>
 <h1 id="rfc.references.2">
-<a href="#rfc.references.2">7.2.</a> Informative References</h1>
+<a href="#rfc.references.2">8.2.</a> Informative References</h1>
 <table><tbody>
 <tr>
 <td class="reference"><b id="I-D.burke-content-signature">[I-D.burke-content-signature]</b></td>
@@ -1183,7 +1239,7 @@ Date: Sat, 25 Nov 2017 10:00:00 UTC
 <h1 id="rfc.appendix.D">
 <a href="#rfc.appendix.D">Appendix D.</a> <a href="#acknowledgements" id="acknowledgements">Acknowledgements</a>
 </h1>
-<p id="rfc.section.D.p.1">Thanks to Ilari Liusvaara, Mark Nottingham, Ryan Sleevi, and Yoav Weiss for comments that improved this draft.</p>
+<p id="rfc.section.D.p.1">Thanks to Ilari Liusvaara, Mark Nottingham, Mike Bishop, Ryan Sleevi, and Yoav Weiss for comments that improved this draft.</p>
 <h1 id="rfc.authors"><a href="#rfc.authors">Author's Address</a></h1>
 <div class="avoidbreak">
   <address class="vcard">
