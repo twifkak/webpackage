@@ -582,35 +582,24 @@ address {
 <a href="#rfc.section.3.4">3.4.</a> <a href="#cbor-representation" id="cbor-representation">CBOR representation of an exchange</a>
 </h1>
 <p id="rfc.section.3.4.p.1">To sign an exchange, it needs to be serialized into a byte string. Since intermediaries and <a href="#uc-explicit-distributor" class="xref">distributors</a> might rearrange, add, or just reserialize headers, and this can change the HPACK encoding, we can&#8217;t use the literal bytes of the header frames as this serialization. Instead, this section defines a CBOR representation that can be embedded into other CBOR, canonically serialized (<a href="#canonical-cbor" class="xref">Section 3.5</a>), and then signed.</p>
-<p id="rfc.section.3.4.p.2">The CBOR representation of an exchange is the result of the following algorithm:</p>
+<p id="rfc.section.3.4.p.2">The CBOR representation of an exchange <samp>exchange</samp> is the CBOR (<a href="#RFC7049" class="xref">[RFC7049]</a>) array with the following content:</p>
 <p></p>
 
 <ol>
-<li>Let <samp>exchange</samp> be the exchange. This is expected to be the significant parts (<a href="#significant-parts" class="xref">Section 3.3</a>) of some other exchange.</li>
-<li>Return a CBOR (<a href="#RFC7049" class="xref">[RFC7049]</a>) array with the following content: <ol>
 <li>The text string &#8220;request&#8221;.</li>
-<li>The array consisting of the following items: <ol>
-<li>The byte string &#8216;:method&#8217;.</li>
-<li>The byte string containing the request&#8217;s method.</li>
-<li>The byte string &#8216;:url&#8217;.</li>
-<li>The byte string containing the request&#8217;s effective request URI.</li>
-</ol>
+<li>The map mapping: <ul>
+<li>The byte string &#8216;:method&#8217; to the byte string containing <samp>exchange</samp>&#8217;s request&#8217;s method.</li>
+<li>The byte string &#8216;:url&#8217; to the byte string containing <samp>exchange</samp>&#8217;s request&#8217;s effective request URI.</li>
+</ul>
 </li>
 <li>The text string &#8220;response&#8221;.</li>
-<li>The array consisting of the initial two items <ol>
-<li>The byte string &#8216;:status&#8217;.</li>
-<li>The byte string containing the response&#8217;s 3-digit status code.</li>
-</ol>
-<p> Followed by the appended items from, for each response header field in </p>
-<samp>exchange</samp>, in order:      <ol>
-<li>Append the header field&#8217;s name as a byte string.</li>
-<li>Append the header field&#8217;s value as a byte string.</li>
-</ol>
+<li>The map mapping: <ul>
+<li>the byte string &#8216;:status&#8217; to the byte string containing <samp>exchange</samp>&#8217;s response&#8217;s 3-digit status code, and</li>
+<li>for each response header field in <samp>exchange</samp>, the header field&#8217;s name as a byte string to the header field&#8217;s value as a byte string.</li>
+</ul>
 </li>
 <li>The text string &#8220;payload&#8221;.</li>
-<li>The byte string containing the response&#8217;s payload body (Section 3.3 of <a href="#RFC7230" class="xref">[RFC7230]</a>). Note that the payload body is the message body with any transfer encodings removed.</li>
-</ol>
-</li>
+<li>The byte string containing <samp>exchange</samp>&#8217;s response&#8217;s payload body (Section 3.3 of <a href="#RFC7230" class="xref">[RFC7230]</a>). Note that the payload body is the message body with any transfer encodings removed.</li>
 </ol>
 <h1 id="rfc.section.3.4.1">
 <a href="#rfc.section.3.4.1">3.4.1.</a> <a href="#example-cbor-representation" id="example-cbor-representation">Example</a>
@@ -648,14 +637,25 @@ Signed-Headers: "content-type"
 <h1 id="rfc.section.3.5">
 <a href="#rfc.section.3.5">3.5.</a> <a href="#canonical-cbor" id="canonical-cbor">Canonical CBOR serialization</a>
 </h1>
-<p id="rfc.section.3.5.p.1">Within this specification, the canonical serialization of a CBOR item uses the following rules derived from Section 3.9 of <a href="#RFC7049" class="xref">[RFC7049]</a>:</p>
+<p id="rfc.section.3.5.p.1">Within this specification, the canonical serialization of a CBOR item uses the following rules derived from Section 3.9 of <a href="#RFC7049" class="xref">[RFC7049]</a> with erratum 4964 applied:</p>
 <p></p>
 
 <ul>
-<li>Integers and the lengths of arrays and strings MUST use the smallest possible encoding.</li>
+<li>Integers and the lengths of arrays, maps, and strings MUST use the smallest possible encoding.</li>
 <li>Items MUST NOT be encoded with indefinite length.</li>
+<li>The keys in every map MUST be sorted in the bytewise lexicographic order of their canonical encodings. For example, the following keys are correctly sorted: <ol>
+<li>10, encoded as 0A.</li>
+<li>100, encoded as 18 64.</li>
+<li>-1, encoded as 20.</li>
+<li>&#8220;z&#8221;, encoded as 61 7A.</li>
+<li>&#8220;aa&#8221;, encoded as 62 61 61.</li>
+<li>[100], encoded as 81 18 64.</li>
+<li>[-1], encoded as 81 20.</li>
+<li>false, encoded as F4.</li>
+</ol>
+</li>
 </ul>
-<p id="rfc.section.3.5.p.3">Note: this specification does not use CBOR maps, so the map ordering rules aren&#8217;t necessary. This specification also doesn&#8217;t use floating point, tags, or other more complex data types, so it doesn&#8217;t need rules to canonicalize those either.</p>
+<p id="rfc.section.3.5.p.3">Note: this specification does not use floating point, tags, or other more complex data types, so it doesn&#8217;t need rules to canonicalize those.</p>
 <h1 id="rfc.section.3.6">
 <a href="#rfc.section.3.6">3.6.</a> <a href="#signature-validity" id="signature-validity">Signature validity</a>
 </h1>
@@ -718,18 +718,12 @@ Signed-Headers: "content-type"
 <li>A string that consists of octet 32 (0x20) repeated 64 times.</li>
 <li>A context string: the ASCII encoding of &#8220;HTTP Exchange&#8221;.</li>
 <li>A single 0 byte which serves as a separator.</li>
-<li>The bytes of the canonical CBOR serialization (<a href="#canonical-cbor" class="xref">Section 3.5</a>) of a CBOR array consisting of: <ol>
-<li>If <samp>certSha256</samp> is set: <ol>
-<li>The text string &#8220;certSha256&#8221;.</li>
-<li>The byte string <samp>certSha256</samp>.</li>
-</ol>
+<li>The bytes of the canonical CBOR serialization (<a href="#canonical-cbor" class="xref">Section 3.5</a>) of a CBOR map mapping: <ol>
+<li>If <samp>certSha256</samp> is set: <ol><li>The text string &#8220;certSha256&#8221; to the byte string <samp>certSha256</samp>.</li></ol>
 </li>
-<li>The text string &#8220;date&#8221;.</li>
-<li>The integer value of <samp>date</samp>.</li>
-<li>The text string &#8220;expires&#8221;.</li>
-<li>The integer value of <samp>expires</samp>.</li>
-<li>The text string &#8220;exchange&#8221;.</li>
-<li>The CBOR representation (<a href="#cbor-representation" class="xref">Section 3.4</a>) of <samp>exchange</samp>. See the <a href="#incremental-validity" class="xref">open questions</a>.</li>
+<li>The text string &#8220;date&#8221; to the integer value of <samp>date</samp>.</li>
+<li>The text string &#8220;expires&#8221; to the integer value of <samp>expires</samp>.</li>
+<li>The text string &#8220;exchange&#8221; to the CBOR representation (<a href="#cbor-representation" class="xref">Section 3.4</a>) of <samp>exchange</samp>. See the <a href="#incremental-validity" class="xref">open questions</a>.</li>
 </ol>
 </li>
 </ol>
