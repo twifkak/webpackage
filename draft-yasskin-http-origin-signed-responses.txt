@@ -4,8 +4,8 @@
 
 Network Working Group                                         J. Yasskin
 Internet-Draft                                                    Google
-Intended status: Standards Track                        January 11, 2018
-Expires: July 15, 2018
+Intended status: Standards Track                        January 17, 2018
+Expires: July 21, 2018
 
 
                       Origin-signed HTTP Responses
@@ -43,7 +43,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on July 15, 2018.
+   This Internet-Draft will expire on July 21, 2018.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Yasskin                   Expires July 15, 2018                 [Page 1]
+Yasskin                   Expires July 21, 2018                 [Page 1]
 
 Internet-Draft        Origin-signed HTTP Responses          January 2018
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Yasskin                   Expires July 15, 2018                 [Page 2]
+Yasskin                   Expires July 21, 2018                 [Page 2]
 
 Internet-Draft        Origin-signed HTTP Responses          January 2018
 
@@ -124,10 +124,10 @@ Internet-Draft        Origin-signed HTTP Responses          January 2018
        B.2.1.  Conveying the signed headers  . . . . . . . . . . . .  27
      B.3.  Response lifespan . . . . . . . . . . . . . . . . . . . .  28
        B.3.1.  Certificate revocation  . . . . . . . . . . . . . . .  28
-       B.3.2.  Response downgrade attacks  . . . . . . . . . . . . .  28
+       B.3.2.  Response downgrade attacks  . . . . . . . . . . . . .  29
    Appendix C.  Determining validity using cache control . . . . . .  29
      C.1.  Example of updating cache control . . . . . . . . . . . .  30
-     C.2.  Downsides of updating cache control . . . . . . . . . . .  30
+     C.2.  Downsides of updating cache control . . . . . . . . . . .  31
    Appendix D.  Acknowledgements . . . . . . . . . . . . . . . . . .  31
    Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  31
 
@@ -165,7 +165,7 @@ Internet-Draft        Origin-signed HTTP Responses          January 2018
 
 
 
-Yasskin                   Expires July 15, 2018                 [Page 3]
+Yasskin                   Expires July 21, 2018                 [Page 3]
 
 Internet-Draft        Origin-signed HTTP Responses          January 2018
 
@@ -221,7 +221,7 @@ Internet-Draft        Origin-signed HTTP Responses          January 2018
 
 
 
-Yasskin                   Expires July 15, 2018                 [Page 4]
+Yasskin                   Expires July 21, 2018                 [Page 4]
 
 Internet-Draft        Origin-signed HTTP Responses          January 2018
 
@@ -277,7 +277,7 @@ Internet-Draft        Origin-signed HTTP Responses          January 2018
 
 
 
-Yasskin                   Expires July 15, 2018                 [Page 5]
+Yasskin                   Expires July 21, 2018                 [Page 5]
 
 Internet-Draft        Origin-signed HTTP Responses          January 2018
 
@@ -333,7 +333,7 @@ Internet-Draft        Origin-signed HTTP Responses          January 2018
 
 
 
-Yasskin                   Expires July 15, 2018                 [Page 6]
+Yasskin                   Expires July 21, 2018                 [Page 6]
 
 Internet-Draft        Origin-signed HTTP Responses          January 2018
 
@@ -389,7 +389,7 @@ Internet-Draft        Origin-signed HTTP Responses          January 2018
 
 
 
-Yasskin                   Expires July 15, 2018                 [Page 7]
+Yasskin                   Expires July 21, 2018                 [Page 7]
 
 Internet-Draft        Origin-signed HTTP Responses          January 2018
 
@@ -445,7 +445,7 @@ Internet-Draft        Origin-signed HTTP Responses          January 2018
 
 
 
-Yasskin                   Expires July 15, 2018                 [Page 8]
+Yasskin                   Expires July 21, 2018                 [Page 8]
 
 Internet-Draft        Origin-signed HTTP Responses          January 2018
 
@@ -501,7 +501,7 @@ Internet-Draft        Origin-signed HTTP Responses          January 2018
 
 
 
-Yasskin                   Expires July 15, 2018                 [Page 9]
+Yasskin                   Expires July 21, 2018                 [Page 9]
 
 Internet-Draft        Origin-signed HTTP Responses          January 2018
 
@@ -557,7 +557,7 @@ Internet-Draft        Origin-signed HTTP Responses          January 2018
 
 
 
-Yasskin                   Expires July 15, 2018                [Page 10]
+Yasskin                   Expires July 21, 2018                [Page 10]
 
 Internet-Draft        Origin-signed HTTP Responses          January 2018
 
@@ -613,7 +613,7 @@ Internet-Draft        Origin-signed HTTP Responses          January 2018
 
 
 
-Yasskin                   Expires July 15, 2018                [Page 11]
+Yasskin                   Expires July 21, 2018                [Page 11]
 
 Internet-Draft        Origin-signed HTTP Responses          January 2018
 
@@ -669,7 +669,7 @@ Internet-Draft        Origin-signed HTTP Responses          January 2018
 
 
 
-Yasskin                   Expires July 15, 2018                [Page 12]
+Yasskin                   Expires July 21, 2018                [Page 12]
 
 Internet-Draft        Origin-signed HTTP Responses          January 2018
 
@@ -725,7 +725,7 @@ Internet-Draft        Origin-signed HTTP Responses          January 2018
 
 
 
-Yasskin                   Expires July 15, 2018                [Page 13]
+Yasskin                   Expires July 21, 2018                [Page 13]
 
 Internet-Draft        Origin-signed HTTP Responses          January 2018
 
@@ -781,7 +781,7 @@ Signature: sig3;
 
 
 
-Yasskin                   Expires July 15, 2018                [Page 14]
+Yasskin                   Expires July 21, 2018                [Page 14]
 
 Internet-Draft        Origin-signed HTTP Responses          January 2018
 
@@ -837,7 +837,7 @@ Signature: sig3;
 
 
 
-Yasskin                   Expires July 15, 2018                [Page 15]
+Yasskin                   Expires July 21, 2018                [Page 15]
 
 Internet-Draft        Origin-signed HTTP Responses          January 2018
 
@@ -893,7 +893,7 @@ Internet-Draft        Origin-signed HTTP Responses          January 2018
 
 
 
-Yasskin                   Expires July 15, 2018                [Page 16]
+Yasskin                   Expires July 21, 2018                [Page 16]
 
 Internet-Draft        Origin-signed HTTP Responses          January 2018
 
@@ -949,7 +949,7 @@ Internet-Draft        Origin-signed HTTP Responses          January 2018
 
 
 
-Yasskin                   Expires July 15, 2018                [Page 17]
+Yasskin                   Expires July 21, 2018                [Page 17]
 
 Internet-Draft        Origin-signed HTTP Responses          January 2018
 
@@ -1005,7 +1005,7 @@ Internet-Draft        Origin-signed HTTP Responses          January 2018
 
 
 
-Yasskin                   Expires July 15, 2018                [Page 18]
+Yasskin                   Expires July 21, 2018                [Page 18]
 
 Internet-Draft        Origin-signed HTTP Responses          January 2018
 
@@ -1061,7 +1061,7 @@ Internet-Draft        Origin-signed HTTP Responses          January 2018
 
 
 
-Yasskin                   Expires July 15, 2018                [Page 19]
+Yasskin                   Expires July 21, 2018                [Page 19]
 
 Internet-Draft        Origin-signed HTTP Responses          January 2018
 
@@ -1117,7 +1117,7 @@ Internet-Draft        Origin-signed HTTP Responses          January 2018
 
 
 
-Yasskin                   Expires July 15, 2018                [Page 20]
+Yasskin                   Expires July 21, 2018                [Page 20]
 
 Internet-Draft        Origin-signed HTTP Responses          January 2018
 
@@ -1173,15 +1173,15 @@ Internet-Draft        Origin-signed HTTP Responses          January 2018
 
 
 
-Yasskin                   Expires July 15, 2018                [Page 21]
+Yasskin                   Expires July 21, 2018                [Page 21]
 
 Internet-Draft        Origin-signed HTTP Responses          January 2018
 
 
    [I-D.ietf-httpbis-origin-frame]
               Nottingham, M. and E. Nygren, "The ORIGIN HTTP/2 Frame",
-              draft-ietf-httpbis-origin-frame-04 (work in progress),
-              August 2017.
+              draft-ietf-httpbis-origin-frame-06 (work in progress),
+              January 2018.
 
    [I-D.thomson-http-content-signature]
               Thomson, M., "Content-Signature Header Field for HTTP",
@@ -1229,7 +1229,7 @@ Internet-Draft        Origin-signed HTTP Responses          January 2018
 
 
 
-Yasskin                   Expires July 15, 2018                [Page 22]
+Yasskin                   Expires July 21, 2018                [Page 22]
 
 Internet-Draft        Origin-signed HTTP Responses          January 2018
 
@@ -1249,19 +1249,21 @@ Internet-Draft        Origin-signed HTTP Responses          January 2018
 
    [6] https://url.spec.whatwg.org/#valid-url-string
 
-   [7] https://github.com/mikewest/signature-based-sri
+   [7] https://calendar.perfplanet.com/2013/big-bad-preloader/
 
-   [8] https://github.com/mikewest/signature-based-sri/issues/5
+   [8] https://github.com/mikewest/signature-based-sri
 
-   [9] https://github.com/WICG/webpackage
+   [9] https://github.com/mikewest/signature-based-sri/issues/5
 
-   [10] https://tools.ietf.org/html/rfc7540#section-8.2
+   [10] https://github.com/WICG/webpackage
 
-   [11] https://tools.ietf.org/html/rfc7540#section-4.2
+   [11] https://tools.ietf.org/html/rfc7540#section-8.2
 
-   [12] https://www.imperialviolet.org/2012/02/05/crlsets.html
+   [12] https://tools.ietf.org/html/rfc7540#section-4.2
 
-   [13] https://tlswg.github.io/tls13-spec/draft-ietf-tls-
+   [13] https://www.imperialviolet.org/2012/02/05/crlsets.html
+
+   [14] https://tlswg.github.io/tls13-spec/draft-ietf-tls-
         tls13.html#ocsp-and-sct
 
 Appendix A.  Use cases
@@ -1283,9 +1285,7 @@ A.1.  PUSHed subresources
 
 
 
-
-
-Yasskin                   Expires July 15, 2018                [Page 23]
+Yasskin                   Expires July 21, 2018                [Page 23]
 
 Internet-Draft        Origin-signed HTTP Responses          January 2018
 
@@ -1312,7 +1312,10 @@ A.2.  Explicit use of a content distributor for subresources
 
    where the "<dist-img>" implementation generates an appropriate
    "<img>" based on, for example, a "<meta name="dist-base">" tag
-   elsewhere in the page.
+   elsewhere in the page.  However, this has the downside that the
+   preloader [7] can no longer see the physical source to download it.
+   The resulting delay might cancel out the benefit of using a
+   distributor.
 
    This could be used for some of the same purposes as SRI
    (Appendix A.3).
@@ -1324,7 +1327,7 @@ A.2.  Explicit use of a content distributor for subresources
 
 A.3.  Subresource Integrity
 
-   The W3C WebAppSec group is investigating using signatures [7] in
+   The W3C WebAppSec group is investigating using signatures [8] in
    [SRI].  They need a way to transmit the signature with the response,
    which this proposal could provide.
 
@@ -1334,17 +1337,18 @@ A.3.  Subresource Integrity
        ways of expressing a public key don't need the signing key to be
        also trusted to sign arbitrary content for an origin.
 
-   2.  Some uses of SRI want to constrain subresources to be vouched for
-       by a third-party, rather than just being signed by the
-       subresource's author.
 
 
 
 
-Yasskin                   Expires July 15, 2018                [Page 24]
+Yasskin                   Expires July 21, 2018                [Page 24]
 
 Internet-Draft        Origin-signed HTTP Responses          January 2018
 
+
+   2.  Some uses of SRI want to constrain subresources to be vouched for
+       by a third-party, rather than just being signed by the
+       subresource's author.
 
    While we can design this system to cover both origin-trusted and
    simple-key signatures, we should check that this is better than
@@ -1352,12 +1356,12 @@ Internet-Draft        Origin-signed HTTP Responses          January 2018
 
    Note that while the current proposal for SRI describes signing only
    the content of a resource, they may need to sign its name as well, to
-   prevent security vulnerabilities [8].  The details of what they need
+   prevent security vulnerabilities [9].  The details of what they need
    to sign will affect whether and how they can use this proposal.
 
 A.4.  Offline websites
 
-   See https://github.com/WICG/webpackage [9] and
+   See https://github.com/WICG/webpackage [10] and
    [I-D.yasskin-dispatch-web-packaging].  This use requires origin-
    signed resources to be bundled.
 
@@ -1390,17 +1394,16 @@ B.1.1.  Certificate constraints
    new EKU would probably require CAs to also issue new intermediate
    certificates because of how browsers trust EKUs.  Both an EKU and a
    new extension take a long time to deploy and allow CAs to charge
-   package-signers more than normal server operators, which will reduce
-   adoption.
 
 
 
-
-
-Yasskin                   Expires July 15, 2018                [Page 25]
+Yasskin                   Expires July 21, 2018                [Page 25]
 
 Internet-Draft        Origin-signed HTTP Responses          January 2018
 
+
+   package-signers more than normal server operators, which will reduce
+   adoption.
 
    The rest of this document will assume we can re-use existing TLS
    server certificates.
@@ -1450,10 +1453,7 @@ B.1.3.  Retrieving the certificate
 
 
 
-
-
-
-Yasskin                   Expires July 15, 2018                [Page 26]
+Yasskin                   Expires July 21, 2018                [Page 26]
 
 Internet-Draft        Origin-signed HTTP Responses          January 2018
 
@@ -1489,7 +1489,7 @@ B.2.  How much to sign
    accept-language: ja-JP, ja
 
    and clients would use the same matching logic as for PUSH_PROMISE
-   [10] frame headers.
+   [11] frame headers.
 
 B.2.1.  Conveying the signed headers
 
@@ -1509,23 +1509,28 @@ B.2.1.  Conveying the signed headers
 
 
 
-Yasskin                   Expires July 15, 2018                [Page 27]
+Yasskin                   Expires July 21, 2018                [Page 27]
 
 Internet-Draft        Origin-signed HTTP Responses          January 2018
 
 
-   Since proxies don't modify unknown content types, we could wrap the
-   original exchange into an "application/http2" format.  This could be
-   as simple as a series of HTTP/2 frames, or could
+   Since proxies are unlikely to modify unknown content types, we could
+   wrap the original exchange into an "application/http2" format and
+   include the "Cache-Control: no-transform" header when sending it.
+   This format could be as simple as a series of HTTP/2 frames, or could
 
    1.  Allow longer contiguous bodies than HTTP/2's 16MB frame limit
-       [11], and
+       [12], and
 
    2.  Use better compression than [RFC7541] for the non-confidential
        headers.  Note that header compression can probably share a
        compression state across a single signed exchange, but needs a
        mechanism like [I-D.vkrasnov-h2-compression-dictionaries] to use
        any compression state from other responses.
+
+   To reduce the likelihood of accidental modification by proxies, an
+   "application/http2" format should be sure to include a file signature
+   that doesn't collide with other known signatures.
 
    To help the PUSHed subresources use case (Appendix A.1), we might
    also want to extend the "PUSH_PROMISE" frame type to include a
@@ -1545,7 +1550,7 @@ B.3.1.  Certificate revocation
 
    Certificates are mis-issued and private keys are stolen, and in
    response clients need to be able to stop trusting these certificates
-   as promptly as possible.  Online revocation checks don't work [12],
+   as promptly as possible.  Online revocation checks don't work [13],
    so the industry has moved to pushed revocation lists and stapled OCSP
    responses [RFC6066].
 
@@ -1553,7 +1558,17 @@ B.3.1.  Certificate revocation
    signing an exchange, but the signatures need an explicit strategy to
    staple OCSP responses.  One option is to extend the certificate
    download (Appendix B.1.3) to include the OCSP response too, perhaps
-   in the TLS 1.3 CertificateEntry [13] format.
+   in the TLS 1.3 CertificateEntry [14] format.
+
+
+
+
+
+
+Yasskin                   Expires July 21, 2018                [Page 28]
+
+Internet-Draft        Origin-signed HTTP Responses          January 2018
+
 
 B.3.2.  Response downgrade attacks
 
@@ -1562,14 +1577,6 @@ B.3.2.  Response downgrade attacks
    publication.  Once the author fixes those vulnerabilities or
    mistakes, clients should stop trusting the old signed content in a
    reasonable amount of time.  Similar to certificate revocation, I
-
-
-
-Yasskin                   Expires July 15, 2018                [Page 28]
-
-Internet-Draft        Origin-signed HTTP Responses          January 2018
-
-
    expect the best option to be stapled "this version is still valid"
    assertions with short expiration times.
 
@@ -1611,21 +1618,20 @@ Appendix C.  Determining validity using cache control
    [RFC7231]) and initialize "expires" from either the "Expires" header
    field (Section 5.3 of [RFC7234]) or the "Cache-Control" header
    field's "max-age" directive (Section 5.2.2.8 of [RFC7234]) (added to
+
+
+
+Yasskin                   Expires July 21, 2018                [Page 29]
+
+Internet-Draft        Origin-signed HTTP Responses          January 2018
+
+
    "date"), whichever is present, preferring "max-age" (or failing) if
    both are present.
 
    Validity updates (Section 3.7) would include a list of replacement
    response header fields.  For each header field name in this list, the
    client would remove matching header fields from the stored exchange's
-
-
-
-
-Yasskin                   Expires July 15, 2018                [Page 29]
-
-Internet-Draft        Origin-signed HTTP Responses          January 2018
-
-
    response header fields.  Then the client would append the replacement
    header fields to the stored exchange's response header fields.
 
@@ -1665,6 +1671,17 @@ C.1.  Example of updating cache control
    <html>
    ...
 
+
+
+
+
+
+
+Yasskin                   Expires July 21, 2018                [Page 30]
+
+Internet-Draft        Origin-signed HTTP Responses          January 2018
+
+
 C.2.  Downsides of updating cache control
 
    In an exchange with multiple signatures, using cache control to
@@ -1673,14 +1690,6 @@ C.2.  Downsides of updating cache control
    might not match the update for another signature.  Clients would need
    to maintain a current set of headers for each signature, and then
    decide which set to use when actually parsing the resource itself.
-
-
-
-
-Yasskin                   Expires July 15, 2018                [Page 30]
-
-Internet-Draft        Origin-signed HTTP Responses          January 2018
-
 
    This need to store and reconcile multiple sets of headers for a
    single signed exchange argues for embedding a signature's lifetime
@@ -1724,13 +1733,4 @@ Author's Address
 
 
 
-
-
-
-
-
-
-
-
-
-Yasskin                   Expires July 15, 2018                [Page 31]
+Yasskin                   Expires July 21, 2018                [Page 31]

@@ -331,12 +331,12 @@ address {
 <link href="#rfc.authors" rel="Chapter">
 
 
-  <meta name="generator" content="xml2rfc version 2.8.3 - https://tools.ietf.org/tools/xml2rfc" />
+  <meta name="generator" content="xml2rfc version 2.8.4 - https://tools.ietf.org/tools/xml2rfc" />
   <link rel="schema.dct" href="http://purl.org/dc/terms/" />
 
   <meta name="dct.creator" content="Yasskin, J." />
   <meta name="dct.identifier" content="urn:ietf:id:draft-yasskin-http-origin-signed-responses-latest" />
-  <meta name="dct.issued" scheme="ISO8601" content="2018-1-11" />
+  <meta name="dct.issued" scheme="ISO8601" content="2018-1-17" />
   <meta name="dct.abstract" content="This document explores how a server can send particular responses that are authoritative for an origin, when the server itself is not authoritative for that origin. For now, the appendices containing use cases and requirements should be treated as more confident than the proposal itself." />
   <meta name="description" content="This document explores how a server can send particular responses that are authoritative for an origin, when the server itself is not authoritative for that origin. For now, the appendices containing use cases and requirements should be treated as more confident than the proposal itself." />
 
@@ -357,10 +357,10 @@ address {
 </tr>
 <tr>
 <td class="left">Intended status: Standards Track</td>
-<td class="right">January 11, 2018</td>
+<td class="right">January 17, 2018</td>
 </tr>
 <tr>
-<td class="left">Expires: July 15, 2018</td>
+<td class="left">Expires: July 21, 2018</td>
 <td class="right"></td>
 </tr>
 
@@ -380,7 +380,7 @@ address {
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at https://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on July 15, 2018.</p>
+<p>This Internet-Draft will expire on July 21, 2018.</p>
 <h1 id="rfc.copyrightnotice"><a href="#rfc.copyrightnotice">Copyright Notice</a></h1>
 <p>Copyright (c) 2018 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
 <p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (https://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
@@ -1012,7 +1012,7 @@ Signature: sig3;
 <tr>
 <td class="reference"><b id="I-D.ietf-httpbis-origin-frame">[I-D.ietf-httpbis-origin-frame]</b></td>
 <td class="top">
-<a>Nottingham, M.</a> and <a>E. Nygren</a>, "<a href="https://tools.ietf.org/html/draft-ietf-httpbis-origin-frame-04">The ORIGIN HTTP/2 Frame</a>", Internet-Draft draft-ietf-httpbis-origin-frame-04, August 2017.</td>
+<a>Nottingham, M.</a> and <a>E. Nygren</a>, "<a href="https://tools.ietf.org/html/draft-ietf-httpbis-origin-frame-06">The ORIGIN HTTP/2 Frame</a>", Internet-Draft draft-ietf-httpbis-origin-frame-06, January 2018.</td>
 </tr>
 <tr>
 <td class="reference"><b id="I-D.thomson-http-content-signature">[I-D.thomson-http-content-signature]</b></td>
@@ -1084,7 +1084,7 @@ Signature: sig3;
 <pre>
 &lt;dist-img src="https://O.com/img.png"&gt;&lt;/dist-img&gt;
 </pre>
-<p id="rfc.section.A.2.p.3">where the <samp>&lt;dist-img&gt;</samp> implementation generates an appropriate <samp>&lt;img&gt;</samp> based on, for example, a <samp>&lt;meta name="dist-base"&gt;</samp> tag elsewhere in the page.</p>
+<p id="rfc.section.A.2.p.3">where the <samp>&lt;dist-img&gt;</samp> implementation generates an appropriate <samp>&lt;img&gt;</samp> based on, for example, a <samp>&lt;meta name="dist-base"&gt;</samp> tag elsewhere in the page. However, this has the downside that the <a href="https://calendar.perfplanet.com/2013/big-bad-preloader/">preloader</a> can no longer see the physical source to download it. The resulting delay might cancel out the benefit of using a distributor.</p>
 <p id="rfc.section.A.2.p.4">This could be used for some of the same purposes as SRI (<a href="#uc-sri" class="xref">Appendix A.3</a>).</p>
 <p id="rfc.section.A.2.p.5">To implement this with the current proposal, the distributor would respond to the physical request to <samp>https://distributor.com/O.com/img.png</samp> with first a signed PUSH_PROMISE for <samp>https://O.com/img.png</samp> and then a redirect to <samp>https://O.com/img.png</samp>.</p>
 <h1 id="rfc.appendix.A.3">
@@ -1159,14 +1159,15 @@ accept-language: ja-JP, ja
 </h1>
 <p id="rfc.section.B.2.1.p.1">HTTP headers are traditionally munged by proxies, making it impossible to guarantee that the client will see the same sequence of bytes as the author wrote. In the HTTPS world, we have more end-to-end header integrity, but it&#8217;s still likely that there are enough TLS-terminating proxies that the author&#8217;s signatures would tend to break before getting to the client.</p>
 <p id="rfc.section.B.2.1.p.2">There&#8217;s also no way in current HTTP for the response to a client-initiated request (Section 8.1 of <a href="#RFC7540" class="xref">[RFC7540]</a>) to convey the request headers it expected to respond to. A PUSH_PROMISE (Section 8.2 of <a href="#RFC7540" class="xref">[RFC7540]</a>) does not have this problem, and it would be possible to introduce a response header to convey the expected request headers.</p>
-<p id="rfc.section.B.2.1.p.3">Since proxies don&#8217;t modify unknown content types, we could wrap the original exchange into an <samp>application/http2</samp> format. This could be as simple as a series of HTTP/2 frames, or could</p>
+<p id="rfc.section.B.2.1.p.3">Since proxies are unlikely to modify unknown content types, we could wrap the original exchange into an <samp>application/http2</samp> format and include the <samp>Cache-Control: no-transform</samp> header when sending it. This format could be as simple as a series of HTTP/2 frames, or could</p>
 <p></p>
 
 <ol>
 <li>Allow longer contiguous bodies than <a href="https://tools.ietf.org/html/rfc7540#section-4.2">HTTP/2&#8217;s 16MB frame limit</a>, and</li>
 <li>Use better compression than <a href="#RFC7541" class="xref">[RFC7541]</a> for the non-confidential headers.  Note that header compression can probably share a compression state across a single signed exchange, but needs a mechanism like <a href="#I-D.vkrasnov-h2-compression-dictionaries" class="xref">[I-D.vkrasnov-h2-compression-dictionaries]</a> to use any compression state from other responses.</li>
 </ol>
-<p id="rfc.section.B.2.1.p.5">To help the PUSHed subresources use case (<a href="#uc-pushed-subresources" class="xref">Appendix A.1</a>), we might also want to extend the <samp>PUSH_PROMISE</samp> frame type to include a signature, and that could tell intermediates not to change the ensuing headers.</p>
+<p id="rfc.section.B.2.1.p.5">To reduce the likelihood of accidental modification by proxies, an <samp>application/http2</samp> format should be sure to include a file signature that doesn&#8217;t collide with other known signatures.</p>
+<p id="rfc.section.B.2.1.p.6">To help the PUSHed subresources use case (<a href="#uc-pushed-subresources" class="xref">Appendix A.1</a>), we might also want to extend the <samp>PUSH_PROMISE</samp> frame type to include a signature, and that could tell intermediates not to change the ensuing headers.</p>
 <h1 id="rfc.appendix.B.3">
 <a href="#rfc.appendix.B.3">B.3.</a> <a href="#response-lifespan" id="response-lifespan">Response lifespan</a>
 </h1>
