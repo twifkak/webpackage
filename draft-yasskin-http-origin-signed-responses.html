@@ -291,6 +291,7 @@ address {
 <link href="#rfc.section.3.4.1" rel="Chapter" title="3.4.1 Example">
 <link href="#rfc.section.3.5" rel="Chapter" title="3.5 Canonical CBOR serialization">
 <link href="#rfc.section.3.6" rel="Chapter" title="3.6 Signature validity">
+<link href="#rfc.section.3.6.1" rel="Chapter" title="3.6.1 Open Questions">
 <link href="#rfc.section.3.7" rel="Chapter" title="3.7 Updating signature validity">
 <link href="#rfc.section.3.7.1" rel="Chapter" title="3.7.1 Examples">
 <link href="#rfc.section.3.8" rel="Chapter" title="3.8 The Accept-Signature header">
@@ -432,7 +433,9 @@ address {
 </li>
 <li>3.6.   <a href="#rfc.section.3.6">Signature validity</a>
 </li>
-<li>3.7.   <a href="#rfc.section.3.7">Updating signature validity</a>
+<ul><li>3.6.1.   <a href="#rfc.section.3.6.1">Open Questions</a>
+</li>
+</ul><li>3.7.   <a href="#rfc.section.3.7">Updating signature validity</a>
 </li>
 <ul><li>3.7.1.   <a href="#rfc.section.3.7.1">Examples</a>
 </li>
@@ -821,6 +824,10 @@ Signed-Headers: "content-type", "digest"
 <li>If <samp>signature</samp> is <samp>message</samp>&#8217;s signature by <samp>main-certificate</samp>&#8217;s public key using <samp>signing-alg</samp>, return &#8220;potentially-valid&#8221; with <samp>exchange</samp> and whichever is present of <samp>certificate-chain</samp> or <samp>ed25519Key</samp>. Otherwise, return &#8220;invalid&#8221;.</li>
 </ol>
 <p id="rfc.section.3.6.p.7">Note that the above algorithm can determine that an exchange&#8217;s headers are potentially-valid before the exchange&#8217;s payload is received. Similarly, if <samp>integrity</samp> identifies a header field like <samp>MI</samp> (<a href="#I-D.thomson-http-mice" class="xref">[I-D.thomson-http-mice]</a>) that can incrementally validate the payload, early parts of the payload can be determined to be potentially-valid before later parts of the payload.  Higher-level protocols MAY process parts of the exchange that have been determined to be potentially-valid as soon as that determination is made but MUST NOT process parts of the exchange that are not yet potentially-valid.  Similarly, as the higher-level protocol determines that parts of the exchange are actually valid, the client MAY process those parts of the exchange and MUST wait to process other parts of the exchange until they too are determined to be valid.</p>
+<h1 id="rfc.section.3.6.1">
+<a href="#rfc.section.3.6.1">3.6.1.</a> <a href="#oq-signature-validity" id="oq-signature-validity">Open Questions</a>
+</h1>
+<p id="rfc.section.3.6.1.p.1">Should we ban RSA keys to avoid their vulnerability to Bleichenbacher attacks?</p>
 <h1 id="rfc.section.3.7">
 <a href="#rfc.section.3.7">3.7.</a> <a href="#updating-validity" id="updating-validity">Updating signature validity</a>
 </h1>

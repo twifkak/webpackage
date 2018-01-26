@@ -71,9 +71,9 @@ Internet-Draft        Origin-signed HTTP Responses          January 2018
 Table of Contents
 
    1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   3
-   2.  Terminology . . . . . . . . . . . . . . . . . . . . . . . . .   3
+   2.  Terminology . . . . . . . . . . . . . . . . . . . . . . . . .   4
    3.  Straw proposal  . . . . . . . . . . . . . . . . . . . . . . .   4
-     3.1.  The Signed-Headers Header . . . . . . . . . . . . . . . .   4
+     3.1.  The Signed-Headers Header . . . . . . . . . . . . . . . .   5
      3.2.  The Signature Header  . . . . . . . . . . . . . . . . . .   5
        3.2.1.  Examples  . . . . . . . . . . . . . . . . . . . . . .   6
        3.2.2.  Open Questions  . . . . . . . . . . . . . . . . . . .   8
@@ -83,6 +83,7 @@ Table of Contents
        3.4.1.  Example . . . . . . . . . . . . . . . . . . . . . . .   9
      3.5.  Canonical CBOR serialization  . . . . . . . . . . . . . .  10
      3.6.  Signature validity  . . . . . . . . . . . . . . . . . . .  11
+       3.6.1.  Open Questions  . . . . . . . . . . . . . . . . . . .  15
      3.7.  Updating signature validity . . . . . . . . . . . . . . .  15
        3.7.1.  Examples  . . . . . . . . . . . . . . . . . . . . . .  16
      3.8.  The Accept-Signature header . . . . . . . . . . . . . . .  17
@@ -105,7 +106,6 @@ Table of Contents
    6.  Security considerations . . . . . . . . . . . . . . . . . . .  25
      6.1.  Confidential data . . . . . . . . . . . . . . . . . . . .  25
      6.2.  Off-path attackers  . . . . . . . . . . . . . . . . . . .  25
-     6.3.  Downgrades  . . . . . . . . . . . . . . . . . . . . . . .  25
 
 
 
@@ -114,6 +114,7 @@ Yasskin                   Expires July 30, 2018                 [Page 2]
 Internet-Draft        Origin-signed HTTP Responses          January 2018
 
 
+     6.3.  Downgrades  . . . . . . . . . . . . . . . . . . . . . . .  25
      6.4.  Signing oracles are permanent . . . . . . . . . . . . . .  25
      6.5.  Unsigned headers  . . . . . . . . . . . . . . . . . . . .  26
      6.6.  application/http-exchange+cbor  . . . . . . . . . . . . .  26
@@ -157,11 +158,10 @@ Internet-Draft        Origin-signed HTTP Responses          January 2018
    constraints on any method of signing HTTP responses and sketches a
    possible solution to the constraints.
 
-2.  Terminology
 
-   Author  The entity that controls the server for a particular origin
-      [RFC6454].  The author can get a CA to issue certificates for
-      their private keys and can run a TLS server for their origin.
+
+
+
 
 
 
@@ -169,6 +169,12 @@ Yasskin                   Expires July 30, 2018                 [Page 3]
 
 Internet-Draft        Origin-signed HTTP Responses          January 2018
 
+
+2.  Terminology
+
+   Author  The entity that controls the server for a particular origin
+      [RFC6454].  The author can get a CA to issue certificates for
+      their private keys and can run a TLS server for their origin.
 
    Exchange (noun)  An HTTP request/response pair.  This can either be a
       request from a client and the matching response from a server or
@@ -212,12 +218,6 @@ Internet-Draft        Origin-signed HTTP Responses          January 2018
    to another client, which won't have to re-fetch this validity
    information for some period of time.
 
-3.1.  The Signed-Headers Header
-
-   The "Signed-Headers" header field identifies an ordered list of
-   response header fields to include in a signature.  The request URL
-   and response status are included unconditionally.  This allows a TLS-
-   terminating intermediate to reorder headers without breaking the
 
 
 
@@ -226,6 +226,12 @@ Yasskin                   Expires July 30, 2018                 [Page 4]
 Internet-Draft        Origin-signed HTTP Responses          January 2018
 
 
+3.1.  The Signed-Headers Header
+
+   The "Signed-Headers" header field identifies an ordered list of
+   response header fields to include in a signature.  The request URL
+   and response status are included unconditionally.  This allows a TLS-
+   terminating intermediate to reorder headers without breaking the
    signature.  This _can_ also allow the intermediate to add headers
    that will be ignored by some higher-level protocols, but Section 3.6
    provides a hook to let other higher-level protocols reject such
@@ -268,12 +274,6 @@ Internet-Draft        Origin-signed HTTP Responses          January 2018
    parameterised label MUST also have either "certUrl" and "certSha256"
    parameters or an "ed25519Key" parameter.  This specification gives no
    meaning to the label itself, which can be used as a human-readable
-   identifier for the signature (see Section 3.2.2, Paragraph 1).  The
-   present parameters MUST have the following values:
-
-   "sig"  Binary content (Section 4.5 of
-      [I-D.ietf-httpbis-header-structure]) holding the signature of most
-
 
 
 
@@ -282,6 +282,11 @@ Yasskin                   Expires July 30, 2018                 [Page 5]
 Internet-Draft        Origin-signed HTTP Responses          January 2018
 
 
+   identifier for the signature (see Section 3.2.2, Paragraph 1).  The
+   present parameters MUST have the following values:
+
+   "sig"  Binary content (Section 4.5 of
+      [I-D.ietf-httpbis-header-structure]) holding the signature of most
       of these parameters and the significant headers of the exchange
       (Section 3.3).
 
@@ -317,11 +322,6 @@ Internet-Draft        Origin-signed HTTP Responses          January 2018
    The following header is included in the response for an exchange with
    effective request URI "https://example.com/resource.html".  Newlines
    are added for readability.
-
-
-
-
-
 
 
 
@@ -793,6 +793,11 @@ Internet-Draft        Origin-signed HTTP Responses          January 2018
    parts of the exchange and MUST wait to process other parts of the
    exchange until they too are determined to be valid.
 
+3.6.1.  Open Questions
+
+   Should we ban RSA keys to avoid their vulnerability to Bleichenbacher
+   attacks?
+
 3.7.  Updating signature validity
 
    Both OCSP responses and signatures are designed to expire a short
@@ -829,11 +834,6 @@ Internet-Draft        Origin-signed HTTP Responses          January 2018
    that clients need to stop using the content, the "signatures" array
    MUST NOT be present.
 
-   If the the "update" map is present, that indicates that a new version
-   of the signed exchange is available at its effective request URI
-   (Section 5.5 of [RFC7230]) and can give an estimate of the size of
-   the updated exchange ("update.size").  If the signed exchange is
-
 
 
 
@@ -842,6 +842,10 @@ Yasskin                   Expires July 30, 2018                [Page 15]
 Internet-Draft        Origin-signed HTTP Responses          January 2018
 
 
+   If the the "update" map is present, that indicates that a new version
+   of the signed exchange is available at its effective request URI
+   (Section 5.5 of [RFC7230]) and can give an estimate of the size of
+   the updated exchange ("update.size").  If the signed exchange is
    currently the most recent version, the "update" SHOULD NOT be
    present.
 
@@ -880,10 +884,6 @@ Signature:
    needs to fetch "https://example.com/resource.validity.1511157180"
    (the "validityUrl" of "sig1" and "sig2") to update those signatures.
    This URL might contain:
-
-
-
-
 
 
 
