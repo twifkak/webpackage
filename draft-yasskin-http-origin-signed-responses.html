@@ -344,7 +344,8 @@ address {
 <link href="#rfc.appendix.C" rel="Chapter" title="C Determining validity using cache control">
 <link href="#rfc.appendix.C.1" rel="Chapter" title="C.1 Example of updating cache control">
 <link href="#rfc.appendix.C.2" rel="Chapter" title="C.2 Downsides of updating cache control">
-<link href="#rfc.appendix.D" rel="Chapter" title="D Acknowledgements">
+<link href="#rfc.appendix.D" rel="Chapter" title="D Change Log">
+<link href="#rfc.appendix.E" rel="Chapter" title="E Acknowledgements">
 <link href="#rfc.authors" rel="Chapter">
 
 
@@ -539,7 +540,9 @@ address {
 </li>
 <li>C.2.   <a href="#rfc.appendix.C.2">Downsides of updating cache control</a>
 </li>
-</ul><li>Appendix D.   <a href="#rfc.appendix.D">Acknowledgements</a>
+</ul><li>Appendix D.   <a href="#rfc.appendix.D">Change Log</a>
+</li>
+<li>Appendix E.   <a href="#rfc.appendix.E">Acknowledgements</a>
 </li>
 <li><a href="#rfc.authors">Author's Address</a>
 </li>
@@ -1508,9 +1511,26 @@ Date: Sat, 25 Nov 2017 10:00:00 UTC
 <p id="rfc.section.C.2.p.1">In an exchange with multiple signatures, using cache control to expire signatures forces all signatures to initially live for the same period. Worse, the update from one signature&#8217;s &#8220;validityUrl&#8221; might not match the update for another signature. Clients would need to maintain a current set of headers for each signature, and then decide which set to use when actually parsing the resource itself.</p>
 <p id="rfc.section.C.2.p.2">This need to store and reconcile multiple sets of headers for a single signed exchange argues for embedding a signature&#8217;s lifetime into the signature.</p>
 <h1 id="rfc.appendix.D">
-<a href="#rfc.appendix.D">Appendix D.</a> <a href="#acknowledgements" id="acknowledgements">Acknowledgements</a>
+<a href="#rfc.appendix.D">Appendix D.</a> <a href="#change-log" id="change-log">Change Log</a>
 </h1>
-<p id="rfc.section.D.p.1">Thanks to Ilari Liusvaara, Justin Schuh, Mark Nottingham, Mike Bishop, Ryan Sleevi, and Yoav Weiss for comments that improved this draft.</p>
+<p id="rfc.section.D.p.1">RFC EDITOR PLEASE DELETE THIS SECTION.</p>
+<p id="rfc.section.D.p.2">draft-02</p>
+<p></p>
+
+<ul>
+<li>Signatures identify a header (e.g. Digest or MI) to guard the payload&#8217;s integrity instead of directly signing over the payload.</li>
+<li>The validityUrl is signed.</li>
+<li>Use CBOR maps where appropriate, and define how they&#8217;re canonicalized.</li>
+<li>Remove the update.url field from signature validity updates, in favor of just re-fetching the original request URL.</li>
+<li>Define an HTTP/2 extension to use a setting to enable cross-origin Server Push.</li>
+<li>Define an <samp>Accept-Signature</samp> header to negotiate whether to send Signatures and which ones.</li>
+<li>Define an <samp>application/http-exchange+cbor</samp> format to fetch signed exchanges without HTTP/2 Push.</li>
+<li>2 new use cases.</li>
+</ul>
+<h1 id="rfc.appendix.E">
+<a href="#rfc.appendix.E">Appendix E.</a> <a href="#acknowledgements" id="acknowledgements">Acknowledgements</a>
+</h1>
+<p id="rfc.section.E.p.1">Thanks to Ilari Liusvaara, Justin Schuh, Mark Nottingham, Mike Bishop, Ryan Sleevi, and Yoav Weiss for comments that improved this draft.</p>
 <h1 id="rfc.authors"><a href="#rfc.authors">Author's Address</a></h1>
 <div class="avoidbreak">
   <address class="vcard">

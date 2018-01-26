@@ -146,8 +146,9 @@ Internet-Draft        Origin-signed HTTP Responses          January 2018
    Appendix C.  Determining validity using cache control . . . . . .  38
      C.1.  Example of updating cache control . . . . . . . . . . . .  39
      C.2.  Downsides of updating cache control . . . . . . . . . . .  40
-   Appendix D.  Acknowledgements . . . . . . . . . . . . . . . . . .  40
-   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  40
+   Appendix D.  Change Log . . . . . . . . . . . . . . . . . . . . .  40
+   Appendix E.  Acknowledgements . . . . . . . . . . . . . . . . . .  41
+   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  41
 
 1.  Introduction
 
@@ -157,7 +158,6 @@ Internet-Draft        Origin-signed HTTP Responses          January 2018
    bundle a collection of HTTP responses.  This document explores the
    constraints on any method of signing HTTP responses and sketches a
    possible solution to the constraints.
-
 
 
 
@@ -2211,7 +2211,43 @@ C.2.  Downsides of updating cache control
    single signed exchange argues for embedding a signature's lifetime
    into the signature.
 
-Appendix D.  Acknowledgements
+Appendix D.  Change Log
+
+   RFC EDITOR PLEASE DELETE THIS SECTION.
+
+   draft-02
+
+   o  Signatures identify a header (e.g.  Digest or MI) to guard the
+      payload's integrity instead of directly signing over the payload.
+
+   o  The validityUrl is signed.
+
+   o  Use CBOR maps where appropriate, and define how they're
+      canonicalized.
+
+   o  Remove the update.url field from signature validity updates, in
+      favor of just re-fetching the original request URL.
+
+   o  Define an HTTP/2 extension to use a setting to enable cross-origin
+      Server Push.
+
+   o  Define an "Accept-Signature" header to negotiate whether to send
+      Signatures and which ones.
+
+
+
+
+Yasskin                   Expires July 30, 2018                [Page 40]
+
+Internet-Draft        Origin-signed HTTP Responses          January 2018
+
+
+   o  Define an "application/http-exchange+cbor" format to fetch signed
+      exchanges without HTTP/2 Push.
+
+   o  2 new use cases.
+
+Appendix E.  Acknowledgements
 
    Thanks to Ilari Liusvaara, Justin Schuh, Mark Nottingham, Mike
    Bishop, Ryan Sleevi, and Yoav Weiss for comments that improved this
@@ -2237,4 +2273,24 @@ Author's Address
 
 
 
-Yasskin                   Expires July 30, 2018                [Page 40]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Yasskin                   Expires July 30, 2018                [Page 41]
