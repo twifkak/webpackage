@@ -4,8 +4,8 @@
 
 Network Working Group                                         J. Yasskin
 Internet-Draft                                                    Google
-Intended status: Informational                          January 30, 2018
-Expires: August 3, 2018
+Intended status: Informational                         February 06, 2018
+Expires: August 10, 2018
 
 
               Use Cases and Requirements for Web Packages
@@ -40,7 +40,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on August 3, 2018.
+   This Internet-Draft will expire on August 10, 2018.
 
 Copyright Notice
 
@@ -53,9 +53,9 @@ Copyright Notice
 
 
 
-Yasskin                  Expires August 3, 2018                 [Page 1]
+Yasskin                  Expires August 10, 2018                [Page 1]
 
-Internet-Draft Use Cases and Requirements for Web Packages  January 2018
+Internet-Draft Use Cases and Requirements for Web Packages February 2018
 
 
    publication of this document.  Please review these documents
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Yasskin                  Expires August 3, 2018                 [Page 2]
+Yasskin                  Expires August 10, 2018                [Page 2]
 
-Internet-Draft Use Cases and Requirements for Web Packages  January 2018
+Internet-Draft Use Cases and Requirements for Web Packages February 2018
 
 
        3.2.12. Trailing length . . . . . . . . . . . . . . . . . . .  13
@@ -165,9 +165,9 @@ Internet-Draft Use Cases and Requirements for Web Packages  January 2018
 
 
 
-Yasskin                  Expires August 3, 2018                 [Page 3]
+Yasskin                  Expires August 10, 2018                [Page 3]
 
-Internet-Draft Use Cases and Requirements for Web Packages  January 2018
+Internet-Draft Use Cases and Requirements for Web Packages February 2018
 
 
    came from "O".  This saves Bailey the bandwidth costs of transferring
@@ -221,9 +221,9 @@ Internet-Draft Use Cases and Requirements for Web Packages  January 2018
 
 
 
-Yasskin                  Expires August 3, 2018                 [Page 4]
+Yasskin                  Expires August 10, 2018                [Page 4]
 
-Internet-Draft Use Cases and Requirements for Web Packages  January 2018
+Internet-Draft Use Cases and Requirements for Web Packages February 2018
 
 
    Associated requirements beyond Offline installation:
@@ -277,9 +277,9 @@ Internet-Draft Use Cases and Requirements for Web Packages  January 2018
 
 
 
-Yasskin                  Expires August 3, 2018                 [Page 5]
+Yasskin                  Expires August 10, 2018                [Page 5]
 
-Internet-Draft Use Cases and Requirements for Web Packages  January 2018
+Internet-Draft Use Cases and Requirements for Web Packages February 2018
 
 
 2.2.  Nice-to-have
@@ -333,9 +333,9 @@ Internet-Draft Use Cases and Requirements for Web Packages  January 2018
 
 
 
-Yasskin                  Expires August 3, 2018                 [Page 6]
+Yasskin                  Expires August 10, 2018                [Page 6]
 
-Internet-Draft Use Cases and Requirements for Web Packages  January 2018
+Internet-Draft Use Cases and Requirements for Web Packages February 2018
 
 
    o  Certificate revocation: The publisher's certificate might be
@@ -389,9 +389,9 @@ Internet-Draft Use Cases and Requirements for Web Packages  January 2018
 
 
 
-Yasskin                  Expires August 3, 2018                 [Page 7]
+Yasskin                  Expires August 10, 2018                [Page 7]
 
-Internet-Draft Use Cases and Requirements for Web Packages  January 2018
+Internet-Draft Use Cases and Requirements for Web Packages February 2018
 
 
    Associated requirements:
@@ -445,9 +445,9 @@ Internet-Draft Use Cases and Requirements for Web Packages  January 2018
 
 
 
-Yasskin                  Expires August 3, 2018                 [Page 8]
+Yasskin                  Expires August 10, 2018                [Page 8]
 
-Internet-Draft Use Cases and Requirements for Web Packages  January 2018
+Internet-Draft Use Cases and Requirements for Web Packages February 2018
 
 
    Associated requirements:
@@ -501,9 +501,9 @@ Internet-Draft Use Cases and Requirements for Web Packages  January 2018
 
 
 
-Yasskin                  Expires August 3, 2018                 [Page 9]
+Yasskin                  Expires August 10, 2018                [Page 9]
 
-Internet-Draft Use Cases and Requirements for Web Packages  January 2018
+Internet-Draft Use Cases and Requirements for Web Packages February 2018
 
 
 3.1.4.  Signing as an origin
@@ -557,9 +557,9 @@ Internet-Draft Use Cases and Requirements for Web Packages  January 2018
 
 
 
-Yasskin                  Expires August 3, 2018                [Page 10]
+Yasskin                  Expires August 10, 2018               [Page 10]
 
-Internet-Draft Use Cases and Requirements for Web Packages  January 2018
+Internet-Draft Use Cases and Requirements for Web Packages February 2018
 
 
 3.1.8.  Unsigned content
@@ -613,9 +613,9 @@ Internet-Draft Use Cases and Requirements for Web Packages  January 2018
 
 
 
-Yasskin                  Expires August 3, 2018                [Page 11]
+Yasskin                  Expires August 10, 2018               [Page 11]
 
-Internet-Draft Use Cases and Requirements for Web Packages  January 2018
+Internet-Draft Use Cases and Requirements for Web Packages February 2018
 
 
 3.2.2.  Cross-signatures
@@ -669,9 +669,9 @@ Internet-Draft Use Cases and Requirements for Web Packages  January 2018
 
 
 
-Yasskin                  Expires August 3, 2018                [Page 12]
+Yasskin                  Expires August 10, 2018               [Page 12]
 
-Internet-Draft Use Cases and Requirements for Web Packages  January 2018
+Internet-Draft Use Cases and Requirements for Web Packages February 2018
 
 
 3.2.11.  External dependencies
@@ -725,9 +725,9 @@ Internet-Draft Use Cases and Requirements for Web Packages  January 2018
 
 
 
-Yasskin                  Expires August 3, 2018                [Page 13]
+Yasskin                  Expires August 10, 2018               [Page 13]
 
-Internet-Draft Use Cases and Requirements for Web Packages  January 2018
+Internet-Draft Use Cases and Requirements for Web Packages February 2018
 
 
 4.4.  DRM
@@ -781,9 +781,9 @@ Internet-Draft Use Cases and Requirements for Web Packages  January 2018
 
 
 
-Yasskin                  Expires August 3, 2018                [Page 14]
+Yasskin                  Expires August 10, 2018               [Page 14]
 
-Internet-Draft Use Cases and Requirements for Web Packages  January 2018
+Internet-Draft Use Cases and Requirements for Web Packages February 2018
 
 
 5.  Security Considerations
@@ -837,9 +837,9 @@ Internet-Draft Use Cases and Requirements for Web Packages  January 2018
 
 
 
-Yasskin                  Expires August 3, 2018                [Page 15]
+Yasskin                  Expires August 10, 2018               [Page 15]
 
-Internet-Draft Use Cases and Requirements for Web Packages  January 2018
+Internet-Draft Use Cases and Requirements for Web Packages February 2018
 
 
    [JAR]      "JAR File Specification", 2014,
@@ -893,9 +893,9 @@ Internet-Draft Use Cases and Requirements for Web Packages  January 2018
 
 
 
-Yasskin                  Expires August 3, 2018                [Page 16]
+Yasskin                  Expires August 10, 2018               [Page 16]
 
-Internet-Draft Use Cases and Requirements for Web Packages  January 2018
+Internet-Draft Use Cases and Requirements for Web Packages February 2018
 
 
    [3] https://www.mnot.net/blog/2010/02/18/resource_packages
@@ -949,9 +949,9 @@ Appendix A.  Acknowledgements
 
 
 
-Yasskin                  Expires August 3, 2018                [Page 17]
+Yasskin                  Expires August 10, 2018               [Page 17]
 
-Internet-Draft Use Cases and Requirements for Web Packages  January 2018
+Internet-Draft Use Cases and Requirements for Web Packages February 2018
 
 
 Author's Address
@@ -1005,4 +1005,4 @@ Author's Address
 
 
 
-Yasskin                  Expires August 3, 2018                [Page 18]
+Yasskin                  Expires August 10, 2018               [Page 18]
