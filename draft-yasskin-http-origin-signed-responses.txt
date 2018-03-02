@@ -4,8 +4,8 @@
 
 Network Working Group                                         J. Yasskin
 Internet-Draft                                                    Google
-Intended status: Standards Track                       February 28, 2018
-Expires: September 1, 2018
+Intended status: Standards Track                          March 02, 2018
+Expires: September 3, 2018
 
 
                          Signed HTTP Exchanges
@@ -48,14 +48,14 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on September 1, 2018.
+   This Internet-Draft will expire on September 3, 2018.
 
 
 
 
-Yasskin                 Expires September 1, 2018               [Page 1]
+Yasskin                 Expires September 3, 2018               [Page 1]
 
-Internet-Draft            Signed HTTP Exchanges            February 2018
+Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 Copyright Notice
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Yasskin                 Expires September 1, 2018               [Page 2]
+Yasskin                 Expires September 3, 2018               [Page 2]
 
-Internet-Draft            Signed HTTP Exchanges            February 2018
+Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
        compatibility . . . . . . . . . . . . . . . . . . . . . . . .  24
@@ -165,9 +165,9 @@ Internet-Draft            Signed HTTP Exchanges            February 2018
 
 
 
-Yasskin                 Expires September 1, 2018               [Page 3]
+Yasskin                 Expires September 3, 2018               [Page 3]
 
-Internet-Draft            Signed HTTP Exchanges            February 2018
+Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 1.  Introduction
@@ -221,9 +221,9 @@ Internet-Draft            Signed HTTP Exchanges            February 2018
 
 
 
-Yasskin                 Expires September 1, 2018               [Page 4]
+Yasskin                 Expires September 3, 2018               [Page 4]
 
-Internet-Draft            Signed HTTP Exchanges            February 2018
+Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
    The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
@@ -277,9 +277,9 @@ Internet-Draft            Signed HTTP Exchanges            February 2018
 
 
 
-Yasskin                 Expires September 1, 2018               [Page 5]
+Yasskin                 Expires September 3, 2018               [Page 5]
 
-Internet-Draft            Signed HTTP Exchanges            February 2018
+Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
    "Signed-Headers" is a Structured Header as defined by
@@ -333,9 +333,9 @@ Internet-Draft            Signed HTTP Exchanges            February 2018
 
 
 
-Yasskin                 Expires September 1, 2018               [Page 6]
+Yasskin                 Expires September 3, 2018               [Page 6]
 
-Internet-Draft            Signed HTTP Exchanges            February 2018
+Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
    "ed25519Key"  Binary content (Section 4.5 of
@@ -389,9 +389,9 @@ Signature:
 
 
 
-Yasskin                 Expires September 1, 2018               [Page 7]
+Yasskin                 Expires September 3, 2018               [Page 7]
 
-Internet-Draft            Signed HTTP Exchanges            February 2018
+Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
    There are 4 signatures: 2 from different secp256r1 certificates
@@ -445,9 +445,9 @@ Internet-Draft            Signed HTTP Exchanges            February 2018
 
 
 
-Yasskin                 Expires September 1, 2018               [Page 8]
+Yasskin                 Expires September 3, 2018               [Page 8]
 
-Internet-Draft            Signed HTTP Exchanges            February 2018
+Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 3.3.  Significant headers of an exchange
@@ -501,9 +501,9 @@ Internet-Draft            Signed HTTP Exchanges            February 2018
 
 
 
-Yasskin                 Expires September 1, 2018               [Page 9]
+Yasskin                 Expires September 3, 2018               [Page 9]
 
-Internet-Draft            Signed HTTP Exchanges            February 2018
+Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
        *  the byte string ':status' to the byte string containing
@@ -557,9 +557,9 @@ Signed-Headers: "content-type", "digest"
 
 
 
-Yasskin                 Expires September 1, 2018              [Page 10]
+Yasskin                 Expires September 3, 2018              [Page 10]
 
-Internet-Draft            Signed HTTP Exchanges            February 2018
+Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
    cert-chain = [
@@ -613,9 +613,9 @@ Internet-Draft            Signed HTTP Exchanges            February 2018
 
 
 
-Yasskin                 Expires September 1, 2018              [Page 11]
+Yasskin                 Expires September 3, 2018              [Page 11]
 
-Internet-Draft            Signed HTTP Exchanges            February 2018
+Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 3.6.  Canonical CBOR serialization
@@ -669,9 +669,9 @@ Internet-Draft            Signed HTTP Exchanges            February 2018
 
 
 
-Yasskin                 Expires September 1, 2018              [Page 12]
+Yasskin                 Expires September 3, 2018              [Page 12]
 
-Internet-Draft            Signed HTTP Exchanges            February 2018
+Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
    o  The signed headers of the exchange so that higher-level protocols
@@ -725,9 +725,9 @@ Internet-Draft            Signed HTTP Exchanges            February 2018
 
 
 
-Yasskin                 Expires September 1, 2018              [Page 13]
+Yasskin                 Expires September 3, 2018              [Page 13]
 
-Internet-Draft            Signed HTTP Exchanges            February 2018
+Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
         *  "date" be the signature's "date" parameter, interpreted as a
@@ -781,9 +781,9 @@ Internet-Draft            Signed HTTP Exchanges            February 2018
 
 
 
-Yasskin                 Expires September 1, 2018              [Page 14]
+Yasskin                 Expires September 3, 2018              [Page 14]
 
-Internet-Draft            Signed HTTP Exchanges            February 2018
+Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
                 Set "signing-alg" to the result of applying this
@@ -837,9 +837,9 @@ Internet-Draft            Signed HTTP Exchanges            February 2018
 
 
 
-Yasskin                 Expires September 1, 2018              [Page 15]
+Yasskin                 Expires September 3, 2018              [Page 15]
 
-Internet-Draft            Signed HTTP Exchanges            February 2018
+Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
         Note that this intentionally differs from TLS 1.3, which signs
@@ -893,9 +893,9 @@ Internet-Draft            Signed HTTP Exchanges            February 2018
 
 
 
-Yasskin                 Expires September 1, 2018              [Page 16]
+Yasskin                 Expires September 3, 2018              [Page 16]
 
-Internet-Draft            Signed HTTP Exchanges            February 2018
+Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
    The resource at a "validityUrl" is "validity data", a CBOR map
@@ -949,9 +949,9 @@ Internet-Draft            Signed HTTP Exchanges            February 2018
 
 
 
-Yasskin                 Expires September 1, 2018              [Page 17]
+Yasskin                 Expires September 3, 2018              [Page 17]
 
-Internet-Draft            Signed HTTP Exchanges            February 2018
+Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 Signature:
@@ -1005,9 +1005,9 @@ Signature:
 
 
 
-Yasskin                 Expires September 1, 2018              [Page 18]
+Yasskin                 Expires September 3, 2018              [Page 18]
 
-Internet-Draft            Signed HTTP Exchanges            February 2018
+Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
    end of a migration to a new root certificate.)  The signatures of the
@@ -1061,9 +1061,9 @@ Signature:
 
 
 
-Yasskin                 Expires September 1, 2018              [Page 19]
+Yasskin                 Expires September 3, 2018              [Page 19]
 
-Internet-Draft            Signed HTTP Exchanges            February 2018
+Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
    supported.  Unknown labels and parameters MUST be ignored because new
@@ -1117,9 +1117,9 @@ Internet-Draft            Signed HTTP Exchanges            February 2018
 
 
 
-Yasskin                 Expires September 1, 2018              [Page 20]
+Yasskin                 Expires September 3, 2018              [Page 20]
 
-Internet-Draft            Signed HTTP Exchanges            February 2018
+Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
    "11qYAYKxCrfVS/7TyWQHOg7hcvPapiMlrwIaaPcHURo", valid "Accept-
@@ -1173,9 +1173,9 @@ Accept-Signature: ..., ed25519key; *
 
 
 
-Yasskin                 Expires September 1, 2018              [Page 21]
+Yasskin                 Expires September 3, 2018              [Page 21]
 
-Internet-Draft            Signed HTTP Exchanges            February 2018
+Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
    Is "Accept-Signature" the right spelling, or do we want to imitate
@@ -1229,9 +1229,9 @@ Internet-Draft            Signed HTTP Exchanges            February 2018
 
 
 
-Yasskin                 Expires September 1, 2018              [Page 22]
+Yasskin                 Expires September 3, 2018              [Page 22]
 
-Internet-Draft            Signed HTTP Exchanges            February 2018
+Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 4.2.1.  Open Questions
@@ -1285,9 +1285,9 @@ Internet-Draft            Signed HTTP Exchanges            February 2018
 
 
 
-Yasskin                 Expires September 1, 2018              [Page 23]
+Yasskin                 Expires September 3, 2018              [Page 23]
 
-Internet-Draft            Signed HTTP Exchanges            February 2018
+Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
        2.  Validate that "main-certificate" has an "ocsp" property
@@ -1341,9 +1341,9 @@ Internet-Draft            Signed HTTP Exchanges            February 2018
 
 
 
-Yasskin                 Expires September 1, 2018              [Page 24]
+Yasskin                 Expires September 3, 2018              [Page 24]
 
-Internet-Draft            Signed HTTP Exchanges            February 2018
+Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
       fields MUST include two pseudo-header fields (Section 8.1.2.1 of
@@ -1397,9 +1397,9 @@ Internet-Draft            Signed HTTP Exchanges            February 2018
 
 
 
-Yasskin                 Expires September 1, 2018              [Page 25]
+Yasskin                 Expires September 3, 2018              [Page 25]
 
-Internet-Draft            Signed HTTP Exchanges            February 2018
+Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
    If the parser encounters an unknown member name, it MUST skip the
@@ -1453,9 +1453,9 @@ Internet-Draft            Signed HTTP Exchanges            February 2018
 
 
 
-Yasskin                 Expires September 1, 2018              [Page 26]
+Yasskin                 Expires September 3, 2018              [Page 26]
 
-Internet-Draft            Signed HTTP Exchanges            February 2018
+Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
    them; instead of modifying DNS, they need only convince the user to
@@ -1509,9 +1509,9 @@ Internet-Draft            Signed HTTP Exchanges            February 2018
 
 
 
-Yasskin                 Expires September 1, 2018              [Page 27]
+Yasskin                 Expires September 3, 2018              [Page 27]
 
-Internet-Draft            Signed HTTP Exchanges            February 2018
+Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
    Appendix A.6).  Section 4 requires all headers to be included in the
@@ -1565,9 +1565,9 @@ Internet-Draft            Signed HTTP Exchanges            February 2018
 
 
 
-Yasskin                 Expires September 1, 2018              [Page 28]
+Yasskin                 Expires September 3, 2018              [Page 28]
 
-Internet-Draft            Signed HTTP Exchanges            February 2018
+Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 8.1.  Signature Header Field Registration
@@ -1621,9 +1621,9 @@ Internet-Draft            Signed HTTP Exchanges            February 2018
 
 
 
-Yasskin                 Expires September 1, 2018              [Page 29]
+Yasskin                 Expires September 3, 2018              [Page 29]
 
-Internet-Draft            Signed HTTP Exchanges            February 2018
+Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
    Required parameters: N/A
@@ -1677,9 +1677,9 @@ Internet-Draft            Signed HTTP Exchanges            February 2018
 
 
 
-Yasskin                 Expires September 1, 2018              [Page 30]
+Yasskin                 Expires September 3, 2018              [Page 30]
 
-Internet-Draft            Signed HTTP Exchanges            February 2018
+Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
    Security considerations: N/A
@@ -1717,10 +1717,10 @@ Internet-Draft            Signed HTTP Exchanges            February 2018
 
 9.1.  Normative References
 
-   [FETCH]    WHATWG, "Fetch", February 2018,
+   [FETCH]    WHATWG, "Fetch", March 2018,
               <https://fetch.spec.whatwg.org/>.
 
-   [HTML]     WHATWG, "HTML", February 2018,
+   [HTML]     WHATWG, "HTML", March 2018,
               <https://html.spec.whatwg.org/multipage>.
 
    [I-D.ietf-cbor-cddl]
@@ -1733,9 +1733,9 @@ Internet-Draft            Signed HTTP Exchanges            February 2018
 
 
 
-Yasskin                 Expires September 1, 2018              [Page 31]
+Yasskin                 Expires September 3, 2018              [Page 31]
 
-Internet-Draft            Signed HTTP Exchanges            February 2018
+Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
    [I-D.ietf-httpbis-header-structure]
@@ -1789,9 +1789,9 @@ Internet-Draft            Signed HTTP Exchanges            February 2018
 
 
 
-Yasskin                 Expires September 1, 2018              [Page 32]
+Yasskin                 Expires September 3, 2018              [Page 32]
 
-Internet-Draft            Signed HTTP Exchanges            February 2018
+Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
    [RFC6960]  Santesson, S., Myers, M., Ankney, R., Malpani, A.,
@@ -1845,9 +1845,9 @@ Internet-Draft            Signed HTTP Exchanges            February 2018
 
 
 
-Yasskin                 Expires September 1, 2018              [Page 33]
+Yasskin                 Expires September 3, 2018              [Page 33]
 
-Internet-Draft            Signed HTTP Exchanges            February 2018
+Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 9.2.  Informative References
@@ -1901,9 +1901,9 @@ Internet-Draft            Signed HTTP Exchanges            February 2018
 
 
 
-Yasskin                 Expires September 1, 2018              [Page 34]
+Yasskin                 Expires September 3, 2018              [Page 34]
 
-Internet-Draft            Signed HTTP Exchanges            February 2018
+Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 9.3.  URIs
@@ -1957,9 +1957,9 @@ A.1.  PUSHed subresources
 
 
 
-Yasskin                 Expires September 1, 2018              [Page 35]
+Yasskin                 Expires September 3, 2018              [Page 35]
 
-Internet-Draft            Signed HTTP Exchanges            February 2018
+Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
    can't be verified, the client would fetch it from the original
@@ -2013,9 +2013,9 @@ A.2.  Explicit use of a content distributor for subresources
 
 
 
-Yasskin                 Expires September 1, 2018              [Page 36]
+Yasskin                 Expires September 3, 2018              [Page 36]
 
-Internet-Draft            Signed HTTP Exchanges            February 2018
+Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 A.3.  Subresource Integrity
@@ -2069,9 +2069,9 @@ A.5.  Static Analysis
 
 
 
-Yasskin                 Expires September 1, 2018              [Page 37]
+Yasskin                 Expires September 3, 2018              [Page 37]
 
-Internet-Draft            Signed HTTP Exchanges            February 2018
+Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
    guarantee certain properties by just checking a top-level resource
@@ -2125,9 +2125,9 @@ B.1.1.  Certificate constraints
 
 
 
-Yasskin                 Expires September 1, 2018              [Page 38]
+Yasskin                 Expires September 3, 2018              [Page 38]
 
-Internet-Draft            Signed HTTP Exchanges            February 2018
+Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 B.1.2.  Signature constraints
@@ -2181,9 +2181,9 @@ B.2.  How much to sign
 
 
 
-Yasskin                 Expires September 1, 2018              [Page 39]
+Yasskin                 Expires September 3, 2018              [Page 39]
 
-Internet-Draft            Signed HTTP Exchanges            February 2018
+Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
    and the request method and path.  However, the same path, response
@@ -2237,9 +2237,9 @@ B.2.1.  Conveying the signed headers
 
 
 
-Yasskin                 Expires September 1, 2018              [Page 40]
+Yasskin                 Expires September 3, 2018              [Page 40]
 
-Internet-Draft            Signed HTTP Exchanges            February 2018
+Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
    To reduce the likelihood of accidental modification by proxies, the
@@ -2293,9 +2293,9 @@ B.3.2.  Response downgrade attacks
 
 
 
-Yasskin                 Expires September 1, 2018              [Page 41]
+Yasskin                 Expires September 3, 2018              [Page 41]
 
-Internet-Draft            Signed HTTP Exchanges            February 2018
+Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
    2.  A replacement for the whole exchange's signature.  This requires
@@ -2349,9 +2349,9 @@ C.1.  Example of updating cache control
 
 
 
-Yasskin                 Expires September 1, 2018              [Page 42]
+Yasskin                 Expires September 3, 2018              [Page 42]
 
-Internet-Draft            Signed HTTP Exchanges            February 2018
+Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
    GET https://example.com/ HTTP/1.1
@@ -2405,9 +2405,9 @@ C.2.  Downsides of updating cache control
 
 
 
-Yasskin                 Expires September 1, 2018              [Page 43]
+Yasskin                 Expires September 3, 2018              [Page 43]
 
-Internet-Draft            Signed HTTP Exchanges            February 2018
+Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 Appendix D.  Change Log
@@ -2461,4 +2461,4 @@ Author's Address
 
 
 
-Yasskin                 Expires September 1, 2018              [Page 44]
+Yasskin                 Expires September 3, 2018              [Page 44]
