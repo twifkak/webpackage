@@ -298,7 +298,6 @@ address {
 <link href="#rfc.section.2.2.7" rel="Chapter" title="2.2.7 Installation from a self-extracting executable">
 <link href="#rfc.section.2.2.8" rel="Chapter" title="2.2.8 Packages in version control">
 <link href="#rfc.section.2.2.9" rel="Chapter" title="2.2.9 Subresource bundling">
-<link href="#rfc.section.2.2.10" rel="Chapter" title="2.2.10 Archival">
 <link href="#rfc.section.3" rel="Chapter" title="3 Requirements">
 <link href="#rfc.section.3.1" rel="Chapter" title="3.1 Essential">
 <link href="#rfc.section.3.1.1" rel="Chapter" title="3.1.1 Indexed by URL">
@@ -326,7 +325,6 @@ address {
 <link href="#rfc.section.3.2.10" rel="Chapter" title="3.2.10 Signing uses existing TLS certificates">
 <link href="#rfc.section.3.2.11" rel="Chapter" title="3.2.11 External dependencies">
 <link href="#rfc.section.3.2.12" rel="Chapter" title="3.2.12 Trailing length">
-<link href="#rfc.section.3.2.13" rel="Chapter" title="3.2.13 Time-shifting execution">
 <link href="#rfc.section.4" rel="Chapter" title="4 Non-goals">
 <link href="#rfc.section.4.1" rel="Chapter" title="4.1 Store confidential data">
 <link href="#rfc.section.4.2" rel="Chapter" title="4.2 Generate packages on the fly">
@@ -431,8 +429,6 @@ address {
 </li>
 <li>2.2.9.   <a href="#rfc.section.2.2.9">Subresource bundling</a>
 </li>
-<li>2.2.10.   <a href="#rfc.section.2.2.10">Archival</a>
-</li>
 </ul></ul><li>3.   <a href="#rfc.section.3">Requirements</a>
 </li>
 <ul><li>3.1.   <a href="#rfc.section.3.1">Essential</a>
@@ -486,8 +482,6 @@ address {
 <li>3.2.11.   <a href="#rfc.section.3.2.11">External dependencies</a>
 </li>
 <li>3.2.12.   <a href="#rfc.section.3.2.12">Trailing length</a>
-</li>
-<li>3.2.13.   <a href="#rfc.section.3.2.13">Time-shifting execution</a>
 </li>
 </ul></ul><li>4.   <a href="#rfc.section.4">Non-goals</a>
 </li>
@@ -779,22 +773,6 @@ address {
 <li>
 <a href="#unsigned-content" class="xref">Unsigned content</a>: Signing same-origin content wastes space.</li>
 </ul>
-<h1 id="rfc.section.2.2.10">
-<a href="#rfc.section.2.2.10">2.2.10.</a> <a href="#archival" id="archival">Archival</a>
-</h1>
-<p id="rfc.section.2.2.10.p.1">Existing formats like WARC (<a href="#ISO28500" class="xref">[ISO28500]</a>) do a good job of accurately representing the state of a web server at a particular time, but a browser can&#8217;t currently use them to give a person the experience of that website at the time it was archived. It&#8217;s not obvious to the author of this draft that a new packaging format is likely to improve on WARC, compared to, for example, implementing support for WARC in browsers, but folks who know about archiving seem interested, e.g.: <a href="https://twitter.com/anjacks0n/status/950861384266416134">https://twitter.com/anjacks0n/status/950861384266416134</a>.</p>
-<p id="rfc.section.2.2.10.p.2">Because of the time scales involved in archival, any signatures from the original host would likely not be trusted anymore by the time the archive is viewed, so implementations would need to sandbox the content instead of running it on the original origin.</p>
-<p id="rfc.section.2.2.10.p.3">Associated requirements:</p>
-<p></p>
-
-<ul>
-<li><a href="#urls" class="xref">Indexed by URL</a></li>
-<li>
-<a href="#response-headers" class="xref">Response headers</a>: To accurately record the server&#8217;s response.</li>
-<li>
-<a href="#unsigned-content" class="xref">Unsigned content</a>: To deal with expired signatures.</li>
-<li><a href="#timeshifting" class="xref">Time-shifting execution</a></li>
-</ul>
 <h1 id="rfc.section.3">
 <a href="#rfc.section.3">3.</a> <a href="#requirements" id="requirements">Requirements</a>
 </h1>
@@ -920,11 +898,6 @@ address {
 </h1>
 <p id="rfc.section.3.2.12.p.1">The package&#8217;s length in bytes appears a fixed offset from the end of the package.</p>
 <p id="rfc.section.3.2.12.p.2">This conflicts with <a href="#MHTML" class="xref">[MHTML]</a>.</p>
-<h1 id="rfc.section.3.2.13">
-<a href="#rfc.section.3.2.13">3.2.13.</a> <a href="#timeshifting" id="timeshifting">Time-shifting execution</a>
-</h1>
-<p id="rfc.section.3.2.13.p.1">In some unsigned packages, Javascript time-telling functions should return the timestamp of the package, rather than the true current time.</p>
-<p id="rfc.section.3.2.13.p.2">We should explore if this has security implications.</p>
 <h1 id="rfc.section.4">
 <a href="#rfc.section.4">4.</a> <a href="#non-goals" id="non-goals">Non-goals</a>
 </h1>
@@ -1021,10 +994,6 @@ address {
 <td class="reference"><b id="I-D.yasskin-dispatch-web-packaging">[I-D.yasskin-dispatch-web-packaging]</b></td>
 <td class="top">
 <a>Yasskin, J.</a>, "<a href="https://tools.ietf.org/html/draft-yasskin-dispatch-web-packaging-00">Web Packaging</a>", Internet-Draft draft-yasskin-dispatch-web-packaging-00, June 2017.</td>
-</tr>
-<tr>
-<td class="reference"><b id="ISO28500">[ISO28500]</b></td>
-<td class="top">"<a href="https://www.iso.org/standard/68004.html">WARC file format</a>", ISO 28500:2017, 2017.</td>
 </tr>
 <tr>
 <td class="reference"><b id="JAR">[JAR]</b></td>
