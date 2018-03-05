@@ -290,13 +290,15 @@ address {
 <link href="#rfc.section.2.1.3" rel="Chapter" title="2.1.3 Save and share a web page">
 <link href="#rfc.section.2.2" rel="Chapter" title="2.2 Nice-to-have">
 <link href="#rfc.section.2.2.1" rel="Chapter" title="2.2.1 Packaged Web Publications">
-<link href="#rfc.section.2.2.2" rel="Chapter" title="2.2.2 Third-party security review">
-<link href="#rfc.section.2.2.3" rel="Chapter" title="2.2.3 Building packages from multiple libraries">
-<link href="#rfc.section.2.2.4" rel="Chapter" title="2.2.4 Privacy-preserving prefetch">
-<link href="#rfc.section.2.2.5" rel="Chapter" title="2.2.5 Cross-CDN Serving">
-<link href="#rfc.section.2.2.6" rel="Chapter" title="2.2.6 Installation from a self-extracting executable">
-<link href="#rfc.section.2.2.7" rel="Chapter" title="2.2.7 Packages in version control">
-<link href="#rfc.section.2.2.8" rel="Chapter" title="2.2.8 Subresource bundling">
+<link href="#rfc.section.2.2.2" rel="Chapter" title="2.2.2 Avoiding Censorship">
+<link href="#rfc.section.2.2.3" rel="Chapter" title="2.2.3 Third-party security review">
+<link href="#rfc.section.2.2.4" rel="Chapter" title="2.2.4 Building packages from multiple libraries">
+<link href="#rfc.section.2.2.5" rel="Chapter" title="2.2.5 Privacy-preserving prefetch">
+<link href="#rfc.section.2.2.6" rel="Chapter" title="2.2.6 Cross-CDN Serving">
+<link href="#rfc.section.2.2.7" rel="Chapter" title="2.2.7 Installation from a self-extracting executable">
+<link href="#rfc.section.2.2.8" rel="Chapter" title="2.2.8 Packages in version control">
+<link href="#rfc.section.2.2.9" rel="Chapter" title="2.2.9 Subresource bundling">
+<link href="#rfc.section.2.2.10" rel="Chapter" title="2.2.10 Archival">
 <link href="#rfc.section.3" rel="Chapter" title="3 Requirements">
 <link href="#rfc.section.3.1" rel="Chapter" title="3.1 Essential">
 <link href="#rfc.section.3.1.1" rel="Chapter" title="3.1.1 Indexed by URL">
@@ -313,7 +315,7 @@ address {
 <link href="#rfc.section.3.1.12" rel="Chapter" title="3.1.12 Implementations are hard to get wrong">
 <link href="#rfc.section.3.2" rel="Chapter" title="3.2 Nice to have">
 <link href="#rfc.section.3.2.1" rel="Chapter" title="3.2.1 Streamed loading">
-<link href="#rfc.section.3.2.2" rel="Chapter" title="3.2.2 Cross-signatures">
+<link href="#rfc.section.3.2.2" rel="Chapter" title="3.2.2 Additional signatures">
 <link href="#rfc.section.3.2.3" rel="Chapter" title="3.2.3 Binary">
 <link href="#rfc.section.3.2.4" rel="Chapter" title="3.2.4 Deduplication of diamond dependencies">
 <link href="#rfc.section.3.2.5" rel="Chapter" title="3.2.5 Old crypto can be removed">
@@ -324,6 +326,7 @@ address {
 <link href="#rfc.section.3.2.10" rel="Chapter" title="3.2.10 Signing uses existing TLS certificates">
 <link href="#rfc.section.3.2.11" rel="Chapter" title="3.2.11 External dependencies">
 <link href="#rfc.section.3.2.12" rel="Chapter" title="3.2.12 Trailing length">
+<link href="#rfc.section.3.2.13" rel="Chapter" title="3.2.13 Time-shifting execution">
 <link href="#rfc.section.4" rel="Chapter" title="4 Non-goals">
 <link href="#rfc.section.4.1" rel="Chapter" title="4.1 Store confidential data">
 <link href="#rfc.section.4.2" rel="Chapter" title="4.2 Generate packages on the fly">
@@ -412,19 +415,23 @@ address {
 </li>
 <ul><li>2.2.1.   <a href="#rfc.section.2.2.1">Packaged Web Publications</a>
 </li>
-<li>2.2.2.   <a href="#rfc.section.2.2.2">Third-party security review</a>
+<li>2.2.2.   <a href="#rfc.section.2.2.2">Avoiding Censorship</a>
 </li>
-<li>2.2.3.   <a href="#rfc.section.2.2.3">Building packages from multiple libraries</a>
+<li>2.2.3.   <a href="#rfc.section.2.2.3">Third-party security review</a>
 </li>
-<li>2.2.4.   <a href="#rfc.section.2.2.4">Privacy-preserving prefetch</a>
+<li>2.2.4.   <a href="#rfc.section.2.2.4">Building packages from multiple libraries</a>
 </li>
-<li>2.2.5.   <a href="#rfc.section.2.2.5">Cross-CDN Serving</a>
+<li>2.2.5.   <a href="#rfc.section.2.2.5">Privacy-preserving prefetch</a>
 </li>
-<li>2.2.6.   <a href="#rfc.section.2.2.6">Installation from a self-extracting executable</a>
+<li>2.2.6.   <a href="#rfc.section.2.2.6">Cross-CDN Serving</a>
 </li>
-<li>2.2.7.   <a href="#rfc.section.2.2.7">Packages in version control</a>
+<li>2.2.7.   <a href="#rfc.section.2.2.7">Installation from a self-extracting executable</a>
 </li>
-<li>2.2.8.   <a href="#rfc.section.2.2.8">Subresource bundling</a>
+<li>2.2.8.   <a href="#rfc.section.2.2.8">Packages in version control</a>
+</li>
+<li>2.2.9.   <a href="#rfc.section.2.2.9">Subresource bundling</a>
+</li>
+<li>2.2.10.   <a href="#rfc.section.2.2.10">Archival</a>
 </li>
 </ul></ul><li>3.   <a href="#rfc.section.3">Requirements</a>
 </li>
@@ -458,7 +465,7 @@ address {
 </li>
 <ul><li>3.2.1.   <a href="#rfc.section.3.2.1">Streamed loading</a>
 </li>
-<li>3.2.2.   <a href="#rfc.section.3.2.2">Cross-signatures</a>
+<li>3.2.2.   <a href="#rfc.section.3.2.2">Additional signatures</a>
 </li>
 <li>3.2.3.   <a href="#rfc.section.3.2.3">Binary</a>
 </li>
@@ -479,6 +486,8 @@ address {
 <li>3.2.11.   <a href="#rfc.section.3.2.11">External dependencies</a>
 </li>
 <li>3.2.12.   <a href="#rfc.section.3.2.12">Trailing length</a>
+</li>
+<li>3.2.13.   <a href="#rfc.section.3.2.13">Time-shifting execution</a>
 </li>
 </ul></ul><li>4.   <a href="#rfc.section.4">Non-goals</a>
 </li>
@@ -522,7 +531,33 @@ address {
 <a href="#rfc.section.2.1.1">2.1.1.</a> <a href="#offline-installation" id="offline-installation">Offline installation</a>
 </h1>
 <p id="rfc.section.2.1.1.p.1">Alex can download a file containing a website (a <a href="https://developers.google.com/web/progressive-web-apps/checklist">PWA</a>) including a Service Worker from origin <samp>O</samp>, and transmit it to their peer Bailey, and then Bailey can install the Service Worker with a proof that it came from <samp>O</samp>.  This saves Bailey the bandwidth costs of transferring the website.</p>
-<p id="rfc.section.2.1.1.p.2">Associated requirements:</p>
+<p id="rfc.section.2.1.1.p.2">There are roughly two ways to accomplish this:</p>
+<p></p>
+
+<ol>
+<li>Package just the Service Worker Javascript and any other Javascript that it <a href="https://w3c.github.io/ServiceWorker/#importscripts">importScripts()</a>, with their URLs and enough metadata to synthesize a <a href="https://w3c.github.io/ServiceWorker/#navigator-service-worker-register">navigator.serviceWorker.register(scriptURL, options) call</a>, along with an uninterpreted but signature-checked blob of data that the Service Worker can interpret to fill in its caches.</li>
+<li>Package the resources so that the Service Worker can fetch() them to populate its cache.</li>
+</ol>
+<p id="rfc.section.2.1.1.p.4">Associated requirements for just the Service Worker:</p>
+<p></p>
+
+<ul>
+<li>
+<a href="#urls" class="xref">Indexed by URL</a>: The <samp>register()</samp> and <samp>importScripts()</samp> calls have semantics that depend on the URL.</li>
+<li>
+<a href="#signing" class="xref">Signing as an origin</a>: To prove that the file came from <samp>O</samp>.</li>
+<li>
+<a href="#existing-certs" class="xref">Signing uses existing TLS certificates</a>: So <samp>O</samp> doesn&#8217;t have to spend lots of money buying a specialized certificate.</li>
+<li>
+<a href="#crypto-agility" class="xref">Cryptographic agility</a>: Today&#8217;s algorithms will eventually be obsolete and will need to be replaced.</li>
+<li>
+<a href="#revocation" class="xref">Certificate revocation</a>: <samp>O</samp>&#8217;s certificate might be compromised or mis-issued, and the attacker shouldn&#8217;t then get an infinite ability to mint packages.</li>
+<li>
+<a href="#no-downgrades" class="xref">Downgrade prevention</a>: <samp>O</samp>&#8217;s site might have an XSS vulnerability, and attackers with an old signed package shouldn&#8217;t be able to take advantage of the XSS forever.</li>
+<li>
+<a href="#metadata" class="xref">Metadata</a>: Just enough to generate the <samp>register()</samp> call, which is less than a full W3C Application Manifest.</li>
+</ul>
+<p id="rfc.section.2.1.1.p.6">Additional associated requirements for packaged resources:</p>
 <p></p>
 
 <ul>
@@ -533,17 +568,7 @@ address {
 <li>
 <a href="#response-headers" class="xref">Response headers</a>: The meaning of a resource is heavily influenced by its HTTP response headers.</li>
 <li>
-<a href="#signing" class="xref">Signing as an origin</a>: To prove that the file came from <samp>O</samp>.</li>
-<li>
-<a href="#existing-certs" class="xref">Signing uses existing TLS certificates</a>: So <samp>O</samp> doesn&#8217;t have to spend lots of money buying a specialized certificate.</li>
-<li>
 <a href="#multiple-origins" class="xref">Resources from multiple origins in a package</a>: So the site can be <a href="#libraries" class="xref">built from multiple components</a>.</li>
-<li>
-<a href="#crypto-agility" class="xref">Cryptographic agility</a>: Today&#8217;s algorithms will eventually be obsolete and will need to be replaced.</li>
-<li>
-<a href="#revocation" class="xref">Certificate revocation</a>: <samp>O</samp>&#8217;s certificate might be compromised or mis-issued, and the attacker shouldn&#8217;t then get an infinite ability to mint packages.</li>
-<li>
-<a href="#no-downgrades" class="xref">Downgrade prevention</a>: <samp>O</samp>&#8217;s site might have an XSS vulnerability, and attackers with an old signed package shouldn&#8217;t be able to take advantage of the XSS forever.</li>
 <li>
 <a href="#metadata" class="xref">Metadata</a>: The browser needs to know which resource within a package file to treat as its Service Worker and/or initial HTML page.</li>
 </ul>
@@ -564,7 +589,8 @@ address {
 <a href="#rfc.section.2.1.2">2.1.2.</a> <a href="#offline-browsing" id="offline-browsing">Offline browsing</a>
 </h1>
 <p id="rfc.section.2.1.2.p.1">Alex can download a file containing a large website (e.g. Wikipedia) from its origin, save it to transferrable storage (e.g. an SD card), and hand it to their peer Bailey. Then Bailey can browse the website with a proof that it came from <samp>O</samp>. Bailey may not have the storage space to copy the website before browsing it.</p>
-<p id="rfc.section.2.1.2.p.2">Associated requirements beyond <a href="#offline-installation" class="xref">Offline installation</a>:</p>
+<p id="rfc.section.2.1.2.p.2">This use case is harder for publishers to support if we specialize <a href="#offline-installation" class="xref">Section 2.1.1</a> for Service Workers since it requires the publisher to adopt Service Workers before they can sign their site.</p>
+<p id="rfc.section.2.1.2.p.3">Associated requirements beyond <a href="#offline-installation" class="xref">Offline installation</a>:</p>
 <p></p>
 
 <ul>
@@ -630,19 +656,35 @@ address {
 <a href="#revocation" class="xref">Certificate revocation</a>: The publisher&#8217;s certificate might be compromised or mis-issued, and an attacker shouldn&#8217;t then get an infinite ability to mint packages.</li>
 </ul>
 <h1 id="rfc.section.2.2.2">
-<a href="#rfc.section.2.2.2">2.2.2.</a> <a href="#security-review" id="security-review">Third-party security review</a>
+<a href="#rfc.section.2.2.2">2.2.2.</a> <a href="#anti-censorship" id="anti-censorship">Avoiding Censorship</a>
 </h1>
-<p id="rfc.section.2.2.2.p.1">Some users may want to grant certain permissions only to applications that have been reviewed for security by a trusted third party. These third parties could provide guarantees similar to those provided by the iOS, Android, or Chrome OS app stores, which might allow browsers to offer more powerful capabilities than have been deemed safe for unaudited websites.</p>
-<p id="rfc.section.2.2.2.p.2">Binary transparency for websites is similar: like with Certificate Transparency <a href="#RFC6962" class="xref">[RFC6962]</a>, the transparency logs would sign the content of the package to provide assurance that experts had a chance to audit the exact package a client received.</p>
-<p id="rfc.section.2.2.2.p.3">Associated requirements:</p>
+<p id="rfc.section.2.2.2.p.1">Some users want to retrieve resources that their governments or network providers don&#8217;t want them to see. Right now, it&#8217;s straightforward for someone in a privileged network position to block access to particular hosts, but TLS makes it difficult to block access to particular resources on those hosts.</p>
+<p id="rfc.section.2.2.2.p.2">Today it&#8217;s straightforward to retrieve blocked content from a third party, but there&#8217;s no guarantee that the third-party has sent the user an accurate representation of the content: the user has to trust the third party.</p>
+<p id="rfc.section.2.2.2.p.3">With signed web packages, the user can re-gain assurance that the content is authentic, while still bypassing the censorship. Packages don&#8217;t do anything to help discover this content.</p>
+<p id="rfc.section.2.2.2.p.4">Systems that make censorship more difficult can also make legitimate content filtering more difficult. Because the client that processes a web package always knows the true URL, this forces content filtering to happen on the client instead of on the network.</p>
+<p id="rfc.section.2.2.2.p.5">Associated requirements:</p>
 <p></p>
 
-<ul><li><a href="#cross-signatures" class="xref">Cross-signatures</a></li></ul>
+<ul>
+<li>
+<a href="#urls" class="xref">Indexed by URL</a>: So the user can see that they&#8217;re getting the content they expected.</li>
+<li>
+<a href="#signing" class="xref">Signing as an origin</a>: So that readers can be sure their copy is authentic and so that copying the package preserves the URLs of the content inside it.</li>
+</ul>
 <h1 id="rfc.section.2.2.3">
-<a href="#rfc.section.2.2.3">2.2.3.</a> <a href="#libraries" id="libraries">Building packages from multiple libraries</a>
+<a href="#rfc.section.2.2.3">2.2.3.</a> <a href="#security-review" id="security-review">Third-party security review</a>
 </h1>
-<p id="rfc.section.2.2.3.p.1">Large programs are built from smaller components. In the case of the web, components can be included either as Javascript files or as <samp>&lt;iframe&gt;</samp>d subresources. In the first case, the packager could copy the JS files to their own origin; but in the second, it may be important for the <samp>&lt;iframe&gt;</samp>d resources to be able to make <a href="https://html.spec.whatwg.org/multipage/origin.html#same-origin">same-origin</a> requests back to their own origin, for example to implement federated sign-in.</p>
-<p id="rfc.section.2.2.3.p.2">Associated requirements:</p>
+<p id="rfc.section.2.2.3.p.1">Some users may want to grant certain permissions only to applications that have been reviewed for security by a trusted third party. These third parties could provide guarantees similar to those provided by the iOS, Android, or Chrome OS app stores, which might allow browsers to offer more powerful capabilities than have been deemed safe for unaudited websites.</p>
+<p id="rfc.section.2.2.3.p.2">Binary transparency for websites is similar: like with Certificate Transparency <a href="#RFC6962" class="xref">[RFC6962]</a>, the transparency logs would sign the content of the package to provide assurance that experts had a chance to audit the exact package a client received.</p>
+<p id="rfc.section.2.2.3.p.3">Associated requirements:</p>
+<p></p>
+
+<ul><li><a href="#additional-signatures" class="xref">Additional signatures</a></li></ul>
+<h1 id="rfc.section.2.2.4">
+<a href="#rfc.section.2.2.4">2.2.4.</a> <a href="#libraries" id="libraries">Building packages from multiple libraries</a>
+</h1>
+<p id="rfc.section.2.2.4.p.1">Large programs are built from smaller components. In the case of the web, components can be included either as Javascript files or as <samp>&lt;iframe&gt;</samp>d subresources. In the first case, the packager could copy the JS files to their own origin; but in the second, it may be important for the <samp>&lt;iframe&gt;</samp>d resources to be able to make <a href="https://html.spec.whatwg.org/multipage/origin.html#same-origin">same-origin</a> requests back to their own origin, for example to implement federated sign-in.</p>
+<p id="rfc.section.2.2.4.p.2">Associated requirements:</p>
 <p></p>
 
 <ul>
@@ -651,21 +693,21 @@ address {
 <li>
 <a href="#deduplication" class="xref">Deduplication of diamond dependencies</a>: If we have dependencies A-&gt;B-&gt;D and A-&gt;C-&gt;D, it&#8217;s important that a request for a D resource resolves to a single resource that both B and C can handle.</li>
 </ul>
-<h1 id="rfc.section.2.2.3.1">
-<a href="#rfc.section.2.2.3.1">2.2.3.1.</a> <a href="#shared-libraries" id="shared-libraries">Shared libraries</a>
+<h1 id="rfc.section.2.2.4.1">
+<a href="#rfc.section.2.2.4.1">2.2.4.1.</a> <a href="#shared-libraries" id="shared-libraries">Shared libraries</a>
 </h1>
-<p id="rfc.section.2.2.3.1.p.1">In ecosystems like <a href="https://electron.atom.io/">Electron</a> and <a href="https://nodejs.org/en/">Node</a>, many packages may share some common dependencies. The cost of downloading each package can be greatly reduced if the package can merely point at other dependencies to download instead of including them all inline.</p>
-<p id="rfc.section.2.2.3.1.p.2">Associated requirements:</p>
+<p id="rfc.section.2.2.4.1.p.1">In ecosystems like <a href="https://electron.atom.io/">Electron</a> and <a href="https://nodejs.org/en/">Node</a>, many packages may share some common dependencies. The cost of downloading each package can be greatly reduced if the package can merely point at other dependencies to download instead of including them all inline.</p>
+<p id="rfc.section.2.2.4.1.p.2">Associated requirements:</p>
 <p></p>
 
 <ul><li><a href="#external-dependencies" class="xref">External dependencies</a></li></ul>
-<h1 id="rfc.section.2.2.4">
-<a href="#rfc.section.2.2.4">2.2.4.</a> <a href="#private-prefetch" id="private-prefetch">Privacy-preserving prefetch</a>
+<h1 id="rfc.section.2.2.5">
+<a href="#rfc.section.2.2.5">2.2.5.</a> <a href="#private-prefetch" id="private-prefetch">Privacy-preserving prefetch</a>
 </h1>
-<p id="rfc.section.2.2.4.p.1">Lots of websites link to other websites. Many of these source sites would like the targets of these links to load quickly. The source could use <samp>&lt;link rel="prefetch"&gt;</samp> to prefetch the target of a link, but if the user doesn&#8217;t actually click that link, that leaks the fact that the user saw a page that linked to the target. This can be true even if the prefetch is made without browser credentials because of mechanisms like TLS session IDs.</p>
-<p id="rfc.section.2.2.4.p.2">Because clients have limited data budgets to prefetch link targets, this use case is probably limited to sites that can accurately predict which link their users are most likely to click. For example, search engines can predict that their users will click one of the first couple results, and news aggreggation sites like Reddit or Slashdot can hope that users will read the article if they&#8217;ve navigated to its discussion.</p>
-<p id="rfc.section.2.2.4.p.3">Two search engines have built systems to do this with today&#8217;s technology: Google&#8217;s <a href="https://www.ampproject.org/">AMP</a> and Baidu&#8217;s <a href="https://www.mipengine.org/">MIP</a> formats and caches allow them to prefetch search results while preserving privacy, at the cost of showing the wrong URLs for the results once the user has clicked. A good solution to this problem would show the right URLs but still avoid a request to the publishing origin until after the user clicks.</p>
-<p id="rfc.section.2.2.4.p.4">Associated requirements:</p>
+<p id="rfc.section.2.2.5.p.1">Lots of websites link to other websites. Many of these source sites would like the targets of these links to load quickly. The source could use <samp>&lt;link rel="prefetch"&gt;</samp> to prefetch the target of a link, but if the user doesn&#8217;t actually click that link, that leaks the fact that the user saw a page that linked to the target. This can be true even if the prefetch is made without browser credentials because of mechanisms like TLS session IDs.</p>
+<p id="rfc.section.2.2.5.p.2">Because clients have limited data budgets to prefetch link targets, this use case is probably limited to sites that can accurately predict which link their users are most likely to click. For example, search engines can predict that their users will click one of the first couple results, and news aggreggation sites like Reddit or Slashdot can hope that users will read the article if they&#8217;ve navigated to its discussion.</p>
+<p id="rfc.section.2.2.5.p.3">Two search engines have built systems to do this with today&#8217;s technology: Google&#8217;s <a href="https://www.ampproject.org/">AMP</a> and Baidu&#8217;s <a href="https://www.mipengine.org/">MIP</a> formats and caches allow them to prefetch search results while preserving privacy, at the cost of showing the wrong URLs for the results once the user has clicked. A good solution to this problem would show the right URLs but still avoid a request to the publishing origin until after the user clicks.</p>
+<p id="rfc.section.2.2.5.p.4">Associated requirements:</p>
 <p></p>
 
 <ul>
@@ -677,13 +719,13 @@ address {
 <li>
 <a href="#subsetting" class="xref">Subsetting and reordering</a>: If a prefetched page includes subresources, its publisher might want to provide and sign both WebP and PNG versions of an image, but the source site should be able to transfer only best one for each client.</li>
 </ul>
-<h1 id="rfc.section.2.2.5">
-<a href="#rfc.section.2.2.5">2.2.5.</a> <a href="#cross-cdn-serving" id="cross-cdn-serving">Cross-CDN Serving</a>
+<h1 id="rfc.section.2.2.6">
+<a href="#rfc.section.2.2.6">2.2.6.</a> <a href="#cross-cdn-serving" id="cross-cdn-serving">Cross-CDN Serving</a>
 </h1>
-<p id="rfc.section.2.2.5.p.1">When a web page has subresources from a different origin, retrieval of those subresources can be optimized if they&#8217;re transferred over the same connection as the main resource. If both origins are distributed by the same CDN, in-progress mechanisms like <a href="#I-D.ietf-httpbis-http2-secondary-certs" class="xref">[I-D.ietf-httpbis-http2-secondary-certs]</a> allow the server to use a single connection to send both resources, but if the resource and subresource don&#8217;t share a CDN or don&#8217;t use a CDN at all, existing mechanisms don&#8217;t help.</p>
-<p id="rfc.section.2.2.5.p.2">If the subresource is signed by its publisher, the main resource&#8217;s server can forward it to the client.</p>
-<p id="rfc.section.2.2.5.p.3">There are some yet-to-be-solved privacy problems if the client and server want to avoid transferring subresources that are already in the client&#8217;s cache: naively telling the server that a resource is already present is a privacy leak.</p>
-<p id="rfc.section.2.2.5.p.4">Associated requirements:</p>
+<p id="rfc.section.2.2.6.p.1">When a web page has subresources from a different origin, retrieval of those subresources can be optimized if they&#8217;re transferred over the same connection as the main resource. If both origins are distributed by the same CDN, in-progress mechanisms like <a href="#I-D.ietf-httpbis-http2-secondary-certs" class="xref">[I-D.ietf-httpbis-http2-secondary-certs]</a> allow the server to use a single connection to send both resources, but if the resource and subresource don&#8217;t share a CDN or don&#8217;t use a CDN at all, existing mechanisms don&#8217;t help.</p>
+<p id="rfc.section.2.2.6.p.2">If the subresource is signed by its publisher, the main resource&#8217;s server can forward it to the client.</p>
+<p id="rfc.section.2.2.6.p.3">There are some yet-to-be-solved privacy problems if the client and server want to avoid transferring subresources that are already in the client&#8217;s cache: naively telling the server that a resource is already present is a privacy leak.</p>
+<p id="rfc.section.2.2.6.p.4">Associated requirements:</p>
 <p></p>
 
 <ul>
@@ -693,27 +735,27 @@ address {
 <a href="#signing" class="xref">Signing as an origin</a>: To prove the content came from the original origin.</li>
 <li><a href="#transfer-compression" class="xref">Compress transfers</a></li>
 </ul>
-<h1 id="rfc.section.2.2.6">
-<a href="#rfc.section.2.2.6">2.2.6.</a> <a href="#self-extracting" id="self-extracting">Installation from a self-extracting executable</a>
-</h1>
-<p id="rfc.section.2.2.6.p.1">The Node and Electron communities would like to install packages using self-extracting executables. The traditional way to design a self-extracting executable is to concatenate the package to the end of the executable, have the executable look for a length at its own end, and seek backwards from there for the start of the package.</p>
-<p id="rfc.section.2.2.6.p.2">Associated requirements:</p>
-<p></p>
-
-<ul><li><a href="#trailing-length" class="xref">Trailing length</a></li></ul>
 <h1 id="rfc.section.2.2.7">
-<a href="#rfc.section.2.2.7">2.2.7.</a> <a href="#version-control" id="version-control">Packages in version control</a>
+<a href="#rfc.section.2.2.7">2.2.7.</a> <a href="#self-extracting" id="self-extracting">Installation from a self-extracting executable</a>
 </h1>
-<p id="rfc.section.2.2.7.p.1">Once packages are generated, they should be stored in version control. Many popular VC systems auto-detect text files in order to &#8220;fix&#8221; their line endings.  If the first bytes of a package look like text, while later bytes store binary data, VC may break the package.</p>
+<p id="rfc.section.2.2.7.p.1">The Node and Electron communities would like to install packages using self-extracting executables. The traditional way to design a self-extracting executable is to concatenate the package to the end of the executable, have the executable look for a length at its own end, and seek backwards from there for the start of the package.</p>
 <p id="rfc.section.2.2.7.p.2">Associated requirements:</p>
 <p></p>
 
-<ul><li><a href="#binary" class="xref">Binary</a></li></ul>
+<ul><li><a href="#trailing-length" class="xref">Trailing length</a></li></ul>
 <h1 id="rfc.section.2.2.8">
-<a href="#rfc.section.2.2.8">2.2.8.</a> <a href="#bundling" id="bundling">Subresource bundling</a>
+<a href="#rfc.section.2.2.8">2.2.8.</a> <a href="#version-control" id="version-control">Packages in version control</a>
 </h1>
-<p id="rfc.section.2.2.8.p.1">Text based subresources often benefit from improved compression ratios when bundled together.</p>
-<p id="rfc.section.2.2.8.p.2">At the same time, the current practice of JS and CSS bundling, by compiling everything into a single JS file, also has negative side-effects:</p>
+<p id="rfc.section.2.2.8.p.1">Once packages are generated, they should be stored in version control. Many popular VC systems auto-detect text files in order to &#8220;fix&#8221; their line endings.  If the first bytes of a package look like text, while later bytes store binary data, VC may break the package.</p>
+<p id="rfc.section.2.2.8.p.2">Associated requirements:</p>
+<p></p>
+
+<ul><li><a href="#binary" class="xref">Binary</a></li></ul>
+<h1 id="rfc.section.2.2.9">
+<a href="#rfc.section.2.2.9">2.2.9.</a> <a href="#bundling" id="bundling">Subresource bundling</a>
+</h1>
+<p id="rfc.section.2.2.9.p.1">Text based subresources often benefit from improved compression ratios when bundled together.</p>
+<p id="rfc.section.2.2.9.p.2">At the same time, the current practice of JS and CSS bundling, by compiling everything into a single JS file, also has negative side-effects:</p>
 <p></p>
 
 <ol>
@@ -721,9 +763,9 @@ address {
 <li>Loss of caching granularity - Modification of <em>any</em> of the resources results in caching invalidation of <em>all</em> of them.</li>
 <li>Loss of module semantics - ES6 modules must be delivered as independent resources. Therefore, current bundling methods, which deliver them with other resources under a common URL, require transpilation to ES5 and result in loss of ES6 module semantics.</li>
 </ol>
-<p id="rfc.section.2.2.8.p.4">An on-the-fly readable packaging format, that will enable resources to maintain their own URLs while being physically delivered with other resources, can resolve the above downsides while keeping the upsides of improved compression ratios.</p>
-<p id="rfc.section.2.2.8.p.5">To improve cache granularity, the client needs to tell the server which versions of which resources are already cached, which it could do with a Service Worker or perhaps with <a href="#I-D.ietf-httpbis-cache-digest" class="xref">[I-D.ietf-httpbis-cache-digest]</a>.</p>
-<p id="rfc.section.2.2.8.p.6">Associated requirements:</p>
+<p id="rfc.section.2.2.9.p.4">An on-the-fly readable packaging format, that will enable resources to maintain their own URLs while being physically delivered with other resources, can resolve the above downsides while keeping the upsides of improved compression ratios.</p>
+<p id="rfc.section.2.2.9.p.5">To improve cache granularity, the client needs to tell the server which versions of which resources are already cached, which it could do with a Service Worker or perhaps with <a href="#I-D.ietf-httpbis-cache-digest" class="xref">[I-D.ietf-httpbis-cache-digest]</a>.</p>
+<p id="rfc.section.2.2.9.p.6">Associated requirements:</p>
 <p></p>
 
 <ul>
@@ -736,6 +778,22 @@ address {
 <a href="#response-headers" class="xref">Response headers</a>: At least the Content-Type is needed to load JS and CSS.</li>
 <li>
 <a href="#unsigned-content" class="xref">Unsigned content</a>: Signing same-origin content wastes space.</li>
+</ul>
+<h1 id="rfc.section.2.2.10">
+<a href="#rfc.section.2.2.10">2.2.10.</a> <a href="#archival" id="archival">Archival</a>
+</h1>
+<p id="rfc.section.2.2.10.p.1">Existing formats like WARC (<a href="#ISO28500" class="xref">[ISO28500]</a>) do a good job of accurately representing the state of a web server at a particular time, but a browser can&#8217;t currently use them to give a person the experience of that website at the time it was archived. It&#8217;s not obvious to the author of this draft that a new packaging format is likely to improve on WARC, compared to, for example, implementing support for WARC in browsers, but folks who know about archiving seem interested, e.g.: <a href="https://twitter.com/anjacks0n/status/950861384266416134">https://twitter.com/anjacks0n/status/950861384266416134</a>.</p>
+<p id="rfc.section.2.2.10.p.2">Because of the time scales involved in archival, any signatures from the original host would likely not be trusted anymore by the time the archive is viewed, so implementations would need to sandbox the content instead of running it on the original origin.</p>
+<p id="rfc.section.2.2.10.p.3">Associated requirements:</p>
+<p></p>
+
+<ul>
+<li><a href="#urls" class="xref">Indexed by URL</a></li>
+<li>
+<a href="#response-headers" class="xref">Response headers</a>: To accurately record the server&#8217;s response.</li>
+<li>
+<a href="#unsigned-content" class="xref">Unsigned content</a>: To deal with expired signatures.</li>
+<li><a href="#timeshifting" class="xref">Time-shifting execution</a></li>
 </ul>
 <h1 id="rfc.section.3">
 <a href="#rfc.section.3">3.</a> <a href="#requirements" id="requirements">Requirements</a>
@@ -817,7 +875,7 @@ address {
 <p id="rfc.section.3.2.1.p.1">The browser can load a package as it downloads.</p>
 <p id="rfc.section.3.2.1.p.2">This conflicts with ZIP, since ZIP&#8217;s index is at the end.</p>
 <h1 id="rfc.section.3.2.2">
-<a href="#rfc.section.3.2.2">3.2.2.</a> <a href="#cross-signatures" id="cross-signatures">Cross-signatures</a>
+<a href="#rfc.section.3.2.2">3.2.2.</a> <a href="#additional-signatures" id="additional-signatures">Additional signatures</a>
 </h1>
 <p id="rfc.section.3.2.2.p.1">Third-parties can vouch for packages by signing them.</p>
 <h1 id="rfc.section.3.2.3">
@@ -862,6 +920,11 @@ address {
 </h1>
 <p id="rfc.section.3.2.12.p.1">The package&#8217;s length in bytes appears a fixed offset from the end of the package.</p>
 <p id="rfc.section.3.2.12.p.2">This conflicts with <a href="#MHTML" class="xref">[MHTML]</a>.</p>
+<h1 id="rfc.section.3.2.13">
+<a href="#rfc.section.3.2.13">3.2.13.</a> <a href="#timeshifting" id="timeshifting">Time-shifting execution</a>
+</h1>
+<p id="rfc.section.3.2.13.p.1">In some unsigned packages, Javascript time-telling functions should return the timestamp of the package, rather than the true current time.</p>
+<p id="rfc.section.3.2.13.p.2">We should explore if this has security implications.</p>
 <h1 id="rfc.section.4">
 <a href="#rfc.section.4">4.</a> <a href="#non-goals" id="non-goals">Non-goals</a>
 </h1>
@@ -952,12 +1015,16 @@ address {
 <tr>
 <td class="reference"><b id="I-D.vkrasnov-h2-compression-dictionaries">[I-D.vkrasnov-h2-compression-dictionaries]</b></td>
 <td class="top">
-<a>Krasnov, V.</a>, "<a href="https://tools.ietf.org/html/draft-vkrasnov-h2-compression-dictionaries-02">Compression Dictionaries for HTTP/2</a>", Internet-Draft draft-vkrasnov-h2-compression-dictionaries-02, March 2017.</td>
+<a>Krasnov, V.</a> and <a>Y. Weiss</a>, "<a href="https://tools.ietf.org/html/draft-vkrasnov-h2-compression-dictionaries-03">Compression Dictionaries for HTTP/2</a>", Internet-Draft draft-vkrasnov-h2-compression-dictionaries-03, March 2018.</td>
 </tr>
 <tr>
 <td class="reference"><b id="I-D.yasskin-dispatch-web-packaging">[I-D.yasskin-dispatch-web-packaging]</b></td>
 <td class="top">
 <a>Yasskin, J.</a>, "<a href="https://tools.ietf.org/html/draft-yasskin-dispatch-web-packaging-00">Web Packaging</a>", Internet-Draft draft-yasskin-dispatch-web-packaging-00, June 2017.</td>
+</tr>
+<tr>
+<td class="reference"><b id="ISO28500">[ISO28500]</b></td>
+<td class="top">"<a href="https://www.iso.org/standard/68004.html">WARC file format</a>", ISO 28500:2017, 2017.</td>
 </tr>
 <tr>
 <td class="reference"><b id="JAR">[JAR]</b></td>
