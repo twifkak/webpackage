@@ -350,7 +350,7 @@ Internet-Draft Use Cases and Requirements for Web Packages    March 2018
    Some users may want to grant certain permissions only to applications
    that have been reviewed for security by a trusted third party.  These
    third parties could provide guarantees similar to those provided by
-   the iOS, Android, or ChromeOS app stores, which might allow browsers
+   the iOS, Android, or Chrome OS app stores, which might allow browsers
    to offer more powerful capabilities than have been deemed safe for
    unaudited websites.
 
