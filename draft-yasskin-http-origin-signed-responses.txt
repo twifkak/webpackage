@@ -96,16 +96,16 @@ Table of Contents
        3.7.4.  Examples  . . . . . . . . . . . . . . . . . . . . . .  20
        3.7.5.  Open Questions  . . . . . . . . . . . . . . . . . . .  20
    4.  Cross-origin trust  . . . . . . . . . . . . . . . . . . . . .  21
-   5.  Transferring a signed exchange  . . . . . . . . . . . . . . .  22
-     5.1.  Same-origin response  . . . . . . . . . . . . . . . . . .  22
-       5.1.1.  Significant headers for a same-origin response  . . .  22
-       5.1.2.  The Signed-Headers Header . . . . . . . . . . . . . .  23
-     5.2.  HTTP/2 extension for cross-origin Server Push . . . . . .  23
-       5.2.1.  Indicating support for cross-origin Server Push . . .  23
-       5.2.2.  NO_TRUSTED_EXCHANGE_SIGNATURE error code  . . . . . .  24
-       5.2.3.  Validating a cross-origin Push  . . . . . . . . . . .  24
+     4.1.  Stateful header fields  . . . . . . . . . . . . . . . . .  22
+   5.  Transferring a signed exchange  . . . . . . . . . . . . . . .  23
+     5.1.  Same-origin response  . . . . . . . . . . . . . . . . . .  23
+       5.1.1.  Significant headers for a same-origin response  . . .  23
+       5.1.2.  The Signed-Headers Header . . . . . . . . . . . . . .  24
+     5.2.  HTTP/2 extension for cross-origin Server Push . . . . . .  24
+       5.2.1.  Indicating support for cross-origin Server Push . . .  25
+       5.2.2.  NO_TRUSTED_EXCHANGE_SIGNATURE error code  . . . . . .  25
+       5.2.3.  Validating a cross-origin Push  . . . . . . . . . . .  25
      5.3.  application/http-exchange+cbor format for HTTP/1
-           compatibility . . . . . . . . . . . . . . . . . . . . . .  25
 
 
 
@@ -114,52 +114,52 @@ Yasskin                 Expires September 6, 2018               [Page 2]
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
-       5.3.1.  Example . . . . . . . . . . . . . . . . . . . . . . .  26
-       5.3.2.  Open Questions  . . . . . . . . . . . . . . . . . . .  27
-   6.  Security considerations . . . . . . . . . . . . . . . . . . .  27
-     6.1.  Confidential data . . . . . . . . . . . . . . . . . . . .  27
-     6.2.  Off-path attackers  . . . . . . . . . . . . . . . . . . .  27
-     6.3.  Downgrades  . . . . . . . . . . . . . . . . . . . . . . .  28
-     6.4.  Signing oracles are permanent . . . . . . . . . . . . . .  28
-     6.5.  Unsigned headers  . . . . . . . . . . . . . . . . . . . .  28
-     6.6.  application/http-exchange+cbor  . . . . . . . . . . . . .  29
-   7.  Privacy considerations  . . . . . . . . . . . . . . . . . . .  29
-   8.  IANA considerations . . . . . . . . . . . . . . . . . . . . .  29
-     8.1.  Signature Header Field Registration . . . . . . . . . . .  29
-     8.2.  HTTP/2 Settings . . . . . . . . . . . . . . . . . . . . .  30
-     8.3.  HTTP/2 Error code . . . . . . . . . . . . . . . . . . . .  30
-     8.4.  Internet Media Type application/http-exchange+cbor  . . .  30
-     8.5.  Internet Media Type application/cert-chain+cbor . . . . .  31
-   9.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  32
-     9.1.  Normative References  . . . . . . . . . . . . . . . . . .  32
-     9.2.  Informative References  . . . . . . . . . . . . . . . . .  34
-     9.3.  URIs  . . . . . . . . . . . . . . . . . . . . . . . . . .  35
-   Appendix A.  Use cases  . . . . . . . . . . . . . . . . . . . . .  36
-     A.1.  PUSHed subresources . . . . . . . . . . . . . . . . . . .  36
-     A.2.  Explicit use of a content distributor for subresources  .  37
-     A.3.  Subresource Integrity . . . . . . . . . . . . . . . . . .  37
-     A.4.  Binary Transparency . . . . . . . . . . . . . . . . . . .  38
-     A.5.  Static Analysis . . . . . . . . . . . . . . . . . . . . .  38
-     A.6.  Offline websites  . . . . . . . . . . . . . . . . . . . .  38
-   Appendix B.  Requirements . . . . . . . . . . . . . . . . . . . .  39
-     B.1.  Proof of origin . . . . . . . . . . . . . . . . . . . . .  39
-       B.1.1.  Certificate constraints . . . . . . . . . . . . . . .  39
-       B.1.2.  Signature constraints . . . . . . . . . . . . . . . .  39
-       B.1.3.  Retrieving the certificate  . . . . . . . . . . . . .  40
-     B.2.  How much to sign  . . . . . . . . . . . . . . . . . . . .  40
-       B.2.1.  Conveying the signed headers  . . . . . . . . . . . .  41
-     B.3.  Response lifespan . . . . . . . . . . . . . . . . . . . .  42
-       B.3.1.  Certificate revocation  . . . . . . . . . . . . . . .  42
-       B.3.2.  Response downgrade attacks  . . . . . . . . . . . . .  42
-   Appendix C.  Determining validity using cache control . . . . . .  43
-     C.1.  Example of updating cache control . . . . . . . . . . . .  43
-     C.2.  Downsides of updating cache control . . . . . . . . . . .  44
-   Appendix D.  Change Log . . . . . . . . . . . . . . . . . . . . .  44
-   Appendix E.  Acknowledgements . . . . . . . . . . . . . . . . . .  45
-   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  45
-
-
-
+           compatibility . . . . . . . . . . . . . . . . . . . . . .  26
+       5.3.1.  Example . . . . . . . . . . . . . . . . . . . . . . .  27
+       5.3.2.  Open Questions  . . . . . . . . . . . . . . . . . . .  28
+   6.  Security considerations . . . . . . . . . . . . . . . . . . .  28
+     6.1.  Over-signing  . . . . . . . . . . . . . . . . . . . . . .  28
+       6.1.1.  Session fixation  . . . . . . . . . . . . . . . . . .  29
+       6.1.2.  Misleading content  . . . . . . . . . . . . . . . . .  29
+     6.2.  Off-path attackers  . . . . . . . . . . . . . . . . . . .  29
+     6.3.  Downgrades  . . . . . . . . . . . . . . . . . . . . . . .  29
+     6.4.  Signing oracles are permanent . . . . . . . . . . . . . .  30
+     6.5.  Unsigned headers  . . . . . . . . . . . . . . . . . . . .  30
+     6.6.  application/http-exchange+cbor  . . . . . . . . . . . . .  30
+   7.  Privacy considerations  . . . . . . . . . . . . . . . . . . .  31
+   8.  IANA considerations . . . . . . . . . . . . . . . . . . . . .  31
+     8.1.  Signature Header Field Registration . . . . . . . . . . .  31
+     8.2.  HTTP/2 Settings . . . . . . . . . . . . . . . . . . . . .  32
+     8.3.  HTTP/2 Error code . . . . . . . . . . . . . . . . . . . .  32
+     8.4.  Internet Media Type application/http-exchange+cbor  . . .  32
+     8.5.  Internet Media Type application/cert-chain+cbor . . . . .  33
+   9.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  34
+     9.1.  Normative References  . . . . . . . . . . . . . . . . . .  34
+     9.2.  Informative References  . . . . . . . . . . . . . . . . .  36
+     9.3.  URIs  . . . . . . . . . . . . . . . . . . . . . . . . . .  38
+   Appendix A.  Use cases  . . . . . . . . . . . . . . . . . . . . .  39
+     A.1.  PUSHed subresources . . . . . . . . . . . . . . . . . . .  39
+     A.2.  Explicit use of a content distributor for subresources  .  39
+     A.3.  Subresource Integrity . . . . . . . . . . . . . . . . . .  40
+     A.4.  Binary Transparency . . . . . . . . . . . . . . . . . . .  40
+     A.5.  Static Analysis . . . . . . . . . . . . . . . . . . . . .  41
+     A.6.  Offline websites  . . . . . . . . . . . . . . . . . . . .  41
+   Appendix B.  Requirements . . . . . . . . . . . . . . . . . . . .  41
+     B.1.  Proof of origin . . . . . . . . . . . . . . . . . . . . .  41
+       B.1.1.  Certificate constraints . . . . . . . . . . . . . . .  41
+       B.1.2.  Signature constraints . . . . . . . . . . . . . . . .  42
+       B.1.3.  Retrieving the certificate  . . . . . . . . . . . . .  42
+     B.2.  How much to sign  . . . . . . . . . . . . . . . . . . . .  43
+       B.2.1.  Conveying the signed headers  . . . . . . . . . . . .  43
+     B.3.  Response lifespan . . . . . . . . . . . . . . . . . . . .  44
+       B.3.1.  Certificate revocation  . . . . . . . . . . . . . . .  44
+       B.3.2.  Response downgrade attacks  . . . . . . . . . . . . .  45
+   Appendix C.  Determining validity using cache control . . . . . .  45
+     C.1.  Example of updating cache control . . . . . . . . . . . .  46
+     C.2.  Downsides of updating cache control . . . . . . . . . . .  47
+   Appendix D.  Change Log . . . . . . . . . . . . . . . . . . . . .  47
+   Appendix E.  Acknowledgements . . . . . . . . . . . . . . . . . .  48
+   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  48
 
 
 
@@ -1146,10 +1146,17 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
        "exchange", getting "certificate-chain" back.  If this returned
        "invalid" or didn't return a certificate chain, return "invalid".
 
-   3.  Let "authority" be the host component of "exchange"'s effective
+   3.  If "exchange"'s request method is not safe (Section 4.2.1 of
+       [RFC7231]) or not cacheable (Section 4.2.3 of [RFC7231]), return
+       "invalid".
+
+   4.  If "exchange"'s headers contain a stateful header field, as
+       defined in Section 4.1, return "invalid".
+
+   5.  Let "authority" be the host component of "exchange"'s effective
        request URI.
 
-   4.  Validate the "certificate-chain" using the following substeps.
+   6.  Validate the "certificate-chain" using the following substeps.
        If any of them fail, re-run Section 3.5 once over the signature
        with the "forceFetch" flag set, and restart from step 2.  If a
        substep fails again, return "invalid".
@@ -1163,13 +1170,6 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
        2.  Validate that "main-certificate" has an "ocsp" property
            (Section 3.3) with a valid OCSP response whose lifetime
-           ("nextUpdate - thisUpdate") is less than 7 days ([RFC6960]).
-           Note that this does not check for revocation of intermediate
-           certificates, and clients SHOULD implement another mechanism
-           for that.
-
-
-
 
 
 
@@ -1178,11 +1178,69 @@ Yasskin                 Expires September 6, 2018              [Page 21]
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
+           ("nextUpdate - thisUpdate") is less than 7 days ([RFC6960]).
+           Note that this does not check for revocation of intermediate
+           certificates, and clients SHOULD implement another mechanism
+           for that.
+
        3.  Validate that "main-certificate" has an "sct" property
            (Section 3.3) containing valid SCTs from trusted logs.
            ([RFC6962])
 
-   5.  Return "valid".
+   7.  Return "valid".
+
+4.1.  Stateful header fields
+
+   As described in Section 6.1, a publisher can cause problems if they
+   sign an exchange that includes private information.  There's no way
+   for a client to be sure an exchange does or does not include private
+   information, but header fields that store or convey stored state in
+   the client are a good sign.
+
+   A stateful request header field informs the server of per-client
+   state.  These include but are not limited to:
+
+   o  "Authorization", [RFC7235]
+
+   o  "Cookie", [RFC6265]
+
+   o  "Cookie2", [RFC2965]
+
+   o  "Proxy-Authorization", [RFC7235]
+
+   o  "Sec-WebSocket-Key", [RFC6455]
+
+   A stateful response header field modifies state, including
+   authentication status, in the client.  The HTTP cache is not
+   considered part of this state.  These include but are not limited to:
+
+   o  "Authentication-Control", [RFC8053]
+
+   o  "Authentication-Info", [RFC7615]
+
+   o  "Optional-WWW-Authenticate", [RFC8053]
+
+   o  "Proxy-Authenticate", [RFC7235]
+
+   o  "Proxy-Authentication-Info", [RFC7615]
+
+   o  "Sec-WebSocket-Accept", [RFC6455]
+
+
+
+
+Yasskin                 Expires September 6, 2018              [Page 22]
+
+Internet-Draft            Signed HTTP Exchanges               March 2018
+
+
+   o  "Set-Cookie", [RFC6265]
+
+   o  "Set-Cookie2", [RFC2965]
+
+   o  "SetProfile", [W3C.NOTE-OPS-OverHTTP]
+
+   o  "WWW-Authenticate", [RFC7235]
 
 5.  Transferring a signed exchange
 
@@ -1223,16 +1281,17 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
    If the exchange's "Signed-Headers" header field is not present,
    doesn't parse as a Structured Header
    ([I-D.ietf-httpbis-header-structure]) or doesn't follow the
-   constraints on its value described in Section 5.1.2, the exchange has
-   no significant headers.
 
 
 
 
-Yasskin                 Expires September 6, 2018              [Page 22]
+Yasskin                 Expires September 6, 2018              [Page 23]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
+
+   constraints on its value described in Section 5.1.2, the exchange has
+   no significant headers.
 
 5.1.1.1.  Open Questions
 
@@ -1276,19 +1335,22 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
    not authoritative (Section 9.1 of [RFC7230]), this section defines an
    HTTP/2 extension.
 
+
+
+
+
+
+
+Yasskin                 Expires September 6, 2018              [Page 24]
+
+Internet-Draft            Signed HTTP Exchanges               March 2018
+
+
 5.2.1.  Indicating support for cross-origin Server Push
 
    Clients that might accept signed Server Pushes with an authority for
    which the server is not authoritative indicate this using the HTTP/2
    SETTINGS parameter ENABLE_CROSS_ORIGIN_PUSH (0xSETTING-TBD).
-
-
-
-
-Yasskin                 Expires September 6, 2018              [Page 23]
-
-Internet-Draft            Signed HTTP Exchanges               March 2018
-
 
    An ENABLE_CROSS_ORIGIN_PUSH value of 0 indicates that the client does
    not support cross-origin Push.  A value of 1 indicates that the
@@ -1332,19 +1394,18 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
    and the exchange consisting of the PUSH_PROMISE and the response
    without that "Signature" header field, and passing them to the
    algorithm in Section 4.  If this returns "invalid", the client MUST
+
+
+
+Yasskin                 Expires September 6, 2018              [Page 25]
+
+Internet-Draft            Signed HTTP Exchanges               March 2018
+
+
    treat the response as a stream error (Section 5.4.2 of [RFC7540]) of
    type NO_TRUSTED_EXCHANGE_SIGNATURE.  Otherwise, the client MUST treat
    the pushed response as if the server were authoritative for the
    PUSH_PROMISE's authority.
-
-
-
-
-
-Yasskin                 Expires September 6, 2018              [Page 24]
-
-Internet-Draft            Signed HTTP Exchanges               March 2018
-
 
 5.2.3.1.  Open Questions
 
@@ -1389,19 +1450,19 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
       *  "':url'": The effective request URI of the request (Section 5.5
          of [RFC7230]).
 
+
+
+
+Yasskin                 Expires September 6, 2018              [Page 26]
+
+Internet-Draft            Signed HTTP Exchanges               March 2018
+
+
    "request payload"  A byte string ([RFC7049], section 2.1) containing
       the request payload body (Section 3.3 of [RFC7230]).
 
    "response"  A map from response header field names to values, encoded
       as byte strings ([RFC7049], section 2.1).  The response header
-
-
-
-Yasskin                 Expires September 6, 2018              [Page 25]
-
-Internet-Draft            Signed HTTP Exchanges               March 2018
-
-
       fields MUST include one pseudo-header field (Section 8.1.2.1 of
       [RFC7540]):
 
@@ -1448,12 +1509,7 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 
-
-
-
-
-
-Yasskin                 Expires September 6, 2018              [Page 26]
+Yasskin                 Expires September 6, 2018              [Page 27]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -1484,12 +1540,62 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
 6.  Security considerations
 
-6.1.  Confidential data
+6.1.  Over-signing
 
-   Authors MUST NOT include confidential information in a signed
-   response that an untrusted intermediate could forward, since the
-   response is only signed and not encrypted.  Intermediates can read
-   the content.
+   If a publisher blindly signs all responses as their origin, they can
+   cause at least two kinds of problems, described below.  To avoid
+   this, publishers SHOULD design their systems to opt particular public
+   content that doesn't depend on authentication status into signatures
+   instead of signing by default.
+
+   Signing systems SHOULD also incorporate the following mitigations to
+   reduce the risk that private responses are signed:
+
+   1.  Strip the "Cookie" request header field and other identifying
+       information like client authentication and TLS session IDs from
+       requests whose exchange is destined to be signed, before
+       forwarding the request to a backend.
+
+   2.  Only sign exchanges where the response includes a "Cache-Control:
+       public" header.  Clients are not required to fail signature-
+       checking for exchanges that omit this "Cache-Control" response
+       header field to reduce the risk that naive signing systems
+       blindly add it.
+
+
+
+
+Yasskin                 Expires September 6, 2018              [Page 28]
+
+Internet-Draft            Signed HTTP Exchanges               March 2018
+
+
+6.1.1.  Session fixation
+
+   Blind signing can sign responses that create session cookies or
+   otherwise change state on the client to identify a particular
+   session.  This breaks certain kinds of CSRF defense and can allow an
+   attacker to force a user into the attacker's account, where the user
+   might unintentionally save private information, like credit card
+   numbers or addresses.
+
+   This specification defends against cookie-based attacks by blocking
+   the "Set-Cookie" response header, but it cannot prevent Javascript or
+   other response content from changing state.
+
+6.1.2.  Misleading content
+
+   If a site signs private information, an attacker might set up their
+   own account to show particular private information, forward that
+   signed information to a victim, and use that victim's confusion in a
+   more sophisticated attack.
+
+   Stripping authentication information from requests before sending
+   them to backends is likely to prevent the backend from showing
+   attacker-specific information in the signed response.  It does not
+   prevent the attacker from showing their victim a signed-out page when
+   the victim is actually signed in, but while this is still misleading,
+   it seems less likely to be useful to the attacker.
 
 6.2.  Off-path attackers
 
@@ -1502,18 +1608,6 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
    combination of [I-D.ietf-httpbis-origin-frame] and
    [I-D.ietf-httpbis-http2-secondary-certs].
 
-
-
-
-
-
-
-
-Yasskin                 Expires September 6, 2018              [Page 27]
-
-Internet-Draft            Signed HTTP Exchanges               March 2018
-
-
 6.3.  Downgrades
 
    Signing a bad response can affect more users than simply serving a
@@ -1522,6 +1616,15 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
    forward a signed response until its signature expires.  Authors
    should consider shorter signature expiration times than they use for
    cache expiration times.
+
+
+
+
+
+Yasskin                 Expires September 6, 2018              [Page 29]
+
+Internet-Draft            Signed HTTP Exchanges               March 2018
+
 
    Clients MAY also check the "validityUrl" (Paragraph 6) of an exchange
    more often than the signature's expiration would require.  Doing so
@@ -1560,16 +1663,6 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
    the signature before trusting cross-origin pushed resources, at Ryan
    Sleevi's recommendation.
 
-
-
-
-
-
-Yasskin                 Expires September 6, 2018              [Page 28]
-
-Internet-Draft            Signed HTTP Exchanges               March 2018
-
-
 6.6.  application/http-exchange+cbor
 
    Clients MUST NOT trust an effective request URI claimed by an
@@ -1580,6 +1673,14 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
    stored in the resource, and that exchange without its "Signature"
    response header field, to the procedure in Section 4, and getting
    "valid" back.
+
+
+
+
+Yasskin                 Expires September 6, 2018              [Page 30]
+
+Internet-Draft            Signed HTTP Exchanges               March 2018
+
 
 7.  Privacy considerations
 
@@ -1619,13 +1720,6 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
    Header field name: "Signature"
 
-
-
-Yasskin                 Expires September 6, 2018              [Page 29]
-
-Internet-Draft            Signed HTTP Exchanges               March 2018
-
-
    Applicable protocol: http
 
    Status: standard
@@ -1633,6 +1727,16 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
    Author/Change controller: IETF
 
    Specification document(s): Section 3.1 of this document
+
+
+
+
+
+
+Yasskin                 Expires September 6, 2018              [Page 31]
+
+Internet-Draft            Signed HTTP Exchanges               March 2018
+
 
 8.2.  HTTP/2 Settings
 
@@ -1675,13 +1779,6 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
    Security considerations: see Section 6.6
 
-
-
-Yasskin                 Expires September 6, 2018              [Page 30]
-
-Internet-Draft            Signed HTTP Exchanges               March 2018
-
-
    Interoperability considerations: N/A
 
    Published specification: This specification (see Section 5.3).
@@ -1689,6 +1786,13 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
    Applications that use this media type: N/A
 
    Fragment identifier considerations: N/A
+
+
+
+Yasskin                 Expires September 6, 2018              [Page 32]
+
+Internet-Draft            Signed HTTP Exchanges               March 2018
+
 
    Additional information:
 
@@ -1731,13 +1835,6 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
    Applications that use this media type: N/A
 
-
-
-Yasskin                 Expires September 6, 2018              [Page 31]
-
-Internet-Draft            Signed HTTP Exchanges               March 2018
-
-
    Fragment identifier considerations: N/A
 
    Additional information:
@@ -1745,6 +1842,13 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
    Deprecated alias names for this type: N/A
 
    Magic number(s): 1*9(??) 67 F0 9F 93 9C E2 9B 93
+
+
+
+Yasskin                 Expires September 6, 2018              [Page 33]
+
+Internet-Draft            Signed HTTP Exchanges               March 2018
+
 
    File extension(s): N/A
 
@@ -1787,16 +1891,20 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
               Version 1.3", draft-ietf-tls-tls13-26 (work in progress),
               March 2018.
 
-
-
-Yasskin                 Expires September 6, 2018              [Page 32]
-
-Internet-Draft            Signed HTTP Exchanges               March 2018
-
-
    [I-D.thomson-http-mice]
               Thomson, M., "Merkle Integrity Content Encoding", draft-
               thomson-http-mice-02 (work in progress), October 2016.
+
+
+
+
+
+
+
+Yasskin                 Expires September 6, 2018              [Page 34]
+
+Internet-Draft            Signed HTTP Exchanges               March 2018
+
 
    [POSIX]    IEEE and The Open Group, "The Open Group Base
               Specifications Issue 7", name IEEE, value 1003.1-2008,
@@ -1840,19 +1948,19 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
               Transparency", RFC 6962, DOI 10.17487/RFC6962, June 2013,
               <https://www.rfc-editor.org/info/rfc6962>.
 
-
-
-
-
-
-Yasskin                 Expires September 6, 2018              [Page 33]
-
-Internet-Draft            Signed HTTP Exchanges               March 2018
-
-
    [RFC7049]  Bormann, C. and P. Hoffman, "Concise Binary Object
               Representation (CBOR)", RFC 7049, DOI 10.17487/RFC7049,
               October 2013, <https://www.rfc-editor.org/info/rfc7049>.
+
+
+
+
+
+
+Yasskin                 Expires September 6, 2018              [Page 35]
+
+Internet-Draft            Signed HTTP Exchanges               March 2018
+
 
    [RFC7230]  Fielding, R., Ed. and J. Reschke, Ed., "Hypertext Transfer
               Protocol (HTTP/1.1): Message Syntax and Routing",
@@ -1901,7 +2009,11 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 
-Yasskin                 Expires September 6, 2018              [Page 34]
+
+
+
+
+Yasskin                 Expires September 6, 2018              [Page 36]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -1927,19 +2039,60 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
               Packages", draft-yasskin-webpackage-use-cases-00 (work in
               progress), August 2017.
 
+   [RFC2965]  Kristol, D. and L. Montulli, "HTTP State Management
+              Mechanism", RFC 2965, DOI 10.17487/RFC2965, October 2000,
+              <https://www.rfc-editor.org/info/rfc2965>.
+
    [RFC6066]  Eastlake 3rd, D., "Transport Layer Security (TLS)
               Extensions: Extension Definitions", RFC 6066,
               DOI 10.17487/RFC6066, January 2011,
               <https://www.rfc-editor.org/info/rfc6066>.
 
+   [RFC6265]  Barth, A., "HTTP State Management Mechanism", RFC 6265,
+              DOI 10.17487/RFC6265, April 2011,
+              <https://www.rfc-editor.org/info/rfc6265>.
+
    [RFC6454]  Barth, A., "The Web Origin Concept", RFC 6454,
               DOI 10.17487/RFC6454, December 2011,
               <https://www.rfc-editor.org/info/rfc6454>.
+
+   [RFC6455]  Fette, I. and A. Melnikov, "The WebSocket Protocol",
+              RFC 6455, DOI 10.17487/RFC6455, December 2011,
+              <https://www.rfc-editor.org/info/rfc6455>.
+
+   [RFC7235]  Fielding, R., Ed. and J. Reschke, Ed., "Hypertext Transfer
+              Protocol (HTTP/1.1): Authentication", RFC 7235,
+              DOI 10.17487/RFC7235, June 2014,
+              <https://www.rfc-editor.org/info/rfc7235>.
+
+
+
+
+
+Yasskin                 Expires September 6, 2018              [Page 37]
+
+Internet-Draft            Signed HTTP Exchanges               March 2018
+
+
+   [RFC7615]  Reschke, J., "HTTP Authentication-Info and Proxy-
+              Authentication-Info Response Header Fields", RFC 7615,
+              DOI 10.17487/RFC7615, September 2015,
+              <https://www.rfc-editor.org/info/rfc7615>.
+
+   [RFC8053]  Oiwa, Y., Watanabe, H., Takagi, H., Maeda, K., Hayashi,
+              T., and Y. Ioku, "HTTP Authentication Extensions for
+              Interactive Clients", RFC 8053, DOI 10.17487/RFC8053,
+              January 2017, <https://www.rfc-editor.org/info/rfc8053>.
 
    [SRI]      Akhawe, D., Braun, F., Marier, F., and J. Weinberger,
               "Subresource Integrity", World Wide Web Consortium
               Recommendation REC-SRI-20160623, June 2016,
               <http://www.w3.org/TR/2016/REC-SRI-20160623>.
+
+   [W3C.NOTE-OPS-OverHTTP]
+              Hensley, P., Metral, M., Shardanand, U., Converse, D., and
+              M. Myers, "Implementation of OPS Over HTTP", W3C NOTE
+              NOTE-OPS-OverHTTP, June 1997.
 
 9.3.  URIs
 
@@ -1953,14 +2106,6 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
    [4] https://url.spec.whatwg.org/#valid-url-string
 
    [5] https://url.spec.whatwg.org/#valid-url-string
-
-
-
-
-Yasskin                 Expires September 6, 2018              [Page 35]
-
-Internet-Draft            Signed HTTP Exchanges               March 2018
-
 
    [6] https://www.iana.org/assignments/http-dig-alg/http-dig-alg.xhtml
 
@@ -1977,6 +2122,13 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
    [12] https://github.com/mikewest/signature-based-sri/issues/5
 
    [13] https://www.apple.com/ios/app-store/
+
+
+
+Yasskin                 Expires September 6, 2018              [Page 38]
+
+Internet-Draft            Signed HTTP Exchanges               March 2018
+
 
    [14] https://play.google.com/store
 
@@ -2007,17 +2159,6 @@ A.1.  PUSHed subresources
    critical path, "example.com" might push that resource signed by
    "jquery.com".
 
-
-
-
-
-
-
-Yasskin                 Expires September 6, 2018              [Page 36]
-
-Internet-Draft            Signed HTTP Exchanges               March 2018
-
-
 A.2.  Explicit use of a content distributor for subresources
 
    In order to speed up loading but still maintain control over its
@@ -2037,6 +2178,13 @@ A.2.  Explicit use of a content distributor for subresources
    custom element:
 
    <dist-img src="https://O.com/img.png"></dist-img>
+
+
+
+Yasskin                 Expires September 6, 2018              [Page 39]
+
+Internet-Draft            Signed HTTP Exchanges               March 2018
+
 
    where the "<dist-img>" implementation generates an appropriate
    "<img>" based on, for example, a "<meta name="dist-base">" tag
@@ -2067,13 +2215,6 @@ A.3.  Subresource Integrity
    The "ed25519Key" signature parameter supports this simpler way of
    attaching a key.
 
-
-
-Yasskin                 Expires September 6, 2018              [Page 37]
-
-Internet-Draft            Signed HTTP Exchanges               March 2018
-
-
    The current proposal for signature-based SRI describes signing only
    the content of a resource, while this specification requires them to
    sign the request URI as well.  This issue is tracked in
@@ -2093,6 +2234,14 @@ A.4.  Binary Transparency
    Certificate Transparency depends on Signed Certificate Timestamps
    that prove a log contained a particular certificate at a particular
    time.  To build the same thing for Binary Transparency logs
+
+
+
+Yasskin                 Expires September 6, 2018              [Page 40]
+
+Internet-Draft            Signed HTTP Exchanges               March 2018
+
+
    containing HTTP resources or full websites, we'll need a way to
    provide signatures of those resources, which signed exchanges
    provides.
@@ -2118,18 +2267,6 @@ A.6.  Offline websites
    verifications may be needed.  Work on this is in progress in the
    https://github.com/WICG/webpackage [15] repository.
 
-
-
-
-
-
-
-
-Yasskin                 Expires September 6, 2018              [Page 38]
-
-Internet-Draft            Signed HTTP Exchanges               March 2018
-
-
 Appendix B.  Requirements
 
 B.1.  Proof of origin
@@ -2154,6 +2291,13 @@ B.1.1.  Certificate constraints
        might accidentally sign something that looks like an exchange, or
        vice versa.
 
+
+
+Yasskin                 Expires September 6, 2018              [Page 41]
+
+Internet-Draft            Signed HTTP Exchanges               March 2018
+
+
    If these risks are too high, we could define a new Extended Key Usage
    (Section 4.2.1.12 of [RFC5280]) that requires CAs to issue new keys
    for this purpose or a new certificate extension to do the same.  A
@@ -2175,16 +2319,6 @@ B.1.2.  Signature constraints
    1.  Avoid key types that are used for non-TLS protocols whose output
        could be confused with a signature.  That may be just the
        "rsaEncryption" OID from [RFC8017].
-
-
-
-
-
-
-Yasskin                 Expires September 6, 2018              [Page 39]
-
-Internet-Draft            Signed HTTP Exchanges               March 2018
-
 
    2.  Use the same format as TLS's signatures, specified in
        Section 4.4.3 of [I-D.ietf-tls-tls13], with a context string
@@ -2211,6 +2345,15 @@ B.1.3.  Retrieving the certificate
    or PUSHed (Appendix A.1) with it.  The risks from the
    "client_certificate_url" extension (Section 11.3 of [RFC6066]) don't
    seem to apply here, since an attacker who can get a client to load an
+
+
+
+
+Yasskin                 Expires September 6, 2018              [Page 42]
+
+Internet-Draft            Signed HTTP Exchanges               March 2018
+
+
    exchange and fetch the certificates it references, can also get the
    client to perform those fetches by loading other HTML.
 
@@ -2234,14 +2377,6 @@ B.2.  How much to sign
    The question of whether to include other request headers--primarily
    the "accept*" family--is still open.  These headers need to be
    represented so that clients wanting a different language, say, can
-
-
-
-Yasskin                 Expires September 6, 2018              [Page 40]
-
-Internet-Draft            Signed HTTP Exchanges               March 2018
-
-
    avoid using the wrong-language response, but it's not obvious that
    there's a security vulnerability if an attacker can spoof them.  For
    now, the proposal (Section 3) omits other request headers.
@@ -2266,6 +2401,15 @@ B.2.1.  Conveying the signed headers
    impossible to guarantee that the client will see the same sequence of
    bytes as the author wrote.  In the HTTPS world, we have more end-to-
    end header integrity, but it's still likely that there are enough
+
+
+
+
+Yasskin                 Expires September 6, 2018              [Page 43]
+
+Internet-Draft            Signed HTTP Exchanges               March 2018
+
+
    TLS-terminating proxies that the author's signatures would tend to
    break before getting to the client.
 
@@ -2289,15 +2433,6 @@ B.2.1.  Conveying the signed headers
    signature, and that could tell intermediates not to change the
    ensuing headers.
 
-
-
-
-
-Yasskin                 Expires September 6, 2018              [Page 41]
-
-Internet-Draft            Signed HTTP Exchanges               March 2018
-
-
 B.3.  Response lifespan
 
    A normal HTTPS response is authoritative only for one client, for as
@@ -2320,6 +2455,16 @@ B.3.1.  Certificate revocation
    staple OCSP responses.  One option is to extend the certificate
    download (Appendix B.1.3) to include the OCSP response too, perhaps
    in the TLS 1.3 CertificateEntry [18] format.
+
+
+
+
+
+
+Yasskin                 Expires September 6, 2018              [Page 44]
+
+Internet-Draft            Signed HTTP Exchanges               March 2018
+
 
 B.3.2.  Response downgrade attacks
 
@@ -2346,14 +2491,6 @@ B.3.2.  Response downgrade attacks
 
    3.  A replacement for the exchange's signature and an update for the
        embedded "expires" and related cache-control HTTP headers
-
-
-
-Yasskin                 Expires September 6, 2018              [Page 42]
-
-Internet-Draft            Signed HTTP Exchanges               March 2018
-
-
        [RFC7234].  This naturally extends authors' intuitions about
        cache expiration and the existing cache revalidation behavior to
        signed exchanges.  This is sketched and its downsides explored in
@@ -2377,6 +2514,14 @@ Appendix C.  Determining validity using cache control
    [RFC7231]) and initialize "expires" from either the "Expires" header
    field (Section 5.3 of [RFC7234]) or the "Cache-Control" header
    field's "max-age" directive (Section 5.2.2.8 of [RFC7234]) (added to
+
+
+
+Yasskin                 Expires September 6, 2018              [Page 45]
+
+Internet-Draft            Signed HTTP Exchanges               March 2018
+
+
    "date"), whichever is present, preferring "max-age" (or failing) if
    both are present.
 
@@ -2403,13 +2548,6 @@ C.1.  Example of updating cache control
    <html>
    ...
 
-
-
-Yasskin                 Expires September 6, 2018              [Page 43]
-
-Internet-Draft            Signed HTTP Exchanges               March 2018
-
-
    And an update listing the following headers:
 
    Expires: Fri, 1 Dec 2017 10:00:00 UTC
@@ -2428,6 +2566,17 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
    <!doctype html>
    <html>
    ...
+
+
+
+
+
+
+
+Yasskin                 Expires September 6, 2018              [Page 46]
+
+Internet-Draft            Signed HTTP Exchanges               March 2018
+
 
 C.2.  Downsides of updating cache control
 
@@ -2452,19 +2601,14 @@ Appendix D.  Change Log
       headers are signed, have the cross-origin methods use all headers,
       and remove the "allResponseHeaders" flag.
 
+   o  Describe footguns around signing private content, and block
+      certain headers to make it less likely.
+
    o  Define a CBOR structure to hold the certificate chain instead of
       re-using the TLS1.3 message.  The TLS 1.3 parser fails on
       unexpected extensions while this format should ignore them, and
       apparently TLS implementations don't expose their message parsers
       enough to allow passing a message to a certificate verifier.
-
-
-
-
-Yasskin                 Expires September 6, 2018              [Page 44]
-
-Internet-Draft            Signed HTTP Exchanges               March 2018
-
 
    draft-02
 
@@ -2481,6 +2625,14 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
    o  Define an HTTP/2 extension to use a setting to enable cross-origin
       Server Push.
+
+
+
+
+Yasskin                 Expires September 6, 2018              [Page 47]
+
+Internet-Draft            Signed HTTP Exchanges               March 2018
+
 
    o  Define an "Accept-Signature" header to negotiate whether to send
       Signatures and which ones.
@@ -2517,4 +2669,20 @@ Author's Address
 
 
 
-Yasskin                 Expires September 6, 2018              [Page 45]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Yasskin                 Expires September 6, 2018              [Page 48]
