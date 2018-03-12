@@ -4,8 +4,8 @@
 
 Network Working Group                                         J. Yasskin
 Internet-Draft                                                    Google
-Intended status: Informational                            March 05, 2018
-Expires: September 6, 2018
+Intended status: Informational                            March 12, 2018
+Expires: September 13, 2018
 
 
               Use Cases and Requirements for Web Packages
@@ -40,7 +40,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on September 6, 2018.
+   This Internet-Draft will expire on September 13, 2018.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Yasskin                 Expires September 6, 2018               [Page 1]
+Yasskin                Expires September 13, 2018               [Page 1]
 
 Internet-Draft Use Cases and Requirements for Web Packages    March 2018
 
@@ -69,7 +69,7 @@ Table of Contents
 
    1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   3
    2.  Use cases . . . . . . . . . . . . . . . . . . . . . . . . . .   3
-     2.1.  Essential . . . . . . . . . . . . . . . . . . . . . . . .   3
+     2.1.  Essential . . . . . . . . . . . . . . . . . . . . . . . .   4
        2.1.1.  Offline installation  . . . . . . . . . . . . . . . .   4
        2.1.2.  Offline browsing  . . . . . . . . . . . . . . . . . .   5
        2.1.3.  Save and share a web page . . . . . . . . . . . . . .   6
@@ -80,57 +80,59 @@ Table of Contents
        2.2.4.  Building packages from multiple libraries . . . . . .   8
        2.2.5.  Privacy-preserving prefetch . . . . . . . . . . . . .   9
        2.2.6.  Cross-CDN Serving . . . . . . . . . . . . . . . . . .  10
-       2.2.7.  Installation from a self-extracting executable  . . .  10
+       2.2.7.  Installation from a self-extracting executable  . . .  11
        2.2.8.  Packages in version control . . . . . . . . . . . . .  11
        2.2.9.  Subresource bundling  . . . . . . . . . . . . . . . .  11
-   3.  Requirements  . . . . . . . . . . . . . . . . . . . . . . . .  12
-     3.1.  Essential . . . . . . . . . . . . . . . . . . . . . . . .  12
-       3.1.1.  Indexed by URL  . . . . . . . . . . . . . . . . . . .  12
-       3.1.2.  Request headers . . . . . . . . . . . . . . . . . . .  12
-       3.1.3.  Response headers  . . . . . . . . . . . . . . . . . .  12
+       2.2.10. Archival  . . . . . . . . . . . . . . . . . . . . . .  12
+   3.  Requirements  . . . . . . . . . . . . . . . . . . . . . . . .  13
+     3.1.  Essential . . . . . . . . . . . . . . . . . . . . . . . .  13
+       3.1.1.  Indexed by URL  . . . . . . . . . . . . . . . . . . .  13
+       3.1.2.  Request headers . . . . . . . . . . . . . . . . . . .  13
+       3.1.3.  Response headers  . . . . . . . . . . . . . . . . . .  13
        3.1.4.  Signing as an origin  . . . . . . . . . . . . . . . .  13
-       3.1.5.  Random access . . . . . . . . . . . . . . . . . . . .  13
-       3.1.6.  Resources from multiple origins in a package  . . . .  13
-       3.1.7.  Cryptographic agility . . . . . . . . . . . . . . . .  13
+       3.1.5.  Random access . . . . . . . . . . . . . . . . . . . .  14
+       3.1.6.  Resources from multiple origins in a package  . . . .  14
+       3.1.7.  Cryptographic agility . . . . . . . . . . . . . . . .  14
        3.1.8.  Unsigned content  . . . . . . . . . . . . . . . . . .  14
        3.1.9.  Certificate revocation  . . . . . . . . . . . . . . .  14
        3.1.10. Downgrade prevention  . . . . . . . . . . . . . . . .  14
        3.1.11. Metadata  . . . . . . . . . . . . . . . . . . . . . .  14
-       3.1.12. Implementations are hard to get wrong . . . . . . . .  14
-     3.2.  Nice to have  . . . . . . . . . . . . . . . . . . . . . .  14
-       3.2.1.  Streamed loading  . . . . . . . . . . . . . . . . . .  14
+       3.1.12. Implementations are hard to get wrong . . . . . . . .  15
+     3.2.  Nice to have  . . . . . . . . . . . . . . . . . . . . . .  15
+       3.2.1.  Streamed loading  . . . . . . . . . . . . . . . . . .  15
        3.2.2.  Additional signatures . . . . . . . . . . . . . . . .  15
        3.2.3.  Binary  . . . . . . . . . . . . . . . . . . . . . . .  15
        3.2.4.  Deduplication of diamond dependencies . . . . . . . .  15
        3.2.5.  Old crypto can be removed . . . . . . . . . . . . . .  15
-       3.2.6.  Compress transfers  . . . . . . . . . . . . . . . . .  15
-       3.2.7.  Compress stored packages  . . . . . . . . . . . . . .  15
-       3.2.8.  Subsetting and reordering . . . . . . . . . . . . . .  15
+       3.2.6.  Compress transfers  . . . . . . . . . . . . . . . . .  16
+       3.2.7.  Compress stored packages  . . . . . . . . . . . . . .  16
 
 
 
-Yasskin                 Expires September 6, 2018               [Page 2]
+Yasskin                Expires September 13, 2018               [Page 2]
 
 Internet-Draft Use Cases and Requirements for Web Packages    March 2018
 
 
-       3.2.9.  Packaged validity information . . . . . . . . . . . .  15
-       3.2.10. Signing uses existing TLS certificates  . . . . . . .  15
+       3.2.8.  Subsetting and reordering . . . . . . . . . . . . . .  16
+       3.2.9.  Packaged validity information . . . . . . . . . . . .  16
+       3.2.10. Signing uses existing TLS certificates  . . . . . . .  16
        3.2.11. External dependencies . . . . . . . . . . . . . . . .  16
        3.2.12. Trailing length . . . . . . . . . . . . . . . . . . .  16
-   4.  Non-goals . . . . . . . . . . . . . . . . . . . . . . . . . .  16
-     4.1.  Store confidential data . . . . . . . . . . . . . . . . .  16
-     4.2.  Generate packages on the fly  . . . . . . . . . . . . . .  16
-     4.3.  Non-origin identity . . . . . . . . . . . . . . . . . . .  16
+       3.2.13. Time-shifting execution . . . . . . . . . . . . . . .  16
+   4.  Non-goals . . . . . . . . . . . . . . . . . . . . . . . . . .  17
+     4.1.  Store confidential data . . . . . . . . . . . . . . . . .  17
+     4.2.  Generate packages on the fly  . . . . . . . . . . . . . .  17
+     4.3.  Non-origin identity . . . . . . . . . . . . . . . . . . .  17
      4.4.  DRM . . . . . . . . . . . . . . . . . . . . . . . . . . .  17
      4.5.  Ergonomic replacement for HTTP/2 PUSH . . . . . . . . . .  17
    5.  Security Considerations . . . . . . . . . . . . . . . . . . .  18
    6.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  18
    7.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  18
      7.1.  Informative References  . . . . . . . . . . . . . . . . .  18
-     7.2.  URIs  . . . . . . . . . . . . . . . . . . . . . . . . . .  19
+     7.2.  URIs  . . . . . . . . . . . . . . . . . . . . . . . . . .  20
    Appendix A.  Acknowledgements . . . . . . . . . . . . . . . . . .  21
-   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  21
+   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  22
 
 1.  Introduction
 
@@ -157,18 +159,18 @@ Internet-Draft Use Cases and Requirements for Web Packages    March 2018
    have conflicting requirements, the design should enable more
    important use cases.
 
-2.1.  Essential
 
 
 
 
 
 
-
-Yasskin                 Expires September 6, 2018               [Page 3]
+Yasskin                Expires September 13, 2018               [Page 3]
 
 Internet-Draft Use Cases and Requirements for Web Packages    March 2018
 
+
+2.1.  Essential
 
 2.1.1.  Offline installation
 
@@ -216,15 +218,15 @@ Internet-Draft Use Cases and Requirements for Web Packages    March 2018
 
    Additional associated requirements for packaged resources:
 
-   o  Indexed by URL: Resources on the web are addressed by URL.
 
 
 
-
-Yasskin                 Expires September 6, 2018               [Page 4]
+Yasskin                Expires September 13, 2018               [Page 4]
 
 Internet-Draft Use Cases and Requirements for Web Packages    March 2018
 
+
+   o  Indexed by URL: Resources on the web are addressed by URL.
 
    o  Request headers: If Bailey's running a different browser from Alex
       or has a different language configured, the "accept*" headers are
@@ -272,15 +274,16 @@ Internet-Draft Use Cases and Requirements for Web Packages    March 2018
 
    Associated requirements beyond Offline installation:
 
-   o  Random access: To avoid needing a long linear scan before using
-      the content.
 
 
 
-Yasskin                 Expires September 6, 2018               [Page 5]
+Yasskin                Expires September 13, 2018               [Page 5]
 
 Internet-Draft Use Cases and Requirements for Web Packages    March 2018
 
+
+   o  Random access: To avoid needing a long linear scan before using
+      the content.
 
    o  Compress stored packages: So that more content can fit on the same
       storage device.
@@ -327,17 +330,16 @@ Internet-Draft Use Cases and Requirements for Web Packages    March 2018
       authentic and so that copying the package preserves the URLs of
       the content inside it.
 
-   o  Downgrade prevention: An early version of a publication might
-      contain incorrect content, and a publisher should be able to
 
 
 
-
-Yasskin                 Expires September 6, 2018               [Page 6]
+Yasskin                Expires September 13, 2018               [Page 6]
 
 Internet-Draft Use Cases and Requirements for Web Packages    March 2018
 
 
+   o  Downgrade prevention: An early version of a publication might
+      contain incorrect content, and a publisher should be able to
       update that without worrying that an attacker can still show the
       old content to users.
 
@@ -383,16 +385,18 @@ Internet-Draft Use Cases and Requirements for Web Packages    March 2018
    user an accurate representation of the content: the user has to trust
    the third party.
 
-   With signed web packages, the user can re-gain assurance that the
-   content is authentic, while still bypassing the censorship.  Packages
-   don't do anything to help discover this content.
 
 
 
-Yasskin                 Expires September 6, 2018               [Page 7]
+
+Yasskin                Expires September 13, 2018               [Page 7]
 
 Internet-Draft Use Cases and Requirements for Web Packages    March 2018
 
+
+   With signed web packages, the user can re-gain assurance that the
+   content is authentic, while still bypassing the censorship.  Packages
+   don't do anything to help discover this content.
 
    Systems that make censorship more difficult can also make legitimate
    content filtering more difficult.  Because the client that processes
@@ -438,17 +442,16 @@ Internet-Draft Use Cases and Requirements for Web Packages    March 2018
 
    Associated requirements:
 
-   o  Resources from multiple origins in a package: Each component may
-      come from its own origin.
 
 
 
-
-
-Yasskin                 Expires September 6, 2018               [Page 8]
+Yasskin                Expires September 13, 2018               [Page 8]
 
 Internet-Draft Use Cases and Requirements for Web Packages    March 2018
 
+
+   o  Resources from multiple origins in a package: Each component may
+      come from its own origin.
 
    o  Deduplication of diamond dependencies: If we have dependencies
       A->B->D and A->C->D, it's important that a request for a D
@@ -494,17 +497,17 @@ Internet-Draft Use Cases and Requirements for Web Packages    March 2018
 
    Associated requirements:
 
-   o  Signing as an origin: To prove the content came from the original
-      origin.
 
 
 
 
-
-Yasskin                 Expires September 6, 2018               [Page 9]
+Yasskin                Expires September 13, 2018               [Page 9]
 
 Internet-Draft Use Cases and Requirements for Web Packages    March 2018
 
+
+   o  Signing as an origin: To prove the content came from the original
+      origin.
 
    o  Streamed loading: If the user clicks before the target page is
       fully transferred, the browser should be able to start loading
@@ -548,20 +551,22 @@ Internet-Draft Use Cases and Requirements for Web Packages    March 2018
 
    o  Compress transfers
 
+
+
+
+
+
+
+Yasskin                Expires September 13, 2018              [Page 10]
+
+Internet-Draft Use Cases and Requirements for Web Packages    March 2018
+
+
 2.2.7.  Installation from a self-extracting executable
 
    The Node and Electron communities would like to install packages
    using self-extracting executables.  The traditional way to design a
    self-extracting executable is to concatenate the package to the end
-
-
-
-
-Yasskin                 Expires September 6, 2018              [Page 10]
-
-Internet-Draft Use Cases and Requirements for Web Packages    March 2018
-
-
    of the executable, have the executable look for a length at its own
    end, and seek backwards from there for the start of the package.
 
@@ -604,20 +609,20 @@ Internet-Draft Use Cases and Requirements for Web Packages    March 2018
 
    An on-the-fly readable packaging format, that will enable resources
    to maintain their own URLs while being physically delivered with
+
+
+
+
+Yasskin                Expires September 13, 2018              [Page 11]
+
+Internet-Draft Use Cases and Requirements for Web Packages    March 2018
+
+
    other resources, can resolve the above downsides while keeping the
    upsides of improved compression ratios.
 
    To improve cache granularity, the client needs to tell the server
    which versions of which resources are already cached, which it could
-
-
-
-
-Yasskin                 Expires September 6, 2018              [Page 11]
-
-Internet-Draft Use Cases and Requirements for Web Packages    March 2018
-
-
    do with a Service Worker or perhaps with
    [I-D.ietf-httpbis-cache-digest].
 
@@ -633,6 +638,41 @@ Internet-Draft Use Cases and Requirements for Web Packages    March 2018
       and CSS.
 
    o  Unsigned content: Signing same-origin content wastes space.
+
+2.2.10.  Archival
+
+   Existing formats like WARC ([ISO28500]) do a good job of accurately
+   representing the state of a web server at a particular time, but a
+   browser can't currently use them to give a person the experience of
+   that website at the time it was archived.  It's not obvious to the
+   author of this draft that a new packaging format is likely to improve
+   on WARC, compared to, for example, implementing support for WARC in
+   browsers, but folks who know about archiving seem interested, e.g.:
+   https://twitter.com/anjacks0n/status/950861384266416134 [16].
+
+   Because of the time scales involved in archival, any signatures from
+   the original host would likely not be trusted anymore by the time the
+   archive is viewed, so implementations would need to sandbox the
+   content instead of running it on the original origin.
+
+   Associated requirements:
+
+   o  Indexed by URL
+
+   o  Response headers: To accurately record the server's response.
+
+   o  Unsigned content: To deal with expired signatures.
+
+   o  Time-shifting execution
+
+
+
+
+
+Yasskin                Expires September 13, 2018              [Page 12]
+
+Internet-Draft Use Cases and Requirements for Web Packages    March 2018
+
 
 3.  Requirements
 
@@ -666,14 +706,6 @@ Internet-Draft Use Cases and Requirements for Web Packages    March 2018
    "META-INF" directory to hold extra metadata beyond the resource's
    body.
 
-
-
-
-Yasskin                 Expires September 6, 2018              [Page 12]
-
-Internet-Draft Use Cases and Requirements for Web Packages    March 2018
-
-
 3.1.4.  Signing as an origin
 
    Resources within a package are provably from an entity with the
@@ -689,6 +721,14 @@ Internet-Draft Use Cases and Requirements for Web Packages    March 2018
    and [I-D.cavage-http-signatures]) omit a description of how a client
    should use a signature to prove that a resource comes from a
    particular origin, and they're probably not usable for that purpose.
+
+
+
+
+Yasskin                Expires September 13, 2018              [Page 13]
+
+Internet-Draft Use Cases and Requirements for Web Packages    March 2018
+
 
    This would require an extension to the [ZIP] format, similar to
    [JAR]'s signatures.
@@ -718,18 +758,6 @@ Internet-Draft Use Cases and Requirements for Web Packages    March 2018
    some way to know when it's safe to remove old cryptography
    (Section 3.2.5).
 
-
-
-
-
-
-
-
-Yasskin                 Expires September 6, 2018              [Page 13]
-
-Internet-Draft Use Cases and Requirements for Web Packages    March 2018
-
-
 3.1.8.  Unsigned content
 
    Alex can create their own package without a CA-signed certificate,
@@ -751,6 +779,13 @@ Internet-Draft Use Cases and Requirements for Web Packages    March 2018
    [W3C.WD-appmanifest-20170828] can help a client know how to load and
    display a package.
 
+
+
+Yasskin                Expires September 13, 2018              [Page 14]
+
+Internet-Draft Use Cases and Requirements for Web Packages    March 2018
+
+
 3.1.12.  Implementations are hard to get wrong
 
    The design should incorporate aspects that tend to cause incorrect
@@ -759,13 +794,13 @@ Internet-Draft Use Cases and Requirements for Web Packages    March 2018
 
    o  Explicitly specifying a cryptographic algorithm identifier in
       [RFC7515] made it easy for implementations to trust that
-      algorithm, which caused vulnerabilities [16].
+      algorithm, which caused vulnerabilities [17].
 
    o  [ZIP]'s duplicate specification of filenames makes it easy for
       implementations to check the signature of one copy but use the
-      other [17].
+      other [18].
 
-   o  Following Langley's Law [18] when possible makes it hard to deploy
+   o  Following Langley's Law [19] when possible makes it hard to deploy
       incorrect implementations.
 
 3.2.  Nice to have
@@ -775,16 +810,6 @@ Internet-Draft Use Cases and Requirements for Web Packages    March 2018
    The browser can load a package as it downloads.
 
    This conflicts with ZIP, since ZIP's index is at the end.
-
-
-
-
-
-
-Yasskin                 Expires September 6, 2018              [Page 14]
-
-Internet-Draft Use Cases and Requirements for Web Packages    March 2018
-
 
 3.2.2.  Additional signatures
 
@@ -807,6 +832,15 @@ Internet-Draft Use Cases and Requirements for Web Packages    March 2018
 
    The ecosystem can identify when an obsolete cryptographic algorithm
    is no longer needed and can be removed.
+
+
+
+
+
+Yasskin                Expires September 13, 2018              [Page 15]
+
+Internet-Draft Use Cases and Requirements for Web Packages    March 2018
+
 
 3.2.6.  Compress transfers
 
@@ -834,19 +868,11 @@ Internet-Draft Use Cases and Requirements for Web Packages    March 2018
    Avoiding extra requirements like "code signing" certificates makes
    packaging more accessible to all sites.
 
-
-
-
-Yasskin                 Expires September 6, 2018              [Page 15]
-
-Internet-Draft Use Cases and Requirements for Web Packages    March 2018
-
-
 3.2.11.  External dependencies
 
    Sub-packages can be "external" to the main package, meaning the
    browser will need to either fetch them separately or already have
-   them.  (#35, App Installer Story [19])
+   them.  (#35, App Installer Story [20])
 
 3.2.12.  Trailing length
 
@@ -854,6 +880,23 @@ Internet-Draft Use Cases and Requirements for Web Packages    March 2018
    the package.
 
    This conflicts with [MHTML].
+
+3.2.13.  Time-shifting execution
+
+   In some unsigned packages, Javascript time-telling functions should
+   return the timestamp of the package, rather than the true current
+   time.
+
+   We should explore if this has security implications.
+
+
+
+
+
+Yasskin                Expires September 13, 2018              [Page 16]
+
+Internet-Draft Use Cases and Requirements for Web Packages    March 2018
+
 
 4.  Non-goals
 
@@ -879,24 +922,12 @@ Internet-Draft Use Cases and Requirements for Web Packages    March 2018
 
 4.2.  Generate packages on the fly
 
-   See discussion at WICG/webpackage#6 [20].
+   See discussion at WICG/webpackage#6 [21].
 
 4.3.  Non-origin identity
 
    A package can be primarily identified as coming from something other
-   than a Web Origin [21].
-
-
-
-
-
-
-
-
-Yasskin                 Expires September 6, 2018              [Page 16]
-
-Internet-Draft Use Cases and Requirements for Web Packages    March 2018
-
+   than a Web Origin [22].
 
 4.4.  DRM
 
@@ -912,8 +943,16 @@ Internet-Draft Use Cases and Requirements for Web Packages    March 2018
    directly instead of routing around it with a bundling format.
 
    Trying to bundle resources in order to speed up page loads has a long
-   history, including Resource Packages [22] from 2010 and the W3C TAG's
-   packaging proposal [23] from 2015.
+   history, including Resource Packages [23] from 2010 and the W3C TAG's
+   packaging proposal [24] from 2015.
+
+
+
+
+Yasskin                Expires September 13, 2018              [Page 17]
+
+Internet-Draft Use Cases and Requirements for Web Packages    March 2018
+
 
    However, the HTTPWG is doing a lot of work to let servers optimize
    the PUSHed data, and packaging would either have to re-do that or
@@ -937,22 +976,10 @@ Internet-Draft Use Cases and Requirements for Web Packages    March 2018
 
    o  Indexed by URL: Resources on the web are addressed by URL.
 
-   o  Request headers: PUSH_PROMISE [24] ([RFC7540], section 6.6)
+   o  Request headers: PUSH_PROMISE [25] ([RFC7540], section 6.6)
       includes request headers.
 
    o  Response headers: PUSHed resources include their response headers.
-
-
-
-
-
-
-
-
-Yasskin                 Expires September 6, 2018              [Page 17]
-
-Internet-Draft Use Cases and Requirements for Web Packages    March 2018
-
 
 5.  Security Considerations
 
@@ -972,6 +999,16 @@ Internet-Draft Use Cases and Requirements for Web Packages    March 2018
    [I-D.burke-content-signature]
               Burke, B., "HTTP Header for digital signatures", draft-
               burke-content-signature-00 (work in progress), March 2011.
+
+
+
+
+
+
+Yasskin                Expires September 13, 2018              [Page 18]
+
+Internet-Draft Use Cases and Requirements for Web Packages    March 2018
+
 
    [I-D.cavage-http-signatures]
               Cavage, M. and M. Sporny, "Signing HTTP Messages", draft-
@@ -1003,12 +1040,9 @@ Internet-Draft Use Cases and Requirements for Web Packages    March 2018
               Yasskin, J., "Web Packaging", draft-yasskin-dispatch-web-
               packaging-00 (work in progress), June 2017.
 
-
-
-Yasskin                 Expires September 6, 2018              [Page 18]
-
-Internet-Draft Use Cases and Requirements for Web Packages    March 2018
-
+   [ISO28500]
+              "WARC file format", ISO 28500:2017, 2017,
+              <https://www.iso.org/standard/68004.html>.
 
    [JAR]      "JAR File Specification", 2014,
               <https://docs.oracle.com/javase/7/docs/technotes/guides/
@@ -1022,6 +1056,15 @@ Internet-Draft Use Cases and Requirements for Web Packages    March 2018
    [RFC6454]  Barth, A., "The Web Origin Concept", RFC 6454,
               DOI 10.17487/RFC6454, December 2011,
               <https://www.rfc-editor.org/info/rfc6454>.
+
+
+
+
+
+Yasskin                Expires September 13, 2018              [Page 19]
+
+Internet-Draft Use Cases and Requirements for Web Packages    March 2018
+
 
    [RFC6962]  Laurie, B., Langley, A., and E. Kasper, "Certificate
               Transparency", RFC 6962, DOI 10.17487/RFC6962, June 2013,
@@ -1059,13 +1102,6 @@ Internet-Draft Use Cases and Requirements for Web Packages    March 2018
 
    [2] https://github.com/WICG/webpackage
 
-
-
-Yasskin                 Expires September 6, 2018              [Page 19]
-
-Internet-Draft Use Cases and Requirements for Web Packages    March 2018
-
-
    [3] https://www.mnot.net/blog/2010/02/18/resource_packages
 
    [4] https://w3ctag.github.io/packaging-on-the-web/
@@ -1076,6 +1112,15 @@ Internet-Draft Use Cases and Requirements for Web Packages    March 2018
    [6] https://developers.google.com/web/progressive-web-apps/checklist
 
    [7] https://w3c.github.io/ServiceWorker/#importscripts
+
+
+
+
+
+Yasskin                Expires September 13, 2018              [Page 20]
+
+Internet-Draft Use Cases and Requirements for Web Packages    March 2018
+
 
    [8] https://w3c.github.io/ServiceWorker/#navigator-service-worker-
        register
@@ -1094,40 +1139,44 @@ Internet-Draft Use Cases and Requirements for Web Packages    March 2018
 
    [15] https://www.mipengine.org/
 
-   [16] https://paragonie.com/blog/2017/03/jwt-json-web-tokens-is-bad-
+   [16] https://twitter.com/anjacks0n/status/950861384266416134
+
+   [17] https://paragonie.com/blog/2017/03/jwt-json-web-tokens-is-bad-
         standard-that-everyone-should-avoid
 
-   [17] https://nakedsecurity.sophos.com/2013/07/10/anatomy-of-a-
+   [18] https://nakedsecurity.sophos.com/2013/07/10/anatomy-of-a-
         security-hole-googles-android-master-key-debacle-explained/
 
-   [18] https://blog.gerv.net/2016/09/introducing-deliberate-protocol-
+   [19] https://blog.gerv.net/2016/09/introducing-deliberate-protocol-
         errors-langleys-law/
 
-   [19] https://github.com/WICG/webpackage/issues/35
+   [20] https://github.com/WICG/webpackage/issues/35
 
-   [20] https://github.com/WICG/webpackage/
+   [21] https://github.com/WICG/webpackage/
         issues/6#issuecomment-275746125
 
-   [21] https://html.spec.whatwg.org/multipage/browsers.html#concept-
+   [22] https://html.spec.whatwg.org/multipage/browsers.html#concept-
         origin
 
-   [22] https://www.mnot.net/blog/2010/02/18/resource_packages
+   [23] https://www.mnot.net/blog/2010/02/18/resource_packages
 
-   [23] https://w3ctag.github.io/packaging-on-the-web/
+   [24] https://w3ctag.github.io/packaging-on-the-web/
 
-
-
-Yasskin                 Expires September 6, 2018              [Page 20]
-
-Internet-Draft Use Cases and Requirements for Web Packages    March 2018
-
-
-   [24] http://httpwg.org/specs/rfc7540.html#PUSH_PROMISE
+   [25] http://httpwg.org/specs/rfc7540.html#PUSH_PROMISE
 
 Appendix A.  Acknowledgements
 
    Thanks to Yoav Weiss for the Subresource bundling use case and
    discussions about content distributors.
+
+
+
+
+
+Yasskin                Expires September 13, 2018              [Page 21]
+
+Internet-Draft Use Cases and Requirements for Web Packages    March 2018
+
 
 Author's Address
 
@@ -1173,4 +1222,11 @@ Author's Address
 
 
 
-Yasskin                 Expires September 6, 2018              [Page 21]
+
+
+
+
+
+
+
+Yasskin                Expires September 13, 2018              [Page 22]
