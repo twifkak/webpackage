@@ -4,8 +4,8 @@
 
 Network Working Group                                         J. Yasskin
 Internet-Draft                                                    Google
-Intended status: Standards Track                          March 13, 2018
-Expires: September 14, 2018
+Intended status: Standards Track                          March 17, 2018
+Expires: September 18, 2018
 
 
                          Signed HTTP Exchanges
@@ -48,12 +48,12 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on September 14, 2018.
+   This Internet-Draft will expire on September 18, 2018.
 
 
 
 
-Yasskin                Expires September 14, 2018               [Page 1]
+Yasskin                Expires September 18, 2018               [Page 1]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Yasskin                Expires September 14, 2018               [Page 2]
+Yasskin                Expires September 18, 2018               [Page 2]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -165,7 +165,7 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 
-Yasskin                Expires September 14, 2018               [Page 3]
+Yasskin                Expires September 18, 2018               [Page 3]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -183,9 +183,9 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
       Appendix A.1 and Appendix A.2.
 
    o  A top-level resource can use a public key to identify an expected
-      author for particular subresources, a system known as Subresource
-      Integrity ([SRI]).  An exchange's signature provides the matching
-      proof of authorship.  See Appendix A.3.
+      publisher for particular subresources, a system known as
+      Subresource Integrity ([SRI]).  An exchange's signature provides
+      the matching proof of authorship.  See Appendix A.3.
 
    o  A signature can vouch for the exchange in some way, for example
       that it appears in a transparency log or that static analysis
@@ -200,31 +200,37 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
 2.  Terminology
 
-   Author  The entity that controls the server for a particular origin
-      [RFC6454].  The author can get a CA to issue certificates for
-      their private keys and can run a TLS server for their origin.
+   Author  The entity that wrote the content in a particular resource.
+      This specification deals with publishers rather than authors.
+
+   Publisher  The entity that controls the server for a particular
+      origin [RFC6454].  The publisher can get a CA to issue
+      certificates for their private keys and can run a TLS server for
+      their origin.
 
    Exchange (noun)  An HTTP request/response pair.  This can either be a
       request from a client and the matching response from a server or
       the request in a PUSH_PROMISE and its matching response stream.
       Defined by Section 8 of [RFC7540].
 
-   Intermediate  An entity that fetches signed HTTP exchanges from an
-      author or another intermediate and forwards them to another
+   Intermediate  An entity that fetches signed HTTP exchanges from a
+      publisher or another intermediate and forwards them to another
       intermediate or a client.
 
-   Client  An entity that uses a signed HTTP exchange and needs to be
-      able to prove that the author vouched for it as coming from its
-      claimed origin.
-
-   Unix time  Defined by [POSIX] section 4.16 [3].
 
 
 
-Yasskin                Expires September 14, 2018               [Page 4]
+
+Yasskin                Expires September 18, 2018               [Page 4]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
+
+   Client  An entity that uses a signed HTTP exchange and needs to be
+      able to prove that the publisher vouched for it as coming from its
+      claimed origin.
+
+   Unix time  Defined by [POSIX] section 4.16 [3].
 
    The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
    "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
@@ -268,19 +274,18 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
    Each parameterised label MUST have parameters named "sig",
    "integrity", "validityUrl", "date", and "expires".  Each
    parameterised label MUST also have either "certUrl" and "certSha256"
+
+
+
+Yasskin                Expires September 18, 2018               [Page 5]
+
+Internet-Draft            Signed HTTP Exchanges               March 2018
+
+
    parameters or an "ed25519Key" parameter.  This specification gives no
    meaning to the label itself, which can be used as a human-readable
    identifier for the signature (see Section 3.1.2, Paragraph 1).  The
    present parameters MUST have the following values:
-
-
-
-
-
-Yasskin                Expires September 14, 2018               [Page 5]
-
-Internet-Draft            Signed HTTP Exchanges               March 2018
-
 
    "sig"  Binary content (Section 4.5 of
       [I-D.ietf-httpbis-header-structure]) holding the signature of most
@@ -328,12 +333,7 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 
-
-
-
-
-
-Yasskin                Expires September 14, 2018               [Page 6]
+Yasskin                Expires September 18, 2018               [Page 6]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -389,20 +389,20 @@ Signature:
 
 
 
-Yasskin                Expires September 14, 2018               [Page 7]
+Yasskin                Expires September 18, 2018               [Page 7]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
    the exchange can be trusted as having an origin of
-   "https://example.com/".  The author might be using two certificates
-   because their readers have disjoint sets of roots in their trust
-   stores.
+   "https://example.com/".  The publisher might be using two
+   certificates because their readers have disjoint sets of roots in
+   their trust stores.
 
-   The author signed with all three certificates at the same time, so
+   The publisher signed with all three certificates at the same time, so
    they share a validity range: 7 days starting at 2017-11-19 21:53 UTC.
 
-   The author then requested an additional signature from
+   The publisher then requested an additional signature from
    "thirdparty.example.com", which did some validation or processing and
    then signed the resource at 2017-11-19 23:11 UTC.
    "thirdparty.example.com" only grants 4-day signatures, so clients
@@ -445,7 +445,7 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 
-Yasskin                Expires September 14, 2018               [Page 8]
+Yasskin                Expires September 18, 2018               [Page 8]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -501,7 +501,7 @@ Signed-Headers: "content-type", "digest"
 
 
 
-Yasskin                Expires September 14, 2018               [Page 9]
+Yasskin                Expires September 18, 2018               [Page 9]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -557,7 +557,7 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 
-Yasskin                Expires September 14, 2018              [Page 10]
+Yasskin                Expires September 18, 2018              [Page 10]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -613,7 +613,7 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 
-Yasskin                Expires September 14, 2018              [Page 11]
+Yasskin                Expires September 18, 2018              [Page 11]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -669,7 +669,7 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 
-Yasskin                Expires September 14, 2018              [Page 12]
+Yasskin                Expires September 18, 2018              [Page 12]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -725,7 +725,7 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 
-Yasskin                Expires September 14, 2018              [Page 13]
+Yasskin                Expires September 18, 2018              [Page 13]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -781,7 +781,7 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 
-Yasskin                Expires September 14, 2018              [Page 14]
+Yasskin                Expires September 18, 2018              [Page 14]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -837,7 +837,7 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 
-Yasskin                Expires September 14, 2018              [Page 15]
+Yasskin                Expires September 18, 2018              [Page 15]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -893,7 +893,7 @@ Signature:
 
 
 
-Yasskin                Expires September 14, 2018              [Page 16]
+Yasskin                Expires September 18, 2018              [Page 16]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -949,7 +949,7 @@ Signature:
 
 
 
-Yasskin                Expires September 14, 2018              [Page 17]
+Yasskin                Expires September 18, 2018              [Page 17]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -1005,7 +1005,7 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 
-Yasskin                Expires September 14, 2018              [Page 18]
+Yasskin                Expires September 18, 2018              [Page 18]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -1061,7 +1061,7 @@ Accept-Signature: ..., ed25519key; *
 
 
 
-Yasskin                Expires September 14, 2018              [Page 19]
+Yasskin                Expires September 18, 2018              [Page 19]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -1117,7 +1117,7 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 
-Yasskin                Expires September 14, 2018              [Page 20]
+Yasskin                Expires September 18, 2018              [Page 20]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -1173,7 +1173,7 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 
-Yasskin                Expires September 14, 2018              [Page 21]
+Yasskin                Expires September 18, 2018              [Page 21]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -1229,7 +1229,7 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 
-Yasskin                Expires September 14, 2018              [Page 22]
+Yasskin                Expires September 18, 2018              [Page 22]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -1285,7 +1285,7 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 
-Yasskin                Expires September 14, 2018              [Page 23]
+Yasskin                Expires September 18, 2018              [Page 23]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -1341,7 +1341,7 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 
-Yasskin                Expires September 14, 2018              [Page 24]
+Yasskin                Expires September 18, 2018              [Page 24]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -1397,7 +1397,7 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 
-Yasskin                Expires September 14, 2018              [Page 25]
+Yasskin                Expires September 18, 2018              [Page 25]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -1453,7 +1453,7 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 
-Yasskin                Expires September 14, 2018              [Page 26]
+Yasskin                Expires September 18, 2018              [Page 26]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -1509,7 +1509,7 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 
-Yasskin                Expires September 14, 2018              [Page 27]
+Yasskin                Expires September 18, 2018              [Page 27]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -1565,7 +1565,7 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 
-Yasskin                Expires September 14, 2018              [Page 28]
+Yasskin                Expires September 18, 2018              [Page 28]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -1621,7 +1621,7 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 
-Yasskin                Expires September 14, 2018              [Page 29]
+Yasskin                Expires September 18, 2018              [Page 29]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -1642,7 +1642,7 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
    Signing a bad response can affect more users than simply serving a
    bad response, since a served response will only affect users who make
    a request while the bad version is live, while an attacker can
-   forward a signed response until its signature expires.  Authors
+   forward a signed response until its signature expires.  Publishers
    should consider shorter signature expiration times than they use for
    cache expiration times.
 
@@ -1666,7 +1666,7 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
    The use of a single "Signed-Headers" header field prevents us from
    signing aspects of the request other than its effective request URI
-   (Section 5.5 of [RFC7230]).  For example, if an author signs both
+   (Section 5.5 of [RFC7230]).  For example, if a publisher signs both
    "Content-Encoding: br" and "Content-Encoding: gzip" variants of a
    response, what's the impact if an attacker serves the brotli one for
    a request with "Accept-Encoding: gzip"?
@@ -1677,7 +1677,7 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 
-Yasskin                Expires September 14, 2018              [Page 30]
+Yasskin                Expires September 18, 2018              [Page 30]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -1717,7 +1717,7 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
    For non-executable resource types, a signed response can improve the
    privacy situation by hiding the client's interest from the original
-   author.
+   publisher.
 
    To prevent network operators other than "o1.com" or "o2.com" from
    learning which exchanges were read, clients SHOULD only load
@@ -1733,7 +1733,7 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 
-Yasskin                Expires September 14, 2018              [Page 31]
+Yasskin                Expires September 18, 2018              [Page 31]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -1789,7 +1789,7 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 
-Yasskin                Expires September 14, 2018              [Page 32]
+Yasskin                Expires September 18, 2018              [Page 32]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -1845,7 +1845,7 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 
-Yasskin                Expires September 14, 2018              [Page 33]
+Yasskin                Expires September 18, 2018              [Page 33]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -1901,7 +1901,7 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 
-Yasskin                Expires September 14, 2018              [Page 34]
+Yasskin                Expires September 18, 2018              [Page 34]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -1957,7 +1957,7 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 
-Yasskin                Expires September 14, 2018              [Page 35]
+Yasskin                Expires September 18, 2018              [Page 35]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -2013,7 +2013,7 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 
-Yasskin                Expires September 14, 2018              [Page 36]
+Yasskin                Expires September 18, 2018              [Page 36]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -2069,7 +2069,7 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 
-Yasskin                Expires September 14, 2018              [Page 37]
+Yasskin                Expires September 18, 2018              [Page 37]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -2125,7 +2125,7 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 
-Yasskin                Expires September 14, 2018              [Page 38]
+Yasskin                Expires September 18, 2018              [Page 38]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -2181,7 +2181,7 @@ A.1.  PUSHed subresources
 
 
 
-Yasskin                Expires September 14, 2018              [Page 39]
+Yasskin                Expires September 18, 2018              [Page 39]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -2237,7 +2237,7 @@ A.2.  Explicit use of a content distributor for subresources
 
 
 
-Yasskin                Expires September 14, 2018              [Page 40]
+Yasskin                Expires September 18, 2018              [Page 40]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -2293,7 +2293,7 @@ A.5.  Static Analysis
 
 
 
-Yasskin                Expires September 14, 2018              [Page 41]
+Yasskin                Expires September 18, 2018              [Page 41]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -2349,7 +2349,7 @@ B.1.2.  Signature constraints
 
 
 
-Yasskin                Expires September 14, 2018              [Page 42]
+Yasskin                Expires September 18, 2018              [Page 42]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -2405,7 +2405,7 @@ B.2.  How much to sign
 
 
 
-Yasskin                Expires September 14, 2018              [Page 43]
+Yasskin                Expires September 18, 2018              [Page 43]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -2435,10 +2435,10 @@ B.2.1.  Conveying the signed headers
 
    HTTP headers are traditionally munged by proxies, making it
    impossible to guarantee that the client will see the same sequence of
-   bytes as the author wrote.  In the HTTPS world, we have more end-to-
-   end header integrity, but it's still likely that there are enough
-   TLS-terminating proxies that the author's signatures would tend to
-   break before getting to the client.
+   bytes as the publisher published.  In the HTTPS world, we have more
+   end-to-end header integrity, but it's still likely that there are
+   enough TLS-terminating proxies that the publisher's signatures would
+   tend to break before getting to the client.
 
    There's also no way in current HTTP for the response to a client-
    initiated request (Section 8.1 of [RFC7540]) to convey the request
@@ -2461,7 +2461,7 @@ B.2.1.  Conveying the signed headers
 
 
 
-Yasskin                Expires September 14, 2018              [Page 44]
+Yasskin                Expires September 18, 2018              [Page 44]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -2510,21 +2510,21 @@ B.3.2.  Response downgrade attacks
        single signature covering all valid versions.
 
    2.  A replacement for the whole exchange's signature.  This requires
-       the author to separately re-sign each valid version and requires
-       each version to include a different update URL, but allows
-       intermediates to serve less data.  This is the approach taken in
-       Section 3.
+       the publisher to separately re-sign each valid version and
+       requires each version to include a different update URL, but
+       allows intermediates to serve less data.  This is the approach
+       taken in Section 3.
 
 
 
-Yasskin                Expires September 14, 2018              [Page 45]
+Yasskin                Expires September 18, 2018              [Page 45]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
    3.  A replacement for the exchange's signature and an update for the
        embedded "expires" and related cache-control HTTP headers
-       [RFC7234].  This naturally extends authors' intuitions about
+       [RFC7234].  This naturally extends publishers' intuitions about
        cache expiration and the existing cache revalidation behavior to
        signed exchanges.  This is sketched and its downsides explored in
        Appendix C.
@@ -2573,7 +2573,7 @@ C.1.  Example of updating cache control
 
 
 
-Yasskin                Expires September 14, 2018              [Page 46]
+Yasskin                Expires September 18, 2018              [Page 46]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -2629,7 +2629,7 @@ C.2.  Downsides of updating cache control
 
 
 
-Yasskin                Expires September 14, 2018              [Page 47]
+Yasskin                Expires September 18, 2018              [Page 47]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -2685,7 +2685,7 @@ Appendix D.  Change Log
 
 
 
-Yasskin                Expires September 14, 2018              [Page 48]
+Yasskin                Expires September 18, 2018              [Page 48]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -2741,4 +2741,4 @@ Author's Address
 
 
 
-Yasskin                Expires September 14, 2018              [Page 49]
+Yasskin                Expires September 18, 2018              [Page 49]

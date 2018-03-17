@@ -36,6 +36,12 @@
     overflow: auto;
     overscroll-behavior: contain;
   }
+  ul.toc li, #rfc\.toc li {
+    font-size: 15px;
+    line-height: 20px;
+    text-indent: 0;
+    padding-left: 1em;
+  }
   body>ul.toc {
     top: 140px;
   }
@@ -365,7 +371,7 @@ address {
 
   <meta name="dct.creator" content="Yasskin, J." />
   <meta name="dct.identifier" content="urn:ietf:id:draft-yasskin-http-origin-signed-responses-latest" />
-  <meta name="dct.issued" scheme="ISO8601" content="2018-03-13" />
+  <meta name="dct.issued" scheme="ISO8601" content="2018-03-17" />
   <meta name="dct.abstract" content="This document specifies how a server can send an HTTP request/response pair, known as an exchange, with signatures that vouch for that exchange&#8217;s authenticity. These signatures can be verified against an origin&#8217;s certificate to establish that the exchange is authoritative for an origin even if it was transferred over a connection that isn&#8217;t. The signatures can also be used in other ways described in the appendices." />
   <meta name="description" content="This document specifies how a server can send an HTTP request/response pair, known as an exchange, with signatures that vouch for that exchange&#8217;s authenticity. These signatures can be verified against an origin&#8217;s certificate to establish that the exchange is authoritative for an origin even if it was transferred over a connection that isn&#8217;t. The signatures can also be used in other ways described in the appendices." />
 
@@ -386,10 +392,10 @@ address {
 </tr>
 <tr>
 <td class="left">Intended status: Standards Track</td>
-<td class="right">March 13, 2018</td>
+<td class="right">March 17, 2018</td>
 </tr>
 <tr>
-<td class="left">Expires: September 14, 2018</td>
+<td class="left">Expires: September 18, 2018</td>
 <td class="right"></td>
 </tr>
 
@@ -410,7 +416,7 @@ address {
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at https://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on September 14, 2018.</p>
+<p>This Internet-Draft will expire on September 18, 2018.</p>
 <h1 id="rfc.copyrightnotice"><a href="#rfc.copyrightnotice">Copyright Notice</a></h1>
 <p>Copyright (c) 2018 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
 <p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (https://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
@@ -584,7 +590,7 @@ address {
 
 <ul>
 <li>When signed by a certificate (<a href="#RFC5280" class="xref">[RFC5280]</a>) that&#8217;s trusted for an origin, an exchange can be treated as authoritative for that origin, even if it was transferred over a connection that isn&#8217;t authoritative (Section 9.1 of <a href="#RFC7230" class="xref">[RFC7230]</a>) for that origin. See <a href="#uc-pushed-subresources" class="xref">Appendix A.1</a> and <a href="#uc-explicit-distributor" class="xref">Appendix A.2</a>.</li>
-<li>A top-level resource can use a public key to identify an expected author for particular subresources, a system known as Subresource Integrity (<a href="#SRI" class="xref">[SRI]</a>). An exchange&#8217;s signature provides the matching proof of authorship. See <a href="#uc-sri" class="xref">Appendix A.3</a>.</li>
+<li>A top-level resource can use a public key to identify an expected publisher for particular subresources, a system known as Subresource Integrity (<a href="#SRI" class="xref">[SRI]</a>). An exchange&#8217;s signature provides the matching proof of authorship. See <a href="#uc-sri" class="xref">Appendix A.3</a>.</li>
 <li>A signature can vouch for the exchange in some way, for example that it appears in a transparency log or that static analysis indicates that it omits certain attacks. See <a href="#uc-transparency" class="xref">Appendix A.4</a> and <a href="#uc-static-analysis" class="xref">Appendix A.5</a>.</li>
 </ul>
 <p id="rfc.section.1.p.3">Subsequent work toward the use cases in <a href="#I-D.yasskin-webpackage-use-cases" class="xref">[I-D.yasskin-webpackage-use-cases]</a> will provide a way to group signed exchanges into bundles that can be transmitted and stored together, but single signed exchanges are useful enough to standardize on their own.</p>
@@ -595,13 +601,15 @@ address {
 
 <dl>
 <dt>Author</dt>
-<dd style="margin-left: 8">The entity that controls the server for a particular origin <a href="#RFC6454" class="xref">[RFC6454]</a>. The author can get a CA to issue certificates for their private keys and can run a TLS server for their origin.</dd>
+<dd style="margin-left: 8">The entity that wrote the content in a particular resource. This specification deals with publishers rather than authors.</dd>
+<dt>Publisher</dt>
+<dd style="margin-left: 8">The entity that controls the server for a particular origin <a href="#RFC6454" class="xref">[RFC6454]</a>. The publisher can get a CA to issue certificates for their private keys and can run a TLS server for their origin.</dd>
 <dt>Exchange (noun)</dt>
 <dd style="margin-left: 8">An HTTP request/response pair. This can either be a request from a client and the matching response from a server or the request in a PUSH_PROMISE and its matching response stream. Defined by Section 8 of <a href="#RFC7540" class="xref">[RFC7540]</a>.</dd>
 <dt>Intermediate</dt>
-<dd style="margin-left: 8">An entity that fetches signed HTTP exchanges from an author or another intermediate and forwards them to another intermediate or a client.</dd>
+<dd style="margin-left: 8">An entity that fetches signed HTTP exchanges from a publisher or another intermediate and forwards them to another intermediate or a client.</dd>
 <dt>Client</dt>
-<dd style="margin-left: 8">An entity that uses a signed HTTP exchange and needs to be able to prove that the author vouched for it as coming from its claimed origin.</dd>
+<dd style="margin-left: 8">An entity that uses a signed HTTP exchange and needs to be able to prove that the publisher vouched for it as coming from its claimed origin.</dd>
 <dt>Unix time</dt>
 <dd style="margin-left: 8">Defined by <a href="#POSIX" class="xref">[POSIX]</a> <a href="http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap04.html#tag_04_16">section 4.16</a>.</dd>
 </dl>
@@ -675,9 +683,9 @@ Signature:
 <p id="rfc.section.3.1.1.p.2">There are 4 signatures: 2 from different secp256r1 certificates within <samp>https://example.com/</samp>, one using a raw ed25519 public key that&#8217;s also controlled by <samp>example.com</samp>, and a fourth using a secp256r1 certificate owned by <samp>thirdparty.example.com</samp>.</p>
 <p id="rfc.section.3.1.1.p.3">All 4 signatures rely on the <samp>MI</samp> response header to guard the integrity of the response payload. This isn&#8217;t strictly required&#8212;some signatures could use <samp>MI</samp> while others use <samp>Digest</samp>&#8212;but there&#8217;s not much benefit to mixing them.</p>
 <p id="rfc.section.3.1.1.p.4">The signatures include a &#8220;validityUrl&#8221; that includes the first time the resource was seen. This allows multiple versions of a resource at the same URL to be updated with new signatures, which allows clients to avoid transferring extra data while the old versions don&#8217;t have known security bugs.</p>
-<p id="rfc.section.3.1.1.p.5">The certificates at <samp>https://example.com/oldcerts</samp> and <samp>https://example.com/newcerts</samp> have <samp>subjectAltName</samp>s of <samp>example.com</samp>, meaning that if they and their signatures validate, the exchange can be trusted as having an origin of <samp>https://example.com/</samp>. The author might be using two certificates because their readers have disjoint sets of roots in their trust stores.</p>
-<p id="rfc.section.3.1.1.p.6">The author signed with all three certificates at the same time, so they share a validity range: 7 days starting at 2017-11-19 21:53 UTC.</p>
-<p id="rfc.section.3.1.1.p.7">The author then requested an additional signature from <samp>thirdparty.example.com</samp>, which did some validation or processing and then signed the resource at 2017-11-19 23:11 UTC. <samp>thirdparty.example.com</samp> only grants 4-day signatures, so clients will need to re-validate more often.</p>
+<p id="rfc.section.3.1.1.p.5">The certificates at <samp>https://example.com/oldcerts</samp> and <samp>https://example.com/newcerts</samp> have <samp>subjectAltName</samp>s of <samp>example.com</samp>, meaning that if they and their signatures validate, the exchange can be trusted as having an origin of <samp>https://example.com/</samp>. The publisher might be using two certificates because their readers have disjoint sets of roots in their trust stores.</p>
+<p id="rfc.section.3.1.1.p.6">The publisher signed with all three certificates at the same time, so they share a validity range: 7 days starting at 2017-11-19 21:53 UTC.</p>
+<p id="rfc.section.3.1.1.p.7">The publisher then requested an additional signature from <samp>thirdparty.example.com</samp>, which did some validation or processing and then signed the resource at 2017-11-19 23:11 UTC. <samp>thirdparty.example.com</samp> only grants 4-day signatures, so clients will need to re-validate more often.</p>
 <h1 id="rfc.section.3.1.2">
 <a href="#rfc.section.3.1.2">3.1.2.</a> <a href="#oq-signature-header" id="oq-signature-header">Open Questions</a>
 </h1>
@@ -1265,7 +1273,7 @@ Accept-Signature: -rsa/2048, rsa/4096
 <h1 id="rfc.section.6.3">
 <a href="#rfc.section.6.3">6.3.</a> <a href="#seccons-downgrades" id="seccons-downgrades">Downgrades</a>
 </h1>
-<p id="rfc.section.6.3.p.1">Signing a bad response can affect more users than simply serving a bad response, since a served response will only affect users who make a request while the bad version is live, while an attacker can forward a signed response until its signature expires. Authors should consider shorter signature expiration times than they use for cache expiration times.</p>
+<p id="rfc.section.6.3.p.1">Signing a bad response can affect more users than simply serving a bad response, since a served response will only affect users who make a request while the bad version is live, while an attacker can forward a signed response until its signature expires. Publishers should consider shorter signature expiration times than they use for cache expiration times.</p>
 <p id="rfc.section.6.3.p.2">Clients MAY also check the <a href="#signature-validityurl" class="xref">&#8220;validityUrl&#8221;</a> of an exchange more often than the signature&#8217;s expiration would require. Doing so for an exchange with an HTTPS request URI provides a TLS guarantee that the exchange isn&#8217;t out of date (as long as <a href="#oq-cross-origin-push" class="xref">Section 5.2.3.1</a> is resolved to keep the same-origin requirement).</p>
 <h1 id="rfc.section.6.4">
 <a href="#rfc.section.6.4">6.4.</a> <a href="#seccons-signing-oracles" id="seccons-signing-oracles">Signing oracles are permanent</a>
@@ -1274,7 +1282,7 @@ Accept-Signature: -rsa/2048, rsa/4096
 <h1 id="rfc.section.6.5">
 <a href="#rfc.section.6.5">6.5.</a> <a href="#seccons-unsigned-headers" id="seccons-unsigned-headers">Unsigned headers</a>
 </h1>
-<p id="rfc.section.6.5.p.1">The use of a single <samp>Signed-Headers</samp> header field prevents us from signing aspects of the request other than its effective request URI (Section 5.5 of <a href="#RFC7230" class="xref">[RFC7230]</a>). For example, if an author signs both <samp>Content-Encoding: br</samp> and <samp>Content-Encoding: gzip</samp> variants of a response, what&#8217;s the impact if an attacker serves the brotli one for a request with <samp>Accept-Encoding: gzip</samp>?</p>
+<p id="rfc.section.6.5.p.1">The use of a single <samp>Signed-Headers</samp> header field prevents us from signing aspects of the request other than its effective request URI (Section 5.5 of <a href="#RFC7230" class="xref">[RFC7230]</a>). For example, if a publisher signs both <samp>Content-Encoding: br</samp> and <samp>Content-Encoding: gzip</samp> variants of a response, what&#8217;s the impact if an attacker serves the brotli one for a request with <samp>Accept-Encoding: gzip</samp>?</p>
 <p id="rfc.section.6.5.p.2">The simple form of <samp>Signed-Headers</samp> also prevents us from signing less than the full request URL. The SRI use case (<a href="#uc-sri" class="xref">Appendix A.3</a>) may benefit from being able to leave the authority less constrained.</p>
 <p><a href="#signature-validity" class="xref">Section 3.5</a> can succeed when some delivered headers aren&#8217;t included in the signed set. This accommodates current TLS-terminating intermediates and may be useful for SRI (<a href="#uc-sri" class="xref">Appendix A.3</a>), but is risky for trusting cross-origin responses (<a href="#uc-pushed-subresources" class="xref">Appendix A.1</a>, <a href="#uc-explicit-distributor" class="xref">Appendix A.2</a>, and <a href="#uc-offline-websites" class="xref">Appendix A.6</a>). <a href="#cross-origin-push" class="xref">Section 5.2</a> requires all headers to be included in the signature before trusting cross-origin pushed resources, at Ryan Sleevi&#8217;s recommendation.</p>
 <h1 id="rfc.section.6.6">
@@ -1286,7 +1294,7 @@ Accept-Signature: -rsa/2048, rsa/4096
 </h1>
 <p id="rfc.section.7.p.1">Normally, when a client fetches <samp>https://o1.com/resource.js</samp>, <samp>o1.com</samp> learns that the client is interested in the resource. If <samp>o1.com</samp> signs <samp>resource.js</samp>, <samp>o2.com</samp> serves it as <samp>https://o2.com/o1resource.js</samp>, and the client fetches it from there, then <samp>o2.com</samp> learns that the client is interested, and if the client executes the Javascript, that could also report the client&#8217;s interest back to <samp>o1.com</samp>.</p>
 <p id="rfc.section.7.p.2">Often, <samp>o2.com</samp> already knew about the client&#8217;s interest, because it&#8217;s the entity that directed the client to <samp>o1resource.js</samp>, but there may be cases where this leaks extra information.</p>
-<p id="rfc.section.7.p.3">For non-executable resource types, a signed response can improve the privacy situation by hiding the client&#8217;s interest from the original author.</p>
+<p id="rfc.section.7.p.3">For non-executable resource types, a signed response can improve the privacy situation by hiding the client&#8217;s interest from the original publisher.</p>
 <p id="rfc.section.7.p.4">To prevent network operators other than <samp>o1.com</samp> or <samp>o2.com</samp> from learning which exchanges were read, clients SHOULD only load exchanges fetched over a transport that&#8217;s protected from eavesdroppers. This can be difficult to determine when the exchange is being loaded from local disk, but when the client itself requested the exchange over a network it SHOULD require TLS (<a href="#I-D.ietf-tls-tls13" class="xref">[I-D.ietf-tls-tls13]</a>) or a successor transport layer, and MUST NOT accept exchanges transferred over plain HTTP without TLS.</p>
 <h1 id="rfc.section.8">
 <a href="#rfc.section.8">8.</a> <a href="#iana-considerations" id="iana-considerations">IANA considerations</a>
@@ -1673,7 +1681,7 @@ accept-language: ja-JP, ja
 <h1 id="rfc.appendix.B.2.1">
 <a href="#rfc.appendix.B.2.1">B.2.1.</a> <a href="#conveying-the-signed-headers" id="conveying-the-signed-headers">Conveying the signed headers</a>
 </h1>
-<p id="rfc.section.B.2.1.p.1">HTTP headers are traditionally munged by proxies, making it impossible to guarantee that the client will see the same sequence of bytes as the author wrote. In the HTTPS world, we have more end-to-end header integrity, but it&#8217;s still likely that there are enough TLS-terminating proxies that the author&#8217;s signatures would tend to break before getting to the client.</p>
+<p id="rfc.section.B.2.1.p.1">HTTP headers are traditionally munged by proxies, making it impossible to guarantee that the client will see the same sequence of bytes as the publisher published. In the HTTPS world, we have more end-to-end header integrity, but it&#8217;s still likely that there are enough TLS-terminating proxies that the publisher&#8217;s signatures would tend to break before getting to the client.</p>
 <p id="rfc.section.B.2.1.p.2">There&#8217;s also no way in current HTTP for the response to a client-initiated request (Section 8.1 of <a href="#RFC7540" class="xref">[RFC7540]</a>) to convey the request headers it expected to respond to. A PUSH_PROMISE (Section 8.2 of <a href="#RFC7540" class="xref">[RFC7540]</a>) does not have this problem, and it would be possible to introduce a response header to convey the expected request headers.</p>
 <p id="rfc.section.B.2.1.p.3">Since proxies are unlikely to modify unknown content types, we can wrap the original exchange into an <samp>application/http-exchange+cbor</samp> format (<a href="#application-http-exchange" class="xref">Section 5.3</a>) and include the <samp>Cache-Control: no-transform</samp> header when sending it.</p>
 <p id="rfc.section.B.2.1.p.4">To reduce the likelihood of accidental modification by proxies, the <samp>application/http-exchange+cbor</samp> format includes a file signature that doesn&#8217;t collide with other known signatures.</p>
@@ -1696,8 +1704,8 @@ accept-language: ja-JP, ja
 
 <ol>
 <li>A signed minimum version number or timestamp for a set of request headers: This requires that signed responses need to include a version number or timestamp, but allows a server to provide a single signature covering all valid versions.</li>
-<li>A replacement for the whole exchange&#8217;s signature. This requires the author to separately re-sign each valid version and requires each version to include a different update URL, but allows intermediates to serve less data. This is the approach taken in <a href="#proposal" class="xref">Section 3</a>.</li>
-<li>A replacement for the exchange&#8217;s signature and an update for the embedded <samp>expires</samp> and related cache-control HTTP headers <a href="#RFC7234" class="xref">[RFC7234]</a>. This naturally extends authors&#8217; intuitions about cache expiration and the existing cache revalidation behavior to signed exchanges. This is sketched and its downsides explored in <a href="#validity-with-cache-control" class="xref">Appendix C</a>.</li>
+<li>A replacement for the whole exchange&#8217;s signature. This requires the publisher to separately re-sign each valid version and requires each version to include a different update URL, but allows intermediates to serve less data. This is the approach taken in <a href="#proposal" class="xref">Section 3</a>.</li>
+<li>A replacement for the exchange&#8217;s signature and an update for the embedded <samp>expires</samp> and related cache-control HTTP headers <a href="#RFC7234" class="xref">[RFC7234]</a>. This naturally extends publishers&#8217; intuitions about cache expiration and the existing cache revalidation behavior to signed exchanges. This is sketched and its downsides explored in <a href="#validity-with-cache-control" class="xref">Appendix C</a>.</li>
 </ol>
 <p id="rfc.section.B.3.2.p.4">The signature also needs to include instructions to intermediates for how to fetch updated validity assertions.</p>
 <h1 id="rfc.appendix.C">
