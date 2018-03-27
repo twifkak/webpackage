@@ -535,12 +535,12 @@ Signature:
 <li>The map mapping: <ul>
 <li>The byte string &#8216;:method&#8217; to the byte string containing <samp>exchange</samp>&#8217;s request&#8217;s method.</li>
 <li>The byte string &#8216;:url&#8217; to the byte string containing <samp>exchange</samp>&#8217;s request&#8217;s effective request URI.</li>
-<li>For each request header field in <samp>exchange</samp>, the header field&#8217;s name as a byte string to the header field&#8217;s value as a byte string.</li>
+<li>For each request header field in <samp>exchange</samp>, the header field&#8217;s lowercase name as a byte string to the header field&#8217;s value as a byte string.</li>
 </ul>
 </li>
 <li>The map mapping: <ul>
 <li>the byte string &#8216;:status&#8217; to the byte string containing <samp>exchange</samp>&#8217;s response&#8217;s 3-digit status code, and</li>
-<li>for each response header field in <samp>exchange</samp>, the header field&#8217;s name as a byte string to the header field&#8217;s value as a byte string.</li>
+<li>for each response header field in <samp>exchange</samp>, the header field&#8217;s lowercase name as a byte string to the header field&#8217;s value as a byte string.</li>
 </ul>
 </li>
 </ol>
@@ -863,10 +863,11 @@ signed-exchange-header = [
   },
 ]
 </pre>
-<p id="rfc.section.5.3.p.5">The first element of the array is interpreted as the exchange&#8217;s request headers, with the request method in the &#8216;:method&#8217; key&#8217;s value, and the effective request URI in the &#8216;:url&#8217; key&#8217;s value.</p>
-<p id="rfc.section.5.3.p.6">The second element of the array is interpreted as the exchange&#8217;s response headers, with the 3-digit response status code in the &#8216;:status&#8217; key&#8217;s value.</p>
-<p id="rfc.section.5.3.p.7">Pass the <samp>Signature</samp> response header and the exchange with that header removed to the algorithm in <a href="#cross-origin-trust" class="xref">Section 4</a>. Fail if this returns &#8220;invalid&#8221;.</p>
-<p id="rfc.section.5.3.p.8">The remainder of the resource is the exchange&#8217;s payload, encoded with the <samp>mi-sha256</samp> content encoding (<a href="#I-D.thomson-http-mice" class="xref">[I-D.thomson-http-mice]</a>). If the <samp>mi-sha256</samp> record length (the first 8 bytes of the payload) is greater than 16kB, or if any of the integrity proofs fail validation, parsing MUST fail.</p>
+<p id="rfc.section.5.3.p.5">The first element of the array is interpreted as the exchange&#8217;s request headers with lowercase names, with the request method in the &#8216;:method&#8217; key&#8217;s value, and the effective request URI in the &#8216;:url&#8217; key&#8217;s value.</p>
+<p id="rfc.section.5.3.p.6">The second element of the array is interpreted as the exchange&#8217;s response headers with lowercase names, with the 3-digit response status code in the &#8216;:status&#8217; key&#8217;s value.</p>
+<p id="rfc.section.5.3.p.7">If any header field name includes uppercase characters, parsing MUST fail.</p>
+<p id="rfc.section.5.3.p.8">Pass the <samp>Signature</samp> response header and the exchange with that header removed to the algorithm in <a href="#cross-origin-trust" class="xref">Section 4</a>. Fail if this returns &#8220;invalid&#8221;.</p>
+<p id="rfc.section.5.3.p.9">The remainder of the resource is the exchange&#8217;s payload, encoded with the <samp>mi-sha256</samp> content encoding (<a href="#I-D.thomson-http-mice" class="xref">[I-D.thomson-http-mice]</a>). If the <samp>mi-sha256</samp> record length (the first 8 bytes of the payload) is greater than 16kB, or if any of the integrity proofs fail validation, parsing MUST fail.</p>
 <h1 id="rfc.section.6">
 <a href="#rfc.section.6">6.</a> <a href="#security-considerations" id="security-considerations">Security considerations</a>
 </h1>

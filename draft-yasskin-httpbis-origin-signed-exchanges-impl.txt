@@ -312,8 +312,8 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  March 2018
           "exchange"'s request's effective request URI.
 
        *  For each request header field in "exchange", the header
-          field's name as a byte string to the header field's value as a
-          byte string.
+          field's lowercase name as a byte string to the header field's
+          value as a byte string.
 
    2.  The map mapping:
 
@@ -321,8 +321,8 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  March 2018
           "exchange"'s response's 3-digit status code, and
 
        *  for each response header field in "exchange", the header
-          field's name as a byte string to the header field's value as a
-          byte string.
+          field's lowercase name as a byte string to the header field's
+          value as a byte string.
 
 3.2.1.  Example
 
@@ -899,12 +899,16 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  March 2018
 
 
    The first element of the array is interpreted as the exchange's
-   request headers, with the request method in the ':method' key's
-   value, and the effective request URI in the ':url' key's value.
+   request headers with lowercase names, with the request method in the
+   ':method' key's value, and the effective request URI in the ':url'
+   key's value.
 
    The second element of the array is interpreted as the exchange's
-   response headers, with the 3-digit response status code in the
-   ':status' key's value.
+   response headers with lowercase names, with the 3-digit response
+   status code in the ':status' key's value.
+
+   If any header field name includes uppercase characters, parsing MUST
+   fail.
 
    Pass the "Signature" response header and the exchange with that
    header removed to the algorithm in Section 4.  Fail if this returns
@@ -941,10 +945,6 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  March 2018
    it's the entity that directed the client to "o1resource.js", but
    there may be cases where this leaks extra information.
 
-   For non-executable resource types, a signed response can improve the
-   privacy situation by hiding the client's interest from the original
-   author.
-
 
 
 
@@ -953,6 +953,10 @@ Yasskin & Ueno         Expires September 28, 2018              [Page 17]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  March 2018
 
+
+   For non-executable resource types, a signed response can improve the
+   privacy situation by hiding the client's interest from the original
+   author.
 
    To prevent network operators other than "o1.com" or "o2.com" from
    learning which exchanges were read, clients SHOULD only load
@@ -998,10 +1002,6 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  March 2018
 
    Additional information:
 
-   Deprecated alias names for this type: N/A
-
-   Magic number(s): N/A
-
 
 
 
@@ -1009,6 +1009,10 @@ Yasskin & Ueno         Expires September 28, 2018              [Page 18]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  March 2018
 
+
+   Deprecated alias names for this type: N/A
+
+   Magic number(s): N/A
 
    File extension(s): N/A
 
@@ -1052,10 +1056,6 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  March 2018
               Version 1.3", draft-ietf-tls-tls13-28 (work in progress),
               March 2018.
 
-   [I-D.thomson-http-mice]
-              Thomson, M., "Merkle Integrity Content Encoding", draft-
-              thomson-http-mice-02 (work in progress), October 2016.
-
 
 
 
@@ -1065,6 +1065,10 @@ Yasskin & Ueno         Expires September 28, 2018              [Page 19]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  March 2018
 
+
+   [I-D.thomson-http-mice]
+              Thomson, M., "Merkle Integrity Content Encoding", draft-
+              thomson-http-mice-02 (work in progress), October 2016.
 
    [I-D.yasskin-http-origin-signed-responses]
               Yasskin, J., "Signed HTTP Exchanges", draft-yasskin-http-
@@ -1110,10 +1114,6 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  March 2018
               Transfer Protocol Version 2 (HTTP/2)", RFC 7540,
               DOI 10.17487/RFC7540, May 2015,
               <https://www.rfc-editor.org/info/rfc7540>.
-
-
-
-
 
 
 

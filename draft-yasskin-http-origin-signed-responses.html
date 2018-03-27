@@ -702,12 +702,12 @@ Signature:
 <li>The map mapping: <ul>
 <li>The byte string &#8216;:method&#8217; to the byte string containing <samp>exchange</samp>&#8217;s request&#8217;s method.</li>
 <li>The byte string &#8216;:url&#8217; to the byte string containing <samp>exchange</samp>&#8217;s request&#8217;s effective request URI.</li>
-<li>For each request header field in <samp>exchange</samp>, the header field&#8217;s name as a byte string to the header field&#8217;s value as a byte string.</li>
+<li>For each request header field in <samp>exchange</samp>, the header field&#8217;s lowercase name as a byte string to the header field&#8217;s value as a byte string.</li>
 </ul>
 </li>
 <li>The map mapping: <ul>
 <li>the byte string &#8216;:status&#8217; to the byte string containing <samp>exchange</samp>&#8217;s response&#8217;s 3-digit status code, and</li>
-<li>for each response header field in <samp>exchange</samp>, the header field&#8217;s name as a byte string to the header field&#8217;s value as a byte string.</li>
+<li>for each response header field in <samp>exchange</samp>, the header field&#8217;s lowercase name as a byte string to the header field&#8217;s value as a byte string.</li>
 </ul>
 </li>
 </ol>
@@ -1181,7 +1181,7 @@ Accept-Signature: -rsa/2048, rsa/4096
 
 <dl>
 <dt>&#8220;request&#8221;</dt>
-<dd style="margin-left: 8">A map from request header field names to values, encoded as byte strings (<a href="#RFC7049" class="xref">[RFC7049]</a>, section 2.1). The request header fields MUST include two pseudo-header fields (Section 8.1.2.1 of <a href="#RFC7540" class="xref">[RFC7540]</a>): <ul>
+<dd style="margin-left: 8">A map from lowercase request header field names to their values, encoded as byte strings (<a href="#RFC7049" class="xref">[RFC7049]</a>, section 2.1). The request header fields MUST include two pseudo-header fields (Section 8.1.2.1 of <a href="#RFC7540" class="xref">[RFC7540]</a>): <ul>
 <li>
 <samp>':method'</samp>: The method of the request (Section 4 of <a href="#RFC7231" class="xref">[RFC7231]</a>).</li>
 <li>
@@ -1192,14 +1192,14 @@ Accept-Signature: -rsa/2048, rsa/4096
 <dt>&#8220;request payload&#8221;</dt>
 <dd style="margin-left: 8">A byte string (<a href="#RFC7049" class="xref">[RFC7049]</a>, section 2.1) containing the request payload body (Section 3.3 of <a href="#RFC7230" class="xref">[RFC7230]</a>).</dd>
 <dt>&#8220;response&#8221;</dt>
-<dd style="margin-left: 8">A map from response header field names to values, encoded as byte strings (<a href="#RFC7049" class="xref">[RFC7049]</a>, section 2.1). The response header fields MUST include one pseudo-header field (Section 8.1.2.1 of <a href="#RFC7540" class="xref">[RFC7540]</a>): <ul><li>
+<dd style="margin-left: 8">A map from lowercase response header field names to their values, encoded as byte strings (<a href="#RFC7049" class="xref">[RFC7049]</a>, section 2.1). The response header fields MUST include one pseudo-header field (Section 8.1.2.1 of <a href="#RFC7540" class="xref">[RFC7540]</a>): <ul><li>
 <samp>':status'</samp>: The response&#8217;s 3-digit status code (Section 6 of <a href="#RFC7231" class="xref">[RFC7231]</a>]).</li></ul>
 <p> </p>
 </dd>
 <dt>&#8220;payload&#8221;</dt>
 <dd style="margin-left: 8">A byte string (<a href="#RFC7049" class="xref">[RFC7049]</a>, section 2.1) containing the response payload body (Section 3.3 of <a href="#RFC7230" class="xref">[RFC7230]</a>).</dd>
 <dt>&#8220;trailer&#8221;</dt>
-<dd style="margin-left: 8">A map of trailer header field names to values, encoded as byte strings (Section 2.1 of <a href="#RFC7049" class="xref">[RFC7049]</a>).</dd>
+<dd style="margin-left: 8">A map of lowercase trailer header field names to their values, encoded as byte strings (Section 2.1 of <a href="#RFC7049" class="xref">[RFC7049]</a>).</dd>
 </dl>
 <p id="rfc.section.5.3.p.7">A parser MAY return incremental information while parsing <samp>application/http-exchange+cbor</samp> content.</p>
 <p id="rfc.section.5.3.p.8">Members &#8220;request&#8221;, &#8220;response&#8221;, and &#8220;payload&#8221; MUST be present. If one is missing, the parser MUST stop and report an error.</p>
