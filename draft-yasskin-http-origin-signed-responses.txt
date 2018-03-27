@@ -4,8 +4,8 @@
 
 Network Working Group                                         J. Yasskin
 Internet-Draft                                                    Google
-Intended status: Standards Track                          March 26, 2018
-Expires: September 27, 2018
+Intended status: Standards Track                          March 27, 2018
+Expires: September 28, 2018
 
 
                          Signed HTTP Exchanges
@@ -48,12 +48,12 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on September 27, 2018.
+   This Internet-Draft will expire on September 28, 2018.
 
 
 
 
-Yasskin                Expires September 27, 2018               [Page 1]
+Yasskin                Expires September 28, 2018               [Page 1]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -90,9 +90,9 @@ Table of Contents
      3.6.  Updating signature validity . . . . . . . . . . . . . . .  15
        3.6.1.  Examples  . . . . . . . . . . . . . . . . . . . . . .  16
      3.7.  The Accept-Signature header . . . . . . . . . . . . . . .  18
-       3.7.1.  Integrity labels  . . . . . . . . . . . . . . . . . .  18
-       3.7.2.  Key type labels . . . . . . . . . . . . . . . . . . .  19
-       3.7.3.  Key value labels  . . . . . . . . . . . . . . . . . .  19
+       3.7.1.  Integrity identifiers . . . . . . . . . . . . . . . .  18
+       3.7.2.  Key type identifiers  . . . . . . . . . . . . . . . .  19
+       3.7.3.  Key value identifiers . . . . . . . . . . . . . . . .  19
        3.7.4.  Examples  . . . . . . . . . . . . . . . . . . . . . .  20
        3.7.5.  Open Questions  . . . . . . . . . . . . . . . . . . .  20
    4.  Cross-origin trust  . . . . . . . . . . . . . . . . . . . . .  20
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Yasskin                Expires September 27, 2018               [Page 2]
+Yasskin                Expires September 28, 2018               [Page 2]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -165,7 +165,7 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 
-Yasskin                Expires September 27, 2018               [Page 3]
+Yasskin                Expires September 28, 2018               [Page 3]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -221,7 +221,7 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 
-Yasskin                Expires September 27, 2018               [Page 4]
+Yasskin                Expires September 28, 2018               [Page 4]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -267,52 +267,53 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
    enforces the integrity of the exchange's payload.
 
    The "Signature" header is a Structured Header as defined by
-   [I-D.ietf-httpbis-header-structure].  Its value MUST be a list
-   (Section 4.8 of [I-D.ietf-httpbis-header-structure]) of parameterised
-   labels (Section 4.4 of [I-D.ietf-httpbis-header-structure]).
+   [I-D.ietf-httpbis-header-structure].  Its value MUST be a
+   parameterised list (Section 4.3 of
+   [I-D.ietf-httpbis-header-structure]).
 
-   Each parameterised label MUST have parameters named "sig",
-   "integrity", "validityUrl", "date", and "expires".  Each
-   parameterised label MUST also have either "certUrl" and "certSha256"
+   Each parameterised identifier in the list MUST have parameters named
+   "sig", "integrity", "validityUrl", "date", and "expires".  Each
+   parameterised identifier MUST also have either "certUrl" and
 
 
 
-Yasskin                Expires September 27, 2018               [Page 5]
+Yasskin                Expires September 28, 2018               [Page 5]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
-   parameters or an "ed25519Key" parameter.  This specification gives no
-   meaning to the label itself, which can be used as a human-readable
-   identifier for the signature (see Section 3.1.2, Paragraph 1).  The
-   present parameters MUST have the following values:
+   "certSha256" parameters or an "ed25519Key" parameter.  This
+   specification gives no meaning to the identifier itself, which can be
+   used as a human-readable identifier for the signature (see
+   Section 3.1.2, Paragraph 1).  The present parameters MUST have the
+   following values:
 
-   "sig"  Binary content (Section 4.5 of
+   "sig"  Binary content (Section 4.9 of
       [I-D.ietf-httpbis-header-structure]) holding the signature of most
       of these parameters and the exchange's headers.
 
-   "integrity"  A string (Section 4.2 of
+   "integrity"  A string (Section 4.7 of
       [I-D.ietf-httpbis-header-structure]) containing the lowercase name
       of the response header field that guards the response payload's
       integrity.
 
-   "certUrl"  A string (Section 4.2 of
+   "certUrl"  A string (Section 4.7 of
       [I-D.ietf-httpbis-header-structure]) containing a valid URL string
       [4].
 
-   "certSha256"  Binary content (Section 4.5 of
+   "certSha256"  Binary content (Section 4.9 of
       [I-D.ietf-httpbis-header-structure]) holding the SHA-256 hash of
       the first certificate found at "certUrl".
 
-   "ed25519Key"  Binary content (Section 4.5 of
+   "ed25519Key"  Binary content (Section 4.9 of
       [I-D.ietf-httpbis-header-structure]) holding an Ed25519 public key
       ([RFC8032]).
 
-   "validityUrl"  A string (Section 4.2 of
+   "validityUrl"  A string (Section 4.7 of
       [I-D.ietf-httpbis-header-structure]) containing a valid URL string
       [5].
 
-   "date" and "expires"  An unsigned integer (Section 4.1 of
+   "date" and "expires"  An integer (Section 4.5 of
       [I-D.ietf-httpbis-header-structure]) representing a Unix time.
 
    The "certUrl" parameter is _not_ signed, so intermediates can update
@@ -332,39 +333,38 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 
-
-Yasskin                Expires September 27, 2018               [Page 6]
+Yasskin                Expires September 28, 2018               [Page 6]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 Signature:
  sig1;
-  sig=*MEUCIQDXlI2gN3RNBlgFiuRNFpZXcDIaUpX6HIEwcZEc0cZYLAIga9DsVOMM+g5YpwEBdGW3sS+bvnmAJJiSMwhuBdqp5UY;
+  sig=*MEUCIQDXlI2gN3RNBlgFiuRNFpZXcDIaUpX6HIEwcZEc0cZYLAIga9DsVOMM+g5YpwEBdGW3sS+bvnmAJJiSMwhuBdqp5UY=*;
   integrity="mi";
   validityUrl="https://example.com/resource.validity.1511128380";
   certUrl="https://example.com/oldcerts";
-  certSha256=*W7uB969dFW3Mb5ZefPS9Tq5ZbH5iSmOILpjv2qEArmI;
+  certSha256=*W7uB969dFW3Mb5ZefPS9Tq5ZbH5iSmOILpjv2qEArmI=*;
   date=1511128380; expires=1511733180,
  sig2;
-  sig=*MEQCIGjZRqTRf9iKNkGFyzRMTFgwf/BrY2ZNIP/dykhUV0aYAiBTXg+8wujoT4n/W+cNgb7pGqQvIUGYZ8u8HZJ5YH26Qg;
+  sig=*MEQCIGjZRqTRf9iKNkGFyzRMTFgwf/BrY2ZNIP/dykhUV0aYAiBTXg+8wujoT4n/W+cNgb7pGqQvIUGYZ8u8HZJ5YH26Qg=*;
   integrity="mi";
   validityUrl="https://example.com/resource.validity.1511128380";
   certUrl="https://example.com/newcerts";
-  certSha256=*J/lEm9kNRODdCmINbvitpvdYKNQ+YgBj99DlYp4fEXw;
+  certSha256=*J/lEm9kNRODdCmINbvitpvdYKNQ+YgBj99DlYp4fEXw=*;
   date=1511128380; expires=1511733180,
  srisig;
-  sig=*lGZVaJJM5f2oGczFlLmBdKTDL+QADza4BgeO494ggACYJOvrof6uh5OJCcwKrk7DK+LBch0jssDYPp5CLc1SDA
+  sig=*lGZVaJJM5f2oGczFlLmBdKTDL+QADza4BgeO494ggACYJOvrof6uh5OJCcwKrk7DK+LBch0jssDYPp5CLc1SDA=*
   integrity="mi";
   validityUrl="https://example.com/resource.validity.1511128380";
-  ed25519Key=*zsSevyFsxyZHiUluVBDd4eypdRLTqyWRVOJuuKUz+A8
+  ed25519Key=*zsSevyFsxyZHiUluVBDd4eypdRLTqyWRVOJuuKUz+A8=*
   date=1511128380; expires=1511733180,
  thirdpartysig;
-  sig=*MEYCIQCNxJzn6Rh2fNxsobktir8TkiaJYQFhWTuWI1i4PewQaQIhAMs2TVjc4rTshDtXbgQEOwgj2mRXALhfXPztXgPupii+;
+  sig=*MEYCIQCNxJzn6Rh2fNxsobktir8TkiaJYQFhWTuWI1i4PewQaQIhAMs2TVjc4rTshDtXbgQEOwgj2mRXALhfXPztXgPupii+=*;
   integrity="mi";
   validityUrl="https://thirdparty.example.com/resource.validity.1511161860";
   certUrl="https://thirdparty.example.com/certs";
-  certSha256=*UeOwUPkvxlGRTyvHcsMUN0A2oNsZbU8EUvg8A9ZAnNc;
+  certSha256=*UeOwUPkvxlGRTyvHcsMUN0A2oNsZbU8EUvg8A9ZAnNc=*;
   date=1511133060; expires=1511478660,
 
    There are 4 signatures: 2 from different secp256r1 certificates
@@ -389,7 +389,7 @@ Signature:
 
 
 
-Yasskin                Expires September 27, 2018               [Page 7]
+Yasskin                Expires September 28, 2018               [Page 7]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -411,8 +411,8 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 3.1.2.  Open Questions
 
    [I-D.ietf-httpbis-header-structure] provides a way to parameterise
-   labels but not other supported types like binary content.  If the
-   "Signature" header field is notionally a list of parameterised
+   identifiers but not other supported types like binary content.  If
+   the "Signature" header field is notionally a list of parameterised
    signatures, maybe we should add a "parameterised binary content"
    type.
 
@@ -445,7 +445,7 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 
-Yasskin                Expires September 27, 2018               [Page 8]
+Yasskin                Expires September 28, 2018               [Page 8]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -501,7 +501,7 @@ Signed-Headers: "content-type", "digest"
 
 
 
-Yasskin                Expires September 27, 2018               [Page 9]
+Yasskin                Expires September 28, 2018               [Page 9]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -557,7 +557,7 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 
-Yasskin                Expires September 27, 2018              [Page 10]
+Yasskin                Expires September 28, 2018              [Page 10]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -601,8 +601,8 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
 3.5.  Signature validity
 
-   The client MUST parse the "Signature" header field as the list of
-   parameterised values (Section 4.8.1 of
+   The client MUST parse the "Signature" header field as the
+   parameterised list (Section 4.3.1 of
    [I-D.ietf-httpbis-header-structure]) described in Section 3.1.  If an
    error is thrown during this parsing or any of the requirements
    described there aren't satisfied, the exchange has no valid
@@ -613,7 +613,7 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 
-Yasskin                Expires September 27, 2018              [Page 11]
+Yasskin                Expires September 28, 2018              [Page 11]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -641,7 +641,7 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
    2.   Let:
 
         *  "signature" be the signature (binary content in the
-           parameterised label's "sig" parameter).
+           parameterised identifier's "sig" parameter).
 
         *  "integrity" be the signature's "integrity" parameter.
 
@@ -669,7 +669,7 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 
-Yasskin                Expires September 27, 2018              [Page 12]
+Yasskin                Expires September 28, 2018              [Page 12]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -725,7 +725,7 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 
-Yasskin                Expires September 27, 2018              [Page 13]
+Yasskin                Expires September 28, 2018              [Page 13]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -781,7 +781,7 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 
-Yasskin                Expires September 27, 2018              [Page 14]
+Yasskin                Expires September 28, 2018              [Page 14]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -837,17 +837,17 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 
-Yasskin                Expires September 27, 2018              [Page 15]
+Yasskin                Expires September 28, 2018              [Page 15]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
-   The elements of the "signatures" array are parameterised labels
-   (Section 4.4 of [I-D.ietf-httpbis-header-structure]) meant to replace
-   the signatures within the "Signature" header field pointing to this
-   validity data.  If the signed exchange contains a bug severe enough
-   that clients need to stop using the content, the "signatures" array
-   MUST NOT be present.
+   The elements of the "signatures" array are parameterised identifiers
+   (Section 4.3.2 of [I-D.ietf-httpbis-header-structure]) meant to
+   replace the signatures within the "Signature" header field pointing
+   to this validity data.  If the signed exchange contains a bug severe
+   enough that clients need to stop using the content, the "signatures"
+   array MUST NOT be present.
 
    If the the "update" map is present, that indicates that a new version
    of the signed exchange is available at its effective request URI
@@ -868,19 +868,19 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
 Signature:
  sig1;
-  sig=*MEUCIQ...;
+  sig=*MEUCIQ...*;
   ...
   validityUrl="https://example.com/resource.validity.1511157180";
   certUrl="https://example.com/oldcerts";
   date=1511128380; expires=1511733180,
  sig2;
-  sig=*MEQCIG...;
+  sig=*MEQCIG...*;
   ...
   validityUrl="https://example.com/resource.validity.1511157180";
   certUrl="https://example.com/newcerts";
   date=1511128380; expires=1511733180,
  thirdpartysig;
-  sig=*MEYCIQ...;
+  sig=*MEYCIQ...*;
   ...
   validityUrl="https://thirdparty.example.com/resource.validity.1511161860";
   certUrl="https://thirdparty.example.com/certs";
@@ -893,7 +893,7 @@ Signature:
 
 
 
-Yasskin                Expires September 27, 2018              [Page 16]
+Yasskin                Expires September 28, 2018              [Page 16]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -904,11 +904,11 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 {
   "signatures": [
     'sig1; '
-    'sig=*MEQCIC/I9Q+7BZFP6cSDsWx43pBAL0ujTbON/+7RwKVk+ba5AiB3FSFLZqpzmDJ0NumNwN04pqgJZE99fcK86UjkPbj4jw; '
+    'sig=*MEQCIC/I9Q+7BZFP6cSDsWx43pBAL0ujTbON/+7RwKVk+ba5AiB3FSFLZqpzmDJ0NumNwN04pqgJZE99fcK86UjkPbj4jw==*; '
     'validityUrl="https://example.com/resource.validity.1511157180"; '
     'integrity="mi"; '
     'certUrl="https://example.com/newcerts"; '
-    'certSha256=*J/lEm9kNRODdCmINbvitpvdYKNQ+YgBj99DlYp4fEXw; '
+    'certSha256=*J/lEm9kNRODdCmINbvitpvdYKNQ+YgBj99DlYp4fEXw=*; '
     'date=1511733180; expires=1512337980'
   ],
   "update": {
@@ -927,13 +927,13 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
 Signature:
  sig1;
-  sig=*MEQCIC...;
+  sig=*MEQCIC...*;
   ...
   validityUrl="https://example.com/resource.validity.1511157180";
   certUrl="https://example.com/newcerts";
   date=1511733180; expires=1512337980,
  thirdpartysig;
-  sig=*MEYCIQ...;
+  sig=*MEYCIQ...*;
   ...
   validityUrl="https://thirdparty.example.com/resource.validity.1511161860";
   certUrl="https://thirdparty.example.com/certs";
@@ -949,7 +949,7 @@ Signature:
 
 
 
-Yasskin                Expires September 27, 2018              [Page 17]
+Yasskin                Expires September 28, 2018              [Page 17]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -971,41 +971,41 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
    it hadn't received any "Accept-Signature" header at all.
 
    The "Accept-Signature" header field is a Structured Header as defined
-   by [I-D.ietf-httpbis-header-structure].  Its value MUST be a list
-   (Section 4.8 of [I-D.ietf-httpbis-header-structure]) of parameterised
-   labels (Section 4.4 of [I-D.ietf-httpbis-header-structure]).  The
-   order of labels in the "Accept-Signature" list is not significant.
-   Labels, ignoring any initial "-" character, MUST NOT be duplicated.
+   by [I-D.ietf-httpbis-header-structure].  Its value MUST be a
+   parameterised list (Section 4.3 of
+   [I-D.ietf-httpbis-header-structure]).  The order of identifiers in
+   the "Accept-Signature" list is not significant.  Identifiers,
+   ignoring any initial "-" character, MUST NOT be duplicated.
 
-   Each label in the "Accept-Signature" header field's value indicates
-   that a feature of the "Signature" header field (Section 3.1) is
-   supported.  If the label begins with a "-" character, it instead
-   indicates that the feature named by the rest of the label is not
-   supported.  Unknown labels and parameters MUST be ignored because new
-   labels and new parameters on existing labels may be defined by future
-   specifications.
+   Each identifier in the "Accept-Signature" header field's value
+   indicates that a feature of the "Signature" header field
+   (Section 3.1) is supported.  If the identifier begins with a "-"
+   character, it instead indicates that the feature named by the rest of
+   the identifier is not supported.  Unknown identifiers and parameters
+   MUST be ignored because new identifiers and new parameters on
+   existing identifiers may be defined by future specifications.
 
-3.7.1.  Integrity labels
+3.7.1.  Integrity identifiers
 
-   Labels starting with "digest/" indicate that the client supports the
-   "Digest" header field ([RFC3230]) with the digest-algorithm from the
-   https://www.iana.org/assignments/http-dig-alg/http-dig-alg.xhtml [7]
-   registry named in lower-case by the rest of the label.  For example,
-   "digest/sha-512" indicates support for the SHA-512 digest algorithm,
-   and "-digest/sha-256" indicates non-support for the SHA-256 digest
-   algorithm.
+   Identifiers starting with "digest/" indicate that the client supports
+   the "Digest" header field ([RFC3230]) with the digest-algorithm from
+   the https://www.iana.org/assignments/http-dig-alg/http-dig-alg.xhtml
+   [7] registry named in lower-case by the rest of the identifier.  For
+   example, "digest/sha-512" indicates support for the SHA-512 digest
+   algorithm, and "-digest/sha-256" indicates non-support for the
+   SHA-256 digest algorithm.
 
-   Labels starting with "mi/" indicate that the client supports the "MI"
-   header field ([I-D.thomson-http-mice]) with the parameter from the
-   HTTP MI Parameter Registry registry named in lower-case by the rest
-   of the label.  For example, "mi/mi-blake2" indicates support for
-   Merkle integrity with the as-yet-unspecified mi-blake2 parameter, and
-   "-digest/mi-sha256" indicates non-support for Merkle integrity with
-   the mi-sha256 content encoding.
+   Identifiers starting with "mi/" indicate that the client supports the
+   "MI" header field ([I-D.thomson-http-mice]) with the parameter from
+   the HTTP MI Parameter Registry registry named in lower-case by the
+   rest of the identifier.  For example, "mi/mi-blake2" indicates
+   support for Merkle integrity with the as-yet-unspecified mi-blake2
+   parameter, and "-digest/mi-sha256" indicates non-support for Merkle
+   integrity with the mi-sha256 content encoding.
 
 
 
-Yasskin                Expires September 27, 2018              [Page 18]
+Yasskin                Expires September 28, 2018              [Page 18]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -1014,54 +1014,54 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
    assume support for "digest/sha-256" and "mi/mi-sha256" unless the
    header field states otherwise.
 
-3.7.2.  Key type labels
+3.7.2.  Key type identifiers
 
-   Labels starting with "rsa/" indicate that the client supports
+   Identifiers starting with "rsa/" indicate that the client supports
    certificates holding RSA public keys with a number of bits indicated
    by the digits after the "/".
 
-   Labels starting with "ecdsa/" indicate that the client supports
+   Identifiers starting with "ecdsa/" indicate that the client supports
    certificates holding ECDSA public keys on the curve named in lower-
-   case by the rest of the label.
+   case by the rest of the identifier.
 
    If the "Accept-Signature" header field is present, servers SHOULD
    assume support for "rsa/2048", "ecdsa/secp256r1", and "ecdsa/
    secp384r1" unless the header field states otherwise.
 
-3.7.3.  Key value labels
+3.7.3.  Key value identifiers
 
-   The "ed25519key" label has parameters indicating the public keys that
-   will be used to validate the returned signature.  Each parameter's
-   name is re-interpreted as binary content (Section 4.5 of
+   The "ed25519key" identifier has parameters indicating the public keys
+   that will be used to validate the returned signature.  Each
+   parameter's name is re-interpreted as binary content (Section 4.9 of
    [I-D.ietf-httpbis-header-structure]) encoding a prefix of the public
    key.  For example, if the client will validate signatures using the
    public key whose base64 encoding is
-   "11qYAYKxCrfVS/7TyWQHOg7hcvPapiMlrwIaaPcHURo", valid "Accept-
+   "11qYAYKxCrfVS/7TyWQHOg7hcvPapiMlrwIaaPcHURo=", valid "Accept-
    Signature" header fields include:
 
-Accept-Signature: ..., ed25519key; *11qYAYKxCrfVS/7TyWQHOg7hcvPapiMlrwIaaPcHURo
-Accept-Signature: ..., ed25519key; *11qYAYKxCrfVS/7TyWQHOg
-Accept-Signature: ..., ed25519key; *11qYAQ
-Accept-Signature: ..., ed25519key; *
+Accept-Signature: ..., ed25519key; *11qYAYKxCrfVS/7TyWQHOg7hcvPapiMlrwIaaPcHURo=*
+Accept-Signature: ..., ed25519key; *11qYAYKxCrfVS/7TyWQHOg==*
+Accept-Signature: ..., ed25519key; *11qYAQ==*
+Accept-Signature: ..., ed25519key; **
 
    but not
 
-   Accept-Signature: ..., ed25519key; *11qYA
+   Accept-Signature: ..., ed25519key; *11qYA===*
 
    because 5 bytes isn't a valid length for encoded base64, and not
 
    Accept-Signature: ..., ed25519key; 11qYAQ
 
-   because it doesn't start with the "*" that indicates binary content.
+   because it doesn't start or end with the "*"s that indicate binary
+   content.
 
-   Note that "ed25519key; *" is an empty prefix, which matches all
+   Note that "ed25519key; **" is an empty prefix, which matches all
    public keys, so it's useful in subresource integrity (Appendix A.3)
    cases like "<link rel=preload as=script href="...">" where the public
 
 
 
-
-Yasskin                Expires September 27, 2018              [Page 19]
+Yasskin                Expires September 28, 2018              [Page 19]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -1097,7 +1097,7 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
    Is "Accept-Signature" the right spelling, or do we want to imitate
    "Want-Digest" (Section 4.3.1 of [RFC3230]) instead?
 
-   Do I have the right structure for the labels indicating feature
+   Do I have the right structure for the identifiers indicating feature
    support?
 
 4.  Cross-origin trust
@@ -1117,7 +1117,7 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 
-Yasskin                Expires September 27, 2018              [Page 20]
+Yasskin                Expires September 28, 2018              [Page 20]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -1173,7 +1173,7 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 
-Yasskin                Expires September 27, 2018              [Page 21]
+Yasskin                Expires September 28, 2018              [Page 21]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -1229,7 +1229,7 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 
-Yasskin                Expires September 27, 2018              [Page 22]
+Yasskin                Expires September 28, 2018              [Page 22]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -1285,7 +1285,7 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 
-Yasskin                Expires September 27, 2018              [Page 23]
+Yasskin                Expires September 28, 2018              [Page 23]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -1341,15 +1341,15 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 
-Yasskin                Expires September 27, 2018              [Page 24]
+Yasskin                Expires September 28, 2018              [Page 24]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
    "Signed-Headers" is a Structured Header as defined by
    [I-D.ietf-httpbis-header-structure].  Its value MUST be a list
-   (Section 4.8 of [I-D.ietf-httpbis-header-structure]) of lowercase
-   strings (Section 4.2 of [I-D.ietf-httpbis-header-structure]) naming
+   (Section 4.2 of [I-D.ietf-httpbis-header-structure]) of lowercase
+   strings (Section 4.7 of [I-D.ietf-httpbis-header-structure]) naming
    HTTP response header fields.  Pseudo-header field names
    (Section 8.1.2.1 of [RFC7540]) MUST NOT appear in this list.
 
@@ -1397,7 +1397,7 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 
-Yasskin                Expires September 27, 2018              [Page 25]
+Yasskin                Expires September 28, 2018              [Page 25]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -1453,7 +1453,7 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 
-Yasskin                Expires September 27, 2018              [Page 26]
+Yasskin                Expires September 28, 2018              [Page 26]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -1509,7 +1509,7 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 
-Yasskin                Expires September 27, 2018              [Page 27]
+Yasskin                Expires September 28, 2018              [Page 27]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -1565,7 +1565,7 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 
-Yasskin                Expires September 27, 2018              [Page 28]
+Yasskin                Expires September 28, 2018              [Page 28]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -1621,7 +1621,7 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 
-Yasskin                Expires September 27, 2018              [Page 29]
+Yasskin                Expires September 28, 2018              [Page 29]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -1677,7 +1677,7 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 
-Yasskin                Expires September 27, 2018              [Page 30]
+Yasskin                Expires September 28, 2018              [Page 30]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -1733,7 +1733,7 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 
-Yasskin                Expires September 27, 2018              [Page 31]
+Yasskin                Expires September 28, 2018              [Page 31]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -1789,7 +1789,7 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 
-Yasskin                Expires September 27, 2018              [Page 32]
+Yasskin                Expires September 28, 2018              [Page 32]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -1845,7 +1845,7 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 
-Yasskin                Expires September 27, 2018              [Page 33]
+Yasskin                Expires September 28, 2018              [Page 33]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -1901,7 +1901,7 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 
-Yasskin                Expires September 27, 2018              [Page 34]
+Yasskin                Expires September 28, 2018              [Page 34]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -1957,7 +1957,7 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 
-Yasskin                Expires September 27, 2018              [Page 35]
+Yasskin                Expires September 28, 2018              [Page 35]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -2013,7 +2013,7 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 
-Yasskin                Expires September 27, 2018              [Page 36]
+Yasskin                Expires September 28, 2018              [Page 36]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -2069,7 +2069,7 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 
-Yasskin                Expires September 27, 2018              [Page 37]
+Yasskin                Expires September 28, 2018              [Page 37]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -2125,7 +2125,7 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 
 
 
-Yasskin                Expires September 27, 2018              [Page 38]
+Yasskin                Expires September 28, 2018              [Page 38]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -2181,7 +2181,7 @@ A.1.  PUSHed subresources
 
 
 
-Yasskin                Expires September 27, 2018              [Page 39]
+Yasskin                Expires September 28, 2018              [Page 39]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -2237,7 +2237,7 @@ A.2.  Explicit use of a content distributor for subresources
 
 
 
-Yasskin                Expires September 27, 2018              [Page 40]
+Yasskin                Expires September 28, 2018              [Page 40]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -2293,7 +2293,7 @@ A.5.  Static Analysis
 
 
 
-Yasskin                Expires September 27, 2018              [Page 41]
+Yasskin                Expires September 28, 2018              [Page 41]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -2349,7 +2349,7 @@ B.1.2.  Signature constraints
 
 
 
-Yasskin                Expires September 27, 2018              [Page 42]
+Yasskin                Expires September 28, 2018              [Page 42]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -2405,7 +2405,7 @@ B.2.  How much to sign
 
 
 
-Yasskin                Expires September 27, 2018              [Page 43]
+Yasskin                Expires September 28, 2018              [Page 43]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -2461,7 +2461,7 @@ B.2.1.  Conveying the signed headers
 
 
 
-Yasskin                Expires September 27, 2018              [Page 44]
+Yasskin                Expires September 28, 2018              [Page 44]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -2517,7 +2517,7 @@ B.3.2.  Response downgrade attacks
 
 
 
-Yasskin                Expires September 27, 2018              [Page 45]
+Yasskin                Expires September 28, 2018              [Page 45]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -2573,7 +2573,7 @@ C.1.  Example of updating cache control
 
 
 
-Yasskin                Expires September 27, 2018              [Page 46]
+Yasskin                Expires September 28, 2018              [Page 46]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -2629,7 +2629,7 @@ C.2.  Downsides of updating cache control
 
 
 
-Yasskin                Expires September 27, 2018              [Page 47]
+Yasskin                Expires September 28, 2018              [Page 47]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -2637,6 +2637,10 @@ Internet-Draft            Signed HTTP Exchanges               March 2018
 Appendix D.  Change Log
 
    RFC EDITOR PLEASE DELETE THIS SECTION.
+
+   draft-04
+
+   o  Update to draft-ietf-httpbis-header-structure-04.
 
    draft-03
 
@@ -2681,11 +2685,7 @@ Appendix D.  Change Log
 
 
 
-
-
-
-
-Yasskin                Expires September 27, 2018              [Page 48]
+Yasskin                Expires September 28, 2018              [Page 48]
 
 Internet-Draft            Signed HTTP Exchanges               March 2018
 
@@ -2741,4 +2741,4 @@ Author's Address
 
 
 
-Yasskin                Expires September 27, 2018              [Page 49]
+Yasskin                Expires September 28, 2018              [Page 49]

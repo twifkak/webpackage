@@ -5,7 +5,7 @@
 Network Working Group                                         J. Yasskin
 Internet-Draft                                                   K. Ueno
 Intended status: Standards Track                                  Google
-Expires: September 27, 2018                               March 26, 2018
+Expires: September 28, 2018                               March 27, 2018
 
 
             Signed HTTP Exchanges Implementation Checkpoints
@@ -41,7 +41,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on September 27, 2018.
+   This Internet-Draft will expire on September 28, 2018.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Yasskin & Ueno         Expires September 27, 2018               [Page 1]
+Yasskin & Ueno         Expires September 28, 2018               [Page 1]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  March 2018
 
@@ -97,7 +97,7 @@ Table of Contents
    9.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  19
      9.1.  Normative References  . . . . . . . . . . . . . . . . . .  19
      9.2.  Informative References  . . . . . . . . . . . . . . . . .  21
-     9.3.  URIs  . . . . . . . . . . . . . . . . . . . . . . . . . .  21
+     9.3.  URIs  . . . . . . . . . . . . . . . . . . . . . . . . . .  22
    Appendix A.  Change Log . . . . . . . . . . . . . . . . . . . . .  22
    Appendix B.  Acknowledgements . . . . . . . . . . . . . . . . . .  23
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  23
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Yasskin & Ueno         Expires September 27, 2018               [Page 2]
+Yasskin & Ueno         Expires September 28, 2018               [Page 2]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  March 2018
 
@@ -165,7 +165,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  March 2018
 
 
 
-Yasskin & Ueno         Expires September 27, 2018               [Page 3]
+Yasskin & Ueno         Expires September 28, 2018               [Page 3]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  March 2018
 
@@ -186,10 +186,11 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  March 2018
    enforces the integrity of the exchange's payload.
 
    The "Signature" header is a Structured Header as defined by
-   [I-D.ietf-httpbis-header-structure].  Its value MUST be a list
-   (Section 4.8 of [I-D.ietf-httpbis-header-structure]) of parameterised
-   labels (Section 4.4 of [I-D.ietf-httpbis-header-structure]), and the
-   list MUST contain exactly one element.
+   [I-D.ietf-httpbis-header-structure-02].  Its value MUST be a list
+   (Section 4.8 of [I-D.ietf-httpbis-header-structure-02]) of
+   parameterised labels (Section 4.4 of
+   [I-D.ietf-httpbis-header-structure-02]), and the list MUST contain
+   exactly one element.
 
    Each parameterised label MUST have parameters named "sig",
    "integrity", "validityUrl", "date", and "expires".  Each
@@ -200,38 +201,37 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  March 2018
    the following values:
 
    "sig"  Binary content (Section 4.5 of
-      [I-D.ietf-httpbis-header-structure]) holding the signature of most
-      of these parameters and the exchange's headers.
+      [I-D.ietf-httpbis-header-structure-02]) holding the signature of
+      most of these parameters and the exchange's headers.
 
    "integrity"  A string (Section 4.2 of
-      [I-D.ietf-httpbis-header-structure]) containing the lowercase name
-      of the response header field that guards the response payload's
-      integrity.
+      [I-D.ietf-httpbis-header-structure-02]) containing the lowercase
+      name of the response header field that guards the response
+      payload's integrity.
 
    "certUrl"  A string (Section 4.2 of
-      [I-D.ietf-httpbis-header-structure]) containing a valid URL string
-      [4].
+      [I-D.ietf-httpbis-header-structure-02]) containing a valid URL
+      string [4].
 
    "certSha256"  Binary content (Section 4.5 of
-      [I-D.ietf-httpbis-header-structure]) holding the SHA-256 hash of
-      the first certificate found at "certUrl".
+      [I-D.ietf-httpbis-header-structure-02]) holding the SHA-256 hash
+      of the first certificate found at "certUrl".
 
 
 
 
 
-
-Yasskin & Ueno         Expires September 27, 2018               [Page 4]
+Yasskin & Ueno         Expires September 28, 2018               [Page 4]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  March 2018
 
 
    "validityUrl"  A string (Section 4.2 of
-      [I-D.ietf-httpbis-header-structure]) containing a valid URL string
-      [5].
+      [I-D.ietf-httpbis-header-structure-02]) containing a valid URL
+      string [5].
 
    "date" and "expires"  An unsigned integer (Section 4.1 of
-      [I-D.ietf-httpbis-header-structure]) representing a Unix time.
+      [I-D.ietf-httpbis-header-structure-02]) representing a Unix time.
 
    The "certUrl" parameter is _not_ signed, so intermediates can update
    it with a pointer to a cached version.
@@ -270,14 +270,14 @@ Signature:
 
 3.1.2.  Open Questions
 
-   [I-D.ietf-httpbis-header-structure] provides a way to parameterise
+   [I-D.ietf-httpbis-header-structure-02] provides a way to parameterise
    labels but not other supported types like binary content.  If the
    "Signature" header field is notionally a list of parameterised
 
 
 
 
-Yasskin & Ueno         Expires September 27, 2018               [Page 5]
+Yasskin & Ueno         Expires September 28, 2018               [Page 5]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  March 2018
 
@@ -288,8 +288,8 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  March 2018
    Should the certUrl and validityUrl be lists so that intermediates can
    offer a cache without losing the original URLs?  Putting lists in
    dictionary fields is more complex than
-   [I-D.ietf-httpbis-header-structure] allows, so they're single items
-   for now.
+   [I-D.ietf-httpbis-header-structure-02] allows, so they're single
+   items for now.
 
 3.2.  CBOR representation of exchange headers
 
@@ -333,7 +333,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  March 2018
 
 
 
-Yasskin & Ueno         Expires September 27, 2018               [Page 6]
+Yasskin & Ueno         Expires September 28, 2018               [Page 6]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  March 2018
 
@@ -389,7 +389,7 @@ MI: mi-sha256=20addcf7368837f616d549f035bf6784ea6d4bf4817a3736cd2fc7a763897fe3
 
 
 
-Yasskin & Ueno         Expires September 27, 2018               [Page 7]
+Yasskin & Ueno         Expires September 28, 2018               [Page 7]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  March 2018
 
@@ -445,7 +445,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  March 2018
 
 
 
-Yasskin & Ueno         Expires September 27, 2018               [Page 8]
+Yasskin & Ueno         Expires September 28, 2018               [Page 8]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  March 2018
 
@@ -458,8 +458,8 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  March 2018
 
    The client MUST parse the "Signature" header field as the list of
    parameterised values (Section 4.8.1 of
-   [I-D.ietf-httpbis-header-structure]) described in Section 3.1.  If an
-   error is thrown during this parsing or any of the requirements
+   [I-D.ietf-httpbis-header-structure-02]) described in Section 3.1.  If
+   an error is thrown during this parsing or any of the requirements
    described there aren't satisfied, the exchange has no valid
    signatures.  Otherwise, each member of this list represents a
    signature with parameters.
@@ -501,7 +501,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  March 2018
 
 
 
-Yasskin & Ueno         Expires September 27, 2018               [Page 9]
+Yasskin & Ueno         Expires September 28, 2018               [Page 9]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  March 2018
 
@@ -557,7 +557,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  March 2018
 
 
 
-Yasskin & Ueno         Expires September 27, 2018              [Page 10]
+Yasskin & Ueno         Expires September 28, 2018              [Page 10]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  March 2018
 
@@ -613,7 +613,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  March 2018
 
 
 
-Yasskin & Ueno         Expires September 27, 2018              [Page 11]
+Yasskin & Ueno         Expires September 28, 2018              [Page 11]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  March 2018
 
@@ -660,16 +660,16 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  March 2018
    ]
 
    The elements of the "signatures" array are parameterised labels
-   (Section 4.4 of [I-D.ietf-httpbis-header-structure]) meant to replace
-   the signatures within the "Signature" header field pointing to this
-   validity data.  If the signed exchange contains a bug severe enough
-   that clients need to stop using the content, the "signatures" array
-   MUST NOT be present.
+   (Section 4.4 of [I-D.ietf-httpbis-header-structure-02]) meant to
+   replace the signatures within the "Signature" header field pointing
+   to this validity data.  If the signed exchange contains a bug severe
+   enough that clients need to stop using the content, the "signatures"
+   array MUST NOT be present.
 
 
 
 
-Yasskin & Ueno         Expires September 27, 2018              [Page 12]
+Yasskin & Ueno         Expires September 28, 2018              [Page 12]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  March 2018
 
@@ -725,7 +725,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  March 2018
 
 
 
-Yasskin & Ueno         Expires September 27, 2018              [Page 13]
+Yasskin & Ueno         Expires September 28, 2018              [Page 13]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  March 2018
 
@@ -781,7 +781,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  March 2018
 
 
 
-Yasskin & Ueno         Expires September 27, 2018              [Page 14]
+Yasskin & Ueno         Expires September 28, 2018              [Page 14]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  March 2018
 
@@ -837,7 +837,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  March 2018
 
 
 
-Yasskin & Ueno         Expires September 27, 2018              [Page 15]
+Yasskin & Ueno         Expires September 28, 2018              [Page 15]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  March 2018
 
@@ -893,7 +893,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  March 2018
 
 
 
-Yasskin & Ueno         Expires September 27, 2018              [Page 16]
+Yasskin & Ueno         Expires September 28, 2018              [Page 16]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  March 2018
 
@@ -949,7 +949,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  March 2018
 
 
 
-Yasskin & Ueno         Expires September 27, 2018              [Page 17]
+Yasskin & Ueno         Expires September 28, 2018              [Page 17]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  March 2018
 
@@ -1005,7 +1005,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  March 2018
 
 
 
-Yasskin & Ueno         Expires September 27, 2018              [Page 18]
+Yasskin & Ueno         Expires September 28, 2018              [Page 18]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  March 2018
 
@@ -1041,10 +1041,11 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  March 2018
               express CBOR data structures", draft-ietf-cbor-cddl-02
               (work in progress), February 2018.
 
-   [I-D.ietf-httpbis-header-structure]
+   [I-D.ietf-httpbis-header-structure-02]
               Nottingham, M. and P. Kamp, "Structured Headers for HTTP",
-              draft-ietf-httpbis-header-structure-04 (work in progress),
-              March 2018.
+              draft-ietf-httpbis-header-structure-02 (work in progress),
+              November 2017, <https://tools.ietf.org/html/
+              draft-ietf-httpbis-header-structure-02>.
 
    [I-D.ietf-tls-tls13]
               Rescorla, E., "The Transport Layer Security (TLS) Protocol
@@ -1055,16 +1056,19 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  March 2018
               Thomson, M., "Merkle Integrity Content Encoding", draft-
               thomson-http-mice-02 (work in progress), October 2016.
 
-   [I-D.yasskin-http-origin-signed-responses]
-              Yasskin, J., "Signed HTTP Exchanges", draft-yasskin-http-
-              origin-signed-responses-03 (work in progress), March 2018.
 
 
 
-Yasskin & Ueno         Expires September 27, 2018              [Page 19]
+
+
+Yasskin & Ueno         Expires September 28, 2018              [Page 19]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  March 2018
 
+
+   [I-D.yasskin-http-origin-signed-responses]
+              Yasskin, J., "Signed HTTP Exchanges", draft-yasskin-http-
+              origin-signed-responses-03 (work in progress), March 2018.
 
    [POSIX]    IEEE and The Open Group, "The Open Group Base
               Specifications Issue 7", name IEEE, value 1003.1-2008,
@@ -1107,20 +1111,21 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  March 2018
               DOI 10.17487/RFC7540, May 2015,
               <https://www.rfc-editor.org/info/rfc7540>.
 
+
+
+
+
+
+
+Yasskin & Ueno         Expires September 28, 2018              [Page 20]
+
+Internet-DraSigned HTTP Exchanges Implementation Checkpoints  March 2018
+
+
    [RFC8017]  Moriarty, K., Ed., Kaliski, B., Jonsson, J., and A. Rusch,
               "PKCS #1: RSA Cryptography Specifications Version 2.2",
               RFC 8017, DOI 10.17487/RFC8017, November 2016,
               <https://www.rfc-editor.org/info/rfc8017>.
-
-
-
-
-
-
-Yasskin & Ueno         Expires September 27, 2018              [Page 20]
-
-Internet-DraSigned HTTP Exchanges Implementation Checkpoints  March 2018
-
 
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
@@ -1164,19 +1169,20 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  March 2018
               M. Myers, "Implementation of OPS Over HTTP", W3C NOTE
               NOTE-OPS-OverHTTP, June 1997.
 
+
+
+
+
+Yasskin & Ueno         Expires September 28, 2018              [Page 21]
+
+Internet-DraSigned HTTP Exchanges Implementation Checkpoints  March 2018
+
+
 9.3.  URIs
 
    [1] https://lists.w3.org/Archives/Public/ietf-http-wg/
 
    [2] https://github.com/WICG/webpackage
-
-
-
-
-Yasskin & Ueno         Expires September 27, 2018              [Page 21]
-
-Internet-DraSigned HTTP Exchanges Implementation Checkpoints  March 2018
-
 
    [3] http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/
        V1_chap04.html#tag_04_16
@@ -1221,18 +1227,14 @@ Appendix A.  Change Log
 
    o  The mi-sha256 encoding must have records <= 16kB.
 
-   o  The Accept-Signature header isn't used.
 
 
-
-
-
-
-
-Yasskin & Ueno         Expires September 27, 2018              [Page 22]
+Yasskin & Ueno         Expires September 28, 2018              [Page 22]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  March 2018
 
+
+   o  The Accept-Signature header isn't used.
 
 Appendix B.  Acknowledgements
 
@@ -1283,6 +1285,4 @@ Authors' Addresses
 
 
 
-
-
-Yasskin & Ueno         Expires September 27, 2018              [Page 23]
+Yasskin & Ueno         Expires September 28, 2018              [Page 23]
