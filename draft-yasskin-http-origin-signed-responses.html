@@ -18,39 +18,6 @@
   zoom: 1.0;
 }
 
-@media screen and (min-width: 1024px) {
-  body>ul.toc, body>#rfc\.toc {
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    right: calc(50vw - 550px);
-    width: 300px;
-    z-index: 1;
-  }
-  #rfc\.toc {
-    top: 55px;
-    overflow: auto;
-    overscroll-behavior: contain;
-  }
-  ul.toc, #rfc\.toc {
-    overflow: auto;
-    overscroll-behavior: contain;
-  }
-  ul.toc li, #rfc\.toc li {
-    font-size: 15px;
-    line-height: 20px;
-    text-indent: 0;
-    padding-left: 1em;
-  }
-  body>ul.toc {
-    top: 140px;
-  }
-
-  body {
-    padding-right: 350px;
-  }
-}
-
 body {
   font: 16px "Helvetica Neue",Helvetica,Arial,sans-serif;
   color: #333;
@@ -68,27 +35,12 @@ body {
   line-height: 100%;
   margin: 0.8em 0 0.3em;
 }
-.title { font-size: 36px; }
-h1 { font-size: 36px; }
-h2 { font-size: 24px; }
+.title { font-size: 32px; }
+h1 { font-size: 32px; }
+h2, h1 ~ #rfc\.toc { font-size: 20px; }
 h3, h4 { font-size: 18px; }
 h1 a[href], h2 a[href], h3 a[href], h4 a[href] {
   color: #333;
-}
-
-ul.toc li {
-  list-style: none;
-  text-indent: -2.5em;
-  padding-left: 2.5em;
-  padding-bottom: 5px;
-  margin: 0;
-}
-ul.toc ul {
-  margin: 0;
-}
-/* xml2rfc nests ul directly inside ul which messes with the style badly */
-ul.toc, ul.toc>ul, ul.toc ul>ul {
-  margin: 0 0 0 1.5em;
 }
 
 table {
@@ -117,24 +69,26 @@ td.reference {
 }
 
 
-table.header {
+table.header, table#rfc\.headerblock {
   width: 100%;
 }
-table.header td {
+table.header td, table#rfc\.headerblock td {
   border: none;
   background-color: transparent;
   color: black;
+  padding: 0;
 }
 .filename {
+  display: block;
   color: rgb(119, 119, 119);
-  font-size: 23px;
+  font-size: 20px;
   font-weight: normal;
-  height: auto;
   line-height: 100%;
+  margin: 10px 0 32px;
 }
 #rfc\.abstract+p, #rfc\.abstract p {
   font-size: 18px;
-  line-height: 27px%;
+  line-height: 27px;
 }
 
 samp, tt, code, pre {
@@ -228,6 +182,45 @@ address {
   font-style: normal;
 }
 
+ul.toc ul {
+  margin: 0 0 0 2em;
+}
+ul.toc li {
+  list-style: none;
+  margin: 0;
+}
+
+@media screen and (min-width: 1024px) {
+  body {
+    padding-right: 350px;
+  }
+  body>ul.toc, body>#rfc\.toc {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    right: calc(50vw - 550px);
+    width: 300px;
+    z-index: 1;
+    overflow: auto;
+    overscroll-behavior: contain;
+  }
+  body>#rfc\.toc {
+    top: 55px;
+  }
+  body>ul.toc {
+    top: 100px;
+  }
+
+  ul.toc {
+    margin: 0 0 0 4px;
+    font-size: 12px;
+    line-height: 20px;
+  }
+  ul.toc ul {
+    margin-left: 1.2em;
+  }
+}
+
 .github-fork-ribbon-wrapper {
   display: none;
 }
@@ -319,9 +312,10 @@ address {
 <link href="#rfc.section.5.2.1" rel="Chapter" title="5.2.1 Indicating support for cross-origin Server Push">
 <link href="#rfc.section.5.2.2" rel="Chapter" title="5.2.2 NO_TRUSTED_EXCHANGE_SIGNATURE error code">
 <link href="#rfc.section.5.2.3" rel="Chapter" title="5.2.3 Validating a cross-origin Push">
-<link href="#rfc.section.5.3" rel="Chapter" title="5.3 application/http-exchange+cbor format for HTTP/1 compatibility">
-<link href="#rfc.section.5.3.1" rel="Chapter" title="5.3.1 Example">
-<link href="#rfc.section.5.3.2" rel="Chapter" title="5.3.2 Open Questions">
+<link href="#rfc.section.5.3" rel="Chapter" title="5.3 application/signed-exchange format">
+<link href="#rfc.section.5.3.1" rel="Chapter" title="5.3.1 Cross-origin trust in application/signed-exchange">
+<link href="#rfc.section.5.3.2" rel="Chapter" title="5.3.2 Example">
+<link href="#rfc.section.5.3.3" rel="Chapter" title="5.3.3 Open Questions">
 <link href="#rfc.section.6" rel="Chapter" title="6 Security considerations">
 <link href="#rfc.section.6.1" rel="Chapter" title="6.1 Over-signing">
 <link href="#rfc.section.6.1.1" rel="Chapter" title="6.1.1 Session fixation">
@@ -330,13 +324,13 @@ address {
 <link href="#rfc.section.6.3" rel="Chapter" title="6.3 Downgrades">
 <link href="#rfc.section.6.4" rel="Chapter" title="6.4 Signing oracles are permanent">
 <link href="#rfc.section.6.5" rel="Chapter" title="6.5 Unsigned headers">
-<link href="#rfc.section.6.6" rel="Chapter" title="6.6 application/http-exchange+cbor">
+<link href="#rfc.section.6.6" rel="Chapter" title="6.6 application/signed-exchange">
 <link href="#rfc.section.7" rel="Chapter" title="7 Privacy considerations">
 <link href="#rfc.section.8" rel="Chapter" title="8 IANA considerations">
 <link href="#rfc.section.8.1" rel="Chapter" title="8.1 Signature Header Field Registration">
 <link href="#rfc.section.8.2" rel="Chapter" title="8.2 HTTP/2 Settings">
 <link href="#rfc.section.8.3" rel="Chapter" title="8.3 HTTP/2 Error code">
-<link href="#rfc.section.8.4" rel="Chapter" title="8.4 Internet Media Type application/http-exchange+cbor">
+<link href="#rfc.section.8.4" rel="Chapter" title="8.4 Internet Media Type application/signed-exchange">
 <link href="#rfc.section.8.5" rel="Chapter" title="8.5 Internet Media Type application/cert-chain+cbor">
 <link href="#rfc.references" rel="Chapter" title="9 References">
 <link href="#rfc.references.1" rel="Chapter" title="9.1 Normative References">
@@ -371,7 +365,7 @@ address {
 
   <meta name="dct.creator" content="Yasskin, J." />
   <meta name="dct.identifier" content="urn:ietf:id:draft-yasskin-http-origin-signed-responses-latest" />
-  <meta name="dct.issued" scheme="ISO8601" content="2018-03-27" />
+  <meta name="dct.issued" scheme="ISO8601" content="2018-04-04" />
   <meta name="dct.abstract" content="This document specifies how a server can send an HTTP request/response pair, known as an exchange, with signatures that vouch for that exchange&#8217;s authenticity. These signatures can be verified against an origin&#8217;s certificate to establish that the exchange is authoritative for an origin even if it was transferred over a connection that isn&#8217;t. The signatures can also be used in other ways described in the appendices." />
   <meta name="description" content="This document specifies how a server can send an HTTP request/response pair, known as an exchange, with signatures that vouch for that exchange&#8217;s authenticity. These signatures can be verified against an origin&#8217;s certificate to establish that the exchange is authoritative for an origin even if it was transferred over a connection that isn&#8217;t. The signatures can also be used in other ways described in the appendices." />
 
@@ -392,10 +386,10 @@ address {
 </tr>
 <tr>
 <td class="left">Intended status: Standards Track</td>
-<td class="right">March 27, 2018</td>
+<td class="right">April 04, 2018</td>
 </tr>
 <tr>
-<td class="left">Expires: September 28, 2018</td>
+<td class="left">Expires: October 6, 2018</td>
 <td class="right"></td>
 </tr>
 
@@ -416,7 +410,7 @@ address {
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at https://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on September 28, 2018.</p>
+<p>This Internet-Draft will expire on October 6, 2018.</p>
 <h1 id="rfc.copyrightnotice"><a href="#rfc.copyrightnotice">Copyright Notice</a></h1>
 <p>Copyright (c) 2018 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
 <p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (https://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
@@ -488,11 +482,13 @@ address {
 </li>
 <li>5.2.3.   <a href="#rfc.section.5.2.3">Validating a cross-origin Push</a>
 </li>
-</ul><li>5.3.   <a href="#rfc.section.5.3">application/http-exchange+cbor format for HTTP/1 compatibility</a>
+</ul><li>5.3.   <a href="#rfc.section.5.3">application/signed-exchange format</a>
 </li>
-<ul><li>5.3.1.   <a href="#rfc.section.5.3.1">Example</a>
+<ul><li>5.3.1.   <a href="#rfc.section.5.3.1">Cross-origin trust in application/signed-exchange</a>
 </li>
-<li>5.3.2.   <a href="#rfc.section.5.3.2">Open Questions</a>
+<li>5.3.2.   <a href="#rfc.section.5.3.2">Example</a>
+</li>
+<li>5.3.3.   <a href="#rfc.section.5.3.3">Open Questions</a>
 </li>
 </ul></ul><li>6.   <a href="#rfc.section.6">Security considerations</a>
 </li>
@@ -510,7 +506,7 @@ address {
 </li>
 <li>6.5.   <a href="#rfc.section.6.5">Unsigned headers</a>
 </li>
-<li>6.6.   <a href="#rfc.section.6.6">application/http-exchange+cbor</a>
+<li>6.6.   <a href="#rfc.section.6.6">application/signed-exchange</a>
 </li>
 </ul><li>7.   <a href="#rfc.section.7">Privacy considerations</a>
 </li>
@@ -522,7 +518,7 @@ address {
 </li>
 <li>8.3.   <a href="#rfc.section.8.3">HTTP/2 Error code</a>
 </li>
-<li>8.4.   <a href="#rfc.section.8.4">Internet Media Type application/http-exchange+cbor</a>
+<li>8.4.   <a href="#rfc.section.8.4">Internet Media Type application/signed-exchange</a>
 </li>
 <li>8.5.   <a href="#rfc.section.8.5">Internet Media Type application/cert-chain+cbor</a>
 </li>
@@ -1165,83 +1161,50 @@ Accept-Signature: -rsa/2048, rsa/4096
 </h1>
 <p id="rfc.section.5.2.3.1.p.1">Is it right that &#8220;validityUrl&#8221; is required to be same-origin with the exchange? This allows the mitigation against downgrades in <a href="#seccons-downgrades" class="xref">Section 6.3</a>, but prohibits intermediates from providing a cache of the validity information. We could do both with a list of URLs.</p>
 <h1 id="rfc.section.5.3">
-<a href="#rfc.section.5.3">5.3.</a> <a href="#application-http-exchange" id="application-http-exchange">application/http-exchange+cbor format for HTTP/1 compatibility</a>
+<a href="#rfc.section.5.3">5.3.</a> <a href="#application-signed-exchange" id="application-signed-exchange">application/signed-exchange format</a>
 </h1>
-<p id="rfc.section.5.3.p.1">To allow servers to serve cross-origin responses when either the client or the server hasn&#8217;t implemented HTTP/2 Push (Section 8.2 of <a href="#RFC7540" class="xref">[RFC7540]</a>) support yet, we define a format that represents an HTTP exchange.</p>
-<p id="rfc.section.5.3.p.2">The <samp>application/http-exchange+cbor</samp> content type encodes an HTTP exchange, including request metadata and header fields, optionally a request body, response header fields and metadata, a payload body, and optionally trailer header fields.</p>
-<p id="rfc.section.5.3.p.3">This content type consists of a canonically-serialized (<a href="#canonical-cbor" class="xref">Section 3.4</a>) CBOR array containing:</p>
+<p id="rfc.section.5.3.p.1">To allow signed exchanges to be the targets of <samp>&lt;link rel=prefetch&gt;</samp> tags, we define the  <samp>application/signed-exchange</samp> content type that represents a signed HTTP exchange, including request metadata and header fields, response metadata and header fields, and a response payload.</p>
+<p id="rfc.section.5.3.p.2">This content type consists of the concatenation of the following items:</p>
 <p></p>
 
 <ol>
-<li>The text string &#8220;htxg&#8221; to serve as a file signature, followed by</li>
-<li>Alternating member names encoded as text strings (Section 2.1 of <a href="#RFC7049" class="xref">[RFC7049]</a>) and member values, with each value consisting of a single CBOR item with a type and meaning determined by the member name.</li>
-</ol>
-<p id="rfc.section.5.3.p.5">This specification defines the following member names with their associated values:</p>
-<p></p>
-
-<dl>
-<dt>&#8220;request&#8221;</dt>
-<dd style="margin-left: 8">A map from lowercase request header field names to their values, encoded as byte strings (<a href="#RFC7049" class="xref">[RFC7049]</a>, section 2.1). The request header fields MUST include two pseudo-header fields (Section 8.1.2.1 of <a href="#RFC7540" class="xref">[RFC7540]</a>): <ul>
+<li>The ASCII characters &#8220;sxg1&#8221; followed by a 0 byte, to serve as a file signature. This is redundant with the MIME type, and receipients that receive both MUST check that they match and stop parsing if they don&#8217;t.  <br><br> Note: RFC EDITOR PLEASE DELETE THIS NOTE; The implementation of the final RFC MUST use this file signature, but implementations of drafts MUST NOT use it and MUST use another implementation-specific string beginning with &#8220;sxg1-&#8220; and ending with a 0 byte instead.</li>
+<li>3 bytes storing a big-endian integer <samp>sigLength</samp>. If this is larger than TBD, parsing MUST fail.</li>
+<li>3 bytes storing a big-endian integer <samp>headerLength</samp>. If this is larger than TBD, parsing MUST fail.</li>
 <li>
-<samp>':method'</samp>: The method of the request (Section 4 of <a href="#RFC7231" class="xref">[RFC7231]</a>).</li>
+<samp>sigLength</samp> bytes holding the <samp>Signature</samp> header field&#8217;s value (<a href="#signature-header" class="xref">Section 3.1</a>).</li>
 <li>
-<samp>':url'</samp>: The effective request URI of the request (Section 5.5 of <a href="#RFC7230" class="xref">[RFC7230]</a>).</li>
-</ul>
-<p> </p>
-</dd>
-<dt>&#8220;request payload&#8221;</dt>
-<dd style="margin-left: 8">A byte string (<a href="#RFC7049" class="xref">[RFC7049]</a>, section 2.1) containing the request payload body (Section 3.3 of <a href="#RFC7230" class="xref">[RFC7230]</a>).</dd>
-<dt>&#8220;response&#8221;</dt>
-<dd style="margin-left: 8">A map from lowercase response header field names to their values, encoded as byte strings (<a href="#RFC7049" class="xref">[RFC7049]</a>, section 2.1). The response header fields MUST include one pseudo-header field (Section 8.1.2.1 of <a href="#RFC7540" class="xref">[RFC7540]</a>): <ul><li>
-<samp>':status'</samp>: The response&#8217;s 3-digit status code (Section 6 of <a href="#RFC7231" class="xref">[RFC7231]</a>]).</li></ul>
-<p> </p>
-</dd>
-<dt>&#8220;payload&#8221;</dt>
-<dd style="margin-left: 8">A byte string (<a href="#RFC7049" class="xref">[RFC7049]</a>, section 2.1) containing the response payload body (Section 3.3 of <a href="#RFC7230" class="xref">[RFC7230]</a>).</dd>
-<dt>&#8220;trailer&#8221;</dt>
-<dd style="margin-left: 8">A map of lowercase trailer header field names to their values, encoded as byte strings (Section 2.1 of <a href="#RFC7049" class="xref">[RFC7049]</a>).</dd>
-</dl>
-<p id="rfc.section.5.3.p.7">A parser MAY return incremental information while parsing <samp>application/http-exchange+cbor</samp> content.</p>
-<p id="rfc.section.5.3.p.8">Members &#8220;request&#8221;, &#8220;response&#8221;, and &#8220;payload&#8221; MUST be present. If one is missing, the parser MUST stop and report an error.</p>
-<p id="rfc.section.5.3.p.9">The member names MUST appear in the order:</p>
-<p></p>
-
-<ol>
-<li>&#8220;request&#8221;</li>
-<li>&#8220;request payload&#8221;</li>
-<li>&#8220;response&#8221;</li>
-<li>&#8220;payload&#8221;</li>
-<li>&#8220;trailer&#8221;</li>
+<samp>headerLength</samp> bytes holding the signed headers, the canonical serialization (<a href="#canonical-cbor" class="xref">Section 3.4</a>) of the CBOR representation of the request and response headers of the exchange represented by the <samp>application/signed-exchange</samp> resource (<a href="#cbor-representation" class="xref">Section 3.2</a>), excluding the <samp>Signature</samp> header field.  <br><br> Note that this is exactly the bytes used when checking signature validity in <a href="#signature-validity" class="xref">Section 3.5</a>.</li>
+<li>The payload body (Section 3.3 of <a href="#RFC7230" class="xref">[RFC7230]</a>) of the exchange represented by the <samp>application/signed-exchange</samp> resource.  <br><br> Note that the use of the payload body here means that a <samp>Transfer-Encoding</samp> header field inside the <samp>application/signed-exchange</samp> header block has no effect. A <samp>Transfer-Encoding</samp> header field on the outer HTTP response that transfers this resource still has its normal effect.</li>
 </ol>
-<p id="rfc.section.5.3.p.11">If a member name is not a text string, appears out of order, or is followed by a value not matching its description above, the parser MUST stop and report an error.</p>
-<p id="rfc.section.5.3.p.12">If the parser encounters an unknown member name, it MUST skip the following item and resume parsing at the next member name.</p>
 <h1 id="rfc.section.5.3.1">
-<a href="#rfc.section.5.3.1">5.3.1.</a> <a href="#example-application-http-exchange" id="example-application-http-exchange">Example</a>
+<a href="#rfc.section.5.3.1">5.3.1.</a> <a href="#co-trust-app-signed-exchange" id="co-trust-app-signed-exchange">Cross-origin trust in application/signed-exchange</a>
 </h1>
-<p id="rfc.section.5.3.1.p.1">An example <samp>application/http-exchange+cbor</samp> file representing a possible exchange with <a href="https://example.com/">https://example.com/</a> follows, in the extended diagnostic format defined in Appendix G of <a href="#I-D.ietf-cbor-cddl" class="xref">[I-D.ietf-cbor-cddl]</a>:</p>
+<p id="rfc.section.5.3.1.p.1">To determine whether to trust a cross-origin exchange stored in an <samp>application/signed-exchange</samp> resource, pass the <samp>Signature</samp> header field from the non-signed header section and an exchange consisting of the headers from the signed headers section and the payload body, to the algorithm in <a href="#cross-origin-trust" class="xref">Section 4</a>.</p>
+<h1 id="rfc.section.5.3.2">
+<a href="#rfc.section.5.3.2">5.3.2.</a> <a href="#example-application-signed-exchange" id="example-application-signed-exchange">Example</a>
+</h1>
+<p id="rfc.section.5.3.2.p.1">An example <samp>application/signed-exchange</samp> file representing a possible signed exchange with <a href="https://example.com/">https://example.com/</a> follows, with lengths represented by descriptions in <samp>&lt;&gt;</samp>s, CBOR represented in the extended diagnostic format defined in Appendix G of <a href="#I-D.ietf-cbor-cddl" class="xref">[I-D.ietf-cbor-cddl]</a>, and most of the <samp>Signature</samp> header field and payload elided with a &#8230;:</p>
 <pre>
-[
-  "htxg",
-  "request",
+sxg1\0&lt;3-byte length of the following header
+value&gt;sig1; sig=*...; integrity="mi"; ...&lt;3-byte length of the encoding of the
+following array&gt;[
   {
     ':method': 'GET',
     ':url': 'https://example.com/',
     'accept', '*/*'
   },
-  "response",
   {
     ':status': '200',
     'content-type': 'text/html'
-  },
-  "payload",
-  '&lt;!doctype html&gt;\r\n&lt;html&gt;...'
-]
+  }
+]&lt;!doctype html&gt;\r\n&lt;html&gt;...
 </pre>
-<h1 id="rfc.section.5.3.2">
-<a href="#rfc.section.5.3.2">5.3.2.</a> <a href="#oq-application-http-exchange" id="oq-application-http-exchange">Open Questions</a>
+<h1 id="rfc.section.5.3.3">
+<a href="#rfc.section.5.3.3">5.3.3.</a> <a href="#oq-application-signed-exchange" id="oq-application-signed-exchange">Open Questions</a>
 </h1>
-<p id="rfc.section.5.3.2.p.1">Should <samp>application/http-exchange+cbor</samp> support request payloads and trailers, or only the aspects needed for signed exchanges?</p>
-<p id="rfc.section.5.3.2.p.2">Are the mime type, extension, and magic number right?</p>
+<p id="rfc.section.5.3.3.p.1">Should this be a CBOR format, or is the current mix of binary and CBOR better?</p>
+<p id="rfc.section.5.3.3.p.2">Are the mime type, extension, and magic number right?</p>
 <h1 id="rfc.section.6">
 <a href="#rfc.section.6">6.</a> <a href="#security-considerations" id="security-considerations">Security considerations</a>
 </h1>
@@ -1286,9 +1249,9 @@ Accept-Signature: -rsa/2048, rsa/4096
 <p id="rfc.section.6.5.p.2">The simple form of <samp>Signed-Headers</samp> also prevents us from signing less than the full request URL. The SRI use case (<a href="#uc-sri" class="xref">Appendix A.3</a>) may benefit from being able to leave the authority less constrained.</p>
 <p><a href="#signature-validity" class="xref">Section 3.5</a> can succeed when some delivered headers aren&#8217;t included in the signed set. This accommodates current TLS-terminating intermediates and may be useful for SRI (<a href="#uc-sri" class="xref">Appendix A.3</a>), but is risky for trusting cross-origin responses (<a href="#uc-pushed-subresources" class="xref">Appendix A.1</a>, <a href="#uc-explicit-distributor" class="xref">Appendix A.2</a>, and <a href="#uc-offline-websites" class="xref">Appendix A.6</a>). <a href="#cross-origin-push" class="xref">Section 5.2</a> requires all headers to be included in the signature before trusting cross-origin pushed resources, at Ryan Sleevi&#8217;s recommendation.</p>
 <h1 id="rfc.section.6.6">
-<a href="#rfc.section.6.6">6.6.</a> <a href="#security-application-http-exchange" id="security-application-http-exchange">application/http-exchange+cbor</a>
+<a href="#rfc.section.6.6">6.6.</a> <a href="#security-application-signed-exchange" id="security-application-signed-exchange">application/signed-exchange</a>
 </h1>
-<p id="rfc.section.6.6.p.1">Clients MUST NOT trust an effective request URI claimed by an <samp>application/http-exchange+cbor</samp> resource (<a href="#application-http-exchange" class="xref">Section 5.3</a>) without either ensuring the resource was transferred from a server that was authoritative (Section 9.1 of <a href="#RFC7230" class="xref">[RFC7230]</a>) for that URI&#8217;s origin, or passing the <samp>Signature</samp> response header field from the exchange stored in the resource, and that exchange without its <samp>Signature</samp> response header field, to the procedure in <a href="#cross-origin-trust" class="xref">Section 4</a>, and getting &#8220;valid&#8221; back.</p>
+<p id="rfc.section.6.6.p.1">Clients MUST NOT trust an effective request URI claimed by an <samp>application/signed-exchange</samp> resource (<a href="#application-signed-exchange" class="xref">Section 5.3</a>) without either ensuring the resource was transferred from a server that was authoritative (Section 9.1 of <a href="#RFC7230" class="xref">[RFC7230]</a>) for that URI&#8217;s origin, or calling the algorithm in <a href="#co-trust-app-signed-exchange" class="xref">Section 5.3.1</a> and getting &#8220;valid&#8221; back.</p>
 <h1 id="rfc.section.7">
 <a href="#rfc.section.7">7.</a> <a href="#privacy-considerations" id="privacy-considerations">Privacy considerations</a>
 </h1>
@@ -1326,28 +1289,31 @@ Accept-Signature: -rsa/2048, rsa/4096
 <p id="rfc.section.8.3.p.4">Description: The client does not trust the signature for a cross-origin Pushed signed exchange.</p>
 <p id="rfc.section.8.3.p.5">Specification: This document</p>
 <h1 id="rfc.section.8.4">
-<a href="#rfc.section.8.4">8.4.</a> <a href="#internet-media-type-applicationhttp-exchangecbor" id="internet-media-type-applicationhttp-exchangecbor">Internet Media Type application/http-exchange+cbor</a>
+<a href="#rfc.section.8.4">8.4.</a> <a href="#internet-media-type-applicationsigned-exchange" id="internet-media-type-applicationsigned-exchange">Internet Media Type application/signed-exchange</a>
 </h1>
 <p id="rfc.section.8.4.p.1">Type name:  application</p>
-<p id="rfc.section.8.4.p.2">Subtype name:  http-exchange+cbor</p>
-<p id="rfc.section.8.4.p.3">Required parameters:  N/A</p>
-<p id="rfc.section.8.4.p.4">Optional parameters:  N/A</p>
-<p id="rfc.section.8.4.p.5">Encoding considerations:  binary</p>
-<p id="rfc.section.8.4.p.6">Security considerations:  see <a href="#security-application-http-exchange" class="xref">Section 6.6</a></p>
-<p id="rfc.section.8.4.p.7">Interoperability considerations:  N/A</p>
-<p id="rfc.section.8.4.p.8">Published specification:  This specification (see <a href="#application-http-exchange" class="xref">Section 5.3</a>).</p>
-<p id="rfc.section.8.4.p.9">Applications that use this media type:  N/A</p>
-<p id="rfc.section.8.4.p.10">Fragment identifier considerations:  N/A</p>
-<p id="rfc.section.8.4.p.11">Additional information:</p>
-<p id="rfc.section.8.4.p.12">Deprecated alias names for this type:  N/A</p>
-<p id="rfc.section.8.4.p.13">Magic number(s):  8? 64 68 74 78 67</p>
-<p id="rfc.section.8.4.p.14">File extension(s): .htxg</p>
-<p id="rfc.section.8.4.p.15">Macintosh file type code(s):  N/A</p>
-<p id="rfc.section.8.4.p.16">Person and email address to contact for further information: See Authors&#8217; Addresses section.</p>
-<p id="rfc.section.8.4.p.17">Intended usage:  COMMON</p>
-<p id="rfc.section.8.4.p.18">Restrictions on usage:  N/A</p>
-<p id="rfc.section.8.4.p.19">Author:  See Authors&#8217; Addresses section.</p>
-<p id="rfc.section.8.4.p.20">Change controller:  IESG</p>
+<p id="rfc.section.8.4.p.2">Subtype name:  signed-exchange</p>
+<p id="rfc.section.8.4.p.3">Required parameters:</p>
+<p></p>
+
+<ul><li>v: A string denoting the version of the file format. (<a href="#RFC5234" class="xref">[RFC5234]</a> ABNF: <samp>version = DIGIT/%x61-7A</samp>) The version defined in this specification is <samp>1</samp>.  When used with the <samp>Accept</samp> header field (Section 5.3.1 of <a href="#RFC7231" class="xref">[RFC7231]</a>), this parameter can be a comma (,)-separated list of version strings. (<a href="#RFC5234" class="xref">[RFC5234]</a> ABNF: <samp>version-list = version *( "," version )</samp>) The server is then expected to reply with a resource using a particular version from that list.  <br><br> Note: RFC EDITOR PLEASE DELETE THIS NOTE; Implementations of drafts of this specification MUST NOT use simple integers to describe their versions, and MUST instead define implementation-specific strings to identify which draft is implemented.</li></ul>
+<p id="rfc.section.8.4.p.5">Optional parameters:  N/A</p>
+<p id="rfc.section.8.4.p.6">Encoding considerations:  binary</p>
+<p id="rfc.section.8.4.p.7">Security considerations:  see <a href="#security-application-signed-exchange" class="xref">Section 6.6</a></p>
+<p id="rfc.section.8.4.p.8">Interoperability considerations:  N/A</p>
+<p id="rfc.section.8.4.p.9">Published specification:  This specification (see <a href="#application-signed-exchange" class="xref">Section 5.3</a>).</p>
+<p id="rfc.section.8.4.p.10">Applications that use this media type:  N/A</p>
+<p id="rfc.section.8.4.p.11">Fragment identifier considerations:  N/A</p>
+<p id="rfc.section.8.4.p.12">Additional information:</p>
+<p id="rfc.section.8.4.p.13">Deprecated alias names for this type:  N/A</p>
+<p id="rfc.section.8.4.p.14">Magic number(s):  73 78 67 31 00</p>
+<p id="rfc.section.8.4.p.15">File extension(s): .sxg</p>
+<p id="rfc.section.8.4.p.16">Macintosh file type code(s):  N/A</p>
+<p id="rfc.section.8.4.p.17">Person and email address to contact for further information: See Authors&#8217; Addresses section.</p>
+<p id="rfc.section.8.4.p.18">Intended usage:  COMMON</p>
+<p id="rfc.section.8.4.p.19">Restrictions on usage:  N/A</p>
+<p id="rfc.section.8.4.p.20">Author:  See Authors&#8217; Addresses section.</p>
+<p id="rfc.section.8.4.p.21">Change controller:  IESG</p>
 <h1 id="rfc.section.8.5">
 <a href="#rfc.section.8.5">8.5.</a> <a href="#internet-media-type-applicationcert-chaincbor" id="internet-media-type-applicationcert-chaincbor">Internet Media Type application/cert-chain+cbor</a>
 </h1>
@@ -1379,12 +1345,12 @@ Accept-Signature: -rsa/2048, rsa/4096
 <tr>
 <td class="reference"><b id="FETCH">[FETCH]</b></td>
 <td class="top">
-<a>WHATWG</a>, "<a href="https://fetch.spec.whatwg.org/">Fetch</a>", March 2018.</td>
+<a>WHATWG</a>, "<a href="https://fetch.spec.whatwg.org/">Fetch</a>", April 2018.</td>
 </tr>
 <tr>
 <td class="reference"><b id="HTML">[HTML]</b></td>
 <td class="top">
-<a>WHATWG</a>, "<a href="https://html.spec.whatwg.org/multipage">HTML</a>", March 2018.</td>
+<a>WHATWG</a>, "<a href="https://html.spec.whatwg.org/multipage">HTML</a>", April 2018.</td>
 </tr>
 <tr>
 <td class="reference"><b id="I-D.ietf-cbor-cddl">[I-D.ietf-cbor-cddl]</b></td>
@@ -1430,6 +1396,11 @@ Accept-Signature: -rsa/2048, rsa/4096
 <td class="reference"><b id="RFC3864">[RFC3864]</b></td>
 <td class="top">
 <a>Klyne, G.</a>, <a>Nottingham, M.</a> and <a>J. Mogul</a>, "<a href="https://tools.ietf.org/html/rfc3864">Registration Procedures for Message Header Fields</a>", BCP 90, RFC 3864, DOI 10.17487/RFC3864, September 2004.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC5234">[RFC5234]</b></td>
+<td class="top">
+<a>Crocker, D.</a> and <a>P. Overell</a>, "<a href="https://tools.ietf.org/html/rfc5234">Augmented BNF for Syntax Specifications: ABNF</a>", STD 68, RFC 5234, DOI 10.17487/RFC5234, January 2008.</td>
 </tr>
 <tr>
 <td class="reference"><b id="RFC5280">[RFC5280]</b></td>
@@ -1683,8 +1654,8 @@ accept-language: ja-JP, ja
 </h1>
 <p id="rfc.section.B.2.1.p.1">HTTP headers are traditionally munged by proxies, making it impossible to guarantee that the client will see the same sequence of bytes as the publisher published. In the HTTPS world, we have more end-to-end header integrity, but it&#8217;s still likely that there are enough TLS-terminating proxies that the publisher&#8217;s signatures would tend to break before getting to the client.</p>
 <p id="rfc.section.B.2.1.p.2">There&#8217;s also no way in current HTTP for the response to a client-initiated request (Section 8.1 of <a href="#RFC7540" class="xref">[RFC7540]</a>) to convey the request headers it expected to respond to. A PUSH_PROMISE (Section 8.2 of <a href="#RFC7540" class="xref">[RFC7540]</a>) does not have this problem, and it would be possible to introduce a response header to convey the expected request headers.</p>
-<p id="rfc.section.B.2.1.p.3">Since proxies are unlikely to modify unknown content types, we can wrap the original exchange into an <samp>application/http-exchange+cbor</samp> format (<a href="#application-http-exchange" class="xref">Section 5.3</a>) and include the <samp>Cache-Control: no-transform</samp> header when sending it.</p>
-<p id="rfc.section.B.2.1.p.4">To reduce the likelihood of accidental modification by proxies, the <samp>application/http-exchange+cbor</samp> format includes a file signature that doesn&#8217;t collide with other known signatures.</p>
+<p id="rfc.section.B.2.1.p.3">Since proxies are unlikely to modify unknown content types, we can wrap the original exchange into an <samp>application/signed-exchange</samp> format (<a href="#application-signed-exchange" class="xref">Section 5.3</a>) and include the <samp>Cache-Control: no-transform</samp> header when sending it.</p>
+<p id="rfc.section.B.2.1.p.4">To reduce the likelihood of accidental modification by proxies, the <samp>application/signed-exchange</samp> format includes a file signature that doesn&#8217;t collide with other known signatures.</p>
 <p id="rfc.section.B.2.1.p.5">To help the PUSHed subresources use case (<a href="#uc-pushed-subresources" class="xref">Appendix A.1</a>), we might also want to extend the <samp>PUSH_PROMISE</samp> frame type to include a signature, and that could tell intermediates not to change the ensuing headers.</p>
 <h1 id="rfc.appendix.B.3">
 <a href="#rfc.appendix.B.3">B.3.</a> <a href="#response-lifespan" id="response-lifespan">Response lifespan</a>
@@ -1764,7 +1735,15 @@ Date: Sat, 25 Nov 2017 10:00:00 UTC
 <p id="rfc.section.D.p.2">draft-04</p>
 <p></p>
 
-<ul><li>Update to draft-ietf-httpbis-header-structure-04.</li></ul>
+<ul>
+<li>Update to draft-ietf-httpbis-header-structure-04.</li>
+<li>Replace the application/http-exchange+cbor format with a simpler application/signed-exchange format that: <ul>
+<li>Doesn&#8217;t require a streaming CBOR parser parse it from a network stream.</li>
+<li>Doesn&#8217;t allow request payloads or response trailers, which don&#8217;t fit into the signature model.</li>
+<li>Allows checking the signature before parsing the exchange headers.</li>
+</ul>
+</li>
+</ul>
 <p id="rfc.section.D.p.4">draft-03</p>
 <p></p>
 
