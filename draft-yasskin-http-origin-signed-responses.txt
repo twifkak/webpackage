@@ -4,8 +4,8 @@
 
 Network Working Group                                         J. Yasskin
 Internet-Draft                                                    Google
-Intended status: Standards Track                          April 05, 2018
-Expires: October 7, 2018
+Intended status: Standards Track                          April 06, 2018
+Expires: October 8, 2018
 
 
                          Signed HTTP Exchanges
@@ -48,12 +48,12 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on October 7, 2018.
+   This Internet-Draft will expire on October 8, 2018.
 
 
 
 
-Yasskin                  Expires October 7, 2018                [Page 1]
+Yasskin                  Expires October 8, 2018                [Page 1]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Yasskin                  Expires October 7, 2018                [Page 2]
+Yasskin                  Expires October 8, 2018                [Page 2]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -139,7 +139,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
      9.2.  Informative References  . . . . . . . . . . . . . . . . .  37
      9.3.  URIs  . . . . . . . . . . . . . . . . . . . . . . . . . .  39
    Appendix A.  Use cases  . . . . . . . . . . . . . . . . . . . . .  39
-     A.1.  PUSHed subresources . . . . . . . . . . . . . . . . . . .  39
+     A.1.  PUSHed subresources . . . . . . . . . . . . . . . . . . .  40
      A.2.  Explicit use of a content distributor for subresources  .  40
      A.3.  Subresource Integrity . . . . . . . . . . . . . . . . . .  41
      A.4.  Binary Transparency . . . . . . . . . . . . . . . . . . .  41
@@ -165,7 +165,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                  Expires October 7, 2018                [Page 3]
+Yasskin                  Expires October 8, 2018                [Page 3]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -221,7 +221,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                  Expires October 7, 2018                [Page 4]
+Yasskin                  Expires October 8, 2018                [Page 4]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -277,7 +277,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                  Expires October 7, 2018                [Page 5]
+Yasskin                  Expires October 8, 2018                [Page 5]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -298,8 +298,8 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
       integrity.
 
    "certUrl"  A string (Section 4.7 of
-      [I-D.ietf-httpbis-header-structure]) containing a valid URL string
-      [4].
+      [I-D.ietf-httpbis-header-structure]) containing an absolute-URL
+      string [4] ([URL]).
 
    "certSha256"  Binary content (Section 4.9 of
       [I-D.ietf-httpbis-header-structure]) holding the SHA-256 hash of
@@ -310,8 +310,8 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
       ([RFC8032]).
 
    "validityUrl"  A string (Section 4.7 of
-      [I-D.ietf-httpbis-header-structure]) containing a valid URL string
-      [5].
+      [I-D.ietf-httpbis-header-structure]) containing an absolute-URL
+      string [5] ([URL]).
 
    "date" and "expires"  An integer (Section 4.5 of
       [I-D.ietf-httpbis-header-structure]) representing a Unix time.
@@ -333,7 +333,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                  Expires October 7, 2018                [Page 6]
+Yasskin                  Expires October 8, 2018                [Page 6]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -389,7 +389,7 @@ Signature:
 
 
 
-Yasskin                  Expires October 7, 2018                [Page 7]
+Yasskin                  Expires October 8, 2018                [Page 7]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -440,12 +440,12 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
           "exchange"'s request's method.
 
        *  The byte string ':url' to the byte string containing
-          "exchange"'s request's effective request URI.
+          "exchange"'s request's effective request URI, which MUST be an
+          absolute-URL string [6] ([URL]).
 
 
 
-
-Yasskin                  Expires October 7, 2018                [Page 8]
+Yasskin                  Expires October 8, 2018                [Page 8]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -501,7 +501,7 @@ Signed-Headers: "content-type", "digest"
 
 
 
-Yasskin                  Expires October 7, 2018                [Page 9]
+Yasskin                  Expires October 8, 2018                [Page 9]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -557,7 +557,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                  Expires October 7, 2018               [Page 10]
+Yasskin                  Expires October 8, 2018               [Page 10]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -613,7 +613,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                  Expires October 7, 2018               [Page 11]
+Yasskin                  Expires October 8, 2018               [Page 11]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -669,7 +669,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                  Expires October 7, 2018               [Page 12]
+Yasskin                  Expires October 8, 2018               [Page 12]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -680,7 +680,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
    4.   If "integrity" is "digest", and the "Digest" header field in
         "exchange"'s response headers contains no digest-algorithms
         (https://www.iana.org/assignments/http-dig-alg/http-dig-
-        alg.xhtml [6]) stronger than "SHA", then return "invalid".
+        alg.xhtml [7]) stronger than "SHA", then return "invalid".
 
    5.   Set "publicKey" and "signing-alg" depending on which key fields
         are present:
@@ -725,7 +725,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                  Expires October 7, 2018               [Page 13]
+Yasskin                  Expires October 8, 2018               [Page 13]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -781,7 +781,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                  Expires October 7, 2018               [Page 14]
+Yasskin                  Expires October 8, 2018               [Page 14]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -837,7 +837,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                  Expires October 7, 2018               [Page 15]
+Yasskin                  Expires October 8, 2018               [Page 15]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -893,7 +893,7 @@ Signature:
 
 
 
-Yasskin                  Expires October 7, 2018               [Page 16]
+Yasskin                  Expires October 8, 2018               [Page 16]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -949,7 +949,7 @@ Signature:
 
 
 
-Yasskin                  Expires October 7, 2018               [Page 17]
+Yasskin                  Expires October 8, 2018               [Page 17]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -990,7 +990,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
    Identifiers starting with "digest/" indicate that the client supports
    the "Digest" header field ([RFC3230]) with the digest-algorithm from
    the https://www.iana.org/assignments/http-dig-alg/http-dig-alg.xhtml
-   [7] registry named in lower-case by the rest of the identifier.  For
+   [8] registry named in lower-case by the rest of the identifier.  For
    example, "digest/sha-512" indicates support for the SHA-512 digest
    algorithm, and "-digest/sha-256" indicates non-support for the
    SHA-256 digest algorithm.
@@ -1005,7 +1005,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                  Expires October 7, 2018               [Page 18]
+Yasskin                  Expires October 8, 2018               [Page 18]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -1061,7 +1061,7 @@ Accept-Signature: ..., ed25519key; **
 
 
 
-Yasskin                  Expires October 7, 2018               [Page 19]
+Yasskin                  Expires October 8, 2018               [Page 19]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -1111,13 +1111,13 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
    "valid".  Otherwise, return "invalid".
 
    1.  If the signature's "validityUrl" parameter (Paragraph 6) is not
-       same-origin [8] with "exchange"'s effective request URI
+       same-origin [9] with "exchange"'s effective request URI
        (Section 5.5 of [RFC7230]), return "invalid".
 
 
 
 
-Yasskin                  Expires October 7, 2018               [Page 20]
+Yasskin                  Expires October 8, 2018               [Page 20]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -1173,7 +1173,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                  Expires October 7, 2018               [Page 21]
+Yasskin                  Expires October 8, 2018               [Page 21]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -1229,7 +1229,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                  Expires October 7, 2018               [Page 22]
+Yasskin                  Expires October 8, 2018               [Page 22]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -1285,7 +1285,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                  Expires October 7, 2018               [Page 23]
+Yasskin                  Expires October 8, 2018               [Page 23]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -1341,7 +1341,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                  Expires October 7, 2018               [Page 24]
+Yasskin                  Expires October 8, 2018               [Page 24]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -1397,7 +1397,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                  Expires October 7, 2018               [Page 25]
+Yasskin                  Expires October 8, 2018               [Page 25]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -1453,7 +1453,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                  Expires October 7, 2018               [Page 26]
+Yasskin                  Expires October 8, 2018               [Page 26]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -1499,7 +1499,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 5.3.2.  Example
 
    An example "application/signed-exchange" file representing a possible
-   signed exchange with https://example.com/ [9] follows, with lengths
+   signed exchange with https://example.com/ [10] follows, with lengths
    represented by descriptions in "<>"s, CBOR represented in the
    extended diagnostic format defined in Appendix G of
    [I-D.ietf-cbor-cddl], and most of the "Signature" header field and
@@ -1509,7 +1509,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                  Expires October 7, 2018               [Page 27]
+Yasskin                  Expires October 8, 2018               [Page 27]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -1565,7 +1565,7 @@ following array>[
 
 
 
-Yasskin                  Expires October 7, 2018               [Page 28]
+Yasskin                  Expires October 8, 2018               [Page 28]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -1621,7 +1621,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                  Expires October 7, 2018               [Page 29]
+Yasskin                  Expires October 8, 2018               [Page 29]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -1677,7 +1677,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                  Expires October 7, 2018               [Page 30]
+Yasskin                  Expires October 8, 2018               [Page 30]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -1733,7 +1733,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                  Expires October 7, 2018               [Page 31]
+Yasskin                  Expires October 8, 2018               [Page 31]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -1789,7 +1789,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                  Expires October 7, 2018               [Page 32]
+Yasskin                  Expires October 8, 2018               [Page 32]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -1845,7 +1845,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                  Expires October 7, 2018               [Page 33]
+Yasskin                  Expires October 8, 2018               [Page 33]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -1901,7 +1901,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                  Expires October 7, 2018               [Page 34]
+Yasskin                  Expires October 8, 2018               [Page 34]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -1957,7 +1957,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                  Expires October 7, 2018               [Page 35]
+Yasskin                  Expires October 8, 2018               [Page 35]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -2013,7 +2013,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                  Expires October 7, 2018               [Page 36]
+Yasskin                  Expires October 8, 2018               [Page 36]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -2026,6 +2026,8 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/info/rfc8174>.
+
+   [URL]      WHATWG, "URL", April 2018, <https://url.spec.whatwg.org/>.
 
 9.2.  Informative References
 
@@ -2067,9 +2069,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-
-
-Yasskin                  Expires October 7, 2018               [Page 37]
+Yasskin                  Expires October 8, 2018               [Page 37]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -2125,7 +2125,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                  Expires October 7, 2018               [Page 38]
+Yasskin                  Expires October 8, 2018               [Page 38]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -2139,53 +2139,58 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
    [3] http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/
        V1_chap04.html#tag_04_16
 
-   [4] https://url.spec.whatwg.org/#valid-url-string
+   [4] https://url.spec.whatwg.org/#absolute-url-string
 
-   [5] https://url.spec.whatwg.org/#valid-url-string
+   [5] https://url.spec.whatwg.org/#absolute-url-string
 
-   [6] https://www.iana.org/assignments/http-dig-alg/http-dig-alg.xhtml
+   [6] https://url.spec.whatwg.org/#absolute-url-string
 
    [7] https://www.iana.org/assignments/http-dig-alg/http-dig-alg.xhtml
 
-   [8] https://html.spec.whatwg.org/multipage/origin.html#same-origin
+   [8] https://www.iana.org/assignments/http-dig-alg/http-dig-alg.xhtml
 
-   [9] https://example.com/
+   [9] https://html.spec.whatwg.org/multipage/origin.html#same-origin
 
-   [10] https://calendar.perfplanet.com/2013/big-bad-preloader/
+   [10] https://example.com/
 
-   [11] https://github.com/mikewest/signature-based-sri
+   [11] https://calendar.perfplanet.com/2013/big-bad-preloader/
 
-   [12] https://github.com/mikewest/signature-based-sri/issues/5
+   [12] https://github.com/mikewest/signature-based-sri
 
-   [13] https://www.apple.com/ios/app-store/
+   [13] https://github.com/mikewest/signature-based-sri/issues/5
 
-   [14] https://play.google.com/store
+   [14] https://www.apple.com/ios/app-store/
 
-   [15] https://github.com/WICG/webpackage
+   [15] https://play.google.com/store
 
-   [16] https://tools.ietf.org/html/rfc7540#section-8.2
+   [16] https://github.com/WICG/webpackage
 
-   [17] https://www.imperialviolet.org/2012/02/05/crlsets.html
+   [17] https://tools.ietf.org/html/rfc7540#section-8.2
 
-   [18] https://tlswg.github.io/tls13-spec/draft-ietf-tls-
+   [18] https://www.imperialviolet.org/2012/02/05/crlsets.html
+
+   [19] https://tlswg.github.io/tls13-spec/draft-ietf-tls-
         tls13.html#ocsp-and-sct
 
 Appendix A.  Use cases
+
+
+
+
+
+
+
+
+Yasskin                  Expires October 8, 2018               [Page 39]
+
+Internet-Draft            Signed HTTP Exchanges               April 2018
+
 
 A.1.  PUSHed subresources
 
    To reduce round trips, a server might use HTTP/2 Push (Section 8.2 of
    [RFC7540]) to inject a subresource from another server into the
    client's cache.  If anything about the subresource is expired or
-
-
-
-
-Yasskin                  Expires October 7, 2018               [Page 39]
-
-Internet-Draft            Signed HTTP Exchanges               April 2018
-
-
    can't be verified, the client would fetch it from the original
    server.
 
@@ -2220,7 +2225,7 @@ A.2.  Explicit use of a content distributor for subresources
    where the "<dist-img>" implementation generates an appropriate
    "<img>" based on, for example, a "<meta name="dist-base">" tag
    elsewhere in the page.  However, this has the downside that the
-   preloader [10] can no longer see the physical source to download it.
+   preloader [11] can no longer see the physical source to download it.
    The resulting delay might cancel out the benefit of using a
    distributor.
 
@@ -2229,22 +2234,20 @@ A.2.  Explicit use of a content distributor for subresources
 
    To implement this with the current proposal, the distributor would
    respond to the physical request to "https://distributor.com/O.com/
-   img.png" with first a signed PUSH_PROMISE for "https://O.com/img.png"
-   and then a redirect to "https://O.com/img.png".
 
 
 
-
-
-
-Yasskin                  Expires October 7, 2018               [Page 40]
+Yasskin                  Expires October 8, 2018               [Page 40]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
+   img.png" with first a signed PUSH_PROMISE for "https://O.com/img.png"
+   and then a redirect to "https://O.com/img.png".
+
 A.3.  Subresource Integrity
 
-   The W3C WebAppSec group is investigating using signatures [11] in
+   The W3C WebAppSec group is investigating using signatures [12] in
    [SRI].  They need a way to transmit the signature with the response,
    which this proposal provides.
 
@@ -2259,7 +2262,7 @@ A.3.  Subresource Integrity
    The current proposal for signature-based SRI describes signing only
    the content of a resource, while this specification requires them to
    sign the request URI as well.  This issue is tracked in
-   https://github.com/mikewest/signature-based-sri/issues/5 [12].  The
+   https://github.com/mikewest/signature-based-sri/issues/5 [13].  The
    details of what they need to sign will affect whether and how they
    can use this proposal.
 
@@ -2281,23 +2284,22 @@ A.4.  Binary Transparency
 
 A.5.  Static Analysis
 
-   Native app stores like the Apple App Store [13] and the Android Play
-   Store [14] grant their contents powerful abilities, which they
+   Native app stores like the Apple App Store [14] and the Android Play
+   Store [15] grant their contents powerful abilities, which they
    attempt to make safe by analyzing the applications before offering
    them to people.  The web has no equivalent way for people to wait to
    run an update of a web application until a trusted authority has
    vouched for it.
 
-   While full application analysis probably needs to wait until the
-   authority can sign bundles of exchanges, authorities may be able to
 
 
-
-Yasskin                  Expires October 7, 2018               [Page 41]
+Yasskin                  Expires October 8, 2018               [Page 41]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
+   While full application analysis probably needs to wait until the
+   authority can sign bundles of exchanges, authorities may be able to
    guarantee certain properties by just checking a top-level resource
    and its [SRI]-constrained sub-resources.
 
@@ -2306,7 +2308,7 @@ A.6.  Offline websites
    Fully-offline websites can be represented as bundles of signed
    exchanges, although an optimization to reduce the number of signature
    verifications may be needed.  Work on this is in progress in the
-   https://github.com/WICG/webpackage [15] repository.
+   https://github.com/WICG/webpackage [16] repository.
 
 Appendix B.  Requirements
 
@@ -2347,9 +2349,7 @@ B.1.2.  Signature constraints
 
 
 
-
-
-Yasskin                  Expires October 7, 2018               [Page 42]
+Yasskin                  Expires October 8, 2018               [Page 42]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -2405,7 +2405,7 @@ B.2.  How much to sign
 
 
 
-Yasskin                  Expires October 7, 2018               [Page 43]
+Yasskin                  Expires October 8, 2018               [Page 43]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -2429,7 +2429,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
    accept-language: ja-JP, ja
 
    and clients would use the same matching logic as for PUSH_PROMISE
-   [16] frame headers.
+   [17] frame headers.
 
 B.2.1.  Conveying the signed headers
 
@@ -2461,7 +2461,7 @@ B.2.1.  Conveying the signed headers
 
 
 
-Yasskin                  Expires October 7, 2018               [Page 44]
+Yasskin                  Expires October 8, 2018               [Page 44]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -2482,7 +2482,7 @@ B.3.1.  Certificate revocation
 
    Certificates are mis-issued and private keys are stolen, and in
    response clients need to be able to stop trusting these certificates
-   as promptly as possible.  Online revocation checks don't work [17],
+   as promptly as possible.  Online revocation checks don't work [18],
    so the industry has moved to pushed revocation lists and stapled OCSP
    responses [RFC6066].
 
@@ -2490,7 +2490,7 @@ B.3.1.  Certificate revocation
    signing an exchange, but the signatures need an explicit strategy to
    staple OCSP responses.  One option is to extend the certificate
    download (Appendix B.1.3) to include the OCSP response too, perhaps
-   in the TLS 1.3 CertificateEntry [18] format.
+   in the TLS 1.3 CertificateEntry [19] format.
 
 B.3.2.  Response downgrade attacks
 
@@ -2517,7 +2517,7 @@ B.3.2.  Response downgrade attacks
 
 
 
-Yasskin                  Expires October 7, 2018               [Page 45]
+Yasskin                  Expires October 8, 2018               [Page 45]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -2573,7 +2573,7 @@ C.1.  Example of updating cache control
 
 
 
-Yasskin                  Expires October 7, 2018               [Page 46]
+Yasskin                  Expires October 8, 2018               [Page 46]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -2629,7 +2629,7 @@ C.2.  Downsides of updating cache control
 
 
 
-Yasskin                  Expires October 7, 2018               [Page 47]
+Yasskin                  Expires October 8, 2018               [Page 47]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -2653,6 +2653,8 @@ Appendix D.  Change Log
 
       *  Allows checking the signature before parsing the exchange
          headers.
+
+   o  Require absolute URLs.
 
    draft-03
 
@@ -2683,9 +2685,7 @@ Appendix D.  Change Log
 
 
 
-
-
-Yasskin                  Expires October 7, 2018               [Page 48]
+Yasskin                  Expires October 8, 2018               [Page 48]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -2741,4 +2741,4 @@ Author's Address
 
 
 
-Yasskin                  Expires October 7, 2018               [Page 49]
+Yasskin                  Expires October 8, 2018               [Page 49]

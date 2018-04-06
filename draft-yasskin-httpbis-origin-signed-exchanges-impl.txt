@@ -5,7 +5,7 @@
 Network Working Group                                         J. Yasskin
 Internet-Draft                                                   K. Ueno
 Intended status: Standards Track                                  Google
-Expires: October 7, 2018                                  April 05, 2018
+Expires: October 8, 2018                                  April 06, 2018
 
 
             Signed HTTP Exchanges Implementation Checkpoints
@@ -41,7 +41,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on October 7, 2018.
+   This Internet-Draft will expire on October 8, 2018.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Yasskin & Ueno           Expires October 7, 2018                [Page 1]
+Yasskin & Ueno           Expires October 8, 2018                [Page 1]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Yasskin & Ueno           Expires October 7, 2018                [Page 2]
+Yasskin & Ueno           Expires October 8, 2018                [Page 2]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
@@ -165,7 +165,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
 
 
-Yasskin & Ueno           Expires October 7, 2018                [Page 3]
+Yasskin & Ueno           Expires October 8, 2018                [Page 3]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
@@ -210,8 +210,8 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
       payload's integrity.
 
    "certUrl"  A string (Section 4.2 of
-      [I-D.ietf-httpbis-header-structure-02]) containing a valid URL
-      string [4].
+      [I-D.ietf-httpbis-header-structure-02]) containing an absolute-URL
+      string [4] ([URL]).
 
    "certSha256"  Binary content (Section 4.5 of
       [I-D.ietf-httpbis-header-structure-02]) holding the SHA-256 hash
@@ -221,14 +221,14 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
 
 
-Yasskin & Ueno           Expires October 7, 2018                [Page 4]
+Yasskin & Ueno           Expires October 8, 2018                [Page 4]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
 
    "validityUrl"  A string (Section 4.2 of
-      [I-D.ietf-httpbis-header-structure-02]) containing a valid URL
-      string [5].
+      [I-D.ietf-httpbis-header-structure-02]) containing an absolute-URL
+      string [5] ([URL]).
 
    "date" and "expires"  An unsigned integer (Section 4.1 of
       [I-D.ietf-httpbis-header-structure-02]) representing a Unix time.
@@ -277,7 +277,7 @@ Signature:
 
 
 
-Yasskin & Ueno           Expires October 7, 2018                [Page 5]
+Yasskin & Ueno           Expires October 8, 2018                [Page 5]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
@@ -309,7 +309,8 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
           "exchange"'s request's method.
 
        *  The byte string ':url' to the byte string containing
-          "exchange"'s request's effective request URI.
+          "exchange"'s request's effective request URI, which MUST be an
+          absolute-URL string [6] ([URL]).
 
        *  For each request header field in "exchange", the header
           field's lowercase name as a byte string to the header field's
@@ -332,8 +333,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
 
 
-
-Yasskin & Ueno           Expires October 7, 2018                [Page 6]
+Yasskin & Ueno           Expires October 8, 2018                [Page 6]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
@@ -389,7 +389,7 @@ MI: mi-sha256=20addcf7368837f616d549f035bf6784ea6d4bf4817a3736cd2fc7a763897fe3
 
 
 
-Yasskin & Ueno           Expires October 7, 2018                [Page 7]
+Yasskin & Ueno           Expires October 8, 2018                [Page 7]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
@@ -445,7 +445,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
 
 
-Yasskin & Ueno           Expires October 7, 2018                [Page 8]
+Yasskin & Ueno           Expires October 8, 2018                [Page 8]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
@@ -501,7 +501,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
 
 
-Yasskin & Ueno           Expires October 7, 2018                [Page 9]
+Yasskin & Ueno           Expires October 8, 2018                [Page 9]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
@@ -557,7 +557,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
 
 
-Yasskin & Ueno           Expires October 7, 2018               [Page 10]
+Yasskin & Ueno           Expires October 8, 2018               [Page 10]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
@@ -613,7 +613,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
 
 
-Yasskin & Ueno           Expires October 7, 2018               [Page 11]
+Yasskin & Ueno           Expires October 8, 2018               [Page 11]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
@@ -669,7 +669,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
 
 
-Yasskin & Ueno           Expires October 7, 2018               [Page 12]
+Yasskin & Ueno           Expires October 8, 2018               [Page 12]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
@@ -725,7 +725,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
 
 
-Yasskin & Ueno           Expires October 7, 2018               [Page 13]
+Yasskin & Ueno           Expires October 8, 2018               [Page 13]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
@@ -756,7 +756,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
    "valid".  Otherwise, return "invalid".
 
    1.  If the signature's "validityUrl" parameter (Paragraph 5) is not
-       same-origin [6] with "exchange"'s effective request URI
+       same-origin [7] with "exchange"'s effective request URI
        (Section 5.5 of [RFC7230]), return "invalid".
 
    2.  Use Section 3.5 to determine the signature's validity for
@@ -781,7 +781,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
 
 
-Yasskin & Ueno           Expires October 7, 2018               [Page 14]
+Yasskin & Ueno           Expires October 8, 2018               [Page 14]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
@@ -837,7 +837,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
 
 
-Yasskin & Ueno           Expires October 7, 2018               [Page 15]
+Yasskin & Ueno           Expires October 8, 2018               [Page 15]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
@@ -893,15 +893,15 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
 
 
-Yasskin & Ueno           Expires October 7, 2018               [Page 16]
+Yasskin & Ueno           Expires October 8, 2018               [Page 16]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
 
    The first element of the array is interpreted as the exchange's
    request headers with lowercase names, with the request method in the
-   ':method' key's value, and the effective request URI in the ':url'
-   key's value.
+   ':method' key's value, and the effective request URI, which MUST be
+   an absolute-URL string [8] ([URL]), in the ':url' key's value.
 
    The second element of the array is interpreted as the exchange's
    response headers with lowercase names, with the 3-digit response
@@ -949,7 +949,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
 
 
-Yasskin & Ueno           Expires October 7, 2018               [Page 17]
+Yasskin & Ueno           Expires October 8, 2018               [Page 17]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
@@ -1005,7 +1005,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
 
 
-Yasskin & Ueno           Expires October 7, 2018               [Page 18]
+Yasskin & Ueno           Expires October 8, 2018               [Page 18]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
@@ -1061,7 +1061,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
 
 
-Yasskin & Ueno           Expires October 7, 2018               [Page 19]
+Yasskin & Ueno           Expires October 8, 2018               [Page 19]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
@@ -1117,7 +1117,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
 
 
-Yasskin & Ueno           Expires October 7, 2018               [Page 20]
+Yasskin & Ueno           Expires October 8, 2018               [Page 20]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
@@ -1151,6 +1151,8 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/info/rfc8174>.
 
+   [URL]      WHATWG, "URL", April 2018, <https://url.spec.whatwg.org/>.
+
 9.2.  Informative References
 
    [RFC2965]  Kristol, D. and L. Montulli, "HTTP State Management
@@ -1171,9 +1173,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
 
 
-
-
-Yasskin & Ueno           Expires October 7, 2018               [Page 21]
+Yasskin & Ueno           Expires October 8, 2018               [Page 21]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
@@ -1207,11 +1207,15 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
    [3] http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/
        V1_chap04.html#tag_04_16
 
-   [4] https://url.spec.whatwg.org/#valid-url-string
+   [4] https://url.spec.whatwg.org/#absolute-url-string
 
-   [5] https://url.spec.whatwg.org/#valid-url-string
+   [5] https://url.spec.whatwg.org/#absolute-url-string
 
-   [6] https://html.spec.whatwg.org/multipage/origin.html#same-origin
+   [6] https://url.spec.whatwg.org/#absolute-url-string
+
+   [7] https://html.spec.whatwg.org/multipage/origin.html#same-origin
+
+   [8] https://url.spec.whatwg.org/#absolute-url-string
 
 Appendix A.  Change Log
 
@@ -1223,16 +1227,14 @@ Appendix A.  Change Log
 
    o  Only 1 signature is supported.
 
-   o  Only 2048-bit RSA keys are supported.
 
 
-
-
-
-Yasskin & Ueno           Expires October 7, 2018               [Page 22]
+Yasskin & Ueno           Expires October 8, 2018               [Page 22]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
+
+   o  Only 2048-bit RSA keys are supported.
 
    o  The certificate chain resource uses the TLS 1.3 Certificate
       message format rather than a CBOR-based format.
@@ -1258,6 +1260,8 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
    o  The Accept-Signature header isn't used.
 
+   o  Require absolute URLs.
+
 Appendix B.  Acknowledgements
 
 Authors' Addresses
@@ -1281,8 +1285,4 @@ Authors' Addresses
 
 
 
-
-
-
-
-Yasskin & Ueno           Expires October 7, 2018               [Page 23]
+Yasskin & Ueno           Expires October 8, 2018               [Page 23]
