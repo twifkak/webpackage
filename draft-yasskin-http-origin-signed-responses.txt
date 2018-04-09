@@ -4,8 +4,8 @@
 
 Network Working Group                                         J. Yasskin
 Internet-Draft                                                    Google
-Intended status: Standards Track                          April 06, 2018
-Expires: October 8, 2018
+Intended status: Standards Track                          April 09, 2018
+Expires: October 11, 2018
 
 
                          Signed HTTP Exchanges
@@ -48,12 +48,12 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on October 8, 2018.
+   This Internet-Draft will expire on October 11, 2018.
 
 
 
 
-Yasskin                  Expires October 8, 2018                [Page 1]
+Yasskin                 Expires October 11, 2018                [Page 1]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -96,8 +96,8 @@ Table of Contents
        3.7.4.  Examples  . . . . . . . . . . . . . . . . . . . . . .  20
        3.7.5.  Open Questions  . . . . . . . . . . . . . . . . . . .  20
    4.  Cross-origin trust  . . . . . . . . . . . . . . . . . . . . .  20
-     4.1.  Stateful header fields  . . . . . . . . . . . . . . . . .  21
-     4.2.  Certificate Requirements  . . . . . . . . . . . . . . . .  22
+     4.1.  Stateful header fields  . . . . . . . . . . . . . . . . .  22
+     4.2.  Certificate Requirements  . . . . . . . . . . . . . . . .  23
    5.  Transferring a signed exchange  . . . . . . . . . . . . . . .  23
      5.1.  Same-origin response  . . . . . . . . . . . . . . . . . .  23
        5.1.1.  Significant headers for a same-origin response  . . .  24
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Yasskin                  Expires October 8, 2018                [Page 2]
+Yasskin                 Expires October 11, 2018                [Page 2]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -165,7 +165,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                  Expires October 8, 2018                [Page 3]
+Yasskin                 Expires October 11, 2018                [Page 3]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -221,7 +221,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                  Expires October 8, 2018                [Page 4]
+Yasskin                 Expires October 11, 2018                [Page 4]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -277,7 +277,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                  Expires October 8, 2018                [Page 5]
+Yasskin                 Expires October 11, 2018                [Page 5]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -333,7 +333,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                  Expires October 8, 2018                [Page 6]
+Yasskin                 Expires October 11, 2018                [Page 6]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -389,7 +389,7 @@ Signature:
 
 
 
-Yasskin                  Expires October 8, 2018                [Page 7]
+Yasskin                 Expires October 11, 2018                [Page 7]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -445,7 +445,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                  Expires October 8, 2018                [Page 8]
+Yasskin                 Expires October 11, 2018                [Page 8]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -501,7 +501,7 @@ Signed-Headers: "content-type", "digest"
 
 
 
-Yasskin                  Expires October 8, 2018                [Page 9]
+Yasskin                 Expires October 11, 2018                [Page 9]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -557,7 +557,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                  Expires October 8, 2018               [Page 10]
+Yasskin                 Expires October 11, 2018               [Page 10]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -613,7 +613,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                  Expires October 8, 2018               [Page 11]
+Yasskin                 Expires October 11, 2018               [Page 11]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -669,7 +669,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                  Expires October 8, 2018               [Page 12]
+Yasskin                 Expires October 11, 2018               [Page 12]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -725,7 +725,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                  Expires October 8, 2018               [Page 13]
+Yasskin                 Expires October 11, 2018               [Page 13]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -781,7 +781,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                  Expires October 8, 2018               [Page 14]
+Yasskin                 Expires October 11, 2018               [Page 14]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -837,7 +837,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                  Expires October 8, 2018               [Page 15]
+Yasskin                 Expires October 11, 2018               [Page 15]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -893,7 +893,7 @@ Signature:
 
 
 
-Yasskin                  Expires October 8, 2018               [Page 16]
+Yasskin                 Expires October 11, 2018               [Page 16]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -949,7 +949,7 @@ Signature:
 
 
 
-Yasskin                  Expires October 8, 2018               [Page 17]
+Yasskin                 Expires October 11, 2018               [Page 17]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -1005,7 +1005,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                  Expires October 8, 2018               [Page 18]
+Yasskin                 Expires October 11, 2018               [Page 18]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -1061,7 +1061,7 @@ Accept-Signature: ..., ed25519key; **
 
 
 
-Yasskin                  Expires October 8, 2018               [Page 19]
+Yasskin                 Expires October 11, 2018               [Page 19]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -1117,7 +1117,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                  Expires October 8, 2018               [Page 20]
+Yasskin                 Expires October 11, 2018               [Page 20]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -1158,9 +1158,27 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
            certificates, and clients SHOULD implement another mechanism
            for that.
 
-       4.  Validate that "main-certificate" has an "sct" property
-           (Section 3.3) containing valid SCTs from trusted logs.
-           ([RFC6962])
+       4.  Validate that valid SCTs from trusted logs are available from
+           any of:
+
+           +  The "SignedCertificateTimestampList" in "main-
+              certificate"'s "sct" property (Section 3.3),
+
+           +  An OCSP extension in the OCSP response in "main-
+              certificate"'s "ocsp" property, or
+
+           +  An X.509 extension in the certificate in "main-
+              certificate"'s "cert" property,
+
+
+
+
+Yasskin                 Expires October 11, 2018               [Page 21]
+
+Internet-Draft            Signed HTTP Exchanges               April 2018
+
+
+           as described by Section 3.3 of [RFC6962].
 
    7.  Return "valid".
 
@@ -1169,15 +1187,6 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
    As described in Section 6.1, a publisher can cause problems if they
    sign an exchange that includes private information.  There's no way
    for a client to be sure an exchange does or does not include private
-
-
-
-
-Yasskin                  Expires October 8, 2018               [Page 21]
-
-Internet-Draft            Signed HTTP Exchanges               April 2018
-
-
    information, but header fields that store or convey stored state in
    the client are a good sign.
 
@@ -1218,6 +1227,13 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
    o  "WWW-Authenticate", [RFC7235]
 
+
+
+Yasskin                 Expires October 11, 2018               [Page 22]
+
+Internet-Draft            Signed HTTP Exchanges               April 2018
+
+
 4.2.  Certificate Requirements
 
    We define a new X.509 extension, CanSignHttpExchanges to be used in
@@ -1225,15 +1241,6 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
    exchanges.  When this extension is not present the client MUST NOT
    accept a signature from the certificate as proof that a signed
    exchange is authoritative for a domain covered by the certificate.
-
-
-
-
-Yasskin                  Expires October 8, 2018               [Page 22]
-
-Internet-Draft            Signed HTTP Exchanges               April 2018
-
-
    When it is present, the client MUST follow the validation procedure
    in Section 4.
 
@@ -1274,21 +1281,18 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
    request/response pair, it MUST pass only the subset of header fields
    defined by Section 5.1.1 to the validation procedure (Section 3.5).
 
-   If the client relies on signature validity for any aspect of its
-   behavior, it MUST ignore any header fields that it didn't pass to the
-   validation procedure.
 
 
 
 
-
-
-
-
-Yasskin                  Expires October 8, 2018               [Page 23]
+Yasskin                 Expires October 11, 2018               [Page 23]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
+
+   If the client relies on signature validity for any aspect of its
+   behavior, it MUST ignore any header fields that it didn't pass to the
+   validation procedure.
 
 5.1.1.  Significant headers for a same-origin response
 
@@ -1334,17 +1338,16 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
    higher-level protocols to merge the header field lists of valid
    signatures.
 
-   See Appendix B.2 for a discussion of why only the URL from the
-   request is included and not other request headers.
 
 
 
-
-
-Yasskin                  Expires October 8, 2018               [Page 24]
+Yasskin                 Expires October 11, 2018               [Page 24]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
+
+   See Appendix B.2 for a discussion of why only the URL from the
+   request is included and not other request headers.
 
    "Signed-Headers" is a Structured Header as defined by
    [I-D.ietf-httpbis-header-structure].  Its value MUST be a list
@@ -1391,16 +1394,16 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
    several reasons, for example that the certificate could not be
    fetched, that the certificate does not chain to a trusted root, that
    the signature itself doesn't validate, that the signature is expired,
-   etc.  This draft conflates all of these possible failures into one
-   error code, NO_TRUSTED_EXCHANGE_SIGNATURE (0xERROR-TBD).
 
 
 
-
-Yasskin                  Expires October 8, 2018               [Page 25]
+Yasskin                 Expires October 11, 2018               [Page 25]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
+
+   etc.  This draft conflates all of these possible failures into one
+   error code, NO_TRUSTED_EXCHANGE_SIGNATURE (0xERROR-TBD).
 
 5.2.2.1.  Open Questions
 
@@ -1447,17 +1450,17 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
        receipients that receive both MUST check that they match and stop
        parsing if they don't.
 
-       Note: RFC EDITOR PLEASE DELETE THIS NOTE; The implementation of
-       the final RFC MUST use this file signature, but implementations
-       of drafts MUST NOT use it and MUST use another implementation-
 
 
 
-Yasskin                  Expires October 8, 2018               [Page 26]
+Yasskin                 Expires October 11, 2018               [Page 26]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
+       Note: RFC EDITOR PLEASE DELETE THIS NOTE; The implementation of
+       the final RFC MUST use this file signature, but implementations
+       of drafts MUST NOT use it and MUST use another implementation-
        specific string beginning with "sxg1-" and ending with a 0 byte
        instead.
 
@@ -1502,17 +1505,17 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
    signed exchange with https://example.com/ [10] follows, with lengths
    represented by descriptions in "<>"s, CBOR represented in the
    extended diagnostic format defined in Appendix G of
-   [I-D.ietf-cbor-cddl], and most of the "Signature" header field and
-   payload elided with a ...:
 
 
 
 
-
-Yasskin                  Expires October 8, 2018               [Page 27]
+Yasskin                 Expires October 11, 2018               [Page 27]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
+
+   [I-D.ietf-cbor-cddl], and most of the "Signature" header field and
+   payload elided with a ...:
 
 sxg1\0<3-byte length of the following header
 value>sig1; sig=*...; integrity="mi"; ...<3-byte length of the encoding of the
@@ -1562,10 +1565,7 @@ following array>[
 
 
 
-
-
-
-Yasskin                  Expires October 8, 2018               [Page 28]
+Yasskin                 Expires October 11, 2018               [Page 28]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -1621,7 +1621,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                  Expires October 8, 2018               [Page 29]
+Yasskin                 Expires October 11, 2018               [Page 29]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -1677,7 +1677,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                  Expires October 8, 2018               [Page 30]
+Yasskin                 Expires October 11, 2018               [Page 30]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -1733,7 +1733,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                  Expires October 8, 2018               [Page 31]
+Yasskin                 Expires October 11, 2018               [Page 31]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -1789,7 +1789,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                  Expires October 8, 2018               [Page 32]
+Yasskin                 Expires October 11, 2018               [Page 32]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -1845,7 +1845,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                  Expires October 8, 2018               [Page 33]
+Yasskin                 Expires October 11, 2018               [Page 33]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -1901,7 +1901,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                  Expires October 8, 2018               [Page 34]
+Yasskin                 Expires October 11, 2018               [Page 34]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -1957,7 +1957,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                  Expires October 8, 2018               [Page 35]
+Yasskin                 Expires October 11, 2018               [Page 35]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -2013,7 +2013,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                  Expires October 8, 2018               [Page 36]
+Yasskin                 Expires October 11, 2018               [Page 36]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -2069,7 +2069,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                  Expires October 8, 2018               [Page 37]
+Yasskin                 Expires October 11, 2018               [Page 37]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -2125,7 +2125,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                  Expires October 8, 2018               [Page 38]
+Yasskin                 Expires October 11, 2018               [Page 38]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -2181,7 +2181,7 @@ Appendix A.  Use cases
 
 
 
-Yasskin                  Expires October 8, 2018               [Page 39]
+Yasskin                 Expires October 11, 2018               [Page 39]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -2237,7 +2237,7 @@ A.2.  Explicit use of a content distributor for subresources
 
 
 
-Yasskin                  Expires October 8, 2018               [Page 40]
+Yasskin                 Expires October 11, 2018               [Page 40]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -2293,7 +2293,7 @@ A.5.  Static Analysis
 
 
 
-Yasskin                  Expires October 8, 2018               [Page 41]
+Yasskin                 Expires October 11, 2018               [Page 41]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -2349,7 +2349,7 @@ B.1.2.  Signature constraints
 
 
 
-Yasskin                  Expires October 8, 2018               [Page 42]
+Yasskin                 Expires October 11, 2018               [Page 42]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -2405,7 +2405,7 @@ B.2.  How much to sign
 
 
 
-Yasskin                  Expires October 8, 2018               [Page 43]
+Yasskin                 Expires October 11, 2018               [Page 43]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -2461,7 +2461,7 @@ B.2.1.  Conveying the signed headers
 
 
 
-Yasskin                  Expires October 8, 2018               [Page 44]
+Yasskin                 Expires October 11, 2018               [Page 44]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -2517,7 +2517,7 @@ B.3.2.  Response downgrade attacks
 
 
 
-Yasskin                  Expires October 8, 2018               [Page 45]
+Yasskin                 Expires October 11, 2018               [Page 45]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -2573,7 +2573,7 @@ C.1.  Example of updating cache control
 
 
 
-Yasskin                  Expires October 8, 2018               [Page 46]
+Yasskin                 Expires October 11, 2018               [Page 46]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -2629,7 +2629,7 @@ C.2.  Downsides of updating cache control
 
 
 
-Yasskin                  Expires October 8, 2018               [Page 47]
+Yasskin                 Expires October 11, 2018               [Page 47]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -2685,7 +2685,7 @@ Appendix D.  Change Log
 
 
 
-Yasskin                  Expires October 8, 2018               [Page 48]
+Yasskin                 Expires October 11, 2018               [Page 48]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -2741,4 +2741,4 @@ Author's Address
 
 
 
-Yasskin                  Expires October 8, 2018               [Page 49]
+Yasskin                 Expires October 11, 2018               [Page 49]
