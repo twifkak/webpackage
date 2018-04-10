@@ -5,7 +5,7 @@
 Network Working Group                                         J. Yasskin
 Internet-Draft                                                   K. Ueno
 Intended status: Standards Track                                  Google
-Expires: October 11, 2018                                 April 09, 2018
+Expires: October 12, 2018                                 April 10, 2018
 
 
             Signed HTTP Exchanges Implementation Checkpoints
@@ -41,7 +41,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on October 11, 2018.
+   This Internet-Draft will expire on October 12, 2018.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Yasskin & Ueno          Expires October 11, 2018                [Page 1]
+Yasskin & Ueno          Expires October 12, 2018                [Page 1]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Yasskin & Ueno          Expires October 11, 2018                [Page 2]
+Yasskin & Ueno          Expires October 12, 2018                [Page 2]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
@@ -165,7 +165,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
 
 
-Yasskin & Ueno          Expires October 11, 2018                [Page 3]
+Yasskin & Ueno          Expires October 12, 2018                [Page 3]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
@@ -221,7 +221,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
 
 
-Yasskin & Ueno          Expires October 11, 2018                [Page 4]
+Yasskin & Ueno          Expires October 12, 2018                [Page 4]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
@@ -245,7 +245,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 Signature:
  sig1;
   sig=*t7LoYw6vwL2FSZRNJPYdNdYjfZSQkaCQeqpBD1whcy/6AAamVJ2OryXoXv6ACVBQgPV13o5de9oOVcOGGMX9fsf2ve1UDw/ITpeimB7n3zcuDEePzIcPbUnicicN2yodZAfr5il7BBJTs8L+V2ZERI16nJfrOZOvUfhvuUaMDGQXx5StIj7XLiX7/caxPz5ctwglgVAwCmoVPhmYFLq391O+hEssHSk2xkY6r/D9V2cKMikBBOTZ+JFyrnS/f2B4li7YASIY0YX64ifCmCw97cQTngXax6Upoie44IAe+6JngOie9JlDgcMF3YZ1uxNGWl9VwlalSwWgi1YA9Ff7mQ;
-  integrity="mi";
+  integrity="mi-draft2";
   validityUrl="https://example.com/resource.validity.1511128380";
   certUrl="https://example.com/certs";
   certSha256=*W7uB969dFW3Mb5ZefPS9Tq5ZbH5iSmOILpjv2qEArmI;
@@ -254,8 +254,8 @@ Signature:
    The signatures uses a 2048-bit RSA certificate within
    "https://example.com/".
 
-   It relies on the "MI" response header to guard the integrity of the
-   response payload.
+   It relies on the "MI-Draft2" response header to guard the integrity
+   of the response payload.
 
    The signature includes a "validityUrl" that includes the first time
    the resource was seen.  This allows multiple versions of a resource
@@ -277,7 +277,7 @@ Signature:
 
 
 
-Yasskin & Ueno          Expires October 11, 2018                [Page 5]
+Yasskin & Ueno          Expires October 12, 2018                [Page 5]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
@@ -333,7 +333,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
 
 
-Yasskin & Ueno          Expires October 11, 2018                [Page 6]
+Yasskin & Ueno          Expires October 12, 2018                [Page 6]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
@@ -343,8 +343,8 @@ Accept: */*
 
 HTTP/1.1 200
 Content-Type: text/html
-Content-Encoding: mi-sha256
-MI: mi-sha256=20addcf7368837f616d549f035bf6784ea6d4bf4817a3736cd2fc7a763897fe3
+Content-Encoding: mi-sha256-draft2
+MI: mi-sha256-draft2=20addcf7368837f616d549f035bf6784ea6d4bf4817a3736cd2fc7a763897fe3
 
 <0x0000000000004000><!doctype html>
 <html>
@@ -360,10 +360,10 @@ MI: mi-sha256=20addcf7368837f616d549f035bf6784ea6d4bf4817a3736cd2fc7a763897fe3
     ':method': 'GET',
   },
   {
-    'mi': 'mi-sha256=20addcf7368837f616d549f035bf6784ea6d4bf4817a3736cd2fc7a763897fe3',
+    'mi': 'mi-sha256-draft2=20addcf7368837f616d549f035bf6784ea6d4bf4817a3736cd2fc7a763897fe3',
     ':status': '200',
     'content-type': 'text/html'
-    'content-encoding': 'mi-sha256',
+    'content-encoding': 'mi-sha256-draft2',
   }
 ]
 
@@ -389,7 +389,7 @@ MI: mi-sha256=20addcf7368837f616d549f035bf6784ea6d4bf4817a3736cd2fc7a763897fe3
 
 
 
-Yasskin & Ueno          Expires October 11, 2018                [Page 7]
+Yasskin & Ueno          Expires October 12, 2018                [Page 7]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
@@ -445,7 +445,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
 
 
-Yasskin & Ueno          Expires October 11, 2018                [Page 8]
+Yasskin & Ueno          Expires October 12, 2018                [Page 8]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
@@ -501,7 +501,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
 
 
-Yasskin & Ueno          Expires October 11, 2018                [Page 9]
+Yasskin & Ueno          Expires October 12, 2018                [Page 9]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
@@ -509,13 +509,14 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
        *  "expires" be the signature's "expires" parameter, interpreted
           as a Unix time.
 
-   3.  If "integrity" names a header field other than "MI"
+   3.  If "integrity" names a header field other than "MI-Draft2"
        ([I-D.thomson-http-mice]) or this header field is not present in
        "exchange"'s response headers or which the client cannot use to
        check the integrity of "payload" (for example, the header field
        is new and hasn't been implemented yet), then return "invalid".
        Clients MUST be able to check the integrity of "payload" using
-       the "MI" ([I-D.thomson-http-mice]) header field.
+       the "MI-Draft2" header field, which is defined equivalently to
+       the "MI" header from draft 02 of [I-D.thomson-http-mice].
 
    4.  Set "publicKey" and "signing-alg" depending on which key fields
        are present:
@@ -556,8 +557,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
 
 
-
-Yasskin & Ueno          Expires October 11, 2018               [Page 10]
+Yasskin & Ueno          Expires October 12, 2018               [Page 10]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
@@ -613,14 +613,14 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
 
 
-Yasskin & Ueno          Expires October 11, 2018               [Page 11]
+Yasskin & Ueno          Expires October 12, 2018               [Page 11]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
 
    received.  Similarly, if "integrity" identifies a header field like
-   "MI" ([I-D.thomson-http-mice]) that can incrementally validate the
-   payload, early parts of the payload can be determined to be
+   "MI-Draft2" ([I-D.thomson-http-mice]) that can incrementally validate
+   the payload, early parts of the payload can be determined to be
    potentially-valid before later parts of the payload.  Higher-level
    protocols MAY process parts of the exchange that have been determined
    to be potentially-valid as soon as that determination is made but
@@ -669,7 +669,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
 
 
-Yasskin & Ueno          Expires October 11, 2018               [Page 12]
+Yasskin & Ueno          Expires October 12, 2018               [Page 12]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
@@ -725,7 +725,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
 
 
-Yasskin & Ueno          Expires October 11, 2018               [Page 13]
+Yasskin & Ueno          Expires October 12, 2018               [Page 13]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
@@ -781,7 +781,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
 
 
-Yasskin & Ueno          Expires October 11, 2018               [Page 14]
+Yasskin & Ueno          Expires October 12, 2018               [Page 14]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
@@ -837,7 +837,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
 
 
-Yasskin & Ueno          Expires October 11, 2018               [Page 15]
+Yasskin & Ueno          Expires October 12, 2018               [Page 15]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
@@ -893,7 +893,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
 
 
-Yasskin & Ueno          Expires October 11, 2018               [Page 16]
+Yasskin & Ueno          Expires October 12, 2018               [Page 16]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
@@ -915,10 +915,11 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
    "invalid".
 
    The remainder of the resource is the exchange's payload, encoded with
-   the "mi-sha256" content encoding ([I-D.thomson-http-mice]).  If the
-   "mi-sha256" record length (the first 8 bytes of the payload) is
-   greater than 16kB, or if any of the integrity proofs fail validation,
-   parsing MUST fail.
+   the "mi-sha256-draft2" content encoding.  The "mi-sha256-draft2"
+   content encoding is the "mi-sha256" encoding defined in draft 02 of
+   ([I-D.thomson-http-mice]).  If the "mi-sha256-draft2" record length
+   (the first 8 bytes of the payload) is greater than 16kB, or if any of
+   the integrity proofs fail validation, parsing MUST fail.
 
 6.  Security considerations
 
@@ -948,8 +949,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
 
 
-
-Yasskin & Ueno          Expires October 11, 2018               [Page 17]
+Yasskin & Ueno          Expires October 12, 2018               [Page 17]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
@@ -1005,7 +1005,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
 
 
-Yasskin & Ueno          Expires October 11, 2018               [Page 18]
+Yasskin & Ueno          Expires October 12, 2018               [Page 18]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
@@ -1061,7 +1061,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
 
 
-Yasskin & Ueno          Expires October 11, 2018               [Page 19]
+Yasskin & Ueno          Expires October 12, 2018               [Page 19]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
@@ -1117,7 +1117,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
 
 
-Yasskin & Ueno          Expires October 11, 2018               [Page 20]
+Yasskin & Ueno          Expires October 12, 2018               [Page 20]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
@@ -1173,7 +1173,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
 
 
-Yasskin & Ueno          Expires October 11, 2018               [Page 21]
+Yasskin & Ueno          Expires October 12, 2018               [Page 21]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
@@ -1219,20 +1219,26 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
 
 Appendix A.  Change Log
 
+   draft-01
+
+   o  The mi-sha256 content-encoding is renamed to mi-sha256-draft2 in
+      case [I-D.thomson-http-mice] changes.
+
    draft-00
+
+
+
+
+Yasskin & Ueno          Expires October 12, 2018               [Page 22]
+
+Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
+
 
    Vs.  [I-D.yasskin-http-origin-signed-responses]:
 
    o  Removed non-normative sections.
 
    o  Only 1 signature is supported.
-
-
-
-Yasskin & Ueno          Expires October 11, 2018               [Page 22]
-
-Internet-DraSigned HTTP Exchanges Implementation Checkpoints  April 2018
-
 
    o  Only 2048-bit RSA keys are supported.
 
@@ -1279,10 +1285,4 @@ Authors' Addresses
 
 
 
-
-
-
-
-
-
-Yasskin & Ueno          Expires October 11, 2018               [Page 23]
+Yasskin & Ueno          Expires October 12, 2018               [Page 23]

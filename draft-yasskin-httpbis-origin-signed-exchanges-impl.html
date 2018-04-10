@@ -315,7 +315,7 @@ ul.toc li {
 
   <meta name="dct.creator" content="Yasskin, J. and K. Ueno" />
   <meta name="dct.identifier" content="urn:ietf:id:draft-yasskin-httpbis-origin-signed-exchanges-impl-latest" />
-  <meta name="dct.issued" scheme="ISO8601" content="2018-04-09" />
+  <meta name="dct.issued" scheme="ISO8601" content="2018-04-10" />
   <meta name="dct.abstract" content="This document describes checkpoints of " />
   <meta name="description" content="This document describes checkpoints of " />
 
@@ -339,8 +339,8 @@ ul.toc li {
 <td class="right">Google</td>
 </tr>
 <tr>
-<td class="left">Expires: October 11, 2018</td>
-<td class="right">April 09, 2018</td>
+<td class="left">Expires: October 12, 2018</td>
+<td class="right">April 10, 2018</td>
 </tr>
 
     	
@@ -359,7 +359,7 @@ ul.toc li {
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at https://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on October 11, 2018.</p>
+<p>This Internet-Draft will expire on October 12, 2018.</p>
 <h1 id="rfc.copyrightnotice"><a href="#rfc.copyrightnotice">Copyright Notice</a></h1>
 <p>Copyright (c) 2018 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
 <p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (https://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
@@ -497,14 +497,14 @@ ul.toc li {
 Signature:
  sig1;
   sig=*t7LoYw6vwL2FSZRNJPYdNdYjfZSQkaCQeqpBD1whcy/6AAamVJ2OryXoXv6ACVBQgPV13o5de9oOVcOGGMX9fsf2ve1UDw/ITpeimB7n3zcuDEePzIcPbUnicicN2yodZAfr5il7BBJTs8L+V2ZERI16nJfrOZOvUfhvuUaMDGQXx5StIj7XLiX7/caxPz5ctwglgVAwCmoVPhmYFLq391O+hEssHSk2xkY6r/D9V2cKMikBBOTZ+JFyrnS/f2B4li7YASIY0YX64ifCmCw97cQTngXax6Upoie44IAe+6JngOie9JlDgcMF3YZ1uxNGWl9VwlalSwWgi1YA9Ff7mQ;
-  integrity="mi";
+  integrity="mi-draft2";
   validityUrl="https://example.com/resource.validity.1511128380";
   certUrl="https://example.com/certs";
   certSha256=*W7uB969dFW3Mb5ZefPS9Tq5ZbH5iSmOILpjv2qEArmI;
   date=1511128380; expires=1511733180
 </pre>
 <p id="rfc.section.3.1.1.p.2">The signatures uses a 2048-bit RSA certificate within <samp>https://example.com/</samp>.</p>
-<p id="rfc.section.3.1.1.p.3">It relies on the <samp>MI</samp> response header to guard the integrity of the response payload.</p>
+<p id="rfc.section.3.1.1.p.3">It relies on the <samp>MI-Draft2</samp> response header to guard the integrity of the response payload.</p>
 <p id="rfc.section.3.1.1.p.4">The signature includes a &#8220;validityUrl&#8221; that includes the first time the resource was seen. This allows multiple versions of a resource at the same URL to be updated with new signatures, which allows clients to avoid transferring extra data while the old versions don&#8217;t have known security bugs.</p>
 <p id="rfc.section.3.1.1.p.5">The certificate at <samp>https://example.com/certs</samp> has a <samp>subjectAltName</samp> of <samp>example.com</samp>, meaning that if it and its signature validate, the exchange can be trusted as having an origin of <samp>https://example.com/</samp>.</p>
 <h1 id="rfc.section.3.1.2">
@@ -542,8 +542,8 @@ Accept: */*
 
 HTTP/1.1 200
 Content-Type: text/html
-Content-Encoding: mi-sha256
-MI: mi-sha256=20addcf7368837f616d549f035bf6784ea6d4bf4817a3736cd2fc7a763897fe3
+Content-Encoding: mi-sha256-draft2
+MI: mi-sha256-draft2=20addcf7368837f616d549f035bf6784ea6d4bf4817a3736cd2fc7a763897fe3
 
 &lt;0x0000000000004000&gt;&lt;!doctype html&gt;
 &lt;html&gt;
@@ -557,10 +557,10 @@ MI: mi-sha256=20addcf7368837f616d549f035bf6784ea6d4bf4817a3736cd2fc7a763897fe3
     ':method': 'GET',
   },
   {
-    'mi': 'mi-sha256=20addcf7368837f616d549f035bf6784ea6d4bf4817a3736cd2fc7a763897fe3',
+    'mi': 'mi-sha256-draft2=20addcf7368837f616d549f035bf6784ea6d4bf4817a3736cd2fc7a763897fe3',
     ':status': '200',
     'content-type': 'text/html'
-    'content-encoding': 'mi-sha256',
+    'content-encoding': 'mi-sha256-draft2',
   }
 ]
 </pre>
@@ -639,7 +639,7 @@ MI: mi-sha256=20addcf7368837f616d549f035bf6784ea6d4bf4817a3736cd2fc7a763897fe3
 <samp>expires</samp> be the signature&#8217;s &#8220;expires&#8221; parameter, interpreted as a Unix time.</li>
 </ul>
 </li>
-<li>If <samp>integrity</samp> names a header field other than <samp>MI</samp> (<a href="#I-D.thomson-http-mice" class="xref">[I-D.thomson-http-mice]</a>) or this header field is not present in <samp>exchange</samp>&#8217;s response headers or which the client cannot use to check the integrity of <samp>payload</samp> (for example, the header field is new and hasn&#8217;t been implemented yet), then return &#8220;invalid&#8221;. Clients MUST be able to check the integrity of <samp>payload</samp> using the <samp>MI</samp> (<a href="#I-D.thomson-http-mice" class="xref">[I-D.thomson-http-mice]</a>) header field.</li>
+<li>If <samp>integrity</samp> names a header field other than <samp>MI-Draft2</samp> (<a href="#I-D.thomson-http-mice" class="xref">[I-D.thomson-http-mice]</a>) or this header field is not present in <samp>exchange</samp>&#8217;s response headers or which the client cannot use to check the integrity of <samp>payload</samp> (for example, the header field is new and hasn&#8217;t been implemented yet), then return &#8220;invalid&#8221;. Clients MUST be able to check the integrity of <samp>payload</samp> using the <samp>MI-Draft2</samp> header field, which is defined equivalently to the <samp>MI</samp> header from draft 02 of <a href="#I-D.thomson-http-mice" class="xref">[I-D.thomson-http-mice]</a>.</li>
 <li>Set <samp>publicKey</samp> and <samp>signing-alg</samp> depending on which key fields are present: <ol><li>Assert: <samp>certUrl</samp> is present.  <ol>
 <li>Let <samp>certificate-chain</samp> be the result of loading the certificate chain at <samp>certUrl</samp> passing the <samp>forceFetch</samp> flag (<a href="#cert-chain-format" class="xref">Section 3.3</a>). If this returns &#8220;invalid&#8221;, return &#8220;invalid&#8221;.</li>
 <li>Let <samp>main-certificate</samp> be the first certificate in <samp>certificate-chain</samp>.</li>
@@ -674,7 +674,7 @@ MI: mi-sha256=20addcf7368837f616d549f035bf6784ea6d4bf4817a3736cd2fc7a763897fe3
 <li>If <samp>certUrl</samp> is present and the SHA-256 hash of <samp>main-certificate</samp>&#8217;s <samp>cert_data</samp> is not equal to <samp>certSha256</samp> (whose presence was checked when the <samp>Signature</samp> header field was parsed), return &#8220;invalid&#8221;.  <br><br> Note that this intentionally differs from TLS 1.3, which signs the entire certificate chain in its Certificate Verify (Section 4.4.3 of <a href="#I-D.ietf-tls-tls13" class="xref">[I-D.ietf-tls-tls13]</a>), in order to allow updating the stapled OCSP response without updating signatures at the same time. Note that this difference doesn&#8217;t matter for this version of this draft since OCSP responses aren&#8217;t checked.</li>
 <li>If <samp>signature</samp> is a valid signature of <samp>message</samp> by <samp>publicKey</samp> using <samp>signing-alg</samp>, return &#8220;potentially-valid&#8221; with <samp>certificate-chain</samp>.  Otherwise, return &#8220;invalid&#8221;.</li>
 </ol>
-<p id="rfc.section.3.5.p.6">Note that the above algorithm can determine that an exchange&#8217;s headers are potentially-valid before the exchange&#8217;s payload is received. Similarly, if <samp>integrity</samp> identifies a header field like <samp>MI</samp> (<a href="#I-D.thomson-http-mice" class="xref">[I-D.thomson-http-mice]</a>) that can incrementally validate the payload, early parts of the payload can be determined to be potentially-valid before later parts of the payload.  Higher-level protocols MAY process parts of the exchange that have been determined to be potentially-valid as soon as that determination is made but MUST NOT process parts of the exchange that are not yet potentially-valid.  Similarly, as the higher-level protocol determines that parts of the exchange are actually valid, the client MAY process those parts of the exchange and MUST wait to process other parts of the exchange until they too are determined to be valid.</p>
+<p id="rfc.section.3.5.p.6">Note that the above algorithm can determine that an exchange&#8217;s headers are potentially-valid before the exchange&#8217;s payload is received. Similarly, if <samp>integrity</samp> identifies a header field like <samp>MI-Draft2</samp> (<a href="#I-D.thomson-http-mice" class="xref">[I-D.thomson-http-mice]</a>) that can incrementally validate the payload, early parts of the payload can be determined to be potentially-valid before later parts of the payload.  Higher-level protocols MAY process parts of the exchange that have been determined to be potentially-valid as soon as that determination is made but MUST NOT process parts of the exchange that are not yet potentially-valid.  Similarly, as the higher-level protocol determines that parts of the exchange are actually valid, the client MAY process those parts of the exchange and MUST wait to process other parts of the exchange until they too are determined to be valid.</p>
 <h1 id="rfc.section.3.5.1">
 <a href="#rfc.section.3.5.1">3.5.1.</a> <a href="#oq-signature-validity" id="oq-signature-validity">Open Questions</a>
 </h1>
@@ -855,7 +855,7 @@ signed-exchange-header = [
 <p id="rfc.section.5.3.p.6">The second element of the array is interpreted as the exchange&#8217;s response headers with lowercase names, with the 3-digit response status code in the &#8216;:status&#8217; key&#8217;s value.</p>
 <p id="rfc.section.5.3.p.7">If any header field name includes uppercase characters, parsing MUST fail.</p>
 <p id="rfc.section.5.3.p.8">Pass the <samp>Signature</samp> response header and the exchange with that header removed to the algorithm in <a href="#cross-origin-trust" class="xref">Section 4</a>. Fail if this returns &#8220;invalid&#8221;.</p>
-<p id="rfc.section.5.3.p.9">The remainder of the resource is the exchange&#8217;s payload, encoded with the <samp>mi-sha256</samp> content encoding (<a href="#I-D.thomson-http-mice" class="xref">[I-D.thomson-http-mice]</a>). If the <samp>mi-sha256</samp> record length (the first 8 bytes of the payload) is greater than 16kB, or if any of the integrity proofs fail validation, parsing MUST fail.</p>
+<p id="rfc.section.5.3.p.9">The remainder of the resource is the exchange&#8217;s payload, encoded with the <samp>mi-sha256-draft2</samp> content encoding. The <samp>mi-sha256-draft2</samp> content encoding is the <samp>mi-sha256</samp> encoding defined in draft 02 of (<a href="#I-D.thomson-http-mice" class="xref">[I-D.thomson-http-mice]</a>). If the <samp>mi-sha256-draft2</samp> record length (the first 8 bytes of the payload) is greater than 16kB, or if any of the integrity proofs fail validation, parsing MUST fail.</p>
 <h1 id="rfc.section.6">
 <a href="#rfc.section.6">6.</a> <a href="#security-considerations" id="security-considerations">Security considerations</a>
 </h1>
@@ -1050,8 +1050,12 @@ signed-exchange-header = [
 <h1 id="rfc.appendix.A">
 <a href="#rfc.appendix.A">Appendix A.</a> <a href="#change-log" id="change-log">Change Log</a>
 </h1>
-<p id="rfc.section.A.p.1">draft-00</p>
-<p id="rfc.section.A.p.2">Vs. <a href="#I-D.yasskin-http-origin-signed-responses" class="xref">[I-D.yasskin-http-origin-signed-responses]</a>:</p>
+<p id="rfc.section.A.p.1">draft-01</p>
+<p></p>
+
+<ul><li>The mi-sha256 content-encoding is renamed to mi-sha256-draft2 in case <a href="#I-D.thomson-http-mice" class="xref">[I-D.thomson-http-mice]</a> changes.</li></ul>
+<p id="rfc.section.A.p.3">draft-00</p>
+<p id="rfc.section.A.p.4">Vs. <a href="#I-D.yasskin-http-origin-signed-responses" class="xref">[I-D.yasskin-http-origin-signed-responses]</a>:</p>
 <p></p>
 
 <ul>
