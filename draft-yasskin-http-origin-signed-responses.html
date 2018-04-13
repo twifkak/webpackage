@@ -360,7 +360,7 @@ ul.toc li {
 
   <meta name="dct.creator" content="Yasskin, J." />
   <meta name="dct.identifier" content="urn:ietf:id:draft-yasskin-http-origin-signed-responses-latest" />
-  <meta name="dct.issued" scheme="ISO8601" content="2018-04-11" />
+  <meta name="dct.issued" scheme="ISO8601" content="2018-04-13" />
   <meta name="dct.abstract" content="This document specifies how a server can send an HTTP request/response pair, known as an exchange, with signatures that vouch for that exchange&#8217;s authenticity. These signatures can be verified against an origin&#8217;s certificate to establish that the exchange is authoritative for an origin even if it was transferred over a connection that isn&#8217;t. The signatures can also be used in other ways described in the appendices." />
   <meta name="description" content="This document specifies how a server can send an HTTP request/response pair, known as an exchange, with signatures that vouch for that exchange&#8217;s authenticity. These signatures can be verified against an origin&#8217;s certificate to establish that the exchange is authoritative for an origin even if it was transferred over a connection that isn&#8217;t. The signatures can also be used in other ways described in the appendices." />
 
@@ -381,10 +381,10 @@ ul.toc li {
 </tr>
 <tr>
 <td class="left">Intended status: Standards Track</td>
-<td class="right">April 11, 2018</td>
+<td class="right">April 13, 2018</td>
 </tr>
 <tr>
-<td class="left">Expires: October 13, 2018</td>
+<td class="left">Expires: October 15, 2018</td>
 <td class="right"></td>
 </tr>
 
@@ -405,7 +405,7 @@ ul.toc li {
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at https://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on October 13, 2018.</p>
+<p>This Internet-Draft will expire on October 15, 2018.</p>
 <h1 id="rfc.copyrightnotice"><a href="#rfc.copyrightnotice">Copyright Notice</a></h1>
 <p>Copyright (c) 2018 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
 <p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (https://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
@@ -616,7 +616,7 @@ ul.toc li {
 </h1>
 <p id="rfc.section.3.1.p.1">The <samp>Signature</samp> header field conveys a list of signatures for an exchange, each one accompanied by information about how to determine the authority of and refresh that signature. Each signature directly signs the exchange&#8217;s headers and identifies one of those headers that enforces the integrity of the exchange&#8217;s payload.</p>
 <p id="rfc.section.3.1.p.2">The <samp>Signature</samp> header is a Structured Header as defined by <a href="#I-D.ietf-httpbis-header-structure" class="xref">[I-D.ietf-httpbis-header-structure]</a>. Its value MUST be a parameterised list (Section 4.3 of <a href="#I-D.ietf-httpbis-header-structure" class="xref">[I-D.ietf-httpbis-header-structure]</a>).</p>
-<p id="rfc.section.3.1.p.3">Each parameterised identifier in the list MUST have parameters named &#8220;sig&#8221;, &#8220;integrity&#8221;, &#8220;validityUrl&#8221;, &#8220;date&#8221;, and &#8220;expires&#8221;. Each parameterised identifier MUST also have either &#8220;certUrl&#8221; and &#8220;certSha256&#8221; parameters or an &#8220;ed25519Key&#8221; parameter. This specification gives no meaning to the identifier itself, which can be used as a human-readable identifier for the signature (see <a href="#parameterised-binary" class="xref">Section 3.1.2, Paragraph 1</a>). The present parameters MUST have the following values:</p>
+<p id="rfc.section.3.1.p.3">Each parameterised identifier in the list MUST have parameters named &#8220;sig&#8221;, &#8220;integrity&#8221;, &#8220;validity-url&#8221;, &#8220;date&#8221;, and &#8220;expires&#8221;. Each parameterised identifier MUST also have either &#8220;cert-url&#8221; and &#8220;cert-sha256&#8221; parameters or an &#8220;ed25519key&#8221; parameter. This specification gives no meaning to the identifier itself, which can be used as a human-readable identifier for the signature (see <a href="#parameterised-binary" class="xref">Section 3.1.2, Paragraph 1</a>). The present parameters MUST have the following values:</p>
 <p></p>
 
 <dl>
@@ -624,19 +624,19 @@ ul.toc li {
 <dd style="margin-left: 8">Binary content (Section 4.9 of <a href="#I-D.ietf-httpbis-header-structure" class="xref">[I-D.ietf-httpbis-header-structure]</a>) holding the signature of most of these parameters and the exchange&#8217;s headers.</dd>
 <dt>&#8220;integrity&#8221;</dt>
 <dd style="margin-left: 8">A string (Section 4.7 of <a href="#I-D.ietf-httpbis-header-structure" class="xref">[I-D.ietf-httpbis-header-structure]</a>) containing the lowercase name of the response header field that guards the response payload&#8217;s integrity.</dd>
-<dt>&#8220;certUrl&#8221;</dt>
+<dt>&#8220;cert-url&#8221;</dt>
 <dd style="margin-left: 8">A string (Section 4.7 of <a href="#I-D.ietf-httpbis-header-structure" class="xref">[I-D.ietf-httpbis-header-structure]</a>) containing an <a href="https://url.spec.whatwg.org/#absolute-url-string">absolute-URL string</a> (<a href="#URL" class="xref">[URL]</a>).</dd>
-<dt>&#8220;certSha256&#8221;</dt>
-<dd style="margin-left: 8">Binary content (Section 4.9 of <a href="#I-D.ietf-httpbis-header-structure" class="xref">[I-D.ietf-httpbis-header-structure]</a>) holding the SHA-256 hash of the first certificate found at &#8220;certUrl&#8221;.</dd>
-<dt>&#8220;ed25519Key&#8221;</dt>
+<dt>&#8220;cert-sha256&#8221;</dt>
+<dd style="margin-left: 8">Binary content (Section 4.9 of <a href="#I-D.ietf-httpbis-header-structure" class="xref">[I-D.ietf-httpbis-header-structure]</a>) holding the SHA-256 hash of the first certificate found at &#8220;cert-url&#8221;.</dd>
+<dt>&#8220;ed25519key&#8221;</dt>
 <dd style="margin-left: 8">Binary content (Section 4.9 of <a href="#I-D.ietf-httpbis-header-structure" class="xref">[I-D.ietf-httpbis-header-structure]</a>) holding an Ed25519 public key (<a href="#RFC8032" class="xref">[RFC8032]</a>).</dd>
-<dt>&#8220;validityUrl&#8221;</dt>
+<dt>&#8220;validity-url&#8221;</dt>
 <dd style="margin-left: 8">
 <a name="signature-validityurl"></a>A string (Section 4.7 of <a href="#I-D.ietf-httpbis-header-structure" class="xref">[I-D.ietf-httpbis-header-structure]</a>) containing an <a href="https://url.spec.whatwg.org/#absolute-url-string">absolute-URL string</a> (<a href="#URL" class="xref">[URL]</a>).</dd>
 <dt>&#8220;date&#8221; and &#8220;expires&#8221;</dt>
 <dd style="margin-left: 8">An integer (Section 4.5 of <a href="#I-D.ietf-httpbis-header-structure" class="xref">[I-D.ietf-httpbis-header-structure]</a>) representing a Unix time.</dd>
 </dl>
-<p id="rfc.section.3.1.p.5">The &#8220;certUrl&#8221; parameter is <em>not</em> signed, so intermediates can update it with a pointer to a cached version.</p>
+<p id="rfc.section.3.1.p.5">The &#8220;cert-url&#8221; parameter is <em>not</em> signed, so intermediates can update it with a pointer to a cached version.</p>
 <h1 id="rfc.section.3.1.1">
 <a href="#rfc.section.3.1.1">3.1.1.</a> <a href="#example-signature-header" id="example-signature-header">Examples</a>
 </h1>
@@ -646,34 +646,34 @@ Signature:
  sig1;
   sig=*MEUCIQDXlI2gN3RNBlgFiuRNFpZXcDIaUpX6HIEwcZEc0cZYLAIga9DsVOMM+g5YpwEBdGW3sS+bvnmAJJiSMwhuBdqp5UY=*;
   integrity="mi";
-  validityUrl="https://example.com/resource.validity.1511128380";
-  certUrl="https://example.com/oldcerts";
-  certSha256=*W7uB969dFW3Mb5ZefPS9Tq5ZbH5iSmOILpjv2qEArmI=*;
+  validity-url="https://example.com/resource.validity.1511128380";
+  cert-url="https://example.com/oldcerts";
+  cert-sha256=*W7uB969dFW3Mb5ZefPS9Tq5ZbH5iSmOILpjv2qEArmI=*;
   date=1511128380; expires=1511733180,
  sig2;
   sig=*MEQCIGjZRqTRf9iKNkGFyzRMTFgwf/BrY2ZNIP/dykhUV0aYAiBTXg+8wujoT4n/W+cNgb7pGqQvIUGYZ8u8HZJ5YH26Qg=*;
   integrity="mi";
-  validityUrl="https://example.com/resource.validity.1511128380";
-  certUrl="https://example.com/newcerts";
-  certSha256=*J/lEm9kNRODdCmINbvitpvdYKNQ+YgBj99DlYp4fEXw=*;
+  validity-url="https://example.com/resource.validity.1511128380";
+  cert-url="https://example.com/newcerts";
+  cert-sha256=*J/lEm9kNRODdCmINbvitpvdYKNQ+YgBj99DlYp4fEXw=*;
   date=1511128380; expires=1511733180,
  srisig;
   sig=*lGZVaJJM5f2oGczFlLmBdKTDL+QADza4BgeO494ggACYJOvrof6uh5OJCcwKrk7DK+LBch0jssDYPp5CLc1SDA=*
   integrity="mi";
-  validityUrl="https://example.com/resource.validity.1511128380";
-  ed25519Key=*zsSevyFsxyZHiUluVBDd4eypdRLTqyWRVOJuuKUz+A8=*
+  validity-url="https://example.com/resource.validity.1511128380";
+  ed25519key=*zsSevyFsxyZHiUluVBDd4eypdRLTqyWRVOJuuKUz+A8=*
   date=1511128380; expires=1511733180,
  thirdpartysig;
   sig=*MEYCIQCNxJzn6Rh2fNxsobktir8TkiaJYQFhWTuWI1i4PewQaQIhAMs2TVjc4rTshDtXbgQEOwgj2mRXALhfXPztXgPupii+=*;
   integrity="mi";
-  validityUrl="https://thirdparty.example.com/resource.validity.1511161860";
-  certUrl="https://thirdparty.example.com/certs";
-  certSha256=*UeOwUPkvxlGRTyvHcsMUN0A2oNsZbU8EUvg8A9ZAnNc=*;
+  validity-url="https://thirdparty.example.com/resource.validity.1511161860";
+  cert-url="https://thirdparty.example.com/certs";
+  cert-sha256=*UeOwUPkvxlGRTyvHcsMUN0A2oNsZbU8EUvg8A9ZAnNc=*;
   date=1511133060; expires=1511478660,
 </pre>
 <p id="rfc.section.3.1.1.p.2">There are 4 signatures: 2 from different secp256r1 certificates within <samp>https://example.com/</samp>, one using a raw ed25519 public key that&#8217;s also controlled by <samp>example.com</samp>, and a fourth using a secp256r1 certificate owned by <samp>thirdparty.example.com</samp>.</p>
 <p id="rfc.section.3.1.1.p.3">All 4 signatures rely on the <samp>MI</samp> response header to guard the integrity of the response payload. This isn&#8217;t strictly required&#8212;some signatures could use <samp>MI</samp> while others use <samp>Digest</samp>&#8212;but there&#8217;s not much benefit to mixing them.</p>
-<p id="rfc.section.3.1.1.p.4">The signatures include a &#8220;validityUrl&#8221; that includes the first time the resource was seen. This allows multiple versions of a resource at the same URL to be updated with new signatures, which allows clients to avoid transferring extra data while the old versions don&#8217;t have known security bugs.</p>
+<p id="rfc.section.3.1.1.p.4">The signatures include a &#8220;validity-url&#8221; that includes the first time the resource was seen. This allows multiple versions of a resource at the same URL to be updated with new signatures, which allows clients to avoid transferring extra data while the old versions don&#8217;t have known security bugs.</p>
 <p id="rfc.section.3.1.1.p.5">The certificates at <samp>https://example.com/oldcerts</samp> and <samp>https://example.com/newcerts</samp> have <samp>subjectAltName</samp>s of <samp>example.com</samp>, meaning that if they and their signatures validate, the exchange can be trusted as having an origin of <samp>https://example.com/</samp>. The publisher might be using two certificates because their readers have disjoint sets of roots in their trust stores.</p>
 <p id="rfc.section.3.1.1.p.6">The publisher signed with all three certificates at the same time, so they share a validity range: 7 days starting at 2017-11-19 21:53 UTC.</p>
 <p id="rfc.section.3.1.1.p.7">The publisher then requested an additional signature from <samp>thirdparty.example.com</samp>, which did some validation or processing and then signed the resource at 2017-11-19 23:11 UTC. <samp>thirdparty.example.com</samp> only grants 4-day signatures, so clients will need to re-validate more often.</p>
@@ -681,7 +681,7 @@ Signature:
 <a href="#rfc.section.3.1.2">3.1.2.</a> <a href="#oq-signature-header" id="oq-signature-header">Open Questions</a>
 </h1>
 <p><a href="#I-D.ietf-httpbis-header-structure" class="xref">[I-D.ietf-httpbis-header-structure]</a> provides a way to parameterise identifiers but not other supported types like binary content. If the <samp>Signature</samp> header field is notionally a list of parameterised signatures, maybe we should add a &#8220;parameterised binary content&#8221; type.</p>
-<p id="rfc.section.3.1.2.p.2">Should the certUrl and validityUrl be lists so that intermediates can offer a cache without losing the original URLs? Putting lists in dictionary fields is more complex than <a href="#I-D.ietf-httpbis-header-structure" class="xref">[I-D.ietf-httpbis-header-structure]</a> allows, so they&#8217;re single items for now.</p>
+<p id="rfc.section.3.1.2.p.2">Should the cert-url and validity-url be lists so that intermediates can offer a cache without losing the original URLs? Putting lists in dictionary fields is more complex than <a href="#I-D.ietf-httpbis-header-structure" class="xref">[I-D.ietf-httpbis-header-structure]</a> allows, so they&#8217;re single items for now.</p>
 <h1 id="rfc.section.3.2">
 <a href="#rfc.section.3.2">3.2.</a> <a href="#cbor-representation" id="cbor-representation">CBOR representation of exchange headers</a>
 </h1>
@@ -736,7 +736,7 @@ Signed-Headers: "content-type", "digest"
 <h1 id="rfc.section.3.3">
 <a href="#rfc.section.3.3">3.3.</a> <a href="#cert-chain-format" id="cert-chain-format">Loading a certificate chain</a>
 </h1>
-<p id="rfc.section.3.3.p.1">The resource at a signature&#8217;s <samp>certUrl</samp> MUST have the <samp>application/cert-chain+cbor</samp> content type, MUST be canonically-encoded CBOR (<a href="#canonical-cbor" class="xref">Section 3.4</a>), and MUST match the following CDDL:</p>
+<p id="rfc.section.3.3.p.1">The resource at a signature&#8217;s <samp>cert-url</samp> MUST have the <samp>application/cert-chain+cbor</samp> content type, MUST be canonically-encoded CBOR (<a href="#canonical-cbor" class="xref">Section 3.4</a>), and MUST match the following CDDL:</p>
 <pre>
 cert-chain = [
   "&#128220;&#9939;", ; U+1F4DC U+26D3
@@ -756,11 +756,11 @@ cert-chain = [
 <li>The first certificate&#8217;s <samp>ocsp</samp> value if any MUST be a complete, DER-encoded OCSP response for that certificate (using the ASN.1 type <samp>OCSPResponse</samp> defined in <a href="#RFC2560" class="xref">[RFC2560]</a>). Subsequent certificates MUST NOT have an <samp>ocsp</samp> value.</li>
 <li>Each certificate&#8217;s <samp>sct</samp> value MUST be a <samp>SignedCertificateTimestampList</samp> for that certificate as defined by Section 3.3 of <a href="#RFC6962" class="xref">[RFC6962]</a>.</li>
 </ol>
-<p id="rfc.section.3.3.p.4">Loading a <samp>certUrl</samp> takes a <samp>forceFetch</samp> flag. The client MUST:</p>
+<p id="rfc.section.3.3.p.4">Loading a <samp>cert-url</samp> takes a <samp>forceFetch</samp> flag. The client MUST:</p>
 <p></p>
 
 <ol>
-<li>Let <samp>raw-chain</samp> be the result of fetching (<a href="#FETCH" class="xref">[FETCH]</a>) <samp>certUrl</samp>. If <samp>forceFetch</samp> is <em>not</em> set, the fetch can be fulfilled from a cache using normal HTTP semantics <a href="#RFC7234" class="xref">[RFC7234]</a>. If this fetch fails, return &#8220;invalid&#8221;.</li>
+<li>Let <samp>raw-chain</samp> be the result of fetching (<a href="#FETCH" class="xref">[FETCH]</a>) <samp>cert-url</samp>. If <samp>forceFetch</samp> is <em>not</em> set, the fetch can be fulfilled from a cache using normal HTTP semantics <a href="#RFC7234" class="xref">[RFC7234]</a>. If this fetch fails, return &#8220;invalid&#8221;.</li>
 <li>Let <samp>certificate-chain</samp> be the array of certificates and properties produced by parsing <samp>raw-chain</samp> using the CDDL above. If any of the requirements above aren&#8217;t satisfied, return &#8220;invalid&#8221;. Note that this validation requirement might be impractical to completely achieve due to certificate validation implementations that don&#8217;t enforce DER encoding or other standard constraints.</li>
 <li>Return <samp>certificate-chain</samp>.</li>
 </ol>
@@ -808,13 +808,13 @@ cert-chain = [
 <li>
 <samp>integrity</samp> be the signature&#8217;s &#8220;integrity&#8221; parameter.</li>
 <li>
-<samp>validityUrl</samp> be the signature&#8217;s &#8220;validityUrl&#8221; parameter.</li>
+<samp>validity-url</samp> be the signature&#8217;s &#8220;validity-url&#8221; parameter.</li>
 <li>
-<samp>certUrl</samp> be the signature&#8217;s &#8220;certUrl&#8221; parameter, if any.</li>
+<samp>cert-url</samp> be the signature&#8217;s &#8220;cert-url&#8221; parameter, if any.</li>
 <li>
-<samp>certSha256</samp> be the signature&#8217;s &#8220;certSha256&#8221; parameter, if any.</li>
+<samp>cert-sha256</samp> be the signature&#8217;s &#8220;cert-sha256&#8221; parameter, if any.</li>
 <li>
-<samp>ed25519Key</samp> be the signature&#8217;s &#8220;ed25519Key&#8221; parameter, if any.</li>
+<samp>ed25519key</samp> be the signature&#8217;s &#8220;ed25519key&#8221; parameter, if any.</li>
 <li>
 <samp>date</samp> be the signature&#8217;s &#8220;date&#8221; parameter, interpreted as a Unix time.</li>
 <li>
@@ -824,8 +824,8 @@ cert-chain = [
 <li>If <samp>integrity</samp> names a header field that is not present in <samp>exchange</samp>&#8217;s response headers or which the client cannot use to check the integrity of <samp>payload</samp> (for example, the header field is new and hasn&#8217;t been implemented yet), then return &#8220;invalid&#8221;. Clients MUST implement at least the <samp>Digest</samp> (<a href="#RFC3230" class="xref">[RFC3230]</a>) and <samp>MI</samp> (<a href="#I-D.thomson-http-mice" class="xref">[I-D.thomson-http-mice]</a>) header fields.</li>
 <li>If <samp>integrity</samp> is &#8220;digest&#8221;, and the <samp>Digest</samp> header field in <samp>exchange</samp>&#8217;s response headers contains no digest-algorithms (<a href="https://www.iana.org/assignments/http-dig-alg/http-dig-alg.xhtml">https://www.iana.org/assignments/http-dig-alg/http-dig-alg.xhtml</a>) stronger than <samp>SHA</samp>, then return &#8220;invalid&#8221;.</li>
 <li>Set <samp>publicKey</samp> and <samp>signing-alg</samp> depending on which key fields are present: <ol>
-<li>If <samp>certUrl</samp> is present: <ol>
-<li>Let <samp>certificate-chain</samp> be the result of loading the certificate chain at <samp>certUrl</samp> passing the <samp>forceFetch</samp> flag (<a href="#cert-chain-format" class="xref">Section 3.3</a>). If this returns &#8220;invalid&#8221;, return &#8220;invalid&#8221;.</li>
+<li>If <samp>cert-url</samp> is present: <ol>
+<li>Let <samp>certificate-chain</samp> be the result of loading the certificate chain at <samp>cert-url</samp> passing the <samp>forceFetch</samp> flag (<a href="#cert-chain-format" class="xref">Section 3.3</a>). If this returns &#8220;invalid&#8221;, return &#8220;invalid&#8221;.</li>
 <li>Let <samp>main-certificate</samp> be the first certificate in <samp>certificate-chain</samp>.</li>
 <li>Set <samp>publicKey</samp> to <samp>main-certificate</samp>&#8217;s public key.</li>
 <li>The client MUST define a partial function from public key types to signing algorithms, and this function must at the minimum include the following mappings:          <dl>
@@ -840,7 +840,7 @@ cert-chain = [
 <samp>signing-alg</samp> to the result of applying this function to the type of <samp>main-certificate</samp>&#8217;s public key. If the function is undefined on this input, return &#8220;invalid&#8221;.</li>
 </ol>
 </li>
-<li>If <samp>ed25519Key</samp> is present, set <samp>publicKey</samp> to <samp>ed25519Key</samp> and <samp>signing-alg</samp> to ed25519, as defined by <a href="#RFC8032" class="xref">[RFC8032]</a>
+<li>If <samp>ed25519key</samp> is present, set <samp>publicKey</samp> to <samp>ed25519key</samp> and <samp>signing-alg</samp> to ed25519, as defined by <a href="#RFC8032" class="xref">[RFC8032]</a>
 </li>
 </ol>
 </li>
@@ -850,9 +850,9 @@ cert-chain = [
 <li>A context string: the ASCII encoding of &#8220;HTTP Exchange&#8221;.</li>
 <li>A single 0 byte which serves as a separator.</li>
 <li>The bytes of the canonical CBOR serialization (<a href="#canonical-cbor" class="xref">Section 3.4</a>) of a CBOR map mapping: <ol>
-<li>If <samp>certSha256</samp> is set: <ol><li>The text string &#8220;certSha256&#8221; to the byte string value of <samp>certSha256</samp>.</li></ol>
+<li>If <samp>cert-sha256</samp> is set: <ol><li>The text string &#8220;cert-sha256&#8221; to the byte string value of <samp>cert-sha256</samp>.</li></ol>
 </li>
-<li>The text string &#8220;validityUrl&#8221; to the byte string value of <samp>validityUrl</samp>.</li>
+<li>The text string &#8220;validity-url&#8221; to the byte string value of <samp>validity-url</samp>.</li>
 <li>The text string &#8220;date&#8221; to the integer value of <samp>date</samp>.</li>
 <li>The text string &#8220;expires&#8221; to the integer value of <samp>expires</samp>.</li>
 <li>The text string &#8220;headers&#8221; to the CBOR representation (<a href="#cbor-representation" class="xref">Section 3.2</a>) of <samp>exchange</samp>&#8217;s headers.</li>
@@ -860,8 +860,8 @@ cert-chain = [
 </li>
 </ol>
 </li>
-<li>If <samp>certUrl</samp> is present and the SHA-256 hash of <samp>main-certificate</samp>&#8217;s <samp>cert_data</samp> is not equal to <samp>certSha256</samp> (whose presence was checked when the <samp>Signature</samp> header field was parsed), return &#8220;invalid&#8221;.  <br><br> Note that this intentionally differs from TLS 1.3, which signs the entire certificate chain in its Certificate Verify (Section 4.4.3 of <a href="#I-D.ietf-tls-tls13" class="xref">[I-D.ietf-tls-tls13]</a>), in order to allow updating the stapled OCSP response without updating signatures at the same time.</li>
-<li>If <samp>signature</samp> is a valid signature of <samp>message</samp> by <samp>publicKey</samp> using <samp>signing-alg</samp>, return &#8220;potentially-valid&#8221; with whichever is present of <samp>certificate-chain</samp> or <samp>ed25519Key</samp>. Otherwise, return &#8220;invalid&#8221;.</li>
+<li>If <samp>cert-url</samp> is present and the SHA-256 hash of <samp>main-certificate</samp>&#8217;s <samp>cert_data</samp> is not equal to <samp>cert-sha256</samp> (whose presence was checked when the <samp>Signature</samp> header field was parsed), return &#8220;invalid&#8221;.  <br><br> Note that this intentionally differs from TLS 1.3, which signs the entire certificate chain in its Certificate Verify (Section 4.4.3 of <a href="#I-D.ietf-tls-tls13" class="xref">[I-D.ietf-tls-tls13]</a>), in order to allow updating the stapled OCSP response without updating signatures at the same time.</li>
+<li>If <samp>signature</samp> is a valid signature of <samp>message</samp> by <samp>publicKey</samp> using <samp>signing-alg</samp>, return &#8220;potentially-valid&#8221; with whichever is present of <samp>certificate-chain</samp> or <samp>ed25519key</samp>. Otherwise, return &#8220;invalid&#8221;.</li>
 </ol>
 <p id="rfc.section.3.5.p.6">Note that the above algorithm can determine that an exchange&#8217;s headers are potentially-valid before the exchange&#8217;s payload is received. Similarly, if <samp>integrity</samp> identifies a header field like <samp>MI</samp> (<a href="#I-D.thomson-http-mice" class="xref">[I-D.thomson-http-mice]</a>) that can incrementally validate the payload, early parts of the payload can be determined to be potentially-valid before later parts of the payload.  Higher-level protocols MAY process parts of the exchange that have been determined to be potentially-valid as soon as that determination is made but MUST NOT process parts of the exchange that are not yet potentially-valid.  Similarly, as the higher-level protocol determines that parts of the exchange are actually valid, the client MAY process those parts of the exchange and MUST wait to process other parts of the exchange until they too are determined to be valid.</p>
 <h1 id="rfc.section.3.5.1">
@@ -872,10 +872,10 @@ cert-chain = [
 <a href="#rfc.section.3.6">3.6.</a> <a href="#updating-validity" id="updating-validity">Updating signature validity</a>
 </h1>
 <p id="rfc.section.3.6.p.1">Both OCSP responses and signatures are designed to expire a short time after they&#8217;re signed, so that revoked certificates and signed exchanges with known vulnerabilities are distrusted promptly.</p>
-<p id="rfc.section.3.6.p.2">This specification provides no way to update OCSP responses by themselves.  Instead, <a href="#force-fetch" class="xref">clients need to re-fetch the &#8220;certUrl&#8221;</a> to get a chain including a newer OCSP response.</p>
-<p id="rfc.section.3.6.p.3">The <a href="#signature-validityurl" class="xref">&#8220;validityUrl&#8221; parameter</a> of the signatures provides a way to fetch new signatures or learn where to fetch a complete updated exchange.</p>
+<p id="rfc.section.3.6.p.2">This specification provides no way to update OCSP responses by themselves.  Instead, <a href="#force-fetch" class="xref">clients need to re-fetch the &#8220;cert-url&#8221;</a> to get a chain including a newer OCSP response.</p>
+<p id="rfc.section.3.6.p.3">The <a href="#signature-validityurl" class="xref">&#8220;validity-url&#8221; parameter</a> of the signatures provides a way to fetch new signatures or learn where to fetch a complete updated exchange.</p>
 <p id="rfc.section.3.6.p.4">Each version of a signed exchange SHOULD have its own validity URLs, since each version needs different signatures and becomes obsolete at different times.</p>
-<p id="rfc.section.3.6.p.5">The resource at a &#8220;validityUrl&#8221; is &#8220;validity data&#8221;, a CBOR map matching the following CDDL (<a href="#I-D.ietf-cbor-cddl" class="xref">[I-D.ietf-cbor-cddl]</a>):</p>
+<p id="rfc.section.3.6.p.5">The resource at a &#8220;validity-url&#8221; is &#8220;validity data&#8221;, a CBOR map matching the following CDDL (<a href="#I-D.ietf-cbor-cddl" class="xref">[I-D.ietf-cbor-cddl]</a>):</p>
 <pre>
 validity = {
   ? signatures: [ + bytes ]
@@ -896,32 +896,32 @@ Signature:
  sig1;
   sig=*MEUCIQ...*;
   ...
-  validityUrl="https://example.com/resource.validity.1511157180";
-  certUrl="https://example.com/oldcerts";
+  validity-url="https://example.com/resource.validity.1511157180";
+  cert-url="https://example.com/oldcerts";
   date=1511128380; expires=1511733180,
  sig2;
   sig=*MEQCIG...*;
   ...
-  validityUrl="https://example.com/resource.validity.1511157180";
-  certUrl="https://example.com/newcerts";
+  validity-url="https://example.com/resource.validity.1511157180";
+  cert-url="https://example.com/newcerts";
   date=1511128380; expires=1511733180,
  thirdpartysig;
   sig=*MEYCIQ...*;
   ...
-  validityUrl="https://thirdparty.example.com/resource.validity.1511161860";
-  certUrl="https://thirdparty.example.com/certs";
+  validity-url="https://thirdparty.example.com/resource.validity.1511161860";
+  cert-url="https://thirdparty.example.com/certs";
   date=1511478660; expires=1511824260
 </pre>
-<p id="rfc.section.3.6.1.p.2">At 2017-11-27 11:02 UTC, <samp>sig1</samp> and <samp>sig2</samp> have expired, but <samp>thirdpartysig</samp> doesn&#8217;t exipire until 23:11 that night, so the client needs to fetch <samp>https://example.com/resource.validity.1511157180</samp> (the <samp>validityUrl</samp> of <samp>sig1</samp> and <samp>sig2</samp>) to update those signatures. This URL might contain:</p>
+<p id="rfc.section.3.6.1.p.2">At 2017-11-27 11:02 UTC, <samp>sig1</samp> and <samp>sig2</samp> have expired, but <samp>thirdpartysig</samp> doesn&#8217;t exipire until 23:11 that night, so the client needs to fetch <samp>https://example.com/resource.validity.1511157180</samp> (the <samp>validity-url</samp> of <samp>sig1</samp> and <samp>sig2</samp>) to update those signatures. This URL might contain:</p>
 <pre>
 {
   "signatures": [
     'sig1; '
     'sig=*MEQCIC/I9Q+7BZFP6cSDsWx43pBAL0ujTbON/+7RwKVk+ba5AiB3FSFLZqpzmDJ0NumNwN04pqgJZE99fcK86UjkPbj4jw==*; '
-    'validityUrl="https://example.com/resource.validity.1511157180"; '
+    'validity-url="https://example.com/resource.validity.1511157180"; '
     'integrity="mi"; '
-    'certUrl="https://example.com/newcerts"; '
-    'certSha256=*J/lEm9kNRODdCmINbvitpvdYKNQ+YgBj99DlYp4fEXw=*; '
+    'cert-url="https://example.com/newcerts"; '
+    'cert-sha256=*J/lEm9kNRODdCmINbvitpvdYKNQ+YgBj99DlYp4fEXw=*; '
     'date=1511733180; expires=1512337980'
   ],
   "update": {
@@ -929,20 +929,20 @@ Signature:
   }
 }
 </pre>
-<p id="rfc.section.3.6.1.p.3">This indicates that the client could fetch a newer version at <samp>https://example.com/resource</samp> (the original URL of the exchange), or that the validity period of the old version can be extended by replacing the first two of the original signatures (the ones with a validityUrl of <samp>https://example.com/resource.validity.1511157180</samp>) with the single new signature provided. (This might happen at the end of a migration to a new root certificate.) The signatures of the updated signed exchange would be:</p>
+<p id="rfc.section.3.6.1.p.3">This indicates that the client could fetch a newer version at <samp>https://example.com/resource</samp> (the original URL of the exchange), or that the validity period of the old version can be extended by replacing the first two of the original signatures (the ones with a validity-url of <samp>https://example.com/resource.validity.1511157180</samp>) with the single new signature provided. (This might happen at the end of a migration to a new root certificate.) The signatures of the updated signed exchange would be:</p>
 <pre>
 Signature:
  sig1;
   sig=*MEQCIC...*;
   ...
-  validityUrl="https://example.com/resource.validity.1511157180";
-  certUrl="https://example.com/newcerts";
+  validity-url="https://example.com/resource.validity.1511157180";
+  cert-url="https://example.com/newcerts";
   date=1511733180; expires=1512337980,
  thirdpartysig;
   sig=*MEYCIQ...*;
   ...
-  validityUrl="https://thirdparty.example.com/resource.validity.1511161860";
-  certUrl="https://thirdparty.example.com/certs";
+  validity-url="https://thirdparty.example.com/resource.validity.1511161860";
+  cert-url="https://thirdparty.example.com/certs";
   date=1511478660; expires=1511824260
 </pre>
 <p><samp>https://example.com/resource.validity.1511157180</samp> could also expand the set of signatures if its <samp>signatures</samp> array contained more than 2 elements.</p>
@@ -1009,7 +1009,7 @@ Accept-Signature: -rsa/2048, rsa/4096
 <p></p>
 
 <ol>
-<li>If the signature&#8217;s <a href="#signature-validityurl" class="xref">&#8220;validityUrl&#8221; parameter</a> is not <a href="https://html.spec.whatwg.org/multipage/origin.html#same-origin">same-origin</a> with <samp>exchange</samp>&#8217;s effective request URI (Section 5.5 of <a href="#RFC7230" class="xref">[RFC7230]</a>), return &#8220;invalid&#8221;.</li>
+<li>If the signature&#8217;s <a href="#signature-validityurl" class="xref">&#8220;validity-url&#8221; parameter</a> is not <a href="https://html.spec.whatwg.org/multipage/origin.html#same-origin">same-origin</a> with <samp>exchange</samp>&#8217;s effective request URI (Section 5.5 of <a href="#RFC7230" class="xref">[RFC7230]</a>), return &#8220;invalid&#8221;.</li>
 <li>Use <a href="#signature-validity" class="xref">Section 3.5</a> to determine the signature&#8217;s validity for <samp>exchange</samp>, getting <samp>certificate-chain</samp> back. If this returned &#8220;invalid&#8221; or didn&#8217;t return a certificate chain, return &#8220;invalid&#8221;.</li>
 <li>If <samp>exchange</samp>&#8217;s request method is not safe (Section 4.2.1 of <a href="#RFC7231" class="xref">[RFC7231]</a>) or not cacheable (Section 4.2.3 of <a href="#RFC7231" class="xref">[RFC7231]</a>), return &#8220;invalid&#8221;.</li>
 <li>If <samp>exchange</samp>&#8217;s headers contain a stateful header field, as defined in <a href="#stateful-headers" class="xref">Section 4.1</a>, return &#8220;invalid&#8221;.</li>
@@ -1160,7 +1160,7 @@ Accept-Signature: -rsa/2048, rsa/4096
 <h1 id="rfc.section.5.2.3.1">
 <a href="#rfc.section.5.2.3.1">5.2.3.1.</a> <a href="#oq-cross-origin-push" id="oq-cross-origin-push">Open Questions</a>
 </h1>
-<p id="rfc.section.5.2.3.1.p.1">Is it right that &#8220;validityUrl&#8221; is required to be same-origin with the exchange? This allows the mitigation against downgrades in <a href="#seccons-downgrades" class="xref">Section 6.3</a>, but prohibits intermediates from providing a cache of the validity information. We could do both with a list of URLs.</p>
+<p id="rfc.section.5.2.3.1.p.1">Is it right that &#8220;validity-url&#8221; is required to be same-origin with the exchange? This allows the mitigation against downgrades in <a href="#seccons-downgrades" class="xref">Section 6.3</a>, but prohibits intermediates from providing a cache of the validity information. We could do both with a list of URLs.</p>
 <h1 id="rfc.section.5.3">
 <a href="#rfc.section.5.3">5.3.</a> <a href="#application-signed-exchange" id="application-signed-exchange">application/signed-exchange format</a>
 </h1>
@@ -1238,7 +1238,7 @@ following array&gt;[
 <a href="#rfc.section.6.3">6.3.</a> <a href="#seccons-downgrades" id="seccons-downgrades">Downgrades</a>
 </h1>
 <p id="rfc.section.6.3.p.1">Signing a bad response can affect more users than simply serving a bad response, since a served response will only affect users who make a request while the bad version is live, while an attacker can forward a signed response until its signature expires. Publishers should consider shorter signature expiration times than they use for cache expiration times.</p>
-<p id="rfc.section.6.3.p.2">Clients MAY also check the <a href="#signature-validityurl" class="xref">&#8220;validityUrl&#8221;</a> of an exchange more often than the signature&#8217;s expiration would require. Doing so for an exchange with an HTTPS request URI provides a TLS guarantee that the exchange isn&#8217;t out of date (as long as <a href="#oq-cross-origin-push" class="xref">Section 5.2.3.1</a> is resolved to keep the same-origin requirement).</p>
+<p id="rfc.section.6.3.p.2">Clients MAY also check the <a href="#signature-validityurl" class="xref">&#8220;validity-url&#8221;</a> of an exchange more often than the signature&#8217;s expiration would require. Doing so for an exchange with an HTTPS request URI provides a TLS guarantee that the exchange isn&#8217;t out of date (as long as <a href="#oq-cross-origin-push" class="xref">Section 5.2.3.1</a> is resolved to keep the same-origin requirement).</p>
 <h1 id="rfc.section.6.4">
 <a href="#rfc.section.6.4">6.4.</a> <a href="#seccons-signing-oracles" id="seccons-signing-oracles">Signing oracles are permanent</a>
 </h1>
@@ -1263,7 +1263,7 @@ following array&gt;[
 <h1 id="rfc.section.8">
 <a href="#rfc.section.8">8.</a> <a href="#iana-considerations" id="iana-considerations">IANA considerations</a>
 </h1>
-<p id="rfc.section.8.p.1">TODO: possibly register the validityUrl format.</p>
+<p id="rfc.section.8.p.1">TODO: possibly register the validity-url format.</p>
 <h1 id="rfc.section.8.1">
 <a href="#rfc.section.8.1">8.1.</a> <a href="#signature-header-field-registration" id="signature-header-field-registration">Signature Header Field Registration</a>
 </h1>
@@ -1590,7 +1590,7 @@ following array&gt;[
 </h1>
 <p id="rfc.section.A.3.p.1">The W3C WebAppSec group is investigating <a href="https://github.com/mikewest/signature-based-sri">using signatures</a> in <a href="#SRI" class="xref">[SRI]</a>.  They need a way to transmit the signature with the response, which this proposal provides.</p>
 <p id="rfc.section.A.3.p.2">Their needs are simpler than most other use cases in that the <samp>integrity="ed25519-[public-key]"</samp> attribute and CSP-based ways of expressing a public key don&#8217;t need that key to be wrapped into a certificate.</p>
-<p id="rfc.section.A.3.p.3">The &#8220;ed25519Key&#8221; signature parameter supports this simpler way of attaching a key.</p>
+<p id="rfc.section.A.3.p.3">The &#8220;ed25519key&#8221; signature parameter supports this simpler way of attaching a key.</p>
 <p id="rfc.section.A.3.p.4">The current proposal for signature-based SRI describes signing only the content of a resource, while this specification requires them to sign the request URI as well. This issue is tracked in <a href="https://github.com/mikewest/signature-based-sri/issues/5">https://github.com/mikewest/signature-based-sri/issues/5</a>. The details of what they need to sign will affect whether and how they can use this proposal.</p>
 <h1 id="rfc.appendix.A.4">
 <a href="#rfc.appendix.A.4">A.4.</a> <a href="#uc-transparency" id="uc-transparency">Binary Transparency</a>
@@ -1732,7 +1732,7 @@ Date: Sat, 25 Nov 2017 10:00:00 UTC
 <h1 id="rfc.appendix.C.2">
 <a href="#rfc.appendix.C.2">C.2.</a> <a href="#downsides-of-cache-control" id="downsides-of-cache-control">Downsides of updating cache control</a>
 </h1>
-<p id="rfc.section.C.2.p.1">In an exchange with multiple signatures, using cache control to expire signatures forces all signatures to initially live for the same period. Worse, the update from one signature&#8217;s &#8220;validityUrl&#8221; might not match the update for another signature. Clients would need to maintain a current set of headers for each signature, and then decide which set to use when actually parsing the resource itself.</p>
+<p id="rfc.section.C.2.p.1">In an exchange with multiple signatures, using cache control to expire signatures forces all signatures to initially live for the same period. Worse, the update from one signature&#8217;s &#8220;validity-url&#8221; might not match the update for another signature. Clients would need to maintain a current set of headers for each signature, and then decide which set to use when actually parsing the resource itself.</p>
 <p id="rfc.section.C.2.p.2">This need to store and reconcile multiple sets of headers for a single signed exchange argues for embedding a signature&#8217;s lifetime into the signature.</p>
 <h1 id="rfc.appendix.D">
 <a href="#rfc.appendix.D">Appendix D.</a> <a href="#change-log" id="change-log">Change Log</a>
@@ -1750,6 +1750,7 @@ Date: Sat, 25 Nov 2017 10:00:00 UTC
 </ul>
 </li>
 <li>Require absolute URLs.</li>
+<li>Make all identifiers in headers lower-case, as required by Structured Headers.</li>
 </ul>
 <p id="rfc.section.D.p.4">draft-03</p>
 <p></p>

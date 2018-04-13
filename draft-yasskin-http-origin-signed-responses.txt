@@ -4,8 +4,8 @@
 
 Network Working Group                                         J. Yasskin
 Internet-Draft                                                    Google
-Intended status: Standards Track                          April 11, 2018
-Expires: October 13, 2018
+Intended status: Standards Track                          April 13, 2018
+Expires: October 15, 2018
 
 
                          Signed HTTP Exchanges
@@ -48,12 +48,12 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on October 13, 2018.
+   This Internet-Draft will expire on October 15, 2018.
 
 
 
 
-Yasskin                 Expires October 13, 2018                [Page 1]
+Yasskin                 Expires October 15, 2018                [Page 1]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Yasskin                 Expires October 13, 2018                [Page 2]
+Yasskin                 Expires October 15, 2018                [Page 2]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -165,7 +165,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                 Expires October 13, 2018                [Page 3]
+Yasskin                 Expires October 15, 2018                [Page 3]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -221,7 +221,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                 Expires October 13, 2018                [Page 4]
+Yasskin                 Expires October 15, 2018                [Page 4]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -272,19 +272,19 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
    [I-D.ietf-httpbis-header-structure]).
 
    Each parameterised identifier in the list MUST have parameters named
-   "sig", "integrity", "validityUrl", "date", and "expires".  Each
-   parameterised identifier MUST also have either "certUrl" and
+   "sig", "integrity", "validity-url", "date", and "expires".  Each
+   parameterised identifier MUST also have either "cert-url" and "cert-
 
 
 
-Yasskin                 Expires October 13, 2018                [Page 5]
+Yasskin                 Expires October 15, 2018                [Page 5]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
-   "certSha256" parameters or an "ed25519Key" parameter.  This
-   specification gives no meaning to the identifier itself, which can be
-   used as a human-readable identifier for the signature (see
+   sha256" parameters or an "ed25519key" parameter.  This specification
+   gives no meaning to the identifier itself, which can be used as a
+   human-readable identifier for the signature (see
    Section 3.1.2, Paragraph 1).  The present parameters MUST have the
    following values:
 
@@ -297,26 +297,26 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
       of the response header field that guards the response payload's
       integrity.
 
-   "certUrl"  A string (Section 4.7 of
+   "cert-url"  A string (Section 4.7 of
       [I-D.ietf-httpbis-header-structure]) containing an absolute-URL
       string [4] ([URL]).
 
-   "certSha256"  Binary content (Section 4.9 of
+   "cert-sha256"  Binary content (Section 4.9 of
       [I-D.ietf-httpbis-header-structure]) holding the SHA-256 hash of
-      the first certificate found at "certUrl".
+      the first certificate found at "cert-url".
 
-   "ed25519Key"  Binary content (Section 4.9 of
+   "ed25519key"  Binary content (Section 4.9 of
       [I-D.ietf-httpbis-header-structure]) holding an Ed25519 public key
       ([RFC8032]).
 
-   "validityUrl"  A string (Section 4.7 of
+   "validity-url"  A string (Section 4.7 of
       [I-D.ietf-httpbis-header-structure]) containing an absolute-URL
       string [5] ([URL]).
 
    "date" and "expires"  An integer (Section 4.5 of
       [I-D.ietf-httpbis-header-structure]) representing a Unix time.
 
-   The "certUrl" parameter is _not_ signed, so intermediates can update
+   The "cert-url" parameter is _not_ signed, so intermediates can update
    it with a pointer to a cached version.
 
 3.1.1.  Examples
@@ -333,7 +333,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                 Expires October 13, 2018                [Page 6]
+Yasskin                 Expires October 15, 2018                [Page 6]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -342,29 +342,29 @@ Signature:
  sig1;
   sig=*MEUCIQDXlI2gN3RNBlgFiuRNFpZXcDIaUpX6HIEwcZEc0cZYLAIga9DsVOMM+g5YpwEBdGW3sS+bvnmAJJiSMwhuBdqp5UY=*;
   integrity="mi";
-  validityUrl="https://example.com/resource.validity.1511128380";
-  certUrl="https://example.com/oldcerts";
-  certSha256=*W7uB969dFW3Mb5ZefPS9Tq5ZbH5iSmOILpjv2qEArmI=*;
+  validity-url="https://example.com/resource.validity.1511128380";
+  cert-url="https://example.com/oldcerts";
+  cert-sha256=*W7uB969dFW3Mb5ZefPS9Tq5ZbH5iSmOILpjv2qEArmI=*;
   date=1511128380; expires=1511733180,
  sig2;
   sig=*MEQCIGjZRqTRf9iKNkGFyzRMTFgwf/BrY2ZNIP/dykhUV0aYAiBTXg+8wujoT4n/W+cNgb7pGqQvIUGYZ8u8HZJ5YH26Qg=*;
   integrity="mi";
-  validityUrl="https://example.com/resource.validity.1511128380";
-  certUrl="https://example.com/newcerts";
-  certSha256=*J/lEm9kNRODdCmINbvitpvdYKNQ+YgBj99DlYp4fEXw=*;
+  validity-url="https://example.com/resource.validity.1511128380";
+  cert-url="https://example.com/newcerts";
+  cert-sha256=*J/lEm9kNRODdCmINbvitpvdYKNQ+YgBj99DlYp4fEXw=*;
   date=1511128380; expires=1511733180,
  srisig;
   sig=*lGZVaJJM5f2oGczFlLmBdKTDL+QADza4BgeO494ggACYJOvrof6uh5OJCcwKrk7DK+LBch0jssDYPp5CLc1SDA=*
   integrity="mi";
-  validityUrl="https://example.com/resource.validity.1511128380";
-  ed25519Key=*zsSevyFsxyZHiUluVBDd4eypdRLTqyWRVOJuuKUz+A8=*
+  validity-url="https://example.com/resource.validity.1511128380";
+  ed25519key=*zsSevyFsxyZHiUluVBDd4eypdRLTqyWRVOJuuKUz+A8=*
   date=1511128380; expires=1511733180,
  thirdpartysig;
   sig=*MEYCIQCNxJzn6Rh2fNxsobktir8TkiaJYQFhWTuWI1i4PewQaQIhAMs2TVjc4rTshDtXbgQEOwgj2mRXALhfXPztXgPupii+=*;
   integrity="mi";
-  validityUrl="https://thirdparty.example.com/resource.validity.1511161860";
-  certUrl="https://thirdparty.example.com/certs";
-  certSha256=*UeOwUPkvxlGRTyvHcsMUN0A2oNsZbU8EUvg8A9ZAnNc=*;
+  validity-url="https://thirdparty.example.com/resource.validity.1511161860";
+  cert-url="https://thirdparty.example.com/certs";
+  cert-sha256=*UeOwUPkvxlGRTyvHcsMUN0A2oNsZbU8EUvg8A9ZAnNc=*;
   date=1511133060; expires=1511478660,
 
    There are 4 signatures: 2 from different secp256r1 certificates
@@ -377,7 +377,7 @@ Signature:
    some signatures could use "MI" while others use "Digest"--but there's
    not much benefit to mixing them.
 
-   The signatures include a "validityUrl" that includes the first time
+   The signatures include a "validity-url" that includes the first time
    the resource was seen.  This allows multiple versions of a resource
    at the same URL to be updated with new signatures, which allows
    clients to avoid transferring extra data while the old versions don't
@@ -389,7 +389,7 @@ Signature:
 
 
 
-Yasskin                 Expires October 13, 2018                [Page 7]
+Yasskin                 Expires October 15, 2018                [Page 7]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -416,8 +416,8 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
    signatures, maybe we should add a "parameterised binary content"
    type.
 
-   Should the certUrl and validityUrl be lists so that intermediates can
-   offer a cache without losing the original URLs?  Putting lists in
+   Should the cert-url and validity-url be lists so that intermediates
+   can offer a cache without losing the original URLs?  Putting lists in
    dictionary fields is more complex than
    [I-D.ietf-httpbis-header-structure] allows, so they're single items
    for now.
@@ -445,7 +445,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                 Expires October 13, 2018                [Page 8]
+Yasskin                 Expires October 15, 2018                [Page 8]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -501,14 +501,14 @@ Signed-Headers: "content-type", "digest"
 
 
 
-Yasskin                 Expires October 13, 2018                [Page 9]
+Yasskin                 Expires October 15, 2018                [Page 9]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 3.3.  Loading a certificate chain
 
-   The resource at a signature's "certUrl" MUST have the "application/
+   The resource at a signature's "cert-url" MUST have the "application/
    cert-chain+cbor" content type, MUST be canonically-encoded CBOR
    (Section 3.4), and MUST match the following CDDL:
 
@@ -539,9 +539,9 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
        "SignedCertificateTimestampList" for that certificate as defined
        by Section 3.3 of [RFC6962].
 
-   Loading a "certUrl" takes a "forceFetch" flag.  The client MUST:
+   Loading a "cert-url" takes a "forceFetch" flag.  The client MUST:
 
-   1.  Let "raw-chain" be the result of fetching ([FETCH]) "certUrl".
+   1.  Let "raw-chain" be the result of fetching ([FETCH]) "cert-url".
        If "forceFetch" is _not_ set, the fetch can be fulfilled from a
        cache using normal HTTP semantics [RFC7234].  If this fetch
        fails, return "invalid".
@@ -557,7 +557,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                 Expires October 13, 2018               [Page 10]
+Yasskin                 Expires October 15, 2018               [Page 10]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -613,7 +613,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                 Expires October 13, 2018               [Page 11]
+Yasskin                 Expires October 15, 2018               [Page 11]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -645,14 +645,14 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
         *  "integrity" be the signature's "integrity" parameter.
 
-        *  "validityUrl" be the signature's "validityUrl" parameter.
+        *  "validity-url" be the signature's "validity-url" parameter.
 
-        *  "certUrl" be the signature's "certUrl" parameter, if any.
+        *  "cert-url" be the signature's "cert-url" parameter, if any.
 
-        *  "certSha256" be the signature's "certSha256" parameter, if
+        *  "cert-sha256" be the signature's "cert-sha256" parameter, if
            any.
 
-        *  "ed25519Key" be the signature's "ed25519Key" parameter, if
+        *  "ed25519key" be the signature's "ed25519key" parameter, if
            any.
 
         *  "date" be the signature's "date" parameter, interpreted as a
@@ -669,7 +669,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                 Expires October 13, 2018               [Page 12]
+Yasskin                 Expires October 15, 2018               [Page 12]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -685,10 +685,10 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
    5.   Set "publicKey" and "signing-alg" depending on which key fields
         are present:
 
-        1.  If "certUrl" is present:
+        1.  If "cert-url" is present:
 
             1.  Let "certificate-chain" be the result of loading the
-                certificate chain at "certUrl" passing the "forceFetch"
+                certificate chain at "cert-url" passing the "forceFetch"
                 flag (Section 3.3).  If this returns "invalid", return
                 "invalid".
 
@@ -718,14 +718,14 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
                 If the function is undefined on this input, return
                 "invalid".
 
-        2.  If "ed25519Key" is present, set "publicKey" to "ed25519Key"
+        2.  If "ed25519key" is present, set "publicKey" to "ed25519key"
             and "signing-alg" to ed25519, as defined by [RFC8032]
 
 
 
 
 
-Yasskin                 Expires October 13, 2018               [Page 13]
+Yasskin                 Expires October 15, 2018               [Page 13]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -746,13 +746,13 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
         3.  The bytes of the canonical CBOR serialization (Section 3.4)
             of a CBOR map mapping:
 
-            1.  If "certSha256" is set:
+            1.  If "cert-sha256" is set:
 
-                1.  The text string "certSha256" to the byte string
-                    value of "certSha256".
+                1.  The text string "cert-sha256" to the byte string
+                    value of "cert-sha256".
 
-            2.  The text string "validityUrl" to the byte string value
-                of "validityUrl".
+            2.  The text string "validity-url" to the byte string value
+                of "validity-url".
 
             3.  The text string "date" to the integer value of "date".
 
@@ -762,8 +762,8 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
             5.  The text string "headers" to the CBOR representation
                 (Section 3.2) of "exchange"'s headers.
 
-   9.   If "certUrl" is present and the SHA-256 hash of "main-
-        certificate"'s "cert_data" is not equal to "certSha256" (whose
+   9.   If "cert-url" is present and the SHA-256 hash of "main-
+        certificate"'s "cert_data" is not equal to "cert-sha256" (whose
         presence was checked when the "Signature" header field was
         parsed), return "invalid".
 
@@ -775,13 +775,13 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
    10.  If "signature" is a valid signature of "message" by "publicKey"
         using "signing-alg", return "potentially-valid" with whichever
-        is present of "certificate-chain" or "ed25519Key".  Otherwise,
+        is present of "certificate-chain" or "ed25519key".  Otherwise,
         return "invalid".
 
 
 
 
-Yasskin                 Expires October 13, 2018               [Page 14]
+Yasskin                 Expires October 15, 2018               [Page 14]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -812,11 +812,11 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
    exchanges with known vulnerabilities are distrusted promptly.
 
    This specification provides no way to update OCSP responses by
-   themselves.  Instead, clients need to re-fetch the "certUrl"
+   themselves.  Instead, clients need to re-fetch the "cert-url"
    (Section 3.5, Paragraph 4) to get a chain including a newer OCSP
    response.
 
-   The "validityUrl" parameter (Paragraph 6) of the signatures provides
+   The "validity-url" parameter (Paragraph 6) of the signatures provides
    a way to fetch new signatures or learn where to fetch a complete
    updated exchange.
 
@@ -824,7 +824,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
    since each version needs different signatures and becomes obsolete at
    different times.
 
-   The resource at a "validityUrl" is "validity data", a CBOR map
+   The resource at a "validity-url" is "validity data", a CBOR map
    matching the following CDDL ([I-D.ietf-cbor-cddl]):
 
    validity = {
@@ -837,7 +837,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                 Expires October 13, 2018               [Page 15]
+Yasskin                 Expires October 15, 2018               [Page 15]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -870,20 +870,20 @@ Signature:
  sig1;
   sig=*MEUCIQ...*;
   ...
-  validityUrl="https://example.com/resource.validity.1511157180";
-  certUrl="https://example.com/oldcerts";
+  validity-url="https://example.com/resource.validity.1511157180";
+  cert-url="https://example.com/oldcerts";
   date=1511128380; expires=1511733180,
  sig2;
   sig=*MEQCIG...*;
   ...
-  validityUrl="https://example.com/resource.validity.1511157180";
-  certUrl="https://example.com/newcerts";
+  validity-url="https://example.com/resource.validity.1511157180";
+  cert-url="https://example.com/newcerts";
   date=1511128380; expires=1511733180,
  thirdpartysig;
   sig=*MEYCIQ...*;
   ...
-  validityUrl="https://thirdparty.example.com/resource.validity.1511161860";
-  certUrl="https://thirdparty.example.com/certs";
+  validity-url="https://thirdparty.example.com/resource.validity.1511161860";
+  cert-url="https://thirdparty.example.com/certs";
   date=1511478660; expires=1511824260
 
    At 2017-11-27 11:02 UTC, "sig1" and "sig2" have expired, but
@@ -893,22 +893,22 @@ Signature:
 
 
 
-Yasskin                 Expires October 13, 2018               [Page 16]
+Yasskin                 Expires October 15, 2018               [Page 16]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
-   (the "validityUrl" of "sig1" and "sig2") to update those signatures.
+   (the "validity-url" of "sig1" and "sig2") to update those signatures.
    This URL might contain:
 
 {
   "signatures": [
     'sig1; '
     'sig=*MEQCIC/I9Q+7BZFP6cSDsWx43pBAL0ujTbON/+7RwKVk+ba5AiB3FSFLZqpzmDJ0NumNwN04pqgJZE99fcK86UjkPbj4jw==*; '
-    'validityUrl="https://example.com/resource.validity.1511157180"; '
+    'validity-url="https://example.com/resource.validity.1511157180"; '
     'integrity="mi"; '
-    'certUrl="https://example.com/newcerts"; '
-    'certSha256=*J/lEm9kNRODdCmINbvitpvdYKNQ+YgBj99DlYp4fEXw=*; '
+    'cert-url="https://example.com/newcerts"; '
+    'cert-sha256=*J/lEm9kNRODdCmINbvitpvdYKNQ+YgBj99DlYp4fEXw=*; '
     'date=1511733180; expires=1512337980'
   ],
   "update": {
@@ -920,7 +920,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
    "https://example.com/resource" (the original URL of the exchange), or
    that the validity period of the old version can be extended by
    replacing the first two of the original signatures (the ones with a
-   validityUrl of "https://example.com/resource.validity.1511157180")
+   validity-url of "https://example.com/resource.validity.1511157180")
    with the single new signature provided.  (This might happen at the
    end of a migration to a new root certificate.)  The signatures of the
    updated signed exchange would be:
@@ -929,14 +929,14 @@ Signature:
  sig1;
   sig=*MEQCIC...*;
   ...
-  validityUrl="https://example.com/resource.validity.1511157180";
-  certUrl="https://example.com/newcerts";
+  validity-url="https://example.com/resource.validity.1511157180";
+  cert-url="https://example.com/newcerts";
   date=1511733180; expires=1512337980,
  thirdpartysig;
   sig=*MEYCIQ...*;
   ...
-  validityUrl="https://thirdparty.example.com/resource.validity.1511161860";
-  certUrl="https://thirdparty.example.com/certs";
+  validity-url="https://thirdparty.example.com/resource.validity.1511161860";
+  cert-url="https://thirdparty.example.com/certs";
   date=1511478660; expires=1511824260
 
    "https://example.com/resource.validity.1511157180" could also expand
@@ -949,7 +949,7 @@ Signature:
 
 
 
-Yasskin                 Expires October 13, 2018               [Page 17]
+Yasskin                 Expires October 15, 2018               [Page 17]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -1005,7 +1005,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                 Expires October 13, 2018               [Page 18]
+Yasskin                 Expires October 15, 2018               [Page 18]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -1061,7 +1061,7 @@ Accept-Signature: ..., ed25519key; **
 
 
 
-Yasskin                 Expires October 13, 2018               [Page 19]
+Yasskin                 Expires October 15, 2018               [Page 19]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -1110,14 +1110,14 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
    that returns "valid".  If any signature returns "valid", return
    "valid".  Otherwise, return "invalid".
 
-   1.  If the signature's "validityUrl" parameter (Paragraph 6) is not
+   1.  If the signature's "validity-url" parameter (Paragraph 6) is not
        same-origin [9] with "exchange"'s effective request URI
        (Section 5.5 of [RFC7230]), return "invalid".
 
 
 
 
-Yasskin                 Expires October 13, 2018               [Page 20]
+Yasskin                 Expires October 15, 2018               [Page 20]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -1173,7 +1173,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                 Expires October 13, 2018               [Page 21]
+Yasskin                 Expires October 15, 2018               [Page 21]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -1229,7 +1229,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                 Expires October 13, 2018               [Page 22]
+Yasskin                 Expires October 15, 2018               [Page 22]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -1285,7 +1285,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                 Expires October 13, 2018               [Page 23]
+Yasskin                 Expires October 15, 2018               [Page 23]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -1341,7 +1341,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                 Expires October 13, 2018               [Page 24]
+Yasskin                 Expires October 15, 2018               [Page 24]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -1397,7 +1397,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                 Expires October 13, 2018               [Page 25]
+Yasskin                 Expires October 15, 2018               [Page 25]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -1429,8 +1429,8 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 5.2.3.1.  Open Questions
 
-   Is it right that "validityUrl" is required to be same-origin with the
-   exchange?  This allows the mitigation against downgrades in
+   Is it right that "validity-url" is required to be same-origin with
+   the exchange?  This allows the mitigation against downgrades in
    Section 6.3, but prohibits intermediates from providing a cache of
    the validity information.  We could do both with a list of URLs.
 
@@ -1453,7 +1453,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                 Expires October 13, 2018               [Page 26]
+Yasskin                 Expires October 15, 2018               [Page 26]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -1509,7 +1509,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                 Expires October 13, 2018               [Page 27]
+Yasskin                 Expires October 15, 2018               [Page 27]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -1565,7 +1565,7 @@ following array>[
 
 
 
-Yasskin                 Expires October 13, 2018               [Page 28]
+Yasskin                 Expires October 15, 2018               [Page 28]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -1621,16 +1621,16 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                 Expires October 13, 2018               [Page 29]
+Yasskin                 Expires October 15, 2018               [Page 29]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
-   Clients MAY also check the "validityUrl" (Paragraph 6) of an exchange
-   more often than the signature's expiration would require.  Doing so
-   for an exchange with an HTTPS request URI provides a TLS guarantee
-   that the exchange isn't out of date (as long as Section 5.2.3.1 is
-   resolved to keep the same-origin requirement).
+   Clients MAY also check the "validity-url" (Paragraph 6) of an
+   exchange more often than the signature's expiration would require.
+   Doing so for an exchange with an HTTPS request URI provides a TLS
+   guarantee that the exchange isn't out of date (as long as
+   Section 5.2.3.1 is resolved to keep the same-origin requirement).
 
 6.4.  Signing oracles are permanent
 
@@ -1677,7 +1677,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                 Expires October 13, 2018               [Page 30]
+Yasskin                 Expires October 15, 2018               [Page 30]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -1711,7 +1711,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 8.  IANA considerations
 
-   TODO: possibly register the validityUrl format.
+   TODO: possibly register the validity-url format.
 
 8.1.  Signature Header Field Registration
 
@@ -1733,7 +1733,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                 Expires October 13, 2018               [Page 31]
+Yasskin                 Expires October 15, 2018               [Page 31]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -1789,7 +1789,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                 Expires October 13, 2018               [Page 32]
+Yasskin                 Expires October 15, 2018               [Page 32]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -1845,7 +1845,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                 Expires October 13, 2018               [Page 33]
+Yasskin                 Expires October 15, 2018               [Page 33]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -1901,7 +1901,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                 Expires October 13, 2018               [Page 34]
+Yasskin                 Expires October 15, 2018               [Page 34]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -1957,7 +1957,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                 Expires October 13, 2018               [Page 35]
+Yasskin                 Expires October 15, 2018               [Page 35]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -2013,7 +2013,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                 Expires October 13, 2018               [Page 36]
+Yasskin                 Expires October 15, 2018               [Page 36]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -2069,7 +2069,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                 Expires October 13, 2018               [Page 37]
+Yasskin                 Expires October 15, 2018               [Page 37]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -2125,7 +2125,7 @@ Internet-Draft            Signed HTTP Exchanges               April 2018
 
 
 
-Yasskin                 Expires October 13, 2018               [Page 38]
+Yasskin                 Expires October 15, 2018               [Page 38]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -2181,7 +2181,7 @@ Appendix A.  Use cases
 
 
 
-Yasskin                 Expires October 13, 2018               [Page 39]
+Yasskin                 Expires October 15, 2018               [Page 39]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -2237,7 +2237,7 @@ A.2.  Explicit use of a content distributor for subresources
 
 
 
-Yasskin                 Expires October 13, 2018               [Page 40]
+Yasskin                 Expires October 15, 2018               [Page 40]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -2256,7 +2256,7 @@ A.3.  Subresource Integrity
    expressing a public key don't need that key to be wrapped into a
    certificate.
 
-   The "ed25519Key" signature parameter supports this simpler way of
+   The "ed25519key" signature parameter supports this simpler way of
    attaching a key.
 
    The current proposal for signature-based SRI describes signing only
@@ -2293,7 +2293,7 @@ A.5.  Static Analysis
 
 
 
-Yasskin                 Expires October 13, 2018               [Page 41]
+Yasskin                 Expires October 15, 2018               [Page 41]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -2349,7 +2349,7 @@ B.1.2.  Signature constraints
 
 
 
-Yasskin                 Expires October 13, 2018               [Page 42]
+Yasskin                 Expires October 15, 2018               [Page 42]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -2405,7 +2405,7 @@ B.2.  How much to sign
 
 
 
-Yasskin                 Expires October 13, 2018               [Page 43]
+Yasskin                 Expires October 15, 2018               [Page 43]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -2461,7 +2461,7 @@ B.2.1.  Conveying the signed headers
 
 
 
-Yasskin                 Expires October 13, 2018               [Page 44]
+Yasskin                 Expires October 15, 2018               [Page 44]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -2517,7 +2517,7 @@ B.3.2.  Response downgrade attacks
 
 
 
-Yasskin                 Expires October 13, 2018               [Page 45]
+Yasskin                 Expires October 15, 2018               [Page 45]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -2573,7 +2573,7 @@ C.1.  Example of updating cache control
 
 
 
-Yasskin                 Expires October 13, 2018               [Page 46]
+Yasskin                 Expires October 15, 2018               [Page 46]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -2614,7 +2614,7 @@ C.2.  Downsides of updating cache control
 
    In an exchange with multiple signatures, using cache control to
    expire signatures forces all signatures to initially live for the
-   same period.  Worse, the update from one signature's "validityUrl"
+   same period.  Worse, the update from one signature's "validity-url"
    might not match the update for another signature.  Clients would need
    to maintain a current set of headers for each signature, and then
    decide which set to use when actually parsing the resource itself.
@@ -2629,7 +2629,7 @@ C.2.  Downsides of updating cache control
 
 
 
-Yasskin                 Expires October 13, 2018               [Page 47]
+Yasskin                 Expires October 15, 2018               [Page 47]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
@@ -2656,6 +2656,9 @@ Appendix D.  Change Log
 
    o  Require absolute URLs.
 
+   o  Make all identifiers in headers lower-case, as required by
+      Structured Headers.
+
    draft-03
 
    o  Allow each method of transferring an exchange to define which
@@ -2680,15 +2683,15 @@ Appendix D.  Change Log
 
    o  The validityUrl is signed.
 
-   o  Use CBOR maps where appropriate, and define how they're
-      canonicalized.
 
 
-
-Yasskin                 Expires October 13, 2018               [Page 48]
+Yasskin                 Expires October 15, 2018               [Page 48]
 
 Internet-Draft            Signed HTTP Exchanges               April 2018
 
+
+   o  Use CBOR maps where appropriate, and define how they're
+      canonicalized.
 
    o  Remove the update.url field from signature validity updates, in
       favor of just re-fetching the original request URL.
@@ -2738,7 +2741,4 @@ Author's Address
 
 
 
-
-
-
-Yasskin                 Expires October 13, 2018               [Page 49]
+Yasskin                 Expires October 15, 2018               [Page 49]
