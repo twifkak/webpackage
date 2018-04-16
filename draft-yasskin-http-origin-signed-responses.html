@@ -360,7 +360,7 @@ ul.toc li {
 
   <meta name="dct.creator" content="Yasskin, J." />
   <meta name="dct.identifier" content="urn:ietf:id:draft-yasskin-http-origin-signed-responses-latest" />
-  <meta name="dct.issued" scheme="ISO8601" content="2018-04-13" />
+  <meta name="dct.issued" scheme="ISO8601" content="2018-04-16" />
   <meta name="dct.abstract" content="This document specifies how a server can send an HTTP request/response pair, known as an exchange, with signatures that vouch for that exchange&#8217;s authenticity. These signatures can be verified against an origin&#8217;s certificate to establish that the exchange is authoritative for an origin even if it was transferred over a connection that isn&#8217;t. The signatures can also be used in other ways described in the appendices." />
   <meta name="description" content="This document specifies how a server can send an HTTP request/response pair, known as an exchange, with signatures that vouch for that exchange&#8217;s authenticity. These signatures can be verified against an origin&#8217;s certificate to establish that the exchange is authoritative for an origin even if it was transferred over a connection that isn&#8217;t. The signatures can also be used in other ways described in the appendices." />
 
@@ -381,10 +381,10 @@ ul.toc li {
 </tr>
 <tr>
 <td class="left">Intended status: Standards Track</td>
-<td class="right">April 13, 2018</td>
+<td class="right">April 16, 2018</td>
 </tr>
 <tr>
-<td class="left">Expires: October 15, 2018</td>
+<td class="left">Expires: October 18, 2018</td>
 <td class="right"></td>
 </tr>
 
@@ -405,7 +405,7 @@ ul.toc li {
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at https://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on October 15, 2018.</p>
+<p>This Internet-Draft will expire on October 18, 2018.</p>
 <h1 id="rfc.copyrightnotice"><a href="#rfc.copyrightnotice">Copyright Notice</a></h1>
 <p>Copyright (c) 2018 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
 <p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (https://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
@@ -846,7 +846,8 @@ cert-chain = [
 </li>
 <li>If <samp>expires</samp> is more than 7 days (604800 seconds) after <samp>date</samp>, return &#8220;invalid&#8221;.</li>
 <li>If the current time is before <samp>date</samp> or after <samp>expires</samp>, return &#8220;invalid&#8221;.</li>
-<li>Let <samp>message</samp> be the concatenation of the following byte strings: <ol>
+<li>Let <samp>message</samp> be the concatenation of the following byte strings. This matches the <a href="#I-D.ietf-tls-tls13" class="xref">[I-D.ietf-tls-tls13]</a> format to avoid cross-protocol attacks if anyone uses the same key in a TLS certificate and an exchange-signing certificate.  <ol>
+<li>A string that consists of octet 32 (0x20) repeated 64 times.</li>
 <li>A context string: the ASCII encoding of &#8220;HTTP Exchange&#8221;.</li>
 <li>A single 0 byte which serves as a separator.</li>
 <li>The bytes of the canonical CBOR serialization (<a href="#canonical-cbor" class="xref">Section 3.4</a>) of a CBOR map mapping: <ol>
@@ -1751,6 +1752,7 @@ Date: Sat, 25 Nov 2017 10:00:00 UTC
 </li>
 <li>Require absolute URLs.</li>
 <li>Make all identifiers in headers lower-case, as required by Structured Headers.</li>
+<li>Switch back to the TLS 1.3 signature format.</li>
 </ul>
 <p id="rfc.section.D.p.4">draft-03</p>
 <p></p>
