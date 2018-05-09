@@ -363,7 +363,7 @@ ul.toc li {
 
   <meta name="dct.creator" content="Yasskin, J." />
   <meta name="dct.identifier" content="urn:ietf:id:draft-yasskin-http-origin-signed-responses-latest" />
-  <meta name="dct.issued" scheme="ISO8601" content="2018-05-08" />
+  <meta name="dct.issued" scheme="ISO8601" content="2018-05-09" />
   <meta name="dct.abstract" content="This document specifies how a server can send an HTTP request/response pair, known as an exchange, with signatures that vouch for that exchange&#8217;s authenticity. These signatures can be verified against an origin&#8217;s certificate to establish that the exchange is authoritative for an origin even if it was transferred over a connection that isn&#8217;t. The signatures can also be used in other ways described in the appendices." />
   <meta name="description" content="This document specifies how a server can send an HTTP request/response pair, known as an exchange, with signatures that vouch for that exchange&#8217;s authenticity. These signatures can be verified against an origin&#8217;s certificate to establish that the exchange is authoritative for an origin even if it was transferred over a connection that isn&#8217;t. The signatures can also be used in other ways described in the appendices." />
 
@@ -384,10 +384,10 @@ ul.toc li {
 </tr>
 <tr>
 <td class="left">Intended status: Standards Track</td>
-<td class="right">May 08, 2018</td>
+<td class="right">May 09, 2018</td>
 </tr>
 <tr>
-<td class="left">Expires: November 9, 2018</td>
+<td class="left">Expires: November 10, 2018</td>
 <td class="right"></td>
 </tr>
 
@@ -408,7 +408,7 @@ ul.toc li {
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at https://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on November 9, 2018.</p>
+<p>This Internet-Draft will expire on November 10, 2018.</p>
 <h1 id="rfc.copyrightnotice"><a href="#rfc.copyrightnotice">Copyright Notice</a></h1>
 <p>Copyright (c) 2018 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
 <p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (https://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
@@ -836,16 +836,9 @@ cert-chain = [
 <li>Let <samp>certificate-chain</samp> be the result of loading the certificate chain at <samp>cert-url</samp> passing the <samp>forceFetch</samp> flag (<a href="#cert-chain-format" class="xref">Section 3.3</a>). If this returns &#8220;invalid&#8221;, return &#8220;invalid&#8221;.</li>
 <li>Let <samp>main-certificate</samp> be the first certificate in <samp>certificate-chain</samp>.</li>
 <li>Set <samp>publicKey</samp> to <samp>main-certificate</samp>&#8217;s public key.</li>
-<li>The client MUST define a partial function from public key types to signing algorithms, and this function must at the minimum include the following mappings:          <dl>
-<dt>RSA, 2048 bits:</dt>
-<dd style="margin-left: 8">rsa_pss_rsae_sha256 or rsa_pss_pss_sha256, as defined in Section 4.2.3 of <a href="#I-D.ietf-tls-tls13" class="xref">[I-D.ietf-tls-tls13]</a>, depending on which of the rsaEncryption OID or RSASSA-PSS OID <a href="#RFC8017" class="xref">[RFC8017]</a> is used.</dd>
-<dt>EC, with the secp256r1 curve:</dt>
-<dd style="margin-left: 8">ecdsa_secp256r1_sha256 as defined in Section 4.2.3 of <a href="#I-D.ietf-tls-tls13" class="xref">[I-D.ietf-tls-tls13]</a>.</dd>
-<dt>EC, with the secp384r1 curve:</dt>
-<dd style="margin-left: 8">ecdsa_secp384r1_sha384 as defined in Section 4.2.3 of <a href="#I-D.ietf-tls-tls13" class="xref">[I-D.ietf-tls-tls13]</a>.</dd>
-</dl>
-<p> Set </p>
-<samp>signing-alg</samp> to the result of applying this function to the type of <samp>main-certificate</samp>&#8217;s public key. If the function is undefined on this input, return &#8220;invalid&#8221;.</li>
+<li>If <samp>publicKey</samp> is an RSA key, return &#8220;invalid&#8221;.</li>
+<li>If <samp>publicKey</samp> is a key using the secp256r1 elliptic curve, set <samp>signing-alg</samp> to ecdsa_secp256r1_sha256 as defined in Section 4.2.3 of <a href="#I-D.ietf-tls-tls13" class="xref">[I-D.ietf-tls-tls13]</a>.</li>
+<li>Otherwise, either return &#8220;invalid&#8221; or set <samp>signing-alg</samp> to a non-legacy signing algorithm defined by TLS 1.3 or later (<a href="#I-D.ietf-tls-tls13" class="xref">[I-D.ietf-tls-tls13]</a>). This choice MUST depend only on <samp>publicKey</samp>&#8217;s type and not on any other context.</li>
 </ol>
 </li>
 <li>If <samp>ed25519key</samp> is present, set <samp>publicKey</samp> to <samp>ed25519key</samp> and <samp>signing-alg</samp> to ed25519, as defined by <a href="#RFC8032" class="xref">[RFC8032]</a>
@@ -970,9 +963,8 @@ Signature:
 <h1 id="rfc.section.3.7.2">
 <a href="#rfc.section.3.7.2">3.7.2.</a> <a href="#accept-signature-key-types" id="accept-signature-key-types">Key type identifiers</a>
 </h1>
-<p id="rfc.section.3.7.2.p.1">Identifiers starting with &#8220;rsa/&#8221; indicate that the client supports certificates holding RSA public keys with a number of bits indicated by the digits after the &#8220;/&#8221;.</p>
-<p id="rfc.section.3.7.2.p.2">Identifiers starting with &#8220;ecdsa/&#8221; indicate that the client supports certificates holding ECDSA public keys on the curve named in lower-case by the rest of the identifier.</p>
-<p id="rfc.section.3.7.2.p.3">If the <samp>Accept-Signature</samp> header field is present, servers SHOULD assume support for &#8220;rsa/2048&#8221;, &#8220;ecdsa/secp256r1&#8221;, and &#8220;ecdsa/secp384r1&#8221; unless the header field states otherwise.</p>
+<p id="rfc.section.3.7.2.p.1">Identifiers starting with &#8220;ecdsa/&#8221; indicate that the client supports certificates holding ECDSA public keys on the curve named in lower-case by the rest of the identifier.</p>
+<p id="rfc.section.3.7.2.p.2">If the <samp>Accept-Signature</samp> header field is present, servers SHOULD assume support for &#8220;ecdsa/secp256r1&#8221; unless the header field states otherwise.</p>
 <h1 id="rfc.section.3.7.3">
 <a href="#rfc.section.3.7.3">3.7.3.</a> <a href="#accept-signature-key-values" id="accept-signature-key-values">Key value identifiers</a>
 </h1>
@@ -999,11 +991,11 @@ Accept-Signature: ..., ed25519key; 11qYAQ
 <pre>
 Accept-Signature: mi/mi-sha256
 </pre>
-<p id="rfc.section.3.7.4.p.1">states that the client will accept signatures with payload integrity assured by the <samp>MI</samp> header and <samp>mi-sha256</samp> content encoding and implies that the client will accept integrity assured by the <samp>Digest: SHA-256</samp> header and signatures from 2048-bit RSA keys and ECDSA keys on the secp256r1 and secp384r1 curves.</p>
+<p id="rfc.section.3.7.4.p.1">states that the client will accept signatures with payload integrity assured by the <samp>MI</samp> header and <samp>mi-sha256</samp> content encoding and implies that the client will accept integrity assured by the <samp>Digest: SHA-256</samp> header and signatures from ECDSA keys on the secp256r1 curve.</p>
 <pre>
-Accept-Signature: -rsa/2048, rsa/4096
+Accept-Signature: -ecdsa/secp256r1, ecdsa/secp384r1
 </pre>
-<p id="rfc.section.3.7.4.p.2">states that the client will accept 4096-bit RSA keys but not 2048-bit RSA keys, and implies that the client will accept ECDSA keys on the secp256r1 and secp384r1 curves and payload integrity assured with the <samp>MI: mi-sha256</samp> header field.</p>
+<p id="rfc.section.3.7.4.p.2">states that the client will accept ECDSA keys on the secp384r1 curve but not the secp256r1 curve and payload integrity assured with the <samp>MI: mi-sha256</samp> header field.</p>
 <h1 id="rfc.section.3.7.5">
 <a href="#rfc.section.3.7.5">3.7.5.</a> <a href="#oq-accept-signature" id="oq-accept-signature">Open Questions</a>
 </h1>
@@ -1108,7 +1100,7 @@ Accept-Signature: -rsa/2048, rsa/4096
 <p id="rfc.section.4.2.p.2">Leaf certificates without this extension need to be revoked if the private key is exposed to an unauthorized entity, but they generally don&#8217;t need to be revoked if a signing oracle is exposed and then removed.</p>
 <p id="rfc.section.4.2.p.3">CA certificates, by contrast, need to be revoked if an unauthorized entity is able to make even one unauthorized signature.</p>
 <p id="rfc.section.4.2.p.4">Certificates with this extension MUST be revoked if an unauthorized entity is able to make even one unauthorized signature.</p>
-<p id="rfc.section.4.2.p.5">Conforming CAs MUST mark this extension as critical, and clients MUST NOT accept certificates with this extension in TLS connections (Section 4.4.2.2 of <a href="#I-D.ietf-tls-tls13" class="xref">[I-D.ietf-tls-tls13]</a>).  This prevents accidental signing oracles exposed by TLS servers from allowing package signing (e.g. <a href="#DROWN" class="xref">[DROWN]</a> and <a href="#ROBOT" class="xref">[ROBOT]</a>).</p>
+<p id="rfc.section.4.2.p.5">Conforming CAs MUST mark this extension as critical, and clients MUST NOT accept certificates with this extension in TLS connections (Section 4.4.2.2 of <a href="#I-D.ietf-tls-tls13" class="xref">[I-D.ietf-tls-tls13]</a>).  This simplifies security analysis of this protocol and avoids encouraging server operators to put exchange-signing keys on servers exposed directly to the internet.</p>
 <h1 id="rfc.section.5">
 <a href="#rfc.section.5">5.</a> <a href="#transfer" id="transfer">Transferring a signed exchange</a>
 </h1>
@@ -1452,11 +1444,6 @@ following array&gt;[
 <a>Belshe, M.</a>, <a>Peon, R.</a> and <a>M. Thomson</a>, "<a href="https://tools.ietf.org/html/rfc7540">Hypertext Transfer Protocol Version 2 (HTTP/2)</a>", RFC 7540, DOI 10.17487/RFC7540, May 2015.</td>
 </tr>
 <tr>
-<td class="reference"><b id="RFC8017">[RFC8017]</b></td>
-<td class="top">
-<a>Moriarty, K.</a>, <a>Kaliski, B.</a>, <a>Jonsson, J.</a> and <a>A. Rusch</a>, "<a href="https://tools.ietf.org/html/rfc8017">PKCS #1: RSA Cryptography Specifications Version 2.2</a>", RFC 8017, DOI 10.17487/RFC8017, November 2016.</td>
-</tr>
-<tr>
 <td class="reference"><b id="RFC8032">[RFC8032]</b></td>
 <td class="top">
 <a>Josefsson, S.</a> and <a>I. Liusvaara</a>, "<a href="https://tools.ietf.org/html/rfc8032">Edwards-Curve Digital Signature Algorithm (EdDSA)</a>", RFC 8032, DOI 10.17487/RFC8032, January 2017.</td>
@@ -1544,6 +1531,11 @@ following array&gt;[
 <td class="reference"><b id="RFC7615">[RFC7615]</b></td>
 <td class="top">
 <a>Reschke, J.</a>, "<a href="https://tools.ietf.org/html/rfc7615">HTTP Authentication-Info and Proxy-Authentication-Info Response Header Fields</a>", RFC 7615, DOI 10.17487/RFC7615, September 2015.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC8017">[RFC8017]</b></td>
+<td class="top">
+<a>Moriarty, K.</a>, <a>Kaliski, B.</a>, <a>Jonsson, J.</a> and <a>A. Rusch</a>, "<a href="https://tools.ietf.org/html/rfc8017">PKCS #1: RSA Cryptography Specifications Version 2.2</a>", RFC 8017, DOI 10.17487/RFC8017, November 2016.</td>
 </tr>
 <tr>
 <td class="reference"><b id="RFC8053">[RFC8053]</b></td>
@@ -1776,6 +1768,7 @@ Date: Sat, 25 Nov 2017 10:00:00 UTC
 <li>Switch back to the TLS 1.3 signature format.</li>
 <li>Remove support for integrity protection using the Digest header field.</li>
 <li>Limit the record size in the mi-sha256 encoding.</li>
+<li>Forbid RSA keys, and only require clients to support secp256r1 keys.</li>
 </ul>
 <p id="rfc.section.D.p.4">draft-03</p>
 <p></p>
