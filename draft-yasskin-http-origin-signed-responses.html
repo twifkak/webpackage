@@ -849,7 +849,7 @@ cert-chain = [
 <li>If the current time is before <samp>date</samp> or after <samp>expires</samp>, return &#8220;invalid&#8221;.</li>
 <li>Let <samp>message</samp> be the concatenation of the following byte strings. This matches the <a href="#I-D.ietf-tls-tls13" class="xref">[I-D.ietf-tls-tls13]</a> format to avoid cross-protocol attacks if anyone uses the same key in a TLS certificate and an exchange-signing certificate.  <ol>
 <li>A string that consists of octet 32 (0x20) repeated 64 times.</li>
-<li>A context string: the ASCII encoding of &#8220;HTTP Exchange&#8221;.</li>
+<li>A context string: the ASCII encoding of &#8220;HTTP Exchange 1&#8221;.      <br><br> Note: RFC EDITOR PLEASE DELETE THIS NOTE; The implementation of the final RFC MUST use this context string, but implementations of drafts MUST NOT use it and MUST use another draft-specific string beginning with &#8220;HTTP Exchange 1 &#8221; instead. This ensures that signers can predict how their signatures will be used.</li>
 <li>A single 0 byte which serves as a separator.</li>
 <li>The bytes of the canonical CBOR serialization (<a href="#canonical-cbor" class="xref">Section 3.4</a>) of a CBOR map mapping: <ol>
 <li>If <samp>cert-sha256</samp> is set: <ol><li>The text string &#8220;cert-sha256&#8221; to the byte string value of <samp>cert-sha256</samp>.</li></ol>
@@ -1766,6 +1766,7 @@ Date: Sat, 25 Nov 2017 10:00:00 UTC
 <li>Require absolute URLs.</li>
 <li>Make all identifiers in headers lower-case, as required by Structured Headers.</li>
 <li>Switch back to the TLS 1.3 signature format.</li>
+<li>Include the version and draft number in the signature context string.</li>
 <li>Remove support for integrity protection using the Digest header field.</li>
 <li>Limit the record size in the mi-sha256 encoding.</li>
 <li>Forbid RSA keys, and only require clients to support secp256r1 keys.</li>
