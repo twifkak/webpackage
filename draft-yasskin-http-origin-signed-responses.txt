@@ -2048,8 +2048,7 @@ Internet-Draft            Signed HTTP Exchanges                 May 2018
    [I-D.ietf-httpbis-http2-secondary-certs]
               Bishop, M., Sullivan, N., and M. Thomson, "Secondary
               Certificate Authentication in HTTP/2", draft-ietf-httpbis-
-              http2-secondary-certs-00 (work in progress), December
-              2017.
+              http2-secondary-certs-01 (work in progress), May 2018.
 
    [I-D.ietf-httpbis-origin-frame]
               Nottingham, M. and E. Nygren, "The ORIGIN HTTP/2 Frame",
@@ -2065,6 +2064,7 @@ Internet-Draft            Signed HTTP Exchanges                 May 2018
               Yasskin, J., "Use Cases and Requirements for Web
               Packages", draft-yasskin-webpackage-use-cases-01 (work in
               progress), March 2018.
+
 
 
 

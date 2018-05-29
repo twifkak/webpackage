@@ -132,7 +132,7 @@ Internet-Draft Use Cases and Requirements for Web Packages      May 2018
      7.1.  Informative References  . . . . . . . . . . . . . . . . .  18
      7.2.  URIs  . . . . . . . . . . . . . . . . . . . . . . . . . .  20
    Appendix A.  Acknowledgements . . . . . . . . . . . . . . . . . .  21
-   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  22
+   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  21
 
 1.  Introduction
 
@@ -1022,8 +1022,7 @@ Internet-Draft Use Cases and Requirements for Web Packages      May 2018
    [I-D.ietf-httpbis-http2-secondary-certs]
               Bishop, M., Sullivan, N., and M. Thomson, "Secondary
               Certificate Authentication in HTTP/2", draft-ietf-httpbis-
-              http2-secondary-certs-00 (work in progress), December
-              2017.
+              http2-secondary-certs-01 (work in progress), May 2018.
 
    [I-D.thomson-http-content-signature]
               Thomson, M., "Content-Signature Header Field for HTTP",
@@ -1056,8 +1055,9 @@ Internet-Draft Use Cases and Requirements for Web Packages      May 2018
               DOI 10.17487/RFC6454, December 2011,
               <https://www.rfc-editor.org/info/rfc6454>.
 
-
-
+   [RFC6962]  Laurie, B., Langley, A., and E. Kasper, "Certificate
+              Transparency", RFC 6962, DOI 10.17487/RFC6962, June 2013,
+              <https://www.rfc-editor.org/info/rfc6962>.
 
 
 
@@ -1065,10 +1065,6 @@ Yasskin                 Expires November 30, 2018              [Page 19]
 
 Internet-Draft Use Cases and Requirements for Web Packages      May 2018
 
-
-   [RFC6962]  Laurie, B., Langley, A., and E. Kasper, "Certificate
-              Transparency", RFC 6962, DOI 10.17487/RFC6962, June 2013,
-              <https://www.rfc-editor.org/info/rfc6962>.
 
    [RFC7515]  Jones, M., Bradley, J., and N. Sakimura, "JSON Web
               Signature (JWS)", RFC 7515, DOI 10.17487/RFC7515, May
@@ -1113,6 +1109,10 @@ Internet-Draft Use Cases and Requirements for Web Packages      May 2018
 
    [7] https://w3c.github.io/ServiceWorker/#importscripts
 
+   [8] https://w3c.github.io/ServiceWorker/#navigator-service-worker-
+       register
+
+   [9] https://www.w3.org/publishing/groups/publ-wg/
 
 
 
@@ -1121,11 +1121,6 @@ Yasskin                 Expires November 30, 2018              [Page 20]
 
 Internet-Draft Use Cases and Requirements for Web Packages      May 2018
 
-
-   [8] https://w3c.github.io/ServiceWorker/#navigator-service-worker-
-       register
-
-   [9] https://www.w3.org/publishing/groups/publ-wg/
 
    [10] https://www.w3.org/TR/pwp-ucr/#pwp
 
@@ -1169,15 +1164,6 @@ Appendix A.  Acknowledgements
    Thanks to Yoav Weiss for the Subresource bundling use case and
    discussions about content distributors.
 
-
-
-
-
-Yasskin                 Expires November 30, 2018              [Page 21]
-
-Internet-Draft Use Cases and Requirements for Web Packages      May 2018
-
-
 Author's Address
 
    Jeffrey Yasskin
@@ -1187,46 +1173,4 @@ Author's Address
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Yasskin                 Expires November 30, 2018              [Page 22]
+Yasskin                 Expires November 30, 2018              [Page 21]
