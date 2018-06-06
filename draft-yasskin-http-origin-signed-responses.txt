@@ -4,8 +4,8 @@
 
 Network Working Group                                         J. Yasskin
 Internet-Draft                                                    Google
-Intended status: Standards Track                            May 31, 2018
-Expires: December 2, 2018
+Intended status: Standards Track                           June 06, 2018
+Expires: December 8, 2018
 
 
                          Signed HTTP Exchanges
@@ -48,14 +48,14 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on December 2, 2018.
+   This Internet-Draft will expire on December 8, 2018.
 
 
 
 
-Yasskin                 Expires December 2, 2018                [Page 1]
+Yasskin                 Expires December 8, 2018                [Page 1]
 
-Internet-Draft            Signed HTTP Exchanges                 May 2018
+Internet-Draft            Signed HTTP Exchanges                June 2018
 
 
 Copyright Notice
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Yasskin                 Expires December 2, 2018                [Page 2]
+Yasskin                 Expires December 8, 2018                [Page 2]
 
-Internet-Draft            Signed HTTP Exchanges                 May 2018
+Internet-Draft            Signed HTTP Exchanges                June 2018
 
 
      5.3.  application/signed-exchange format  . . . . . . . . . . .  27
@@ -165,9 +165,9 @@ Internet-Draft            Signed HTTP Exchanges                 May 2018
 
 
 
-Yasskin                 Expires December 2, 2018                [Page 3]
+Yasskin                 Expires December 8, 2018                [Page 3]
 
-Internet-Draft            Signed HTTP Exchanges                 May 2018
+Internet-Draft            Signed HTTP Exchanges                June 2018
 
 
    Appendix E.  Acknowledgements . . . . . . . . . . . . . . . . . .  50
@@ -221,9 +221,9 @@ Internet-Draft            Signed HTTP Exchanges                 May 2018
 
 
 
-Yasskin                 Expires December 2, 2018                [Page 4]
+Yasskin                 Expires December 8, 2018                [Page 4]
 
-Internet-Draft            Signed HTTP Exchanges                 May 2018
+Internet-Draft            Signed HTTP Exchanges                June 2018
 
 
    Intermediate  An entity that fetches signed HTTP exchanges from a
@@ -277,9 +277,9 @@ Internet-Draft            Signed HTTP Exchanges                 May 2018
 
 
 
-Yasskin                 Expires December 2, 2018                [Page 5]
+Yasskin                 Expires December 8, 2018                [Page 5]
 
-Internet-Draft            Signed HTTP Exchanges                 May 2018
+Internet-Draft            Signed HTTP Exchanges                June 2018
 
 
    Each parameterised identifier in the list MUST have parameters named
@@ -333,9 +333,9 @@ Internet-Draft            Signed HTTP Exchanges                 May 2018
 
 
 
-Yasskin                 Expires December 2, 2018                [Page 6]
+Yasskin                 Expires December 8, 2018                [Page 6]
 
-Internet-Draft            Signed HTTP Exchanges                 May 2018
+Internet-Draft            Signed HTTP Exchanges                June 2018
 
 
 Signature:
@@ -389,9 +389,9 @@ Signature:
 
 
 
-Yasskin                 Expires December 2, 2018                [Page 7]
+Yasskin                 Expires December 8, 2018                [Page 7]
 
-Internet-Draft            Signed HTTP Exchanges                 May 2018
+Internet-Draft            Signed HTTP Exchanges                June 2018
 
 
    certificates because their readers have disjoint sets of roots in
@@ -445,9 +445,9 @@ Internet-Draft            Signed HTTP Exchanges                 May 2018
 
 
 
-Yasskin                 Expires December 2, 2018                [Page 8]
+Yasskin                 Expires December 8, 2018                [Page 8]
 
-Internet-Draft            Signed HTTP Exchanges                 May 2018
+Internet-Draft            Signed HTTP Exchanges                June 2018
 
 
        *  For each request header field in "exchange" except for the
@@ -501,9 +501,9 @@ Signed-Headers: "content-type", "mi"
 
 
 
-Yasskin                 Expires December 2, 2018                [Page 9]
+Yasskin                 Expires December 8, 2018                [Page 9]
 
-Internet-Draft            Signed HTTP Exchanges                 May 2018
+Internet-Draft            Signed HTTP Exchanges                June 2018
 
 
 [
@@ -557,9 +557,9 @@ Internet-Draft            Signed HTTP Exchanges                 May 2018
 
 
 
-Yasskin                 Expires December 2, 2018               [Page 10]
+Yasskin                 Expires December 8, 2018               [Page 10]
 
-Internet-Draft            Signed HTTP Exchanges                 May 2018
+Internet-Draft            Signed HTTP Exchanges                June 2018
 
 
    1.  Let "raw-chain" be the result of fetching ([FETCH]) "cert-url".
@@ -613,9 +613,9 @@ Internet-Draft            Signed HTTP Exchanges                 May 2018
 
 
 
-Yasskin                 Expires December 2, 2018               [Page 11]
+Yasskin                 Expires December 8, 2018               [Page 11]
 
-Internet-Draft            Signed HTTP Exchanges                 May 2018
+Internet-Draft            Signed HTTP Exchanges                June 2018
 
 
    Note: this specification does not use floating point, tags, or other
@@ -669,9 +669,9 @@ Internet-Draft            Signed HTTP Exchanges                 May 2018
 
 
 
-Yasskin                 Expires December 2, 2018               [Page 12]
+Yasskin                 Expires December 8, 2018               [Page 12]
 
-Internet-Draft            Signed HTTP Exchanges                 May 2018
+Internet-Draft            Signed HTTP Exchanges                June 2018
 
 
        *  "ed25519key" be the signature's "ed25519key" parameter, if
@@ -725,9 +725,9 @@ Internet-Draft            Signed HTTP Exchanges                 May 2018
 
 
 
-Yasskin                 Expires December 2, 2018               [Page 13]
+Yasskin                 Expires December 8, 2018               [Page 13]
 
-Internet-Draft            Signed HTTP Exchanges                 May 2018
+Internet-Draft            Signed HTTP Exchanges                June 2018
 
 
    5.  If "expires" is more than 7 days (604800 seconds) after "date",
@@ -781,9 +781,9 @@ Internet-Draft            Signed HTTP Exchanges                 May 2018
 
 
 
-Yasskin                 Expires December 2, 2018               [Page 14]
+Yasskin                 Expires December 8, 2018               [Page 14]
 
-Internet-Draft            Signed HTTP Exchanges                 May 2018
+Internet-Draft            Signed HTTP Exchanges                June 2018
 
 
        Note that this intentionally differs from TLS 1.3, which signs
@@ -837,9 +837,9 @@ Internet-Draft            Signed HTTP Exchanges                 May 2018
 
 
 
-Yasskin                 Expires December 2, 2018               [Page 15]
+Yasskin                 Expires December 8, 2018               [Page 15]
 
-Internet-Draft            Signed HTTP Exchanges                 May 2018
+Internet-Draft            Signed HTTP Exchanges                June 2018
 
 
    The resource at a "validity-url" is "validity data", a CBOR map
@@ -893,9 +893,9 @@ Internet-Draft            Signed HTTP Exchanges                 May 2018
 
 
 
-Yasskin                 Expires December 2, 2018               [Page 16]
+Yasskin                 Expires December 8, 2018               [Page 16]
 
-Internet-Draft            Signed HTTP Exchanges                 May 2018
+Internet-Draft            Signed HTTP Exchanges                June 2018
 
 
 Signature:
@@ -949,9 +949,9 @@ Signature:
 
 
 
-Yasskin                 Expires December 2, 2018               [Page 17]
+Yasskin                 Expires December 8, 2018               [Page 17]
 
-Internet-Draft            Signed HTTP Exchanges                 May 2018
+Internet-Draft            Signed HTTP Exchanges                June 2018
 
 
    end of a migration to a new root certificate.)  The signatures of the
@@ -1005,9 +1005,9 @@ Signature:
 
 
 
-Yasskin                 Expires December 2, 2018               [Page 18]
+Yasskin                 Expires December 8, 2018               [Page 18]
 
-Internet-Draft            Signed HTTP Exchanges                 May 2018
+Internet-Draft            Signed HTTP Exchanges                June 2018
 
 
    the identifier is not supported.  Unknown identifiers and parameters
@@ -1061,9 +1061,9 @@ Accept-Signature: ..., ed25519key; **
 
 
 
-Yasskin                 Expires December 2, 2018               [Page 19]
+Yasskin                 Expires December 8, 2018               [Page 19]
 
-Internet-Draft            Signed HTTP Exchanges                 May 2018
+Internet-Draft            Signed HTTP Exchanges                June 2018
 
 
    because 5 bytes isn't a valid length for encoded base64, and not
@@ -1117,9 +1117,9 @@ Internet-Draft            Signed HTTP Exchanges                 May 2018
 
 
 
-Yasskin                 Expires December 2, 2018               [Page 20]
+Yasskin                 Expires December 8, 2018               [Page 20]
 
-Internet-Draft            Signed HTTP Exchanges                 May 2018
+Internet-Draft            Signed HTTP Exchanges                June 2018
 
 
    signatures according to the instructions in Section 3.5, and run the
@@ -1173,9 +1173,9 @@ Internet-Draft            Signed HTTP Exchanges                 May 2018
 
 
 
-Yasskin                 Expires December 2, 2018               [Page 21]
+Yasskin                 Expires December 8, 2018               [Page 21]
 
-Internet-Draft            Signed HTTP Exchanges                 May 2018
+Internet-Draft            Signed HTTP Exchanges                June 2018
 
 
            +  The "SignedCertificateTimestampList" in "main-
@@ -1229,9 +1229,9 @@ Internet-Draft            Signed HTTP Exchanges                 May 2018
 
 
 
-Yasskin                 Expires December 2, 2018               [Page 22]
+Yasskin                 Expires December 8, 2018               [Page 22]
 
-Internet-Draft            Signed HTTP Exchanges                 May 2018
+Internet-Draft            Signed HTTP Exchanges                June 2018
 
 
    o  "Sec-WebSocket-Accept", [RFC6455]
@@ -1285,9 +1285,9 @@ Internet-Draft            Signed HTTP Exchanges                 May 2018
 
 
 
-Yasskin                 Expires December 2, 2018               [Page 23]
+Yasskin                 Expires December 8, 2018               [Page 23]
 
-Internet-Draft            Signed HTTP Exchanges                 May 2018
+Internet-Draft            Signed HTTP Exchanges                June 2018
 
 
 5.1.  Same-origin response
@@ -1341,9 +1341,9 @@ Internet-Draft            Signed HTTP Exchanges                 May 2018
 
 
 
-Yasskin                 Expires December 2, 2018               [Page 24]
+Yasskin                 Expires December 8, 2018               [Page 24]
 
-Internet-Draft            Signed HTTP Exchanges                 May 2018
+Internet-Draft            Signed HTTP Exchanges                June 2018
 
 
    signature.  This _can_ also allow the intermediate to add headers
@@ -1397,9 +1397,9 @@ Internet-Draft            Signed HTTP Exchanges                 May 2018
 
 
 
-Yasskin                 Expires December 2, 2018               [Page 25]
+Yasskin                 Expires December 8, 2018               [Page 25]
 
-Internet-Draft            Signed HTTP Exchanges                 May 2018
+Internet-Draft            Signed HTTP Exchanges                June 2018
 
 
    The use of a SETTINGS parameter to opt-in to an otherwise
@@ -1453,9 +1453,9 @@ Internet-Draft            Signed HTTP Exchanges                 May 2018
 
 
 
-Yasskin                 Expires December 2, 2018               [Page 26]
+Yasskin                 Expires December 8, 2018               [Page 26]
 
-Internet-Draft            Signed HTTP Exchanges                 May 2018
+Internet-Draft            Signed HTTP Exchanges                June 2018
 
 
 5.3.  application/signed-exchange format
@@ -1509,9 +1509,9 @@ Internet-Draft            Signed HTTP Exchanges                 May 2018
 
 
 
-Yasskin                 Expires December 2, 2018               [Page 27]
+Yasskin                 Expires December 8, 2018               [Page 27]
 
-Internet-Draft            Signed HTTP Exchanges                 May 2018
+Internet-Draft            Signed HTTP Exchanges                June 2018
 
 
 5.3.1.  Cross-origin trust in application/signed-exchange
@@ -1565,9 +1565,9 @@ following array>[
 
 
 
-Yasskin                 Expires December 2, 2018               [Page 28]
+Yasskin                 Expires December 8, 2018               [Page 28]
 
-Internet-Draft            Signed HTTP Exchanges                 May 2018
+Internet-Draft            Signed HTTP Exchanges                June 2018
 
 
    Signing systems SHOULD also incorporate the following mitigations to
@@ -1621,9 +1621,9 @@ Internet-Draft            Signed HTTP Exchanges                 May 2018
 
 
 
-Yasskin                 Expires December 2, 2018               [Page 29]
+Yasskin                 Expires December 8, 2018               [Page 29]
 
-Internet-Draft            Signed HTTP Exchanges                 May 2018
+Internet-Draft            Signed HTTP Exchanges                June 2018
 
 
    target.  This consideration and mitigations for it are shared by the
@@ -1677,9 +1677,9 @@ Internet-Draft            Signed HTTP Exchanges                 May 2018
 
 
 
-Yasskin                 Expires December 2, 2018               [Page 30]
+Yasskin                 Expires December 8, 2018               [Page 30]
 
-Internet-Draft            Signed HTTP Exchanges                 May 2018
+Internet-Draft            Signed HTTP Exchanges                June 2018
 
 
    the signature before trusting cross-origin pushed resources, at Ryan
@@ -1733,9 +1733,9 @@ Internet-Draft            Signed HTTP Exchanges                 May 2018
 
 
 
-Yasskin                 Expires December 2, 2018               [Page 31]
+Yasskin                 Expires December 8, 2018               [Page 31]
 
-Internet-Draft            Signed HTTP Exchanges                 May 2018
+Internet-Draft            Signed HTTP Exchanges                June 2018
 
 
    Applicable protocol: http
@@ -1789,9 +1789,9 @@ Internet-Draft            Signed HTTP Exchanges                 May 2018
 
 
 
-Yasskin                 Expires December 2, 2018               [Page 32]
+Yasskin                 Expires December 8, 2018               [Page 32]
 
-Internet-Draft            Signed HTTP Exchanges                 May 2018
+Internet-Draft            Signed HTTP Exchanges                June 2018
 
 
       list = version *( "," version )") The server is then expected to
@@ -1845,9 +1845,9 @@ Internet-Draft            Signed HTTP Exchanges                 May 2018
 
 
 
-Yasskin                 Expires December 2, 2018               [Page 33]
+Yasskin                 Expires December 8, 2018               [Page 33]
 
-Internet-Draft            Signed HTTP Exchanges                 May 2018
+Internet-Draft            Signed HTTP Exchanges                June 2018
 
 
    Required parameters: N/A
@@ -1891,19 +1891,19 @@ Internet-Draft            Signed HTTP Exchanges                 May 2018
 
 9.1.  Normative References
 
-   [FETCH]    WHATWG, "Fetch", May 2018,
+   [FETCH]    WHATWG, "Fetch", June 2018,
               <https://fetch.spec.whatwg.org/>.
 
-   [HTML]     WHATWG, "HTML", May 2018,
+   [HTML]     WHATWG, "HTML", June 2018,
               <https://html.spec.whatwg.org/multipage>.
 
 
 
 
 
-Yasskin                 Expires December 2, 2018               [Page 34]
+Yasskin                 Expires December 8, 2018               [Page 34]
 
-Internet-Draft            Signed HTTP Exchanges                 May 2018
+Internet-Draft            Signed HTTP Exchanges                June 2018
 
 
    [I-D.ietf-cbor-cddl]
@@ -1914,8 +1914,8 @@ Internet-Draft            Signed HTTP Exchanges                 May 2018
 
    [I-D.ietf-httpbis-header-structure]
               Nottingham, M. and P. Kamp, "Structured Headers for HTTP",
-              draft-ietf-httpbis-header-structure-04 (work in progress),
-              March 2018.
+              draft-ietf-httpbis-header-structure-06 (work in progress),
+              June 2018.
 
    [I-D.ietf-tls-tls13]
               Rescorla, E., "The Transport Layer Security (TLS) Protocol
@@ -1957,9 +1957,9 @@ Internet-Draft            Signed HTTP Exchanges                 May 2018
 
 
 
-Yasskin                 Expires December 2, 2018               [Page 35]
+Yasskin                 Expires December 8, 2018               [Page 35]
 
-Internet-Draft            Signed HTTP Exchanges                 May 2018
+Internet-Draft            Signed HTTP Exchanges                June 2018
 
 
    [RFC5234]  Crocker, D., Ed. and P. Overell, "Augmented BNF for Syntax
@@ -2013,9 +2013,9 @@ Internet-Draft            Signed HTTP Exchanges                 May 2018
 
 
 
-Yasskin                 Expires December 2, 2018               [Page 36]
+Yasskin                 Expires December 8, 2018               [Page 36]
 
-Internet-Draft            Signed HTTP Exchanges                 May 2018
+Internet-Draft            Signed HTTP Exchanges                June 2018
 
 
    [RFC8032]  Josefsson, S. and I. Liusvaara, "Edwards-Curve Digital
@@ -2027,7 +2027,7 @@ Internet-Draft            Signed HTTP Exchanges                 May 2018
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/info/rfc8174>.
 
-   [URL]      WHATWG, "URL", May 2018, <https://url.spec.whatwg.org/>.
+   [URL]      WHATWG, "URL", June 2018, <https://url.spec.whatwg.org/>.
 
 9.2.  Informative References
 
@@ -2069,9 +2069,9 @@ Internet-Draft            Signed HTTP Exchanges                 May 2018
 
 
 
-Yasskin                 Expires December 2, 2018               [Page 37]
+Yasskin                 Expires December 8, 2018               [Page 37]
 
-Internet-Draft            Signed HTTP Exchanges                 May 2018
+Internet-Draft            Signed HTTP Exchanges                June 2018
 
 
    [RFC2965]  Kristol, D. and L. Montulli, "HTTP State Management
@@ -2125,9 +2125,9 @@ Internet-Draft            Signed HTTP Exchanges                 May 2018
 
 
 
-Yasskin                 Expires December 2, 2018               [Page 38]
+Yasskin                 Expires December 8, 2018               [Page 38]
 
-Internet-Draft            Signed HTTP Exchanges                 May 2018
+Internet-Draft            Signed HTTP Exchanges                June 2018
 
 
    [W3C.NOTE-OPS-OverHTTP]
@@ -2181,9 +2181,9 @@ Appendix A.  Use cases
 
 
 
-Yasskin                 Expires December 2, 2018               [Page 39]
+Yasskin                 Expires December 8, 2018               [Page 39]
 
-Internet-Draft            Signed HTTP Exchanges                 May 2018
+Internet-Draft            Signed HTTP Exchanges                June 2018
 
 
 A.1.  PUSHed subresources
@@ -2237,9 +2237,9 @@ A.2.  Explicit use of a content distributor for subresources
 
 
 
-Yasskin                 Expires December 2, 2018               [Page 40]
+Yasskin                 Expires December 8, 2018               [Page 40]
 
-Internet-Draft            Signed HTTP Exchanges                 May 2018
+Internet-Draft            Signed HTTP Exchanges                June 2018
 
 
    img.png" with first a signed PUSH_PROMISE for "https://O.com/img.png"
@@ -2293,9 +2293,9 @@ A.5.  Static Analysis
 
 
 
-Yasskin                 Expires December 2, 2018               [Page 41]
+Yasskin                 Expires December 8, 2018               [Page 41]
 
-Internet-Draft            Signed HTTP Exchanges                 May 2018
+Internet-Draft            Signed HTTP Exchanges                June 2018
 
 
    While full application analysis probably needs to wait until the
@@ -2349,9 +2349,9 @@ B.1.2.  Signature constraints
 
 
 
-Yasskin                 Expires December 2, 2018               [Page 42]
+Yasskin                 Expires December 8, 2018               [Page 42]
 
-Internet-Draft            Signed HTTP Exchanges                 May 2018
+Internet-Draft            Signed HTTP Exchanges                June 2018
 
 
    1.  Avoid key types that are used for non-TLS protocols whose output
@@ -2405,9 +2405,9 @@ B.2.  How much to sign
 
 
 
-Yasskin                 Expires December 2, 2018               [Page 43]
+Yasskin                 Expires December 8, 2018               [Page 43]
 
-Internet-Draft            Signed HTTP Exchanges                 May 2018
+Internet-Draft            Signed HTTP Exchanges                June 2018
 
 
    The question of whether to include other request headers--primarily
@@ -2461,9 +2461,9 @@ B.2.1.  Conveying the signed headers
 
 
 
-Yasskin                 Expires December 2, 2018               [Page 44]
+Yasskin                 Expires December 8, 2018               [Page 44]
 
-Internet-Draft            Signed HTTP Exchanges                 May 2018
+Internet-Draft            Signed HTTP Exchanges                June 2018
 
 
    signature, and that could tell intermediates not to change the
@@ -2517,9 +2517,9 @@ B.3.2.  Response downgrade attacks
 
 
 
-Yasskin                 Expires December 2, 2018               [Page 45]
+Yasskin                 Expires December 8, 2018               [Page 45]
 
-Internet-Draft            Signed HTTP Exchanges                 May 2018
+Internet-Draft            Signed HTTP Exchanges                June 2018
 
 
    3.  A replacement for the exchange's signature and an update for the
@@ -2573,9 +2573,9 @@ Appendix C.  Determining validity using cache control
 
 
 
-Yasskin                 Expires December 2, 2018               [Page 46]
+Yasskin                 Expires December 8, 2018               [Page 46]
 
-Internet-Draft            Signed HTTP Exchanges                 May 2018
+Internet-Draft            Signed HTTP Exchanges                June 2018
 
 
    The signatures in the "Signature" header field (Section 3.1) would no
@@ -2629,9 +2629,9 @@ C.1.  Example of updating cache control
 
 
 
-Yasskin                 Expires December 2, 2018               [Page 47]
+Yasskin                 Expires December 8, 2018               [Page 47]
 
-Internet-Draft            Signed HTTP Exchanges                 May 2018
+Internet-Draft            Signed HTTP Exchanges                June 2018
 
 
    GET / HTTP/1.1
@@ -2685,9 +2685,9 @@ Appendix D.  Change Log
 
 
 
-Yasskin                 Expires December 2, 2018               [Page 48]
+Yasskin                 Expires December 8, 2018               [Page 48]
 
-Internet-Draft            Signed HTTP Exchanges                 May 2018
+Internet-Draft            Signed HTTP Exchanges                June 2018
 
 
    o  Make all identifiers in headers lower-case, as required by
@@ -2741,9 +2741,9 @@ Internet-Draft            Signed HTTP Exchanges                 May 2018
 
 
 
-Yasskin                 Expires December 2, 2018               [Page 49]
+Yasskin                 Expires December 8, 2018               [Page 49]
 
-Internet-Draft            Signed HTTP Exchanges                 May 2018
+Internet-Draft            Signed HTTP Exchanges                June 2018
 
 
    o  Define an "Accept-Signature" header to negotiate whether to send
@@ -2797,4 +2797,4 @@ Author's Address
 
 
 
-Yasskin                 Expires December 2, 2018               [Page 50]
+Yasskin                 Expires December 8, 2018               [Page 50]
