@@ -5,7 +5,7 @@
 Network Working Group                                         J. Yasskin
 Internet-Draft                                                   K. Ueno
 Intended status: Standards Track                                  Google
-Expires: December 8, 2018                                  June 06, 2018
+Expires: December 10, 2018                                 June 08, 2018
 
 
             Signed HTTP Exchanges Implementation Checkpoints
@@ -41,7 +41,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on December 8, 2018.
+   This Internet-Draft will expire on December 10, 2018.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Yasskin & Ueno          Expires December 8, 2018                [Page 1]
+Yasskin & Ueno          Expires December 10, 2018               [Page 1]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Yasskin & Ueno          Expires December 8, 2018                [Page 2]
+Yasskin & Ueno          Expires December 10, 2018               [Page 2]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
 
@@ -165,7 +165,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
 
 
 
-Yasskin & Ueno          Expires December 8, 2018                [Page 3]
+Yasskin & Ueno          Expires December 10, 2018               [Page 3]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
 
@@ -221,7 +221,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
 
 
 
-Yasskin & Ueno          Expires December 8, 2018                [Page 4]
+Yasskin & Ueno          Expires December 10, 2018               [Page 4]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
 
@@ -277,7 +277,7 @@ Signature:
 
 
 
-Yasskin & Ueno          Expires December 8, 2018                [Page 5]
+Yasskin & Ueno          Expires December 10, 2018               [Page 5]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
 
@@ -333,7 +333,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
 
 
 
-Yasskin & Ueno          Expires December 8, 2018                [Page 6]
+Yasskin & Ueno          Expires December 10, 2018               [Page 6]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
 
@@ -389,7 +389,7 @@ MI: mi-sha256-draft2=20addcf7368837f616d549f035bf6784ea6d4bf4817a3736cd2fc7a7638
 
 
 
-Yasskin & Ueno          Expires December 8, 2018                [Page 7]
+Yasskin & Ueno          Expires December 10, 2018               [Page 7]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
 
@@ -445,7 +445,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
 
 
 
-Yasskin & Ueno          Expires December 8, 2018                [Page 8]
+Yasskin & Ueno          Expires December 10, 2018               [Page 8]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
 
@@ -501,7 +501,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
 
 
 
-Yasskin & Ueno          Expires December 8, 2018                [Page 9]
+Yasskin & Ueno          Expires December 10, 2018               [Page 9]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
 
@@ -557,7 +557,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
 
 
 
-Yasskin & Ueno          Expires December 8, 2018               [Page 10]
+Yasskin & Ueno          Expires December 10, 2018              [Page 10]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
 
@@ -613,7 +613,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
 
 
 
-Yasskin & Ueno          Expires December 8, 2018               [Page 11]
+Yasskin & Ueno          Expires December 10, 2018              [Page 11]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
 
@@ -669,7 +669,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
 
 
 
-Yasskin & Ueno          Expires December 8, 2018               [Page 12]
+Yasskin & Ueno          Expires December 10, 2018              [Page 12]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
 
@@ -725,7 +725,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
 
 
 
-Yasskin & Ueno          Expires December 8, 2018               [Page 13]
+Yasskin & Ueno          Expires December 10, 2018              [Page 13]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
 
@@ -781,7 +781,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
 
 
 
-Yasskin & Ueno          Expires December 8, 2018               [Page 14]
+Yasskin & Ueno          Expires December 10, 2018              [Page 14]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
 
@@ -837,7 +837,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
 
 
 
-Yasskin & Ueno          Expires December 8, 2018               [Page 15]
+Yasskin & Ueno          Expires December 10, 2018              [Page 15]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
 
@@ -893,7 +893,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
 
 
 
-Yasskin & Ueno          Expires December 8, 2018               [Page 16]
+Yasskin & Ueno          Expires December 10, 2018              [Page 16]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
 
@@ -949,7 +949,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
 
 
 
-Yasskin & Ueno          Expires December 8, 2018               [Page 17]
+Yasskin & Ueno          Expires December 10, 2018              [Page 17]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
 
@@ -1005,7 +1005,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
 
 
 
-Yasskin & Ueno          Expires December 8, 2018               [Page 18]
+Yasskin & Ueno          Expires December 10, 2018              [Page 18]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
 
@@ -1061,7 +1061,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
 
 
 
-Yasskin & Ueno          Expires December 8, 2018               [Page 19]
+Yasskin & Ueno          Expires December 10, 2018              [Page 19]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
 
@@ -1117,7 +1117,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
 
 
 
-Yasskin & Ueno          Expires December 8, 2018               [Page 20]
+Yasskin & Ueno          Expires December 10, 2018              [Page 20]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
 
@@ -1173,7 +1173,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
 
 
 
-Yasskin & Ueno          Expires December 8, 2018               [Page 21]
+Yasskin & Ueno          Expires December 10, 2018              [Page 21]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
 
@@ -1229,7 +1229,7 @@ Appendix A.  Change Log
 
 
 
-Yasskin & Ueno          Expires December 8, 2018               [Page 22]
+Yasskin & Ueno          Expires December 10, 2018              [Page 22]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
 
@@ -1285,4 +1285,4 @@ Authors' Addresses
 
 
 
-Yasskin & Ueno          Expires December 8, 2018               [Page 23]
+Yasskin & Ueno          Expires December 10, 2018              [Page 23]

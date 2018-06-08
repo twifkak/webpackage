@@ -363,7 +363,7 @@ ul.toc li {
 
   <meta name="dct.creator" content="Yasskin, J." />
   <meta name="dct.identifier" content="urn:ietf:id:draft-yasskin-http-origin-signed-responses-latest" />
-  <meta name="dct.issued" scheme="ISO8601" content="2018-06-06" />
+  <meta name="dct.issued" scheme="ISO8601" content="2018-06-08" />
   <meta name="dct.abstract" content="This document specifies how a server can send an HTTP request/response pair, known as an exchange, with signatures that vouch for that exchange&#8217;s authenticity. These signatures can be verified against an origin&#8217;s certificate to establish that the exchange is authoritative for an origin even if it was transferred over a connection that isn&#8217;t. The signatures can also be used in other ways described in the appendices." />
   <meta name="description" content="This document specifies how a server can send an HTTP request/response pair, known as an exchange, with signatures that vouch for that exchange&#8217;s authenticity. These signatures can be verified against an origin&#8217;s certificate to establish that the exchange is authoritative for an origin even if it was transferred over a connection that isn&#8217;t. The signatures can also be used in other ways described in the appendices." />
 
@@ -384,10 +384,10 @@ ul.toc li {
 </tr>
 <tr>
 <td class="left">Intended status: Standards Track</td>
-<td class="right">June 06, 2018</td>
+<td class="right">June 08, 2018</td>
 </tr>
 <tr>
-<td class="left">Expires: December 8, 2018</td>
+<td class="left">Expires: December 10, 2018</td>
 <td class="right"></td>
 </tr>
 
@@ -408,7 +408,7 @@ ul.toc li {
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at https://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on December 8, 2018.</p>
+<p>This Internet-Draft will expire on December 10, 2018.</p>
 <h1 id="rfc.copyrightnotice"><a href="#rfc.copyrightnotice">Copyright Notice</a></h1>
 <p>Copyright (c) 2018 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
 <p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (https://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
@@ -1097,12 +1097,19 @@ Accept-Signature: -ecdsa/secp256r1, ecdsa/secp384r1
 <pre>
    id-ce-canSignHttpExchanges OBJECT IDENTIFIER ::= { TBD }
 
-   CanSignHttpExchanges ::= BIT STRING { allowed (0) }
+   CanSignHttpExchanges ::= NULL
 </pre>
-<p id="rfc.section.4.2.p.2">Leaf certificates without this extension need to be revoked if the private key is exposed to an unauthorized entity, but they generally don&#8217;t need to be revoked if a signing oracle is exposed and then removed.</p>
-<p id="rfc.section.4.2.p.3">CA certificates, by contrast, need to be revoked if an unauthorized entity is able to make even one unauthorized signature.</p>
-<p id="rfc.section.4.2.p.4">Certificates with this extension MUST be revoked if an unauthorized entity is able to make even one unauthorized signature.</p>
-<p id="rfc.section.4.2.p.5">Conforming CAs MUST mark this extension as critical, and clients MUST NOT accept certificates with this extension in TLS connections (Section 4.4.2.2 of <a href="#I-D.ietf-tls-tls13" class="xref">[I-D.ietf-tls-tls13]</a>).  This simplifies security analysis of this protocol and avoids encouraging server operators to put exchange-signing keys on servers exposed directly to the internet.</p>
+<p id="rfc.section.4.2.p.2">Note that this extension contains an ASN.1 NULL (bytes <samp>05 00</samp>) because some implementations have bugs with empty extensions.</p>
+<p id="rfc.section.4.2.p.3">Leaf certificates without this extension need to be revoked if the private key is exposed to an unauthorized entity, but they generally don&#8217;t need to be revoked if a signing oracle is exposed and then removed.</p>
+<p id="rfc.section.4.2.p.4">CA certificates, by contrast, need to be revoked if an unauthorized entity is able to make even one unauthorized signature.</p>
+<p id="rfc.section.4.2.p.5">Certificates with this extension MUST be revoked if an unauthorized entity is able to make even one unauthorized signature.</p>
+<p id="rfc.section.4.2.p.6">Conforming CAs MUST mark this extension as critical, and clients MUST NOT accept certificates with this extension in TLS connections (Section 4.4.2.2 of <a href="#I-D.ietf-tls-tls13" class="xref">[I-D.ietf-tls-tls13]</a>).  This simplifies security analysis of this protocol and avoids encouraging server operators to put exchange-signing keys on servers exposed directly to the internet.</p>
+<p id="rfc.section.4.2.p.7">RFC EDITOR PLEASE DELETE THE REST OF THE PARAGRAPHS IN THIS SECTION</p>
+<pre>
+   id-ce-google OBJECT IDENTIFIER ::= { 1 3 6 1 4 1 11129 }
+   id-ce-testCanSignHttpExchanges OBJECT IDENTIFIER ::= { id-ce-google 2 1 22 }
+</pre>
+<p id="rfc.section.4.2.p.8">Implementations of drafts of this specification MAY recognize the <samp>id-ce-testCanSignHttpExchanges</samp> OID as identifying the CanSignHttpExchanges extension. This OID might or might not be used as the final OID for the extension, so certificates including it might need to be reissued once the final RFC is published.</p>
 <h1 id="rfc.section.5">
 <a href="#rfc.section.5">5.</a> <a href="#transfer" id="transfer">Transferring a signed exchange</a>
 </h1>
