@@ -9,7 +9,7 @@ Expires: December 15, 2018
 
 
                          Bundled HTTP Exchanges
-            draft-yasskin-dispatch-bundled-exchanges-latest
+              draft-yasskin-wpack-bundled-exchanges-latest
 
 Abstract
 
