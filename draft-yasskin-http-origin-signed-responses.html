@@ -773,7 +773,7 @@ cert-chain = [
 
 <ol>
 <li>Each <samp>cert</samp> value MUST be a DER-encoded X.509v3 certificate (<a href="#RFC5280" class="xref">[RFC5280]</a>).  Other key/value pairs in the same array item define properties of this certificate.</li>
-<li>The first certificate&#8217;s <samp>ocsp</samp> value if any MUST be a complete, DER-encoded OCSP response for that certificate (using the ASN.1 type <samp>OCSPResponse</samp> defined in <a href="#RFC2560" class="xref">[RFC2560]</a>). Subsequent certificates MUST NOT have an <samp>ocsp</samp> value.</li>
+<li>The first certificate&#8217;s <samp>ocsp</samp> value if any MUST be a complete, DER-encoded OCSP response for that certificate (using the ASN.1 type <samp>OCSPResponse</samp> defined in <a href="#RFC6960" class="xref">[RFC6960]</a>). Subsequent certificates MUST NOT have an <samp>ocsp</samp> value.</li>
 <li>Each certificate&#8217;s <samp>sct</samp> value MUST be a <samp>SignedCertificateTimestampList</samp> for that certificate as defined by Section 3.3 of <a href="#RFC6962" class="xref">[RFC6962]</a>.</li>
 </ol>
 <p id="rfc.section.3.3.p.4">Loading a <samp>cert-url</samp> takes a <samp>forceFetch</samp> flag. The client MUST:</p>
@@ -1259,7 +1259,7 @@ following array&gt;[
 <h1 id="rfc.section.6.2">
 <a href="#rfc.section.6.2">6.2.</a> <a href="#seccons-off-path" id="seccons-off-path">Off-path attackers</a>
 </h1>
-<p id="rfc.section.6.2.p.1">Relaxing the requirement to consult DNS when determining authority for an origin means that an attacker who possesses a valid certificate no longer needs to be on-path to redirect traffic to them; instead of modifying DNS, they need only convince the user to visit another Web site in order to serve responses signed as the target. This consideration and mitigations for it are shared by the combination of <a href="#I-D.ietf-httpbis-origin-frame" class="xref">[I-D.ietf-httpbis-origin-frame]</a> and <a href="#I-D.ietf-httpbis-http2-secondary-certs" class="xref">[I-D.ietf-httpbis-http2-secondary-certs]</a>.</p>
+<p id="rfc.section.6.2.p.1">Relaxing the requirement to consult DNS when determining authority for an origin means that an attacker who possesses a valid certificate no longer needs to be on-path to redirect traffic to them; instead of modifying DNS, they need only convince the user to visit another Web site in order to serve responses signed as the target. This consideration and mitigations for it are shared by the combination of <a href="#RFC8336" class="xref">[RFC8336]</a> and <a href="#I-D.ietf-httpbis-http2-secondary-certs" class="xref">[I-D.ietf-httpbis-http2-secondary-certs]</a>.</p>
 <h1 id="rfc.section.6.3">
 <a href="#rfc.section.6.3">6.3.</a> <a href="#seccons-downgrades" id="seccons-downgrades">Downgrades</a>
 </h1>
@@ -1428,11 +1428,6 @@ following array&gt;[
 <a>Bradner, S.</a>, "<a href="https://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>", BCP 14, RFC 2119, DOI 10.17487/RFC2119, March 1997.</td>
 </tr>
 <tr>
-<td class="reference"><b id="RFC2560">[RFC2560]</b></td>
-<td class="top">
-<a>Myers, M.</a>, <a>Ankney, R.</a>, <a>Malpani, A.</a>, <a>Galperin, S.</a> and <a>C. Adams</a>, "<a href="https://tools.ietf.org/html/rfc2560">X.509 Internet Public Key Infrastructure Online Certificate Status Protocol - OCSP</a>", RFC 2560, DOI 10.17487/RFC2560, June 1999.</td>
-</tr>
-<tr>
 <td class="reference"><b id="RFC3230">[RFC3230]</b></td>
 <td class="top">
 <a>Mogul, J.</a> and <a>A. Van Hoff</a>, "<a href="https://tools.ietf.org/html/rfc3230">Instance Digests in HTTP</a>", RFC 3230, DOI 10.17487/RFC3230, January 2002.</td>
@@ -1527,11 +1522,6 @@ following array&gt;[
 <a>Bishop, M.</a>, <a>Sullivan, N.</a> and <a>M. Thomson</a>, "<a href="https://tools.ietf.org/html/draft-ietf-httpbis-http2-secondary-certs-01">Secondary Certificate Authentication in HTTP/2</a>", Internet-Draft draft-ietf-httpbis-http2-secondary-certs-01, May 2018.</td>
 </tr>
 <tr>
-<td class="reference"><b id="I-D.ietf-httpbis-origin-frame">[I-D.ietf-httpbis-origin-frame]</b></td>
-<td class="top">
-<a>Nottingham, M.</a> and <a>E. Nygren</a>, "<a href="https://tools.ietf.org/html/draft-ietf-httpbis-origin-frame-06">The ORIGIN HTTP/2 Frame</a>", Internet-Draft draft-ietf-httpbis-origin-frame-06, January 2018.</td>
-</tr>
-<tr>
 <td class="reference"><b id="I-D.thomson-http-content-signature">[I-D.thomson-http-content-signature]</b></td>
 <td class="top">
 <a>Thomson, M.</a>, "<a href="https://tools.ietf.org/html/draft-thomson-http-content-signature-00">Content-Signature Header Field for HTTP</a>", Internet-Draft draft-thomson-http-content-signature-00, July 2015.</td>
@@ -1585,6 +1575,11 @@ following array&gt;[
 <td class="reference"><b id="RFC8053">[RFC8053]</b></td>
 <td class="top">
 <a>Oiwa, Y.</a>, <a>Watanabe, H.</a>, <a>Takagi, H.</a>, <a>Maeda, K.</a>, <a>Hayashi, T.</a> and <a>Y. Ioku</a>, "<a href="https://tools.ietf.org/html/rfc8053">HTTP Authentication Extensions for Interactive Clients</a>", RFC 8053, DOI 10.17487/RFC8053, January 2017.</td>
+</tr>
+<tr>
+<td class="reference"><b id="RFC8336">[RFC8336]</b></td>
+<td class="top">
+<a>Nottingham, M.</a> and <a>E. Nygren</a>, "<a href="https://tools.ietf.org/html/rfc8336">The ORIGIN HTTP/2 Frame</a>", RFC 8336, DOI 10.17487/RFC8336, March 2018.</td>
 </tr>
 <tr>
 <td class="reference"><b id="ROBOT">[ROBOT]</b></td>
