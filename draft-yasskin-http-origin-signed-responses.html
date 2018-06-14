@@ -323,10 +323,12 @@ ul.toc li {
 <link href="#rfc.section.7" rel="Chapter" title="7 Privacy considerations">
 <link href="#rfc.section.8" rel="Chapter" title="8 IANA considerations">
 <link href="#rfc.section.8.1" rel="Chapter" title="8.1 Signature Header Field Registration">
-<link href="#rfc.section.8.2" rel="Chapter" title="8.2 HTTP/2 Settings">
-<link href="#rfc.section.8.3" rel="Chapter" title="8.3 HTTP/2 Error code">
-<link href="#rfc.section.8.4" rel="Chapter" title="8.4 Internet Media Type application/signed-exchange">
-<link href="#rfc.section.8.5" rel="Chapter" title="8.5 Internet Media Type application/cert-chain+cbor">
+<link href="#rfc.section.8.2" rel="Chapter" title="8.2 Accept-Signature Header Field Registration">
+<link href="#rfc.section.8.3" rel="Chapter" title="8.3 Signed-Headers Header Field Registration">
+<link href="#rfc.section.8.4" rel="Chapter" title="8.4 HTTP/2 Settings">
+<link href="#rfc.section.8.5" rel="Chapter" title="8.5 HTTP/2 Error code">
+<link href="#rfc.section.8.6" rel="Chapter" title="8.6 Internet Media Type application/signed-exchange">
+<link href="#rfc.section.8.7" rel="Chapter" title="8.7 Internet Media Type application/cert-chain+cbor">
 <link href="#rfc.references" rel="Chapter" title="9 References">
 <link href="#rfc.references.1" rel="Chapter" title="9.1 Normative References">
 <link href="#rfc.references.2" rel="Chapter" title="9.2 Informative References">
@@ -512,13 +514,17 @@ ul.toc li {
 </li>
 <ul><li>8.1.   <a href="#rfc.section.8.1">Signature Header Field Registration</a>
 </li>
-<li>8.2.   <a href="#rfc.section.8.2">HTTP/2 Settings</a>
+<li>8.2.   <a href="#rfc.section.8.2">Accept-Signature Header Field Registration</a>
 </li>
-<li>8.3.   <a href="#rfc.section.8.3">HTTP/2 Error code</a>
+<li>8.3.   <a href="#rfc.section.8.3">Signed-Headers Header Field Registration</a>
 </li>
-<li>8.4.   <a href="#rfc.section.8.4">Internet Media Type application/signed-exchange</a>
+<li>8.4.   <a href="#rfc.section.8.4">HTTP/2 Settings</a>
 </li>
-<li>8.5.   <a href="#rfc.section.8.5">Internet Media Type application/cert-chain+cbor</a>
+<li>8.5.   <a href="#rfc.section.8.5">HTTP/2 Error code</a>
+</li>
+<li>8.6.   <a href="#rfc.section.8.6">Internet Media Type application/signed-exchange</a>
+</li>
+<li>8.7.   <a href="#rfc.section.8.7">Internet Media Type application/cert-chain+cbor</a>
 </li>
 </ul><li>9.   <a href="#rfc.references">References</a>
 </li>
@@ -1294,70 +1300,88 @@ following array&gt;[
 <p id="rfc.section.8.1.p.5">Author/Change controller:  IETF</p>
 <p id="rfc.section.8.1.p.6">Specification document(s):  <a href="#signature-header" class="xref">Section 3.1</a> of this document</p>
 <h1 id="rfc.section.8.2">
-<a href="#rfc.section.8.2">8.2.</a> <a href="#http2-settings" id="http2-settings">HTTP/2 Settings</a>
+<a href="#rfc.section.8.2">8.2.</a> <a href="#accept-signature-header-field-registration" id="accept-signature-header-field-registration">Accept-Signature Header Field Registration</a>
 </h1>
-<p id="rfc.section.8.2.p.1">This section establishes an entry for the HTTP/2 Settings Registry that was established by Section 11.3 of <a href="#RFC7540" class="xref">[RFC7540]</a></p>
-<p id="rfc.section.8.2.p.2">Name: ENABLE_CROSS_ORIGIN_PUSH</p>
-<p id="rfc.section.8.2.p.3">Code: 0xSETTING-TBD</p>
-<p id="rfc.section.8.2.p.4">Initial Value: 0</p>
-<p id="rfc.section.8.2.p.5">Specification: This document</p>
+<p id="rfc.section.8.2.p.1">This section registers the <samp>Accept-Signature</samp> header field in the &#8220;Permanent Message Header Field Names&#8221; registry (<a href="#RFC3864" class="xref">[RFC3864]</a>).</p>
+<p id="rfc.section.8.2.p.2">Header field name:  <samp>Accept-Signature</samp></p>
+<p id="rfc.section.8.2.p.3">Applicable protocol:  http</p>
+<p id="rfc.section.8.2.p.4">Status:  standard</p>
+<p id="rfc.section.8.2.p.5">Author/Change controller:  IETF</p>
+<p id="rfc.section.8.2.p.6">Specification document(s):  <a href="#accept-signature" class="xref">Section 3.7</a> of this document</p>
 <h1 id="rfc.section.8.3">
-<a href="#rfc.section.8.3">8.3.</a> <a href="#http2-error-code" id="http2-error-code">HTTP/2 Error code</a>
+<a href="#rfc.section.8.3">8.3.</a> <a href="#signed-headers-header-field-registration" id="signed-headers-header-field-registration">Signed-Headers Header Field Registration</a>
 </h1>
-<p id="rfc.section.8.3.p.1">This section establishes an entry for the HTTP/2 Error Code Registry that was established by Section 11.4 of <a href="#RFC7540" class="xref">[RFC7540]</a></p>
-<p id="rfc.section.8.3.p.2">Name: NO_TRUSTED_EXCHANGE_SIGNATURE</p>
-<p id="rfc.section.8.3.p.3">Code: 0xERROR-TBD</p>
-<p id="rfc.section.8.3.p.4">Description: The client does not trust the signature for a cross-origin Pushed signed exchange.</p>
-<p id="rfc.section.8.3.p.5">Specification: This document</p>
+<p id="rfc.section.8.3.p.1">This section registers the <samp>Signed-Headers</samp> header field in the &#8220;Permanent Message Header Field Names&#8221; registry (<a href="#RFC3864" class="xref">[RFC3864]</a>).</p>
+<p id="rfc.section.8.3.p.2">Header field name:  <samp>Signed-Headers</samp></p>
+<p id="rfc.section.8.3.p.3">Applicable protocol:  http</p>
+<p id="rfc.section.8.3.p.4">Status:  standard</p>
+<p id="rfc.section.8.3.p.5">Author/Change controller:  IETF</p>
+<p id="rfc.section.8.3.p.6">Specification document(s):  <a href="#signed-headers" class="xref">Section 5.1.2</a> of this document</p>
 <h1 id="rfc.section.8.4">
-<a href="#rfc.section.8.4">8.4.</a> <a href="#internet-media-type-applicationsigned-exchange" id="internet-media-type-applicationsigned-exchange">Internet Media Type application/signed-exchange</a>
+<a href="#rfc.section.8.4">8.4.</a> <a href="#http2-settings" id="http2-settings">HTTP/2 Settings</a>
 </h1>
-<p id="rfc.section.8.4.p.1">Type name:  application</p>
-<p id="rfc.section.8.4.p.2">Subtype name:  signed-exchange</p>
-<p id="rfc.section.8.4.p.3">Required parameters:</p>
+<p id="rfc.section.8.4.p.1">This section establishes an entry for the HTTP/2 Settings Registry that was established by Section 11.3 of <a href="#RFC7540" class="xref">[RFC7540]</a></p>
+<p id="rfc.section.8.4.p.2">Name: ENABLE_CROSS_ORIGIN_PUSH</p>
+<p id="rfc.section.8.4.p.3">Code: 0xSETTING-TBD</p>
+<p id="rfc.section.8.4.p.4">Initial Value: 0</p>
+<p id="rfc.section.8.4.p.5">Specification: This document</p>
+<h1 id="rfc.section.8.5">
+<a href="#rfc.section.8.5">8.5.</a> <a href="#http2-error-code" id="http2-error-code">HTTP/2 Error code</a>
+</h1>
+<p id="rfc.section.8.5.p.1">This section establishes an entry for the HTTP/2 Error Code Registry that was established by Section 11.4 of <a href="#RFC7540" class="xref">[RFC7540]</a></p>
+<p id="rfc.section.8.5.p.2">Name: NO_TRUSTED_EXCHANGE_SIGNATURE</p>
+<p id="rfc.section.8.5.p.3">Code: 0xERROR-TBD</p>
+<p id="rfc.section.8.5.p.4">Description: The client does not trust the signature for a cross-origin Pushed signed exchange.</p>
+<p id="rfc.section.8.5.p.5">Specification: This document</p>
+<h1 id="rfc.section.8.6">
+<a href="#rfc.section.8.6">8.6.</a> <a href="#internet-media-type-applicationsigned-exchange" id="internet-media-type-applicationsigned-exchange">Internet Media Type application/signed-exchange</a>
+</h1>
+<p id="rfc.section.8.6.p.1">Type name:  application</p>
+<p id="rfc.section.8.6.p.2">Subtype name:  signed-exchange</p>
+<p id="rfc.section.8.6.p.3">Required parameters:</p>
 <p></p>
 
 <ul><li>v: A string denoting the version of the file format. (<a href="#RFC5234" class="xref">[RFC5234]</a> ABNF: <samp>version = DIGIT/%x61-7A</samp>) The version defined in this specification is <samp>1</samp>.  When used with the <samp>Accept</samp> header field (Section 5.3.1 of <a href="#RFC7231" class="xref">[RFC7231]</a>), this parameter can be a comma (,)-separated list of version strings. (<a href="#RFC5234" class="xref">[RFC5234]</a> ABNF: <samp>version-list = version *( "," version )</samp>) The server is then expected to reply with a resource using a particular version from that list.  <br><br> Note: RFC EDITOR PLEASE DELETE THIS NOTE; Implementations of drafts of this specification MUST NOT use simple integers to describe their versions, and MUST instead define implementation-specific strings to identify which draft is implemented.</li></ul>
-<p id="rfc.section.8.4.p.5">Optional parameters:  N/A</p>
-<p id="rfc.section.8.4.p.6">Encoding considerations:  binary</p>
-<p id="rfc.section.8.4.p.7">Security considerations:  see <a href="#security-application-signed-exchange" class="xref">Section 6.6</a></p>
-<p id="rfc.section.8.4.p.8">Interoperability considerations:  N/A</p>
-<p id="rfc.section.8.4.p.9">Published specification:  This specification (see <a href="#application-signed-exchange" class="xref">Section 5.3</a>).</p>
-<p id="rfc.section.8.4.p.10">Applications that use this media type:  N/A</p>
-<p id="rfc.section.8.4.p.11">Fragment identifier considerations:  N/A</p>
-<p id="rfc.section.8.4.p.12">Additional information:</p>
-<p id="rfc.section.8.4.p.13">Deprecated alias names for this type:  N/A</p>
-<p id="rfc.section.8.4.p.14">Magic number(s):  73 78 67 31 00</p>
-<p id="rfc.section.8.4.p.15">File extension(s): .sxg</p>
-<p id="rfc.section.8.4.p.16">Macintosh file type code(s):  N/A</p>
-<p id="rfc.section.8.4.p.17">Person and email address to contact for further information: See Authors&#8217; Addresses section.</p>
-<p id="rfc.section.8.4.p.18">Intended usage:  COMMON</p>
-<p id="rfc.section.8.4.p.19">Restrictions on usage:  N/A</p>
-<p id="rfc.section.8.4.p.20">Author:  See Authors&#8217; Addresses section.</p>
-<p id="rfc.section.8.4.p.21">Change controller:  IESG</p>
-<h1 id="rfc.section.8.5">
-<a href="#rfc.section.8.5">8.5.</a> <a href="#internet-media-type-applicationcert-chaincbor" id="internet-media-type-applicationcert-chaincbor">Internet Media Type application/cert-chain+cbor</a>
+<p id="rfc.section.8.6.p.5">Optional parameters:  N/A</p>
+<p id="rfc.section.8.6.p.6">Encoding considerations:  binary</p>
+<p id="rfc.section.8.6.p.7">Security considerations:  see <a href="#security-application-signed-exchange" class="xref">Section 6.6</a></p>
+<p id="rfc.section.8.6.p.8">Interoperability considerations:  N/A</p>
+<p id="rfc.section.8.6.p.9">Published specification:  This specification (see <a href="#application-signed-exchange" class="xref">Section 5.3</a>).</p>
+<p id="rfc.section.8.6.p.10">Applications that use this media type:  N/A</p>
+<p id="rfc.section.8.6.p.11">Fragment identifier considerations:  N/A</p>
+<p id="rfc.section.8.6.p.12">Additional information:</p>
+<p id="rfc.section.8.6.p.13">Deprecated alias names for this type:  N/A</p>
+<p id="rfc.section.8.6.p.14">Magic number(s):  73 78 67 31 00</p>
+<p id="rfc.section.8.6.p.15">File extension(s): .sxg</p>
+<p id="rfc.section.8.6.p.16">Macintosh file type code(s):  N/A</p>
+<p id="rfc.section.8.6.p.17">Person and email address to contact for further information: See Authors&#8217; Addresses section.</p>
+<p id="rfc.section.8.6.p.18">Intended usage:  COMMON</p>
+<p id="rfc.section.8.6.p.19">Restrictions on usage:  N/A</p>
+<p id="rfc.section.8.6.p.20">Author:  See Authors&#8217; Addresses section.</p>
+<p id="rfc.section.8.6.p.21">Change controller:  IESG</p>
+<h1 id="rfc.section.8.7">
+<a href="#rfc.section.8.7">8.7.</a> <a href="#internet-media-type-applicationcert-chaincbor" id="internet-media-type-applicationcert-chaincbor">Internet Media Type application/cert-chain+cbor</a>
 </h1>
-<p id="rfc.section.8.5.p.1">Type name:  application</p>
-<p id="rfc.section.8.5.p.2">Subtype name:  cert-chain+cbor</p>
-<p id="rfc.section.8.5.p.3">Required parameters:  N/A</p>
-<p id="rfc.section.8.5.p.4">Optional parameters:  N/A</p>
-<p id="rfc.section.8.5.p.5">Encoding considerations:  binary</p>
-<p id="rfc.section.8.5.p.6">Security considerations:  N/A</p>
-<p id="rfc.section.8.5.p.7">Interoperability considerations:  N/A</p>
-<p id="rfc.section.8.5.p.8">Published specification:  This specification (see <a href="#cert-chain-format" class="xref">Section 3.3</a>).</p>
-<p id="rfc.section.8.5.p.9">Applications that use this media type:  N/A</p>
-<p id="rfc.section.8.5.p.10">Fragment identifier considerations:  N/A</p>
-<p id="rfc.section.8.5.p.11">Additional information:</p>
-<p id="rfc.section.8.5.p.12">Deprecated alias names for this type:  N/A</p>
-<p id="rfc.section.8.5.p.13">Magic number(s): 1*9(??) 67 F0 9F 93 9C E2 9B 93</p>
-<p id="rfc.section.8.5.p.14">File extension(s): N/A</p>
-<p id="rfc.section.8.5.p.15">Macintosh file type code(s):  N/A</p>
-<p id="rfc.section.8.5.p.16">Person and email address to contact for further information: See Authors&#8217; Addresses section.</p>
-<p id="rfc.section.8.5.p.17">Intended usage:  COMMON</p>
-<p id="rfc.section.8.5.p.18">Restrictions on usage:  N/A</p>
-<p id="rfc.section.8.5.p.19">Author:  See Authors&#8217; Addresses section.</p>
-<p id="rfc.section.8.5.p.20">Change controller:  IESG</p>
+<p id="rfc.section.8.7.p.1">Type name:  application</p>
+<p id="rfc.section.8.7.p.2">Subtype name:  cert-chain+cbor</p>
+<p id="rfc.section.8.7.p.3">Required parameters:  N/A</p>
+<p id="rfc.section.8.7.p.4">Optional parameters:  N/A</p>
+<p id="rfc.section.8.7.p.5">Encoding considerations:  binary</p>
+<p id="rfc.section.8.7.p.6">Security considerations:  N/A</p>
+<p id="rfc.section.8.7.p.7">Interoperability considerations:  N/A</p>
+<p id="rfc.section.8.7.p.8">Published specification:  This specification (see <a href="#cert-chain-format" class="xref">Section 3.3</a>).</p>
+<p id="rfc.section.8.7.p.9">Applications that use this media type:  N/A</p>
+<p id="rfc.section.8.7.p.10">Fragment identifier considerations:  N/A</p>
+<p id="rfc.section.8.7.p.11">Additional information:</p>
+<p id="rfc.section.8.7.p.12">Deprecated alias names for this type:  N/A</p>
+<p id="rfc.section.8.7.p.13">Magic number(s): 1*9(??) 67 F0 9F 93 9C E2 9B 93</p>
+<p id="rfc.section.8.7.p.14">File extension(s): N/A</p>
+<p id="rfc.section.8.7.p.15">Macintosh file type code(s):  N/A</p>
+<p id="rfc.section.8.7.p.16">Person and email address to contact for further information: See Authors&#8217; Addresses section.</p>
+<p id="rfc.section.8.7.p.17">Intended usage:  COMMON</p>
+<p id="rfc.section.8.7.p.18">Restrictions on usage:  N/A</p>
+<p id="rfc.section.8.7.p.19">Author:  See Authors&#8217; Addresses section.</p>
+<p id="rfc.section.8.7.p.20">Change controller:  IESG</p>
 <h1 id="rfc.references">
 <a href="#rfc.references">9.</a> References</h1>
 <h1 id="rfc.references.1">
