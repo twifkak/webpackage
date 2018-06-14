@@ -173,7 +173,7 @@ Internet-Draft            Signed HTTP Exchanges                June 2018
      C.2.  Downsides of updating cache control . . . . . . . . . . .  49
    Appendix D.  Change Log . . . . . . . . . . . . . . . . . . . . .  50
    Appendix E.  Acknowledgements . . . . . . . . . . . . . . . . . .  51
-   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  51
+   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  52
 
 1.  Introduction
 
@@ -2788,11 +2788,11 @@ Appendix D.  Change Log
    o  Forbid RSA keys, and only require clients to support secp256r1
       keys.
 
+   o  Add a test OID for the CanSignHttpExchanges X.509 extension.
+
    draft-03
 
-   o  Allow each method of transferring an exchange to define which
-      headers are signed, have the cross-origin methods use all headers,
-      and remove the "allResponseHeaders" flag.
+
 
 
 
@@ -2801,6 +2801,10 @@ Yasskin                 Expires December 16, 2018              [Page 50]
 
 Internet-Draft            Signed HTTP Exchanges                June 2018
 
+
+   o  Allow each method of transferring an exchange to define which
+      headers are signed, have the cross-origin methods use all headers,
+      and remove the "allResponseHeaders" flag.
 
    o  Describe footguns around signing private content, and block
       certain headers to make it less likely.
@@ -2843,6 +2847,17 @@ Appendix E.  Acknowledgements
    Bishop, Ryan Sleevi, and Yoav Weiss for comments that improved this
    draft.
 
+
+
+
+
+
+
+Yasskin                 Expires December 16, 2018              [Page 51]
+
+Internet-Draft            Signed HTTP Exchanges                June 2018
+
+
 Author's Address
 
    Jeffrey Yasskin
@@ -2853,4 +2868,45 @@ Author's Address
 
 
 
-Yasskin                 Expires December 16, 2018              [Page 51]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Yasskin                 Expires December 16, 2018              [Page 52]
