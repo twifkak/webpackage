@@ -21,9 +21,9 @@ Abstract
 
 Note to Readers
 
-   Discussion of this draft takes place on the ART area mailing list
-   (art@ietf.org), which is archived at
-   https://mailarchive.ietf.org/arch/search/?email_list=art [1].
+   Discussion of this draft takes place on the wpack mailing list
+   (wpack@ietf.org), which is archived at
+   https://www.ietf.org/mailman/listinfo/wpack [1].
 
    The source code and issues list for this draft can be found in
    https://github.com/WICG/webpackage [2].
@@ -1014,7 +1014,7 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
 
    [I-D.yasskin-http-origin-signed-responses]
               Yasskin, J., "Signed HTTP Exchanges", draft-yasskin-http-
-              origin-signed-responses-03 (work in progress), March 2018.
+              origin-signed-responses-04 (work in progress), June 2018.
 
    [I-D.yasskin-webpackage-use-cases]
               Yasskin, J., "Use Cases and Requirements for Web
@@ -1032,7 +1032,7 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
 
 7.3.  URIs
 
-   [1] https://mailarchive.ietf.org/arch/search/?email_list=art
+   [1] https://www.ietf.org/mailman/listinfo/wpack
 
    [2] https://github.com/WICG/webpackage
 

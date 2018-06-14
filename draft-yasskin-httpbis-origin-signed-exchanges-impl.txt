@@ -1083,7 +1083,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
 
    [I-D.yasskin-http-origin-signed-responses]
               Yasskin, J., "Signed HTTP Exchanges", draft-yasskin-http-
-              origin-signed-responses-03 (work in progress), March 2018.
+              origin-signed-responses-04 (work in progress), June 2018.
 
    [POSIX]    IEEE and The Open Group, "The Open Group Base
               Specifications Issue 7", name IEEE, value 1003.1-2008,
