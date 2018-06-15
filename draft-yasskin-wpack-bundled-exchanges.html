@@ -589,7 +589,7 @@ index = {* headers =&gt; [ offset: uint,
 <li>client is null.</li>
 </ul>
 </li>
-<li>Let <samp>streamOffset</samp> be <samp>sectionsStart + section-offsets["responses"].offset + offset</samp>. That is, offsets in the index are relative to the start of the &#8220;responses&#8221; section.</li>
+<li>Let <samp>streamOffset</samp> be <samp>sectionsStart + sectionOffsets["responses"].offset + offset</samp>. That is, offsets in the index are relative to the start of the &#8220;responses&#8221; section.</li>
 <li>If <samp>offset + length</samp> is greater than <samp>sectionOffsets["responses"].length</samp>, return an error.</li>
 <li>Set <samp>requests</samp>[<samp>http-request</samp>] to a struct whose &#8220;offset&#8221; item is <samp>streamOffset</samp> and whose &#8220;length&#8221; item is <samp>length</samp>.</li>
 </ol>

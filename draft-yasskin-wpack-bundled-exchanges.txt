@@ -473,10 +473,10 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
 
            +  client is null.
 
-       7.  Let "streamOffset" be "sectionsStart + section-
-           offsets["responses"].offset + offset".  That is, offsets in
-           the index are relative to the start of the "responses"
-           section.
+       7.  Let "streamOffset" be "sectionsStart +
+           sectionOffsets["responses"].offset + offset".  That is,
+           offsets in the index are relative to the start of the
+           "responses" section.
 
        8.  If "offset + length" is greater than
            "sectionOffsets["responses"].length", return an error.
