@@ -4,8 +4,8 @@
 
 Network Working Group                                         J. Yasskin
 Internet-Draft                                                    Google
-Intended status: Standards Track                           June 15, 2018
-Expires: December 17, 2018
+Intended status: Standards Track                           June 18, 2018
+Expires: December 20, 2018
 
 
                          Bundled HTTP Exchanges
@@ -43,7 +43,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on December 17, 2018.
+   This Internet-Draft will expire on December 20, 2018.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Yasskin                 Expires December 17, 2018               [Page 1]
+Yasskin                 Expires December 20, 2018               [Page 1]
 
 Internet-Draft           Bundled HTTP Exchanges                June 2018
 
@@ -85,19 +85,19 @@ Table of Contents
        3.2.2.  Parsing the manifest section  . . . . . . . . . . . .   9
        3.2.3.  Parsing the critical section  . . . . . . . . . . . .  10
        3.2.4.  The responses section . . . . . . . . . . . . . . . .  10
-       3.2.5.  Starting from the end . . . . . . . . . . . . . . . .  10
-     3.3.  Load a response from a bundle . . . . . . . . . . . . . .  11
+       3.2.5.  Starting from the end . . . . . . . . . . . . . . . .  11
+     3.3.  Load a response from a bundle . . . . . . . . . . . . . .  12
      3.4.  Parsing CBOR items  . . . . . . . . . . . . . . . . . . .  13
        3.4.1.  Parse a known-length item . . . . . . . . . . . . . .  13
-       3.4.2.  Parsing variable-length data from a bytestring  . . .  13
+       3.4.2.  Parsing variable-length data from a bytestring  . . .  14
      3.5.  Interpreting CBOR HTTP headers  . . . . . . . . . . . . .  14
    4.  Guidelines for bundle authors . . . . . . . . . . . . . . . .  15
-   5.  Security Considerations . . . . . . . . . . . . . . . . . . .  15
+   5.  Security Considerations . . . . . . . . . . . . . . . . . . .  16
    6.  IANA considerations . . . . . . . . . . . . . . . . . . . . .  16
      6.1.  Internet Media Type Registration  . . . . . . . . . . . .  16
      6.2.  Web Bundle Section Name Registry  . . . . . . . . . . . .  17
-   7.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  17
-     7.1.  Normative References  . . . . . . . . . . . . . . . . . .  17
+   7.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  18
+     7.1.  Normative References  . . . . . . . . . . . . . . . . . .  18
      7.2.  Informative References  . . . . . . . . . . . . . . . . .  19
      7.3.  URIs  . . . . . . . . . . . . . . . . . . . . . . . . . .  19
    Appendix A.  Acknowledgements . . . . . . . . . . . . . . . . . .  19
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Yasskin                 Expires December 17, 2018               [Page 2]
+Yasskin                 Expires December 20, 2018               [Page 2]
 
 Internet-Draft           Bundled HTTP Exchanges                June 2018
 
@@ -165,7 +165,7 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
 
 
 
-Yasskin                 Expires December 17, 2018               [Page 3]
+Yasskin                 Expires December 20, 2018               [Page 3]
 
 Internet-Draft           Bundled HTTP Exchanges                June 2018
 
@@ -221,7 +221,7 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
 
 
 
-Yasskin                 Expires December 17, 2018               [Page 4]
+Yasskin                 Expires December 20, 2018               [Page 4]
 
 Internet-Draft           Bundled HTTP Exchanges                June 2018
 
@@ -277,7 +277,7 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
 
 
 
-Yasskin                 Expires December 17, 2018               [Page 5]
+Yasskin                 Expires December 20, 2018               [Page 5]
 
 Internet-Draft           Bundled HTTP Exchanges                June 2018
 
@@ -333,7 +333,7 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
 
 
 
-Yasskin                 Expires December 17, 2018               [Page 6]
+Yasskin                 Expires December 20, 2018               [Page 6]
 
 Internet-Draft           Bundled HTTP Exchanges                June 2018
 
@@ -370,6 +370,11 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
         specification in "knownSections" says not to process other
         sections, add those sections' names to "ignoredSections".
 
+        Note: The "ignoredSections" enables sections that supercede
+        other sections to be introduced in the future.  Implementations
+        that don't implement any such sections are free to omit the
+        relevant steps.
+
    11.  Let "metadata" be an empty map ([INFRA]).
 
    12.  For each ""name""/["offset", "length"] triple in
@@ -381,18 +386,19 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
         2.  If ""name""'s Metadata field is "No", continue to the next
             triple.
 
+
+
+
+Yasskin                 Expires December 20, 2018               [Page 7]
+
+Internet-Draft           Bundled HTTP Exchanges                June 2018
+
+
         3.  If ""name"" is in "ignoredSections", continue to the next
             triple.
 
         4.  Seek to offset "sectionsStart + offset" in "stream".  If
             this fails, return an error.
-
-
-
-Yasskin                 Expires December 17, 2018               [Page 7]
-
-Internet-Draft           Bundled HTTP Exchanges                June 2018
-
 
         5.  Let "sectionContents" be the result of reading "length"
             bytes from "stream".  If "sectionContents" is an error,
@@ -436,19 +442,18 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
            algorithm in Section 3.5.  If this returns an error, return
            that error.
 
+
+
+
+Yasskin                 Expires December 20, 2018               [Page 8]
+
+Internet-Draft           Bundled HTTP Exchanges                June 2018
+
+
        2.  If "pseudos" does not have keys named ':method' and ':url',
            or its size isn't 2, return an error.
 
        3.  If "pseudos[':method']" is not 'GET', return an error.
-
-
-
-
-
-Yasskin                 Expires December 17, 2018               [Page 8]
-
-Internet-Draft           Bundled HTTP Exchanges                June 2018
-
 
            Note: This could probably support any cacheable
            (Section 4.2.3) of [RFC7231]) and safe (Section 4.2.1 of
@@ -492,19 +497,19 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
    of the bundle.  The bundle can contain multiple resources at this
    URL, and the client is expected to content-negotiate for the best
    one.  For example, a client might select the one with an "accept"
+
+
+
+
+Yasskin                 Expires December 20, 2018               [Page 9]
+
+Internet-Draft           Bundled HTTP Exchanges                June 2018
+
+
    header of "application/manifest+json" ([appmanifest]) and an "accept-
    language" header of "es-419".
 
    manifest = text
-
-
-
-
-
-Yasskin                 Expires December 17, 2018               [Page 9]
-
-Internet-Draft           Bundled HTTP Exchanges                June 2018
-
 
    To parse the manifest section, given its "sectionContents" and the
    "metadata" map to fill in, the parser MUST do the following:
@@ -548,19 +553,19 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
    map.  Instead, its offset and length are used in processing the index
    section (Section 3.2.1).
 
+
+
+
+
+Yasskin                 Expires December 20, 2018              [Page 10]
+
+Internet-Draft           Bundled HTTP Exchanges                June 2018
+
+
 3.2.5.  Starting from the end
 
    The length of a bundle is encoded as a big-endian integer inside a
    CBOR byte string at the end of the bundle.
-
-
-
-
-
-Yasskin                 Expires December 17, 2018              [Page 10]
-
-Internet-Draft           Bundled HTTP Exchanges                June 2018
-
 
     +------------+-----+----+----+----+----+----+----+----+----+----+
     | first byte | ... | 48 | 00 | 00 | 00 | 00 | 00 | BC | 61 | 4E |
@@ -602,6 +607,17 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
 
    5.  Return the result of running Section 3.2 with "stream" as input.
 
+
+
+
+
+
+
+Yasskin                 Expires December 20, 2018              [Page 11]
+
+Internet-Draft           Bundled HTTP Exchanges                June 2018
+
+
 3.3.  Load a response from a bundle
 
    The result of Load a bundle's metadata maps each request to a
@@ -610,13 +626,6 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
    and similarly the payload can be streamed to downstream consumers.
 
    response = [headers: bstr .cbor headers, payload: bstr]
-
-
-
-Yasskin                 Expires December 17, 2018              [Page 11]
-
-Internet-Draft           Bundled HTTP Exchanges                June 2018
-
 
    To implement Section 2.3, the parser MUST run the following steps,
    taking the bundle's "stream" and one "request" and its
@@ -657,6 +666,14 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
         requestMetadata.offset + requestMetadata.length", return an
         error.
 
+
+
+
+Yasskin                 Expires December 20, 2018              [Page 12]
+
+Internet-Draft           Bundled HTTP Exchanges                June 2018
+
+
    11.  Let "body" be a new body ([FETCH]) whose stream is a tee'd copy
         of "stream" starting at the current offset and ending after
         "payloadLength" bytes.
@@ -665,14 +682,6 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
         object.
 
    12.  Let "response" be a new response ([FETCH]) whose:
-
-
-
-
-Yasskin                 Expires December 17, 2018              [Page 12]
-
-Internet-Draft           Bundled HTTP Exchanges                June 2018
-
 
         *  Url list is "request"'s url list,
 
@@ -713,6 +722,14 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
 
    6.  Return "item".
 
+
+
+
+Yasskin                 Expires December 20, 2018              [Page 13]
+
+Internet-Draft           Bundled HTTP Exchanges                June 2018
+
+
 3.4.2.  Parsing variable-length data from a bytestring
 
    Bundles encode variable-length data in CBOR bytestrings, which are
@@ -722,13 +739,6 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
 
    To get the length of a CBOR bytestring header from a bundle's stream,
    the parser MUST do the following:
-
-
-
-Yasskin                 Expires December 17, 2018              [Page 13]
-
-Internet-Draft           Bundled HTTP Exchanges                June 2018
-
 
    1.  Let "firstByte" be the result of reading 1 byte from the stream.
        If "firstByte" is an error, return that error.
@@ -769,6 +779,13 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
    Pseudo-headers starting with a ":" provide the non-header information
    needed to create a request or response as appropriate
 
+
+
+Yasskin                 Expires December 20, 2018              [Page 14]
+
+Internet-Draft           Bundled HTTP Exchanges                June 2018
+
+
    To convert a CBOR item "item" into a [FETCH] header list and
    pseudoheaders, parsers MUST do the following:
 
@@ -778,13 +795,6 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
    2.  Let "headers" be a new header list ([FETCH]).
 
    3.  Let "pseudos" be an empty map ([INFRA]).
-
-
-
-Yasskin                 Expires December 17, 2018              [Page 14]
-
-Internet-Draft           Bundled HTTP Exchanges                June 2018
-
 
    4.  For each pair "name"/"value" in "item":
 
@@ -822,6 +832,16 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
    canonicalization requirements (Section 3.4) and matching the
    "webbundle" CDDL rule in Section 3.1.
 
+
+
+
+
+
+Yasskin                 Expires December 20, 2018              [Page 15]
+
+Internet-Draft           Bundled HTTP Exchanges                June 2018
+
+
 5.  Security Considerations
 
    Bundles currently have no mechanism for ensuring that the signed
@@ -834,13 +854,6 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
    caching, bundling allows an attacker to guarantee that it happens.
    Future work in this specification might allow a bundle to constrain
    its resources to come from a consistent version.
-
-
-
-Yasskin                 Expires December 17, 2018              [Page 15]
-
-Internet-Draft           Bundled HTTP Exchanges                June 2018
-
 
 6.  IANA considerations
 
@@ -878,6 +891,13 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
 
       *  File extension(s): .wbn
 
+
+
+Yasskin                 Expires December 20, 2018              [Page 16]
+
+Internet-Draft           Bundled HTTP Exchanges                June 2018
+
+
       *  Macintosh file type code(s): N/A
 
    o  Person & email address to contact for further information: See the
@@ -890,13 +910,6 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
    o  Author: See the Author's Address section of this specification.
 
    o  Change controller: The IESG iesg@ietf.org [4]
-
-
-
-Yasskin                 Expires December 17, 2018              [Page 16]
-
-Internet-Draft           Bundled HTTP Exchanges                June 2018
-
 
    o  Provisional registration? (standards tree only): Not yet.
 
@@ -933,6 +946,14 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
    The section's specification can use the bytes making up the section,
    the bundle's stream (Section 2.1), the "sectionOffsets" CBOR item
    (Section 3.2), and the offset within the stream where sections start,
+
+
+
+Yasskin                 Expires December 20, 2018              [Page 17]
+
+Internet-Draft           Bundled HTTP Exchanges                June 2018
+
+
    as input, and MUST say if an error is returned, and otherwise what
    items, if any, are added to the map that Section 3.2 returns.  A
    section's specification MAY say that, if it is present, another
@@ -941,18 +962,6 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
 7.  References
 
 7.1.  Normative References
-
-
-
-
-
-
-
-
-Yasskin                 Expires December 17, 2018              [Page 17]
-
-Internet-Draft           Bundled HTTP Exchanges                June 2018
-
 
    [appmanifest]
               Caceres, M., Christiansen, K., Lamouri, M., Kostiainen,
@@ -992,6 +1001,15 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
               DOI 10.17487/RFC7540, May 2015,
               <https://www.rfc-editor.org/info/rfc7540>.
 
+
+
+
+
+Yasskin                 Expires December 20, 2018              [Page 18]
+
+Internet-Draft           Bundled HTTP Exchanges                June 2018
+
+
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/info/rfc8174>.
@@ -1002,13 +1020,6 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
               <http://www.w3.org/TR/2016/REC-SRI-20160623>.
 
    [URL]      WHATWG, "URL", June 2018, <https://url.spec.whatwg.org/>.
-
-
-
-Yasskin                 Expires December 17, 2018              [Page 18]
-
-Internet-Draft           Bundled HTTP Exchanges                June 2018
-
 
 7.2.  Informative References
 
@@ -1044,6 +1055,17 @@ Appendix A.  Acknowledgements
 
 Author's Address
 
+
+
+
+
+
+
+Yasskin                 Expires December 20, 2018              [Page 19]
+
+Internet-Draft           Bundled HTTP Exchanges                June 2018
+
+
    Jeffrey Yasskin
    Google
 
@@ -1061,4 +1083,38 @@ Author's Address
 
 
 
-Yasskin                 Expires December 17, 2018              [Page 19]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Yasskin                 Expires December 20, 2018              [Page 20]
