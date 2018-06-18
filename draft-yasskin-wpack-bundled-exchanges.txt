@@ -648,9 +648,9 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
         "headers" CDDL rule.  If either the read or parse returns an
         error, return that error.
 
-   6.   Let "headers"/"pseudos" be the result of converting "cbor-http-
-        request" to a header list and pseudoheaders using the algorithm
-        in Section 3.5.  If this returns an error, return that error.
+   6.   Let "headers"/"pseudos" be the result of converting "headerCbor"
+        to a header list and pseudoheaders using the algorithm in
+        Section 3.5.  If this returns an error, return that error.
 
    7.   If "pseudos" does not have a key named ':status' or its size
         isn't 1, return an error.

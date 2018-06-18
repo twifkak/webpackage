@@ -678,7 +678,7 @@ response = [headers: bstr .cbor headers, payload: bstr]
 <li>Let <samp>headerLength</samp> be the result of getting the length of a CBOR bytestring header from <samp>stream</samp> (<a href="#parse-bytestring" class="xref">Section 3.4.2</a>). If <samp>headerLength</samp> is an error, return that error.</li>
 <li>If <samp>headerLength</samp> is TBD or greater, return an error.</li>
 <li>Let <samp>headerCbor</samp> be the result of reading <samp>headerLength</samp> bytes from <samp>stream</samp> and parsing a CBOR item from them matching the <samp>headers</samp> CDDL rule. If either the read or parse returns an error, return that error.</li>
-<li>Let <samp>headers</samp>/<samp>pseudos</samp> be the result of converting <samp>cbor-http-request</samp> to a header list and pseudoheaders using the algorithm in <a href="#cbor-headers" class="xref">Section 3.5</a>. If this returns an error, return that error.</li>
+<li>Let <samp>headers</samp>/<samp>pseudos</samp> be the result of converting <samp>headerCbor</samp> to a header list and pseudoheaders using the algorithm in <a href="#cbor-headers" class="xref">Section 3.5</a>. If this returns an error, return that error.</li>
 <li>If <samp>pseudos</samp> does not have a key named &#8216;:status&#8217; or its size isn&#8217;t 1, return an error.</li>
 <li>If <samp>pseudos[':status']</samp> isn&#8217;t exactly 3 ASCII decimal digits, return an error.</li>
 <li>Let <samp>payloadLength</samp> be the result of getting the length of a CBOR bytestring header from <samp>stream</samp> (<a href="#parse-bytestring" class="xref">Section 3.4.2</a>). If <samp>payloadLength</samp> is an error, return that error.</li>
