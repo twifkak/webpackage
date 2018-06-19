@@ -383,8 +383,8 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
         1.  If ""name"" isn't in "knownSections", continue to the next
             triple.
 
-        2.  If ""name""'s Metadata field (Section 6.2) is "No", continue
-            to the next triple.
+        2.  If ""name""'s Metadata field is "No", continue to the next
+            triple.
 
 
 

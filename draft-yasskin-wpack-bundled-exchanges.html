@@ -552,7 +552,7 @@ section-offsets = {* tstr =&gt; [ offset: uint, length: uint] },
 <li>Let <samp>metadata</samp> be an empty map (<a href="#INFRA" class="xref">[INFRA]</a>).</li>
 <li>For each <samp>"name"</samp>/[<samp>offset</samp>, <samp>length</samp>] triple in <samp>sectionOffsets</samp>: <ol>
 <li>If <samp>"name"</samp> isn&#8217;t in <samp>knownSections</samp>, continue to the next triple.</li>
-<li>If <samp>"name"</samp>&#8217;s Metadata field (<a href="#section-name-registry" class="xref">Section 6.2</a>) is &#8220;No&#8221;, continue to the next triple.</li>
+<li>If <samp>"name"</samp>&#8217;s Metadata field is &#8220;No&#8221;, continue to the next triple.</li>
 <li>If <samp>"name"</samp> is in <samp>ignoredSections</samp>, continue to the next triple.</li>
 <li>Seek to offset <samp>sectionsStart + offset</samp> in <samp>stream</samp>. If this fails, return an error.</li>
 <li>Let <samp>sectionContents</samp> be the result of reading <samp>length</samp> bytes from <samp>stream</samp>. If <samp>sectionContents</samp> is an error, return that error.</li>
