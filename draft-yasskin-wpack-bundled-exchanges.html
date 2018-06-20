@@ -314,7 +314,7 @@ ul.toc li {
 
   <meta name="dct.creator" content="Yasskin, J." />
   <meta name="dct.identifier" content="urn:ietf:id:draft-yasskin-wpack-bundled-exchanges-latest" />
-  <meta name="dct.issued" scheme="ISO8601" content="2018-06-19" />
+  <meta name="dct.issued" scheme="ISO8601" content="2018-06-20" />
   <meta name="dct.abstract" content="Bundled exchanges provide a way to bundle up groups of HTTP request+response pairs to transmit or store them together. They can include multiple top-level resources with one identified as the default by a manifest, provide random access to their component exchanges, and efficiently store 8-bit resources." />
   <meta name="description" content="Bundled exchanges provide a way to bundle up groups of HTTP request+response pairs to transmit or store them together. They can include multiple top-level resources with one identified as the default by a manifest, provide random access to their component exchanges, and efficiently store 8-bit resources." />
 
@@ -335,10 +335,10 @@ ul.toc li {
 </tr>
 <tr>
 <td class="left">Intended status: Standards Track</td>
-<td class="right">June 19, 2018</td>
+<td class="right">June 20, 2018</td>
 </tr>
 <tr>
-<td class="left">Expires: December 21, 2018</td>
+<td class="left">Expires: December 22, 2018</td>
 <td class="right"></td>
 </tr>
 
@@ -358,7 +358,7 @@ ul.toc li {
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at https://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on December 21, 2018.</p>
+<p>This Internet-Draft will expire on December 22, 2018.</p>
 <h1 id="rfc.copyrightnotice"><a href="#rfc.copyrightnotice">Copyright Notice</a></h1>
 <p>Copyright (c) 2018 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
 <p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (https://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
@@ -460,7 +460,7 @@ ul.toc li {
 <p id="rfc.section.2.p.2">While the order of the exchanges is not semantically meaningful, it can significantly affect performance when the bundle is loaded from a network stream.</p>
 <p id="rfc.section.2.p.3">A bundle is parsed from a stream of bytes, which is assumed to have the attributes and operations described in <a href="#stream-operations" class="xref">Section 2.1</a>.</p>
 <p id="rfc.section.2.p.4">Bundle parsers support two operations, <a href="#semantics-load-metadata" class="xref">Load a bundle&#8217;s metadata</a> (<a href="#semantics-load-metadata" class="xref">Section 2.2</a>) and <a href="#semantics-load-response" class="xref">Load a response from a bundle</a> (<a href="#semantics-load-response" class="xref">Section 2.3</a>) each of which can return an error instead of their normal result.</p>
-<p id="rfc.section.2.p.5">A client is expected to load the metadata for a bundle as soon as it start downloading it or otherwise discovers it. Then, when fetching (<a href="#FETCH" class="xref">[FETCH]</a>) a request, the cliend is expected to match it against the requests in the metadata, and if one matches, load that request&#8217;s response.</p>
+<p id="rfc.section.2.p.5">A client is expected to load the metadata for a bundle as soon as it starts downloading it or otherwise discovers it. Then, when fetching (<a href="#FETCH" class="xref">[FETCH]</a>) a request, the client is expected to match it against the requests in the metadata, and if one matches, load that request&#8217;s response.</p>
 <h1 id="rfc.section.2.1">
 <a href="#rfc.section.2.1">2.1.</a> <a href="#stream-operations" id="stream-operations">Stream attributes and operations</a>
 </h1>
