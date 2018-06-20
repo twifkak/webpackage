@@ -1195,7 +1195,7 @@ Signed-Headers = sh-list
 <p></p>
 
 <ol>
-<li>The ASCII characters &#8220;sxg1&#8221; followed by a 0 byte, to serve as a file signature. This is redundant with the MIME type, and receipients that receive both MUST check that they match and stop parsing if they don&#8217;t.  <br><br> Note: RFC EDITOR PLEASE DELETE THIS NOTE; The implementation of the final RFC MUST use this file signature, but implementations of drafts MUST NOT use it and MUST use another implementation-specific string beginning with &#8220;sxg1-&#8220; and ending with a 0 byte instead.</li>
+<li>The ASCII characters &#8220;sxg1&#8221; followed by a 0 byte, to serve as a file signature. This is redundant with the MIME type, and recipients that receive both MUST check that they match and stop parsing if they don&#8217;t.  <br><br> Note: RFC EDITOR PLEASE DELETE THIS NOTE; The implementation of the final RFC MUST use this file signature, but implementations of drafts MUST NOT use it and MUST use another implementation-specific string beginning with &#8220;sxg1-&#8220; and ending with a 0 byte instead.</li>
 <li>3 bytes storing a big-endian integer <samp>sigLength</samp>. If this is larger than TBD, parsing MUST fail.</li>
 <li>3 bytes storing a big-endian integer <samp>headerLength</samp>. If this is larger than TBD, parsing MUST fail.</li>
 <li>

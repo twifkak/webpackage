@@ -1491,7 +1491,7 @@ Internet-Draft            Signed HTTP Exchanges                June 2018
 
    1.  The ASCII characters "sxg1" followed by a 0 byte, to serve as a
        file signature.  This is redundant with the MIME type, and
-       receipients that receive both MUST check that they match and stop
+       recipients that receive both MUST check that they match and stop
        parsing if they don't.
 
        Note: RFC EDITOR PLEASE DELETE THIS NOTE; The implementation of
