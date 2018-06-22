@@ -4,8 +4,8 @@
 
 Network Working Group                                         J. Yasskin
 Internet-Draft                                                    Google
-Intended status: Standards Track                           June 21, 2018
-Expires: December 23, 2018
+Intended status: Standards Track                           June 22, 2018
+Expires: December 24, 2018
 
 
                          Bundled HTTP Exchanges
@@ -43,7 +43,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on December 23, 2018.
+   This Internet-Draft will expire on December 24, 2018.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Yasskin                 Expires December 23, 2018               [Page 1]
+Yasskin                 Expires December 24, 2018               [Page 1]
 
 Internet-Draft           Bundled HTTP Exchanges                June 2018
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Yasskin                 Expires December 23, 2018               [Page 2]
+Yasskin                 Expires December 24, 2018               [Page 2]
 
 Internet-Draft           Bundled HTTP Exchanges                June 2018
 
@@ -165,7 +165,7 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
 
 
 
-Yasskin                 Expires December 23, 2018               [Page 3]
+Yasskin                 Expires December 24, 2018               [Page 3]
 
 Internet-Draft           Bundled HTTP Exchanges                June 2018
 
@@ -221,7 +221,7 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
 
 
 
-Yasskin                 Expires December 23, 2018               [Page 4]
+Yasskin                 Expires December 24, 2018               [Page 4]
 
 Internet-Draft           Bundled HTTP Exchanges                June 2018
 
@@ -277,7 +277,7 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
 
 
 
-Yasskin                 Expires December 23, 2018               [Page 5]
+Yasskin                 Expires December 24, 2018               [Page 5]
 
 Internet-Draft           Bundled HTTP Exchanges                June 2018
 
@@ -333,7 +333,7 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
 
 
 
-Yasskin                 Expires December 23, 2018               [Page 6]
+Yasskin                 Expires December 24, 2018               [Page 6]
 
 Internet-Draft           Bundled HTTP Exchanges                June 2018
 
@@ -377,7 +377,7 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
 
    11.  Let "metadata" be an empty map ([INFRA]).
 
-   12.  For each ""name""/["offset", "length"] triple in
+   12.  For each (""name"", ["offset", "length"]) triple in
         "sectionOffsets":
 
         1.  If ""name"" isn't in "knownSections", continue to the next
@@ -389,7 +389,7 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
 
 
 
-Yasskin                 Expires December 23, 2018               [Page 7]
+Yasskin                 Expires December 24, 2018               [Page 7]
 
 Internet-Draft           Bundled HTTP Exchanges                June 2018
 
@@ -434,10 +434,10 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
        requests ([FETCH]) to structs ([INFRA]) with items named "offset"
        and "length".
 
-   3.  For each "cbor-http-request"/["offset", "length"] triple in
+   3.  For each ("cbor-http-request", ["offset", "length"]) triple in
        "index":
 
-       1.  Let "headers"/"pseudos" be the result of converting "cbor-
+       1.  Let ("headers", "pseudos") be the result of converting "cbor-
            http-request" to a header list and pseudoheaders using the
            algorithm in Section 3.5.  If this returns an error, return
            that error.
@@ -445,7 +445,7 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
 
 
 
-Yasskin                 Expires December 23, 2018               [Page 8]
+Yasskin                 Expires December 24, 2018               [Page 8]
 
 Internet-Draft           Bundled HTTP Exchanges                June 2018
 
@@ -501,7 +501,7 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
 
 
 
-Yasskin                 Expires December 23, 2018               [Page 9]
+Yasskin                 Expires December 24, 2018               [Page 9]
 
 Internet-Draft           Bundled HTTP Exchanges                June 2018
 
@@ -557,7 +557,7 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
 
 
 
-Yasskin                 Expires December 23, 2018              [Page 10]
+Yasskin                 Expires December 24, 2018              [Page 10]
 
 Internet-Draft           Bundled HTTP Exchanges                June 2018
 
@@ -613,7 +613,7 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
 
 
 
-Yasskin                 Expires December 23, 2018              [Page 11]
+Yasskin                 Expires December 24, 2018              [Page 11]
 
 Internet-Draft           Bundled HTTP Exchanges                June 2018
 
@@ -648,9 +648,10 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
         "headers" CDDL rule.  If either the read or parse returns an
         error, return that error.
 
-   6.   Let "headers"/"pseudos" be the result of converting "headerCbor"
-        to a header list and pseudoheaders using the algorithm in
-        Section 3.5.  If this returns an error, return that error.
+   6.   Let ("headers", "pseudos") be the result of converting
+        "headerCbor" to a header list and pseudoheaders using the
+        algorithm in Section 3.5.  If this returns an error, return that
+        error.
 
    7.   If "pseudos" does not have a key named ':status' or its size
         isn't 1, return an error.
@@ -668,8 +669,7 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
 
 
 
-
-Yasskin                 Expires December 23, 2018              [Page 12]
+Yasskin                 Expires December 24, 2018              [Page 12]
 
 Internet-Draft           Bundled HTTP Exchanges                June 2018
 
@@ -725,7 +725,7 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
 
 
 
-Yasskin                 Expires December 23, 2018              [Page 13]
+Yasskin                 Expires December 24, 2018              [Page 13]
 
 Internet-Draft           Bundled HTTP Exchanges                June 2018
 
@@ -781,7 +781,7 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
 
 
 
-Yasskin                 Expires December 23, 2018              [Page 14]
+Yasskin                 Expires December 24, 2018              [Page 14]
 
 Internet-Draft           Bundled HTTP Exchanges                June 2018
 
@@ -796,7 +796,7 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
 
    3.  Let "pseudos" be an empty map ([INFRA]).
 
-   4.  For each pair "name"/"value" in "item":
+   4.  For each pair ("name", "value") in "item":
 
        1.  If "name" contains any upper-case or non-ASCII characters,
            return an error.  This matches the requirement in
@@ -822,9 +822,9 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
            cookie, because the "Set-Cookie" header ([RFC6265]) has to
            appear multiple times to set multiple cookies.
 
-       5.  Append "name"/"value" to "headers".
+       5.  Append ("name", "value") to "headers".
 
-   5.  Return "headers"/"pseudos".
+   5.  Return ("headers", "pseudos").
 
 4.  Guidelines for bundle authors
 
@@ -837,7 +837,7 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
 
 
 
-Yasskin                 Expires December 23, 2018              [Page 15]
+Yasskin                 Expires December 24, 2018              [Page 15]
 
 Internet-Draft           Bundled HTTP Exchanges                June 2018
 
@@ -893,7 +893,7 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
 
 
 
-Yasskin                 Expires December 23, 2018              [Page 16]
+Yasskin                 Expires December 24, 2018              [Page 16]
 
 Internet-Draft           Bundled HTTP Exchanges                June 2018
 
@@ -949,7 +949,7 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
 
 
 
-Yasskin                 Expires December 23, 2018              [Page 17]
+Yasskin                 Expires December 24, 2018              [Page 17]
 
 Internet-Draft           Bundled HTTP Exchanges                June 2018
 
@@ -1005,7 +1005,7 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
 
 
 
-Yasskin                 Expires December 23, 2018              [Page 18]
+Yasskin                 Expires December 24, 2018              [Page 18]
 
 Internet-Draft           Bundled HTTP Exchanges                June 2018
 
@@ -1061,7 +1061,7 @@ Author's Address
 
 
 
-Yasskin                 Expires December 23, 2018              [Page 19]
+Yasskin                 Expires December 24, 2018              [Page 19]
 
 Internet-Draft           Bundled HTTP Exchanges                June 2018
 
@@ -1117,4 +1117,4 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
 
 
 
-Yasskin                 Expires December 23, 2018              [Page 20]
+Yasskin                 Expires December 24, 2018              [Page 20]

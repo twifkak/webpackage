@@ -314,7 +314,7 @@ ul.toc li {
 
   <meta name="dct.creator" content="Yasskin, J." />
   <meta name="dct.identifier" content="urn:ietf:id:draft-yasskin-wpack-bundled-exchanges-latest" />
-  <meta name="dct.issued" scheme="ISO8601" content="2018-06-21" />
+  <meta name="dct.issued" scheme="ISO8601" content="2018-06-22" />
   <meta name="dct.abstract" content="Bundled exchanges provide a way to bundle up groups of HTTP request+response pairs to transmit or store them together. They can include multiple top-level resources with one identified as the default by a manifest, provide random access to their component exchanges, and efficiently store 8-bit resources." />
   <meta name="description" content="Bundled exchanges provide a way to bundle up groups of HTTP request+response pairs to transmit or store them together. They can include multiple top-level resources with one identified as the default by a manifest, provide random access to their component exchanges, and efficiently store 8-bit resources." />
 
@@ -335,10 +335,10 @@ ul.toc li {
 </tr>
 <tr>
 <td class="left">Intended status: Standards Track</td>
-<td class="right">June 21, 2018</td>
+<td class="right">June 22, 2018</td>
 </tr>
 <tr>
-<td class="left">Expires: December 23, 2018</td>
+<td class="left">Expires: December 24, 2018</td>
 <td class="right"></td>
 </tr>
 
@@ -358,7 +358,7 @@ ul.toc li {
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at https://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on December 23, 2018.</p>
+<p>This Internet-Draft will expire on December 24, 2018.</p>
 <h1 id="rfc.copyrightnotice"><a href="#rfc.copyrightnotice">Copyright Notice</a></h1>
 <p>Copyright (c) 2018 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
 <p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (https://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
@@ -550,7 +550,7 @@ section-offsets = {* tstr =&gt; [ offset: uint, length: uint] },
 <li>Let <samp>ignoredSections</samp> be an empty set.</li>
 <li>For each <samp>"name"</samp> key in <samp>sectionOffsets</samp>, if <samp>"name"</samp>&#8217;s specification in <samp>knownSections</samp> says not to process other sections, add those sections&#8217; names to <samp>ignoredSections</samp>.  <br><br> Note: The <samp>ignoredSections</samp> enables sections that supercede other sections to be introduced in the future. Implementations that don&#8217;t implement any such sections are free to omit the relevant steps.</li>
 <li>Let <samp>metadata</samp> be an empty map (<a href="#INFRA" class="xref">[INFRA]</a>).</li>
-<li>For each <samp>"name"</samp>/[<samp>offset</samp>, <samp>length</samp>] triple in <samp>sectionOffsets</samp>: <ol>
+<li>For each (<samp>"name"</samp>, [<samp>offset</samp>, <samp>length</samp>]) triple in <samp>sectionOffsets</samp>: <ol>
 <li>If <samp>"name"</samp> isn&#8217;t in <samp>knownSections</samp>, continue to the next triple.</li>
 <li>If <samp>"name"</samp>&#8217;s Metadata field (<a href="#section-name-registry" class="xref">Section 6.2</a>) is &#8220;No&#8221;, continue to the next triple.</li>
 <li>If <samp>"name"</samp> is in <samp>ignoredSections</samp>, continue to the next triple.</li>
@@ -576,8 +576,8 @@ index = {* headers =&gt; [ offset: uint,
 <ol>
 <li>Let <samp>index</samp> be the result of parsing <samp>sectionContents</samp> as a CBOR item matching the <samp>index</samp> rule in the above CDDL (<a href="#parse-cbor" class="xref">Section 3.4</a>). If <samp>index</samp> is an error, return an error.</li>
 <li>Let <samp>requests</samp> be an initially-empty map (<a href="#INFRA" class="xref">[INFRA]</a>) from HTTP requests (<a href="#FETCH" class="xref">[FETCH]</a>) to structs (<a href="#INFRA" class="xref">[INFRA]</a>) with items named &#8220;offset&#8221; and &#8220;length&#8221;.</li>
-<li>For each <samp>cbor-http-request</samp>/[<samp>offset</samp>, <samp>length</samp>] triple in <samp>index</samp>: <ol>
-<li>Let <samp>headers</samp>/<samp>pseudos</samp> be the result of converting <samp>cbor-http-request</samp> to a header list and pseudoheaders using the algorithm in <a href="#cbor-headers" class="xref">Section 3.5</a>.  If this returns an error, return that error.</li>
+<li>For each (<samp>cbor-http-request</samp>, [<samp>offset</samp>, <samp>length</samp>]) triple in <samp>index</samp>: <ol>
+<li>Let (<samp>headers</samp>, <samp>pseudos</samp>) be the result of converting <samp>cbor-http-request</samp> to a header list and pseudoheaders using the algorithm in <a href="#cbor-headers" class="xref">Section 3.5</a>. If this returns an error, return that error.</li>
 <li>If <samp>pseudos</samp> does not have keys named &#8216;:method&#8217; and &#8216;:url&#8217;, or its size isn&#8217;t 2, return an error.</li>
 <li>If <samp>pseudos[':method']</samp> is not &#8216;GET&#8217;, return an error.      <br><br> Note: This could probably support any cacheable (Section 4.2.3) of <a href="#RFC7231" class="xref">[RFC7231]</a>) and safe (Section 4.2.1 of <a href="#RFC7231" class="xref">[RFC7231]</a>) method, matching PUSH_PROMISE (Section 8.2 of <a href="#RFC7540" class="xref">[RFC7540]</a>), but today that&#8217;s only HEAD and GET, and HEAD can be served as a transformation of GET, so this version of the specification keeps the method simple.</li>
 <li>Let <samp>parsedUrl</samp> be the result of parsing (<a href="#URL" class="xref">[URL]</a>) <samp>pseudos[':url']</samp> with no base URL.</li>
@@ -678,7 +678,7 @@ response = [headers: bstr .cbor headers, payload: bstr]
 <li>Let <samp>headerLength</samp> be the result of getting the length of a CBOR bytestring header from <samp>stream</samp> (<a href="#parse-bytestring" class="xref">Section 3.4.2</a>). If <samp>headerLength</samp> is an error, return that error.</li>
 <li>If <samp>headerLength</samp> is TBD or greater, return an error.</li>
 <li>Let <samp>headerCbor</samp> be the result of reading <samp>headerLength</samp> bytes from <samp>stream</samp> and parsing a CBOR item from them matching the <samp>headers</samp> CDDL rule. If either the read or parse returns an error, return that error.</li>
-<li>Let <samp>headers</samp>/<samp>pseudos</samp> be the result of converting <samp>headerCbor</samp> to a header list and pseudoheaders using the algorithm in <a href="#cbor-headers" class="xref">Section 3.5</a>. If this returns an error, return that error.</li>
+<li>Let (<samp>headers</samp>, <samp>pseudos</samp>) be the result of converting <samp>headerCbor</samp> to a header list and pseudoheaders using the algorithm in <a href="#cbor-headers" class="xref">Section 3.5</a>. If this returns an error, return that error.</li>
 <li>If <samp>pseudos</samp> does not have a key named &#8216;:status&#8217; or its size isn&#8217;t 1, return an error.</li>
 <li>If <samp>pseudos[':status']</samp> isn&#8217;t exactly 3 ASCII decimal digits, return an error.</li>
 <li>Let <samp>payloadLength</samp> be the result of getting the length of a CBOR bytestring header from <samp>stream</samp> (<a href="#parse-bytestring" class="xref">Section 3.4.2</a>). If <samp>payloadLength</samp> is an error, return that error.</li>
@@ -753,7 +753,7 @@ headers = {* bstr =&gt; bstr}
 <li>If <samp>item</samp> doesn&#8217;t match the <samp>headers</samp> rule in the above CDDL, return an error.</li>
 <li>Let <samp>headers</samp> be a new header list (<a href="#FETCH" class="xref">[FETCH]</a>).</li>
 <li>Let <samp>pseudos</samp> be an empty map (<a href="#INFRA" class="xref">[INFRA]</a>).</li>
-<li>For each pair <samp>name</samp>/<samp>value</samp> in <samp>item</samp>: <ol>
+<li>For each pair (<samp>name</samp>, <samp>value</samp>) in <samp>item</samp>: <ol>
 <li>If <samp>name</samp> contains any upper-case or non-ASCII characters, return an error. This matches the requirement in Section 8.1.2 of <a href="#RFC7540" class="xref">[RFC7540]</a>.</li>
 <li>If <samp>name</samp> starts with a &#8216;:&#8217;: <ol>
 <li>Assert: <samp>pseudos[name]</samp> does not exist, because CBOR maps cannot contain duplicate keys.</li>
@@ -763,10 +763,10 @@ headers = {* bstr =&gt; bstr}
 </li>
 <li>If <samp>name</samp> or <samp>value</samp> doesn&#8217;t satisfy the requirements for a header in <a href="#FETCH" class="xref">[FETCH]</a>, return an error.</li>
 <li>Assert: <samp>headers</samp> does not contain (<a href="#FETCH" class="xref">[FETCH]</a>) <samp>name</samp>, because CBOR maps cannot contain duplicate keys and an earlier step rejected upper-case bytes.      <br><br> Note: This means that a response cannot set more than one cookie, because the <samp>Set-Cookie</samp> header (<a href="#RFC6265" class="xref">[RFC6265]</a>) has to appear multiple times to set multiple cookies.</li>
-<li>Append <samp>name</samp>/<samp>value</samp> to <samp>headers</samp>.</li>
+<li>Append (<samp>name</samp>, <samp>value</samp>) to <samp>headers</samp>.</li>
 </ol>
 </li>
-<li>Return <samp>headers</samp>/<samp>pseudos</samp>.</li>
+<li>Return (<samp>headers</samp>, <samp>pseudos</samp>).</li>
 </ol>
 <h1 id="rfc.section.4">
 <a href="#rfc.section.4">4.</a> <a href="#authoring-guidelines" id="authoring-guidelines">Guidelines for bundle authors</a>
