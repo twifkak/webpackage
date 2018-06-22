@@ -140,19 +140,19 @@ Internet-Draft            Signed HTTP Exchanges                June 2018
      9.1.  Normative References  . . . . . . . . . . . . . . . . . .  36
      9.2.  Informative References  . . . . . . . . . . . . . . . . .  38
      9.3.  URIs  . . . . . . . . . . . . . . . . . . . . . . . . . .  40
-   Appendix A.  Use cases  . . . . . . . . . . . . . . . . . . . . .  41
-     A.1.  PUSHed subresources . . . . . . . . . . . . . . . . . . .  41
+   Appendix A.  Use cases  . . . . . . . . . . . . . . . . . . . . .  40
+     A.1.  PUSHed subresources . . . . . . . . . . . . . . . . . . .  40
      A.2.  Explicit use of a content distributor for subresources  .  41
      A.3.  Subresource Integrity . . . . . . . . . . . . . . . . . .  42
      A.4.  Binary Transparency . . . . . . . . . . . . . . . . . . .  42
-     A.5.  Static Analysis . . . . . . . . . . . . . . . . . . . . .  43
+     A.5.  Static Analysis . . . . . . . . . . . . . . . . . . . . .  42
      A.6.  Offline websites  . . . . . . . . . . . . . . . . . . . .  43
    Appendix B.  Requirements . . . . . . . . . . . . . . . . . . . .  43
      B.1.  Proof of origin . . . . . . . . . . . . . . . . . . . . .  43
        B.1.1.  Certificate constraints . . . . . . . . . . . . . . .  43
-       B.1.2.  Signature constraints . . . . . . . . . . . . . . . .  44
+       B.1.2.  Signature constraints . . . . . . . . . . . . . . . .  43
        B.1.3.  Retrieving the certificate  . . . . . . . . . . . . .  44
-     B.2.  How much to sign  . . . . . . . . . . . . . . . . . . . .  45
+     B.2.  How much to sign  . . . . . . . . . . . . . . . . . . . .  44
        B.2.1.  Conveying the signed headers  . . . . . . . . . . . .  45
      B.3.  Response lifespan . . . . . . . . . . . . . . . . . . . .  46
        B.3.1.  Certificate revocation  . . . . . . . . . . . . . . .  46
@@ -160,7 +160,7 @@ Internet-Draft            Signed HTTP Exchanges                June 2018
      B.4.  Low implementation complexity . . . . . . . . . . . . . .  47
        B.4.1.  Limited choices . . . . . . . . . . . . . . . . . . .  47
        B.4.2.  Bounded-buffering integrity checking  . . . . . . . .  47
-   Appendix C.  Determining validity using cache control . . . . . .  48
+   Appendix C.  Determining validity using cache control . . . . . .  47
      C.1.  Example of updating cache control . . . . . . . . . . . .  48
 
 
@@ -1980,9 +1980,6 @@ Internet-Draft            Signed HTTP Exchanges                June 2018
    [FETCH]    WHATWG, "Fetch", June 2018,
               <https://fetch.spec.whatwg.org/>.
 
-   [HTML]     WHATWG, "HTML", June 2018,
-              <https://html.spec.whatwg.org/multipage>.
-
    [I-D.ietf-cbor-cddl]
               Birkholz, H., Vigano, C., and C. Bormann, "Concise data
               definition language (CDDL): a notational convention to
@@ -2009,7 +2006,10 @@ Internet-Draft            Signed HTTP Exchanges                June 2018
               <http://pubs.opengroup.org/onlinepubs/9699919799/
               basedefs/>.
 
-
+   [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
+              Requirement Levels", BCP 14, RFC 2119,
+              DOI 10.17487/RFC2119, March 1997,
+              <https://www.rfc-editor.org/info/rfc2119>.
 
 
 
@@ -2017,11 +2017,6 @@ Yasskin                 Expires December 24, 2018              [Page 36]
 
 Internet-Draft            Signed HTTP Exchanges                June 2018
 
-
-   [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
-              Requirement Levels", BCP 14, RFC 2119,
-              DOI 10.17487/RFC2119, March 1997,
-              <https://www.rfc-editor.org/info/rfc2119>.
 
    [RFC3230]  Mogul, J. and A. Van Hoff, "Instance Digests in HTTP",
               RFC 3230, DOI 10.17487/RFC3230, January 2002,
@@ -2067,17 +2062,17 @@ Internet-Draft            Signed HTTP Exchanges                June 2018
               DOI 10.17487/RFC7231, June 2014,
               <https://www.rfc-editor.org/info/rfc7231>.
 
+   [RFC7234]  Fielding, R., Ed., Nottingham, M., Ed., and J. Reschke,
+              Ed., "Hypertext Transfer Protocol (HTTP/1.1): Caching",
+              RFC 7234, DOI 10.17487/RFC7234, June 2014,
+              <https://www.rfc-editor.org/info/rfc7234>.
+
 
 
 Yasskin                 Expires December 24, 2018              [Page 37]
 
 Internet-Draft            Signed HTTP Exchanges                June 2018
 
-
-   [RFC7234]  Fielding, R., Ed., Nottingham, M., Ed., and J. Reschke,
-              Ed., "Hypertext Transfer Protocol (HTTP/1.1): Caching",
-              RFC 7234, DOI 10.17487/RFC7234, June 2014,
-              <https://www.rfc-editor.org/info/rfc7234>.
 
    [RFC7540]  Belshe, M., Peon, R., and M. Thomson, Ed., "Hypertext
               Transfer Protocol Version 2 (HTTP/2)", RFC 7540,
@@ -2097,12 +2092,6 @@ Internet-Draft            Signed HTTP Exchanges                June 2018
 
 9.2.  Informative References
 
-   [DROWN]    Aviram, N., Schinzel, S., Somorovsky, J., Heninger, N.,
-              Dankel, M., Steube, J., Valenta, L., Adrian, D.,
-              Halderman, J., Dukhovni, V., Kaesper, E., Cohney, S.,
-              Engels, S., Paar, C., and Y. Shavitt, "The DROWN Attack",
-              2016, <https://drownattack.com/>.
-
    [I-D.burke-content-signature]
               Burke, B., "HTTP Header for digital signatures", draft-
               burke-content-signature-00 (work in progress), March 2011.
@@ -2121,15 +2110,6 @@ Internet-Draft            Signed HTTP Exchanges                June 2018
               draft-thomson-http-content-signature-00 (work in
               progress), July 2015.
 
-
-
-
-
-Yasskin                 Expires December 24, 2018              [Page 38]
-
-Internet-Draft            Signed HTTP Exchanges                June 2018
-
-
    [I-D.yasskin-webpackage-use-cases]
               Yasskin, J., "Use Cases and Requirements for Web
               Packages", draft-yasskin-webpackage-use-cases-01 (work in
@@ -2138,6 +2118,17 @@ Internet-Draft            Signed HTTP Exchanges                June 2018
    [RFC2965]  Kristol, D. and L. Montulli, "HTTP State Management
               Mechanism", RFC 2965, DOI 10.17487/RFC2965, October 2000,
               <https://www.rfc-editor.org/info/rfc2965>.
+
+
+
+
+
+
+
+Yasskin                 Expires December 24, 2018              [Page 38]
+
+Internet-Draft            Signed HTTP Exchanges                June 2018
+
 
    [RFC6066]  Eastlake 3rd, D., "Transport Layer Security (TLS)
               Extensions: Extension Definitions", RFC 6066,
@@ -2176,6 +2167,15 @@ Internet-Draft            Signed HTTP Exchanges                June 2018
               Interactive Clients", RFC 8053, DOI 10.17487/RFC8053,
               January 2017, <https://www.rfc-editor.org/info/rfc8053>.
 
+   [RFC8336]  Nottingham, M. and E. Nygren, "The ORIGIN HTTP/2 Frame",
+              RFC 8336, DOI 10.17487/RFC8336, March 2018,
+              <https://www.rfc-editor.org/info/rfc8336>.
+
+   [SRI]      Akhawe, D., Braun, F., Marier, F., and J. Weinberger,
+              "Subresource Integrity", World Wide Web Consortium
+              Recommendation REC-SRI-20160623, June 2016,
+              <http://www.w3.org/TR/2016/REC-SRI-20160623>.
+
 
 
 
@@ -2185,18 +2185,6 @@ Yasskin                 Expires December 24, 2018              [Page 39]
 
 Internet-Draft            Signed HTTP Exchanges                June 2018
 
-
-   [RFC8336]  Nottingham, M. and E. Nygren, "The ORIGIN HTTP/2 Frame",
-              RFC 8336, DOI 10.17487/RFC8336, March 2018,
-              <https://www.rfc-editor.org/info/rfc8336>.
-
-   [ROBOT]    Boeck, H., Somorovsky, J., and C. Young, "The ROBOT
-              Attack", 2017, <https://robotattack.org/>.
-
-   [SRI]      Akhawe, D., Braun, F., Marier, F., and J. Weinberger,
-              "Subresource Integrity", World Wide Web Consortium
-              Recommendation REC-SRI-20160623, June 2016,
-              <http://www.w3.org/TR/2016/REC-SRI-20160623>.
 
    [W3C.NOTE-OPS-OverHTTP]
               Hensley, P., Metral, M., Shardanand, U., Converse, D., and
@@ -2234,14 +2222,6 @@ Internet-Draft            Signed HTTP Exchanges                June 2018
 
    [14] https://tools.ietf.org/html/rfc7540#section-8.2
 
-
-
-
-Yasskin                 Expires December 24, 2018              [Page 40]
-
-Internet-Draft            Signed HTTP Exchanges                June 2018
-
-
    [15] https://www.imperialviolet.org/2012/02/05/crlsets.html
 
    [16] https://tlswg.github.io/tls13-spec/draft-ietf-tls-
@@ -2254,6 +2234,14 @@ A.1.  PUSHed subresources
    To reduce round trips, a server might use HTTP/2 Push (Section 8.2 of
    [RFC7540]) to inject a subresource from another server into the
    client's cache.  If anything about the subresource is expired or
+
+
+
+Yasskin                 Expires December 24, 2018              [Page 40]
+
+Internet-Draft            Signed HTTP Exchanges                June 2018
+
+
    can't be verified, the client would fetch it from the original
    server.
 
@@ -2289,15 +2277,6 @@ A.2.  Explicit use of a content distributor for subresources
    "<img>" based on, for example, a "<meta name="dist-base">" tag
    elsewhere in the page.  However, this has the downside that the
    preloader [8] can no longer see the physical source to download it.
-
-
-
-
-Yasskin                 Expires December 24, 2018              [Page 41]
-
-Internet-Draft            Signed HTTP Exchanges                June 2018
-
-
    The resulting delay might cancel out the benefit of using a
    distributor.
 
@@ -2308,6 +2287,16 @@ Internet-Draft            Signed HTTP Exchanges                June 2018
    respond to the physical request to "https://distributor.com/O.com/
    img.png" with first a signed PUSH_PROMISE for "https://O.com/img.png"
    and then a redirect to "https://O.com/img.png".
+
+
+
+
+
+
+Yasskin                 Expires December 24, 2018              [Page 41]
+
+Internet-Draft            Signed HTTP Exchanges                June 2018
+
 
 A.3.  Subresource Integrity
 
@@ -2346,14 +2335,6 @@ A.4.  Binary Transparency
    provide signatures of those resources, which signed exchanges
    provides.
 
-
-
-
-Yasskin                 Expires December 24, 2018              [Page 42]
-
-Internet-Draft            Signed HTTP Exchanges                June 2018
-
-
 A.5.  Static Analysis
 
    Native app stores like the Apple App Store [11] and the Android Play
@@ -2365,6 +2346,14 @@ A.5.  Static Analysis
 
    While full application analysis probably needs to wait until the
    authority can sign bundles of exchanges, authorities may be able to
+
+
+
+Yasskin                 Expires December 24, 2018              [Page 42]
+
+Internet-Draft            Signed HTTP Exchanges                June 2018
+
+
    guarantee certain properties by just checking a top-level resource
    and its [SRI]-constrained sub-resources.
 
@@ -2401,15 +2390,6 @@ B.1.1.  Certificate constraints
 
    These risks are considered too high, so we define a new X.509
    certificate extension in Section 4.2 that requires CAs to issue new
-
-
-
-
-Yasskin                 Expires December 24, 2018              [Page 43]
-
-Internet-Draft            Signed HTTP Exchanges                June 2018
-
-
    certificates for this purpose.  We expect at least one low-cost CA to
    be willing to sign certificates with this extension.
 
@@ -2420,6 +2400,15 @@ B.1.2.  Signature constraints
    something else the new X.509 extension here is forbidden from being
    used in TLS servers.  If Section 4.2 changes to allow re-use in TLS
    servers, we would need to:
+
+
+
+
+
+Yasskin                 Expires December 24, 2018              [Page 43]
+
+Internet-Draft            Signed HTTP Exchanges                June 2018
+
 
    1.  Avoid key types that are used for non-TLS protocols whose output
        could be confused with a signature.  That may be just the
@@ -2458,14 +2447,6 @@ B.1.3.  Retrieving the certificate
    should be included in the signed data, like TLS does (Section 4.4.3
    of [I-D.ietf-tls-tls13]).
 
-
-
-
-Yasskin                 Expires December 24, 2018              [Page 44]
-
-Internet-Draft            Signed HTTP Exchanges                June 2018
-
-
 B.2.  How much to sign
 
    The previous [I-D.thomson-http-content-signature] and
@@ -2477,6 +2458,13 @@ B.2.  How much to sign
    request URL in the signature, but it's possible we need a more
    flexible scheme to allow some higher-level protocols to accept a
    less-signed URL.
+
+
+
+Yasskin                 Expires December 24, 2018              [Page 44]
+
+Internet-Draft            Signed HTTP Exchanges                June 2018
+
 
    The question of whether to include other request headers--primarily
    the "accept*" family--is still open.  These headers need to be
@@ -2514,14 +2502,6 @@ B.2.1.  Conveying the signed headers
    [RFC7540]) does not have this problem, and it would be possible to
    introduce a response header to convey the expected request headers.
 
-
-
-
-Yasskin                 Expires December 24, 2018              [Page 45]
-
-Internet-Draft            Signed HTTP Exchanges                June 2018
-
-
    Since proxies are unlikely to modify unknown content types, we can
    wrap the original exchange into an "application/signed-exchange"
    format (Section 5.3) and include the "Cache-Control: no-transform"
@@ -2533,6 +2513,15 @@ Internet-Draft            Signed HTTP Exchanges                June 2018
 
    To help the PUSHed subresources use case (Appendix A.1), we might
    also want to extend the "PUSH_PROMISE" frame type to include a
+
+
+
+
+Yasskin                 Expires December 24, 2018              [Page 45]
+
+Internet-Draft            Signed HTTP Exchanges                June 2018
+
+
    signature, and that could tell intermediates not to change the
    ensuing headers.
 
@@ -2571,13 +2560,6 @@ B.3.2.  Response downgrade attacks
 
    These assertions could be structured as:
 
-
-
-Yasskin                 Expires December 24, 2018              [Page 46]
-
-Internet-Draft            Signed HTTP Exchanges                June 2018
-
-
    1.  A signed minimum version number or timestamp for a set of request
        headers: This requires that signed responses need to include a
        version number or timestamp, but allows a server to provide a
@@ -2588,6 +2570,13 @@ Internet-Draft            Signed HTTP Exchanges                June 2018
        requires each version to include a different update URL, but
        allows intermediates to serve less data.  This is the approach
        taken in Section 3.
+
+
+
+Yasskin                 Expires December 24, 2018              [Page 46]
+
+Internet-Draft            Signed HTTP Exchanges                June 2018
+
 
    3.  A replacement for the exchange's signature and an update for the
        embedded "expires" and related cache-control HTTP headers
@@ -2625,15 +2614,6 @@ B.4.2.  Bounded-buffering integrity checking
    be less than TBD bytes long, and Section 3.5 requires that the MI
    record size be less than TBD bytes.  This allows the network layer to
    validate a bounded chunk at a time, and pass that chunk on to a
-
-
-
-
-Yasskin                 Expires December 24, 2018              [Page 47]
-
-Internet-Draft            Signed HTTP Exchanges                June 2018
-
-
    renderer, and then forget about that chunk before processing the next
    one.
 
@@ -2646,6 +2626,13 @@ Appendix C.  Determining validity using cache control
    cache control headers ([RFC7234]) instead of embedding an expiration
    date in the signature itself.  This section specifies how that would
    work, and describes why I haven't chosen that option.
+
+
+
+Yasskin                 Expires December 24, 2018              [Page 47]
+
+Internet-Draft            Signed HTTP Exchanges                June 2018
+
 
    The signatures in the "Signature" header field (Section 3.1) would no
    longer contain "date" or "expires" fields.
@@ -2682,6 +2669,19 @@ C.1.  Example of updating cache control
    <html>
    ...
 
+   And an update listing the following headers:
+
+   Expires: Fri, 1 Dec 2017 10:00:00 UTC
+   Date: Sat, 25 Nov 2017 10:00:00 UTC
+
+   The resulting stored exchange would be:
+
+
+
+
+
+
+
 
 
 
@@ -2689,13 +2689,6 @@ Yasskin                 Expires December 24, 2018              [Page 48]
 
 Internet-Draft            Signed HTTP Exchanges                June 2018
 
-
-   And an update listing the following headers:
-
-   Expires: Fri, 1 Dec 2017 10:00:00 UTC
-   Date: Sat, 25 Nov 2017 10:00:00 UTC
-
-   The resulting stored exchange would be:
 
    GET / HTTP/1.1
    Host: example.com
@@ -2738,6 +2731,13 @@ Appendix D.  Change Log
    o  Replace the application/http-exchange+cbor format with a simpler
       application/signed-exchange format that:
 
+      *  Doesn't require a streaming CBOR parser parse it from a network
+         stream.
+
+      *  Doesn't allow request payloads or response trailers, which
+         don't fit into the signature model.
+
+
 
 
 
@@ -2745,12 +2745,6 @@ Yasskin                 Expires December 24, 2018              [Page 49]
 
 Internet-Draft            Signed HTTP Exchanges                June 2018
 
-
-      *  Doesn't require a streaming CBOR parser parse it from a network
-         stream.
-
-      *  Doesn't allow request payloads or response trailers, which
-         don't fit into the signature model.
 
       *  Allows checking the signature before parsing the exchange
          headers.
@@ -2794,6 +2788,12 @@ Internet-Draft            Signed HTTP Exchanges                June 2018
 
    draft-02
 
+   o  Signatures identify a header (e.g.  Digest or MI) to guard the
+      payload's integrity instead of directly signing over the payload.
+
+   o  The validityUrl is signed.
+
+
 
 
 
@@ -2801,11 +2801,6 @@ Yasskin                 Expires December 24, 2018              [Page 50]
 
 Internet-Draft            Signed HTTP Exchanges                June 2018
 
-
-   o  Signatures identify a header (e.g.  Digest or MI) to guard the
-      payload's integrity instead of directly signing over the payload.
-
-   o  The validityUrl is signed.
 
    o  Use CBOR maps where appropriate, and define how they're
       canonicalized.
@@ -2836,6 +2831,11 @@ Author's Address
    Google
 
    Email: jyasskin@chromium.org
+
+
+
+
+
 
 
 
