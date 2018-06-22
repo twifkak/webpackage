@@ -296,6 +296,7 @@ ul.toc li {
 <link href="#rfc.section.3.4" rel="Chapter" title="3.4 Parsing CBOR items">
 <link href="#rfc.section.3.4.1" rel="Chapter" title="3.4.1 Parse a known-length item">
 <link href="#rfc.section.3.4.2" rel="Chapter" title="3.4.2 Parsing variable-length data from a bytestring">
+<link href="#rfc.section.3.4.3" rel="Chapter" title="3.4.3 Parsing the type and argument of a CBOR item">
 <link href="#rfc.section.3.5" rel="Chapter" title="3.5 Interpreting CBOR HTTP headers">
 <link href="#rfc.section.4" rel="Chapter" title="4 Guidelines for bundle authors">
 <link href="#rfc.section.5" rel="Chapter" title="5 Security Considerations">
@@ -305,7 +306,8 @@ ul.toc li {
 <link href="#rfc.references" rel="Chapter" title="7 References">
 <link href="#rfc.references.1" rel="Chapter" title="7.1 Normative References">
 <link href="#rfc.references.2" rel="Chapter" title="7.2 Informative References">
-<link href="#rfc.appendix.A" rel="Chapter" title="A Acknowledgements">
+<link href="#rfc.appendix.A" rel="Chapter" title="A Change Log">
+<link href="#rfc.appendix.B" rel="Chapter" title="B Acknowledgements">
 <link href="#rfc.authors" rel="Chapter">
 
 
@@ -408,6 +410,8 @@ ul.toc li {
 </li>
 <li>3.4.2.   <a href="#rfc.section.3.4.2">Parsing variable-length data from a bytestring</a>
 </li>
+<li>3.4.3.   <a href="#rfc.section.3.4.3">Parsing the type and argument of a CBOR item</a>
+</li>
 </ul><li>3.5.   <a href="#rfc.section.3.5">Interpreting CBOR HTTP headers</a>
 </li>
 </ul><li>4.   <a href="#rfc.section.4">Guidelines for bundle authors</a>
@@ -426,7 +430,9 @@ ul.toc li {
 </li>
 <li>7.2.   <a href="#rfc.references.2">Informative References</a>
 </li>
-</ul><li>Appendix A.   <a href="#rfc.appendix.A">Acknowledgements</a>
+</ul><li>Appendix A.   <a href="#rfc.appendix.A">Change Log</a>
+</li>
+<li>Appendix B.   <a href="#rfc.appendix.B">Acknowledgements</a>
 </li>
 <li><a href="#rfc.authors">Author's Address</a>
 </li>
@@ -509,14 +515,13 @@ ul.toc li {
 <p><em>This section is non-normative.</em></p>
 <p id="rfc.section.3.1.p.2">A bundle holds a series of named sections. The beginning of the bundle maps section names to the range of bytes holding that section. The most important section is the &#8220;index&#8221; (<a href="#index-section" class="xref">Section 3.2.1</a>), which similarly maps serialized HTTP requests to the range of bytes holding that request&#8217;s serialized response. Byte ranges are represented using an offset from some point in the bundle <em>after</em> the encoding of the range itself, to reduce the amount of work needed to use the shortest possible encoding of the range.</p>
 <p id="rfc.section.3.1.p.3">Future specifications can define new sections with extra data, and if necessary, these sections can be marked &#8220;critical&#8221; (<a href="#critical-section" class="xref">Section 3.2.3</a>) to prevent older parsers from using the rest of the bundle incorrectly.</p>
-<p id="rfc.section.3.1.p.4">The bundle is roughly a CBOR item (<a href="#I-D.ietf-cbor-7049bis" class="xref">[I-D.ietf-cbor-7049bis]</a>) with the following CDDL (<a href="#I-D.ietf-cbor-cddl" class="xref">[I-D.ietf-cbor-cddl]</a>) schema, but bundle parsers are required to successfully parse some byte strings that aren&#8217;t valid CBOR. For example, sections might have padding between them, or even overlap, as long as the embedded relative offsets cause the parsing algorithms in this specification to return data.</p>
+<p id="rfc.section.3.1.p.4">The bundle is a CBOR item (<a href="#I-D.ietf-cbor-7049bis" class="xref">[I-D.ietf-cbor-7049bis]</a>) with the following CDDL (<a href="#I-D.ietf-cbor-cddl" class="xref">[I-D.ietf-cbor-cddl]</a>) schema:</p>
 <pre>
 webbundle = [
   ; &#127760;&#128230; in UTF-8.
   magic: h'F0 9F 8C 90 F0 9F 93 A6',
-  section-offsets: bytes .cbor {* ($section-name .within tstr) =&gt;
-                                  [ offset: uint, length: uint] },
-  sections: [* $section ],
+  section-lengths: bytes .cbor [* (section-name: tstr, length: uint) ],
+  sections: [* any ],
   length: bytes .size 8,  ; Big-endian number of bytes in the bundle.
 ]
 
@@ -530,33 +535,43 @@ responses = [*response]
 <h1 id="rfc.section.3.2">
 <a href="#rfc.section.3.2">3.2.</a> <a href="#load-metadata" id="load-metadata">Load a bundle&#8217;s metadata</a>
 </h1>
-<p id="rfc.section.3.2.p.1">A bundle holds a series of sections, which can be accessed randomly using the information in the <samp>section-offset</samp> CBOR item:</p>
+<p id="rfc.section.3.2.p.1">A bundle holds a series of sections, which can be accessed randomly using the information in the <samp>section-lengths</samp> CBOR item, which holds a list of alternating section names and section lengths:</p>
 <pre>
-section-offsets = {* tstr =&gt; [ offset: uint, length: uint] },
+section-lengths = [* (section-name: tstr, length: uint) ],
 </pre>
-<p id="rfc.section.3.2.p.2">Offsets in this item are relative to the <em>end</em> of the section-offset item.</p>
-<p id="rfc.section.3.2.p.3">To implement <a href="#semantics-load-metadata" class="xref">Section 2.2</a>, the parser MUST run the following steps, taking the <samp>stream</samp> as input.</p>
+<p id="rfc.section.3.2.p.2">To implement <a href="#semantics-load-metadata" class="xref">Section 2.2</a>, the parser MUST run the following steps, taking the <samp>stream</samp> as input.</p>
 <p></p>
 
 <ol>
 <li>Seek to offset 0 in <samp>stream</samp>. Assert: this operation doesn&#8217;t fail.</li>
 <li>If reading 10 bytes from <samp>stream</samp> returns an error or doesn&#8217;t return the bytes with hex encoding &#8220;84 48 F0 9F 8C 90 F0 9F 93 A6&#8221; (the CBOR encoding of the 4-item array initial byte and 8-byte bytestring initial byte, followed by &#127760;&#128230; in UTF-8), return an error.</li>
-<li>Let <samp>sectionOffsetsLength</samp> be the result of getting the length of the CBOR bytestring header from <samp>stream</samp> (<a href="#parse-bytestring" class="xref">Section 3.4.2</a>). If this is an error, return that error.</li>
-<li>If <samp>sectionOffsetsLength</samp> is TBD or greater, return an error.</li>
-<li>Let <samp>sectionOffsetsBytes</samp> be the result of reading <samp>sectionOffsetsLength</samp> bytes from <samp>stream</samp>. If <samp>sectionOffsetsBytes</samp> is an error, return that error.</li>
-<li>Let <samp>sectionOffsets</samp> be the result of parsing one CBOR item (<a href="#parse-cbor" class="xref">Section 3.4</a>) from <samp>sectionOffsetsBytes</samp>, matching the section-offsets rule in the CDDL (<a href="#I-D.ietf-cbor-cddl" class="xref">[I-D.ietf-cbor-cddl]</a>) above. If <samp>sectionOffsets</samp> is an error, return an error.</li>
-<li>Let <samp>sectionsStart</samp> be the current offset within <samp>stream</samp>. For example, if <samp>sectionOffsetsLength</samp> were 52, <samp>sectionsStart</samp> would be 64.</li>
+<li>Let <samp>sectionLengthsLength</samp> be the result of getting the length of the CBOR bytestring header from <samp>stream</samp> (<a href="#parse-bytestring" class="xref">Section 3.4.2</a>). If this is an error, return that error.</li>
+<li>If <samp>sectionLengthsLength</samp> is TBD or greater, return an error.</li>
+<li>Let <samp>sectionLengthsBytes</samp> be the result of reading <samp>sectionLengthsLength</samp> bytes from <samp>stream</samp>. If <samp>sectionLengthsBytes</samp> is an error, return that error.</li>
+<li>Let <samp>sectionLengths</samp> be the result of parsing one CBOR item (<a href="#parse-cbor" class="xref">Section 3.4</a>) from <samp>sectionLengthsBytes</samp>, matching the section-lengths rule in the CDDL (<a href="#I-D.ietf-cbor-cddl" class="xref">[I-D.ietf-cbor-cddl]</a>) above. If <samp>sectionLengths</samp> is an error, return an error.</li>
+<li>Let (<samp>sectionsType</samp>, <samp>numSections</samp>) be the result of parsing the type and argument of a CBOR item from <samp>stream</samp> (<a href="#parse-type-argument" class="xref">Section 3.4.3</a>).</li>
+<li>If <samp>sectionsType</samp> is not <samp>4</samp> (a CBOR array) or <samp>numSections</samp> is not half of the length of <samp>sectionLengths</samp>, return an error.</li>
+<li>Let <samp>sectionsStart</samp> be the current offset within <samp>stream</samp>.  <br><br> For example, if <samp>sectionLengthsLength</samp> were 52 and <samp>sectionLengths</samp> contained 4 items (2 sections), <samp>sectionsStart</samp> would be 65 (10 initial bytes + a 2-byte bytestring header to describe a 52-byte bytestring + 52 bytes of section lengths + a 1-byte array header for the 2 sections).</li>
 <li>Let <samp>knownSections</samp> be the subset of the <a href="#section-name-registry" class="xref">Section 6.2</a> that this client has implemented.</li>
 <li>Let <samp>ignoredSections</samp> be an empty set.</li>
-<li>For each <samp>"name"</samp> key in <samp>sectionOffsets</samp>, if <samp>"name"</samp>&#8217;s specification in <samp>knownSections</samp> says not to process other sections, add those sections&#8217; names to <samp>ignoredSections</samp>.  <br><br> Note: The <samp>ignoredSections</samp> enables sections that supercede other sections to be introduced in the future. Implementations that don&#8217;t implement any such sections are free to omit the relevant steps.</li>
+<li>Let <samp>sectionOffsets</samp> be an empty map (<a href="#INFRA" class="xref">[INFRA]</a>) from section names to (offset, length) pairs. These offsets are relative to the start of <samp>stream</samp>.</li>
+<li>Let <samp>currentOffset</samp> be <samp>sectionsStart</samp>.</li>
+<li>For each (<samp>"name"</samp>, <samp>length</samp>) pair of adjacent elements in <samp>sectionLengths</samp>: <ol>
+<li>If <samp>"name"</samp>&#8217;s specification in <samp>knownSections</samp> says not to process other sections, add those sections&#8217; names to <samp>ignoredSections</samp>.      <br><br> Note: The <samp>ignoredSections</samp> enables sections that supercede other sections to be introduced in the future. Implementations that don&#8217;t implement any such sections are free to omit the relevant steps.</li>
+<li>If <samp>sectionOffsets["name"]</samp> exists, return an error. That is, duplicate sections are forbidden.</li>
+<li>Set <samp>sectionOffsets["name"]</samp> to (<samp>currentOffset</samp>, <samp>length</samp>).</li>
+<li>Set <samp>currentOffset</samp> to <samp>currentOffset + length</samp>.</li>
+</ol>
+</li>
+<li>If the &#8220;responses&#8221; section is not last in <samp>sectionLengths</samp>, return an error.  This allows a streaming parser to assume that it&#8217;ll know the requests by the time their responses arrive.</li>
 <li>Let <samp>metadata</samp> be an empty map (<a href="#INFRA" class="xref">[INFRA]</a>).</li>
-<li>For each (<samp>"name"</samp>, [<samp>offset</samp>, <samp>length</samp>]) triple in <samp>sectionOffsets</samp>: <ol>
+<li>For each <samp>"name"</samp> &#8594; (<samp>offset</samp>, <samp>length</samp>) triple in <samp>sectionOffsets</samp>: <ol>
 <li>If <samp>"name"</samp> isn&#8217;t in <samp>knownSections</samp>, continue to the next triple.</li>
 <li>If <samp>"name"</samp>&#8217;s Metadata field (<a href="#section-name-registry" class="xref">Section 6.2</a>) is &#8220;No&#8221;, continue to the next triple.</li>
 <li>If <samp>"name"</samp> is in <samp>ignoredSections</samp>, continue to the next triple.</li>
-<li>Seek to offset <samp>sectionsStart + offset</samp> in <samp>stream</samp>. If this fails, return an error.</li>
+<li>Seek to offset <samp>offset</samp> in <samp>stream</samp>. If this fails, return an error.</li>
 <li>Let <samp>sectionContents</samp> be the result of reading <samp>length</samp> bytes from <samp>stream</samp>. If <samp>sectionContents</samp> is an error, return that error.</li>
-<li>Follow <samp>"name"</samp>&#8217;s specification from <samp>knownSections</samp> to process the section, passing <samp>sectionContents</samp>, <samp>stream</samp>, <samp>sectionOffsets</samp>, <samp>sectionsStart</samp>, and <samp>metadata</samp>. If this returns an error, return it.</li>
+<li>Follow <samp>"name"</samp>&#8217;s specification from <samp>knownSections</samp> to process the section, passing <samp>sectionContents</samp>, <samp>stream</samp>, <samp>sectionOffsets</samp>, and <samp>metadata</samp>. If this returns an error, return it.</li>
 </ol>
 </li>
 <li>If <samp>metadata</samp> doesn&#8217;t have entries with keys &#8220;requests&#8221; and &#8220;manifest&#8221;, return an error.</li>
@@ -565,18 +580,24 @@ section-offsets = {* tstr =&gt; [ offset: uint, length: uint] },
 <h1 id="rfc.section.3.2.1">
 <a href="#rfc.section.3.2.1">3.2.1.</a> <a href="#index-section" id="index-section">Parsing the index section</a>
 </h1>
-<p id="rfc.section.3.2.1.p.1">The &#8220;index&#8221; section defines the set of HTTP requests in the bundle and identifies their locations in the &#8220;responses&#8221; section.</p>
+<p id="rfc.section.3.2.1.p.1">The &#8220;index&#8221; section defines the set of HTTP requests in the bundle and identifies their locations in the &#8220;responses&#8221; section. It consists of a sequence of alternating request headers and response lengths:</p>
 <pre>
-index = {* headers =&gt; [ offset: uint,
-                        length: uint] }
+index = [* (headers, length: uint) ]
 </pre>
-<p id="rfc.section.3.2.1.p.2">To parse the index section, given its <samp>sectionContents</samp>, the <samp>sectionsStart</samp> offset, the <samp>sectionOffsets</samp> CBOR item, and the <samp>metadata</samp> map to fill in, the parser MUST do the following:</p>
+<p id="rfc.section.3.2.1.p.2">To parse the index section, given its <samp>sectionContents</samp>, the <samp>sectionOffsets</samp> map, and the <samp>metadata</samp> map to fill in, the parser MUST do the following:</p>
 <p></p>
 
 <ol>
 <li>Let <samp>index</samp> be the result of parsing <samp>sectionContents</samp> as a CBOR item matching the <samp>index</samp> rule in the above CDDL (<a href="#parse-cbor" class="xref">Section 3.4</a>). If <samp>index</samp> is an error, return an error.</li>
+<li>Check that the responses array has the right number of items: <ol>
+<li>Seek to offset <samp>sectionOffsets["responses"].offset</samp> in <samp>stream</samp>. If this fails, return an error.</li>
+<li>Let (<samp>responsesType</samp>, <samp>numResponses</samp>) be the result of parsing the type and argument of a CBOR item from the stream (<a href="#parse-type-argument" class="xref">Section 3.4.3</a>). If this returns an error, return that error.</li>
+<li>If <samp>responsesType</samp> is not <samp>4</samp> (a CBOR array) or <samp>numResponses</samp> is not half of the length of <samp>index</samp>, return an error.</li>
+</ol>
+</li>
+<li>Let <samp>currentOffset</samp> be the current offset within <samp>stream</samp> minus <samp>sectionOffsets["responses"].offset</samp>. That is, the length of the array header for the responses array. This will track the offset of the current response relative to the start of the responses array.</li>
 <li>Let <samp>requests</samp> be an initially-empty map (<a href="#INFRA" class="xref">[INFRA]</a>) from HTTP requests (<a href="#FETCH" class="xref">[FETCH]</a>) to structs (<a href="#INFRA" class="xref">[INFRA]</a>) with items named &#8220;offset&#8221; and &#8220;length&#8221;.</li>
-<li>For each (<samp>cbor-http-request</samp>, [<samp>offset</samp>, <samp>length</samp>]) triple in <samp>index</samp>: <ol>
+<li>For each (<samp>cbor-http-request</samp>, <samp>length</samp>) pair of adjacent elements in <samp>index</samp>: <ol>
 <li>Let (<samp>headers</samp>, <samp>pseudos</samp>) be the result of converting <samp>cbor-http-request</samp> to a header list and pseudoheaders using the algorithm in <a href="#cbor-headers" class="xref">Section 3.5</a>. If this returns an error, return that error.</li>
 <li>If <samp>pseudos</samp> does not have keys named &#8216;:method&#8217; and &#8216;:url&#8217;, or its size isn&#8217;t 2, return an error.</li>
 <li>If <samp>pseudos[':method']</samp> is not &#8216;GET&#8217;, return an error.      <br><br> Note: This could probably support any cacheable (Section 4.2.3) of <a href="#RFC7231" class="xref">[RFC7231]</a>) and safe (Section 4.2.1 of <a href="#RFC7231" class="xref">[RFC7231]</a>) method, matching PUSH_PROMISE (Section 8.2 of <a href="#RFC7540" class="xref">[RFC7540]</a>), but today that&#8217;s only HEAD and GET, and HEAD can be served as a transformation of GET, so this version of the specification keeps the method simple.</li>
@@ -589,9 +610,11 @@ index = {* headers =&gt; [ offset: uint,
 <li>client is null.</li>
 </ul>
 </li>
-<li>Let <samp>streamOffset</samp> be <samp>sectionsStart + sectionOffsets["responses"].offset + offset</samp>. That is, offsets in the index are relative to the start of the &#8220;responses&#8221; section.</li>
-<li>If <samp>offset + length</samp> is greater than <samp>sectionOffsets["responses"].length</samp>, return an error.</li>
-<li>Set <samp>requests</samp>[<samp>http-request</samp>] to a struct whose &#8220;offset&#8221; item is <samp>streamOffset</samp> and whose &#8220;length&#8221; item is <samp>length</samp>.</li>
+<li>Let <samp>responseOffset</samp> be <samp>sectionOffsets["responses"].offset + currentOffset</samp>. This is relative to the start of the stream.</li>
+<li>If <samp>currentOffset + length</samp> is greater than <samp>sectionOffsets["responses"].length</samp>, return an error.</li>
+<li>If <samp>requests</samp>[<samp>http-request</samp>] exists, return an error. That is, duplicate requests are forbidden.</li>
+<li>Set <samp>requests</samp>[<samp>http-request</samp>] to a struct whose &#8220;offset&#8221; item is <samp>responseOffset</samp> and whose &#8220;length&#8221; item is <samp>length</samp>.</li>
+<li>Set <samp>currentOffset</samp> to <samp>currentOffset + length</samp>.</li>
 </ol>
 </li>
 <li>Set <samp>metadata["requests"]</samp> to <samp>requests</samp>.</li>
@@ -719,11 +742,22 @@ response = [headers: bstr .cbor headers, payload: bstr]
 <p></p>
 
 <ol>
+<li>Let (<samp>type</samp>, <samp>argument</samp>) be the result of parsing the type and argument of a CBOR item from the stream (<a href="#parse-type-argument" class="xref">Section 3.4.3</a>). If this returns an error, return that error.</li>
+<li>If <samp>type</samp> is not <samp>2</samp>, the item is not a bytestring. Return an error.</li>
+<li>Return <samp>argument</samp>.</li>
+</ol>
+<h1 id="rfc.section.3.4.3">
+<a href="#rfc.section.3.4.3">3.4.3.</a> <a href="#parse-type-argument" id="parse-type-argument">Parsing the type and argument of a CBOR item</a>
+</h1>
+<p id="rfc.section.3.4.3.p.1">To parse the type and argument of a CBOR item from a bundle&#8217;s stream, the parser MUST do the following. This algorithm returns a pair of the CBOR major type 0&#8211;7 inclusive, and a 64-bit integral argument for the CBOR item:</p>
+<p></p>
+
+<ol>
 <li>Let <samp>firstByte</samp> be the result of reading 1 byte from the stream. If <samp>firstByte</samp> is an error, return that error.</li>
-<li>If <samp>firstByte &amp; 0xE0</samp> is not <samp>0x40</samp>, the item is not a bytestring. Return an error.</li>
+<li>Let <samp>type</samp> be <samp>(firstByte &amp; 0xE0) / 0x20</samp>.</li>
 <li>If <samp>firstByte &amp; 0x1F</samp> is:  <dl>
 <dt>0..23, inclusive</dt>
-<dd style="margin-left: 8">Return <samp>firstByte</samp>.</dd>
+<dd style="margin-left: 8">Return (<samp>type</samp>, <samp>firstByte &amp; 0x1F</samp>).</dd>
 <dt>24</dt>
 <dd style="margin-left: 8">Let <samp>content</samp> be the result of reading 1 byte from the stream. If <samp>content</samp> is an error or is less than 24, return an error.</dd>
 <dt>25</dt>
@@ -733,10 +767,11 @@ response = [headers: bstr .cbor headers, payload: bstr]
 <dt>27</dt>
 <dd style="margin-left: 8">Let <samp>content</samp> be the result of reading 8 bytes from the stream. If <samp>content</samp> is an error or its first four bytes are 0, return an error.</dd>
 <dt>28..31, inclusive</dt>
-<dd style="margin-left: 8">Return an error.</dd>
+<dd style="margin-left: 8">Return an error.  Note: This intentionally does not support indefinite-length items.</dd>
 </dl>
 </li>
-<li>Return the big-endian integer encoded in <samp>content</samp>.</li>
+<li>Let <samp>argument</samp> be the big-endian integer encoded in <samp>content</samp>.</li>
+<li>Return (<samp>type</samp>, <samp>argument</samp>).</li>
 </ol>
 <h1 id="rfc.section.3.5">
 <a href="#rfc.section.3.5">3.5.</a> <a href="#cbor-headers" id="cbor-headers">Interpreting CBOR HTTP headers</a>
@@ -850,7 +885,7 @@ headers = {* bstr =&gt; bstr}
 <p id="rfc.section.6.2.p.5">Requirements on new assignments:</p>
 <p id="rfc.section.6.2.p.6">Section Names MUST be encoded in UTF-8.</p>
 <p id="rfc.section.6.2.p.7">Assignments must specify whether the section is parsed during <a href="#load-metadata" class="xref">Load a bundle&#8217;s metadata</a> (Metadata=Yes) or not (Metadata=No).</p>
-<p id="rfc.section.6.2.p.8">The section&#8217;s specification can use the bytes making up the section, the bundle&#8217;s stream (<a href="#stream-operations" class="xref">Section 2.1</a>), the <samp>sectionOffsets</samp> CBOR item (<a href="#load-metadata" class="xref">Section 3.2</a>), and the offset within the stream where sections start, as input, and MUST say if an error is returned, and otherwise what items, if any, are added to the map that <a href="#load-metadata" class="xref">Section 3.2</a> returns. A section&#8217;s specification MAY say that, if it is present, another section is not processed.</p>
+<p id="rfc.section.6.2.p.8">The section&#8217;s specification can use the bytes making up the section, the bundle&#8217;s stream (<a href="#stream-operations" class="xref">Section 2.1</a>), and the <samp>sectionOffsets</samp> map (<a href="#load-metadata" class="xref">Section 3.2</a>), as input, and MUST say if an error is returned, and otherwise what items, if any, are added to the map that <a href="#load-metadata" class="xref">Section 3.2</a> returns. A section&#8217;s specification MAY say that, if it is present, another section is not processed.</p>
 <h1 id="rfc.references">
 <a href="#rfc.references">7.</a> References</h1>
 <h1 id="rfc.references.1">
@@ -937,8 +972,17 @@ headers = {* bstr =&gt; bstr}
 </tr>
 </tbody></table>
 <h1 id="rfc.appendix.A">
-<a href="#rfc.appendix.A">Appendix A.</a> <a href="#acknowledgements" id="acknowledgements">Acknowledgements</a>
+<a href="#rfc.appendix.A">Appendix A.</a> <a href="#change-log" id="change-log">Change Log</a>
 </h1>
+<p id="rfc.section.A.p.1">RFC EDITOR PLEASE DELETE THIS SECTION.</p>
+<p id="rfc.section.A.p.2">draft-01</p>
+<p></p>
+
+<ul><li>Order the index in the same order as the responses, and require responses to be sequential without gaps.</li></ul>
+<h1 id="rfc.appendix.B">
+<a href="#rfc.appendix.B">Appendix B.</a> <a href="#acknowledgements" id="acknowledgements">Acknowledgements</a>
+</h1>
+<p id="rfc.section.B.p.1">Thanks to the Chrome loading team, especially Kinuko Yasuda and Kouhei Ueno for making the format work well when streamed.</p>
 <h1 id="rfc.authors"><a href="#rfc.authors">Author's Address</a></h1>
 <div class="avoidbreak">
   <address class="vcard">

@@ -82,28 +82,28 @@ Table of Contents
      3.1.  Top-level structure . . . . . . . . . . . . . . . . . . .   5
      3.2.  Load a bundle's metadata  . . . . . . . . . . . . . . . .   6
        3.2.1.  Parsing the index section . . . . . . . . . . . . . .   8
-       3.2.2.  Parsing the manifest section  . . . . . . . . . . . .   9
-       3.2.3.  Parsing the critical section  . . . . . . . . . . . .  10
-       3.2.4.  The responses section . . . . . . . . . . . . . . . .  10
-       3.2.5.  Starting from the end . . . . . . . . . . . . . . . .  11
-     3.3.  Load a response from a bundle . . . . . . . . . . . . . .  12
-     3.4.  Parsing CBOR items  . . . . . . . . . . . . . . . . . . .  13
-       3.4.1.  Parse a known-length item . . . . . . . . . . . . . .  13
-       3.4.2.  Parsing variable-length data from a bytestring  . . .  14
-     3.5.  Interpreting CBOR HTTP headers  . . . . . . . . . . . . .  14
-   4.  Guidelines for bundle authors . . . . . . . . . . . . . . . .  15
-   5.  Security Considerations . . . . . . . . . . . . . . . . . . .  16
-   6.  IANA considerations . . . . . . . . . . . . . . . . . . . . .  16
-     6.1.  Internet Media Type Registration  . . . . . . . . . . . .  16
-     6.2.  Web Bundle Section Name Registry  . . . . . . . . . . . .  17
-   7.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  18
-     7.1.  Normative References  . . . . . . . . . . . . . . . . . .  18
-     7.2.  Informative References  . . . . . . . . . . . . . . . . .  19
-     7.3.  URIs  . . . . . . . . . . . . . . . . . . . . . . . . . .  19
-   Appendix A.  Acknowledgements . . . . . . . . . . . . . . . . . .  19
-   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  19
-
-
+       3.2.2.  Parsing the manifest section  . . . . . . . . . . . .  10
+       3.2.3.  Parsing the critical section  . . . . . . . . . . . .  11
+       3.2.4.  The responses section . . . . . . . . . . . . . . . .  11
+       3.2.5.  Starting from the end . . . . . . . . . . . . . . . .  12
+     3.3.  Load a response from a bundle . . . . . . . . . . . . . .  13
+     3.4.  Parsing CBOR items  . . . . . . . . . . . . . . . . . . .  14
+       3.4.1.  Parse a known-length item . . . . . . . . . . . . . .  14
+       3.4.2.  Parsing variable-length data from a bytestring  . . .  15
+       3.4.3.  Parsing the type and argument of a CBOR item  . . . .  15
+     3.5.  Interpreting CBOR HTTP headers  . . . . . . . . . . . . .  16
+   4.  Guidelines for bundle authors . . . . . . . . . . . . . . . .  17
+   5.  Security Considerations . . . . . . . . . . . . . . . . . . .  17
+   6.  IANA considerations . . . . . . . . . . . . . . . . . . . . .  17
+     6.1.  Internet Media Type Registration  . . . . . . . . . . . .  17
+     6.2.  Web Bundle Section Name Registry  . . . . . . . . . . . .  18
+   7.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  19
+     7.1.  Normative References  . . . . . . . . . . . . . . . . . .  19
+     7.2.  Informative References  . . . . . . . . . . . . . . . . .  20
+     7.3.  URIs  . . . . . . . . . . . . . . . . . . . . . . . . . .  21
+   Appendix A.  Change Log . . . . . . . . . . . . . . . . . . . . .  21
+   Appendix B.  Acknowledgements . . . . . . . . . . . . . . . . . .  21
+   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  21
 
 
 
@@ -289,38 +289,31 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
    necessary, these sections can be marked "critical" (Section 3.2.3) to
    prevent older parsers from using the rest of the bundle incorrectly.
 
-   The bundle is roughly a CBOR item ([I-D.ietf-cbor-7049bis]) with the
-   following CDDL ([I-D.ietf-cbor-cddl]) schema, but bundle parsers are
-   required to successfully parse some byte strings that aren't valid
-   CBOR.  For example, sections might have padding between them, or even
-   overlap, as long as the embedded relative offsets cause the parsing
-   algorithms in this specification to return data.
+   The bundle is a CBOR item ([I-D.ietf-cbor-7049bis]) with the
+   following CDDL ([I-D.ietf-cbor-cddl]) schema:
 
-   webbundle = [
-     ; &#127760;&#128230; in UTF-8.
-     magic: h'F0 9F 8C 90 F0 9F 93 A6',
-     section-offsets: bytes .cbor {* ($section-name .within tstr) =>
-                                     [ offset: uint, length: uint] },
-     sections: [* $section ],
-     length: bytes .size 8,  ; Big-endian number of bytes in the bundle.
-   ]
+ webbundle = [
+   ; &#127760;&#128230; in UTF-8.
+   magic: h'F0 9F 8C 90 F0 9F 93 A6',
+   section-lengths: bytes .cbor [* (section-name: tstr, length: uint) ],
+   sections: [* any ],
+   length: bytes .size 8,  ; Big-endian number of bytes in the bundle.
+ ]
 
-   $section-name /= "index" / "manifest" / "critical" / "responses"
+ $section-name /= "index" / "manifest" / "critical" / "responses"
 
-   $section /= index / manifest / critical / responses
+ $section /= index / manifest / critical / responses
 
-   responses = [*response]
+ responses = [*response]
 
 
 3.2.  Load a bundle's metadata
 
    A bundle holds a series of sections, which can be accessed randomly
-   using the information in the "section-offset" CBOR item:
+   using the information in the "section-lengths" CBOR item, which holds
+   a list of alternating section names and section lengths:
 
-   section-offsets = {* tstr => [ offset: uint, length: uint] },
-
-   Offsets in this item are relative to the _end_ of the section-offset
-   item.
+   section-lengths = [* (section-name: tstr, length: uint) ],
 
    To implement Section 2.2, the parser MUST run the following steps,
    taking the "stream" as input.
@@ -330,6 +323,13 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
 
    2.   If reading 10 bytes from "stream" returns an error or doesn't
         return the bytes with hex encoding "84 48 F0 9F 8C 90 F0 9F 93
+        A6" (the CBOR encoding of the 4-item array initial byte and
+        8-byte bytestring initial byte, followed by &#127760;&#128230;
+        in UTF-8), return an error.
+
+   3.   Let "sectionLengthsLength" be the result of getting the length
+        of the CBOR bytestring header from "stream" (Section 3.4.2).  If
+        this is an error, return that error.
 
 
 
@@ -338,53 +338,53 @@ Yasskin                 Expires December 24, 2018               [Page 6]
 Internet-Draft           Bundled HTTP Exchanges                June 2018
 
 
-        A6" (the CBOR encoding of the 4-item array initial byte and
-        8-byte bytestring initial byte, followed by &#127760;&#128230;
-        in UTF-8), return an error.
+   4.   If "sectionLengthsLength" is TBD or greater, return an error.
 
-   3.   Let "sectionOffsetsLength" be the result of getting the length
-        of the CBOR bytestring header from "stream" (Section 3.4.2).  If
-        this is an error, return that error.
+   5.   Let "sectionLengthsBytes" be the result of reading
+        "sectionLengthsLength" bytes from "stream".  If
+        "sectionLengthsBytes" is an error, return that error.
 
-   4.   If "sectionOffsetsLength" is TBD or greater, return an error.
+   6.   Let "sectionLengths" be the result of parsing one CBOR item
+        (Section 3.4) from "sectionLengthsBytes", matching the section-
+        lengths rule in the CDDL ([I-D.ietf-cbor-cddl]) above.  If
+        "sectionLengths" is an error, return an error.
 
-   5.   Let "sectionOffsetsBytes" be the result of reading
-        "sectionOffsetsLength" bytes from "stream".  If
-        "sectionOffsetsBytes" is an error, return that error.
+   7.   Let ("sectionsType", "numSections") be the result of parsing the
+        type and argument of a CBOR item from "stream" (Section 3.4.3).
 
-   6.   Let "sectionOffsets" be the result of parsing one CBOR item
-        (Section 3.4) from "sectionOffsetsBytes", matching the section-
-        offsets rule in the CDDL ([I-D.ietf-cbor-cddl]) above.  If
-        "sectionOffsets" is an error, return an error.
+   8.   If "sectionsType" is not "4" (a CBOR array) or "numSections" is
+        not half of the length of "sectionLengths", return an error.
 
-   7.   Let "sectionsStart" be the current offset within "stream".  For
-        example, if "sectionOffsetsLength" were 52, "sectionsStart"
-        would be 64.
+   9.   Let "sectionsStart" be the current offset within "stream".
 
-   8.   Let "knownSections" be the subset of the Section 6.2 that this
+        For example, if "sectionLengthsLength" were 52 and
+        "sectionLengths" contained 4 items (2 sections), "sectionsStart"
+        would be 65 (10 initial bytes + a 2-byte bytestring header to
+        describe a 52-byte bytestring + 52 bytes of section lengths + a
+        1-byte array header for the 2 sections).
+
+   10.  Let "knownSections" be the subset of the Section 6.2 that this
         client has implemented.
 
-   9.   Let "ignoredSections" be an empty set.
+   11.  Let "ignoredSections" be an empty set.
 
-   10.  For each ""name"" key in "sectionOffsets", if ""name""'s
-        specification in "knownSections" says not to process other
-        sections, add those sections' names to "ignoredSections".
+   12.  Let "sectionOffsets" be an empty map ([INFRA]) from section
+        names to (offset, length) pairs.  These offsets are relative to
+        the start of "stream".
 
-        Note: The "ignoredSections" enables sections that supercede
-        other sections to be introduced in the future.  Implementations
-        that don't implement any such sections are free to omit the
-        relevant steps.
+   13.  Let "currentOffset" be "sectionsStart".
 
-   11.  Let "metadata" be an empty map ([INFRA]).
+   14.  For each (""name"", "length") pair of adjacent elements in
+        "sectionLengths":
 
-   12.  For each (""name"", ["offset", "length"]) triple in
-        "sectionOffsets":
+        1.  If ""name""'s specification in "knownSections" says not to
+            process other sections, add those sections' names to
+            "ignoredSections".
 
-        1.  If ""name"" isn't in "knownSections", continue to the next
-            triple.
-
-        2.  If ""name""'s Metadata field (Section 6.2) is "No", continue
-            to the next triple.
+            Note: The "ignoredSections" enables sections that supercede
+            other sections to be introduced in the future.
+            Implementations that don't implement any such sections are
+            free to omit the relevant steps.
 
 
 
@@ -394,11 +394,33 @@ Yasskin                 Expires December 24, 2018               [Page 7]
 Internet-Draft           Bundled HTTP Exchanges                June 2018
 
 
+        2.  If "sectionOffsets["name"]" exists, return an error.  That
+            is, duplicate sections are forbidden.
+
+        3.  Set "sectionOffsets["name"]" to ("currentOffset", "length").
+
+        4.  Set "currentOffset" to "currentOffset + length".
+
+   15.  If the "responses" section is not last in "sectionLengths",
+        return an error.  This allows a streaming parser to assume that
+        it'll know the requests by the time their responses arrive.
+
+   16.  Let "metadata" be an empty map ([INFRA]).
+
+   17.  For each ""name"" \u002D-> ("offset", "length") triple in
+        "sectionOffsets":
+
+        1.  If ""name"" isn't in "knownSections", continue to the next
+            triple.
+
+        2.  If ""name""'s Metadata field (Section 6.2) is "No", continue
+            to the next triple.
+
         3.  If ""name"" is in "ignoredSections", continue to the next
             triple.
 
-        4.  Seek to offset "sectionsStart + offset" in "stream".  If
-            this fails, return an error.
+        4.  Seek to offset "offset" in "stream".  If this fails, return
+            an error.
 
         5.  Let "sectionContents" be the result of reading "length"
             bytes from "stream".  If "sectionContents" is an error,
@@ -406,42 +428,20 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
 
         6.  Follow ""name""'s specification from "knownSections" to
             process the section, passing "sectionContents", "stream",
-            "sectionOffsets", "sectionsStart", and "metadata".  If this
-            returns an error, return it.
+            "sectionOffsets", and "metadata".  If this returns an error,
+            return it.
 
-   13.  If "metadata" doesn't have entries with keys "requests" and
+   18.  If "metadata" doesn't have entries with keys "requests" and
         "manifest", return an error.
 
-   14.  Return "metadata".
+   19.  Return "metadata".
 
 3.2.1.  Parsing the index section
 
    The "index" section defines the set of HTTP requests in the bundle
-   and identifies their locations in the "responses" section.
-
-   index = {* headers => [ offset: uint,
-                           length: uint] }
-
-   To parse the index section, given its "sectionContents", the
-   "sectionsStart" offset, the "sectionOffsets" CBOR item, and the
-   "metadata" map to fill in, the parser MUST do the following:
-
-   1.  Let "index" be the result of parsing "sectionContents" as a CBOR
-       item matching the "index" rule in the above CDDL (Section 3.4).
-       If "index" is an error, return an error.
-
-   2.  Let "requests" be an initially-empty map ([INFRA]) from HTTP
-       requests ([FETCH]) to structs ([INFRA]) with items named "offset"
-       and "length".
-
-   3.  For each ("cbor-http-request", ["offset", "length"]) triple in
-       "index":
-
-       1.  Let ("headers", "pseudos") be the result of converting "cbor-
-           http-request" to a header list and pseudoheaders using the
-           algorithm in Section 3.5.  If this returns an error, return
-           that error.
-
+   and identifies their locations in the "responses" section.  It
+   consists of a sequence of alternating request headers and response
+   lengths:
 
 
 
@@ -450,46 +450,102 @@ Yasskin                 Expires December 24, 2018               [Page 8]
 Internet-Draft           Bundled HTTP Exchanges                June 2018
 
 
-       2.  If "pseudos" does not have keys named ':method' and ':url',
-           or its size isn't 2, return an error.
+   index = [* (headers, length: uint) ]
 
-       3.  If "pseudos[':method']" is not 'GET', return an error.
+   To parse the index section, given its "sectionContents", the
+   "sectionOffsets" map, and the "metadata" map to fill in, the parser
+   MUST do the following:
 
-           Note: This could probably support any cacheable
-           (Section 4.2.3) of [RFC7231]) and safe (Section 4.2.1 of
-           [RFC7231]) method, matching PUSH_PROMISE (Section 8.2 of
-           [RFC7540]), but today that's only HEAD and GET, and HEAD can
-           be served as a transformation of GET, so this version of the
-           specification keeps the method simple.
+   1.  Let "index" be the result of parsing "sectionContents" as a CBOR
+       item matching the "index" rule in the above CDDL (Section 3.4).
+       If "index" is an error, return an error.
 
-       4.  Let "parsedUrl" be the result of parsing ([URL])
-           "pseudos[':url']" with no base URL.
+   2.  Check that the responses array has the right number of items:
 
-       5.  If "parsedUrl" is a failure, its fragment is not null, or it
-           includes credentials, return an error.
+       1.  Seek to offset "sectionOffsets["responses"].offset" in
+           "stream".  If this fails, return an error.
 
-       6.  Let "http-request" be a new request ([FETCH]) whose:
+       2.  Let ("responsesType", "numResponses") be the result of
+           parsing the type and argument of a CBOR item from the stream
+           (Section 3.4.3).  If this returns an error, return that
+           error.
 
-           +  method is "pseudos[':method']",
+       3.  If "responsesType" is not "4" (a CBOR array) or
+           "numResponses" is not half of the length of "index", return
+           an error.
 
-           +  url is "parsedUrl",
+   3.  Let "currentOffset" be the current offset within "stream" minus
+       "sectionOffsets["responses"].offset".  That is, the length of the
+       array header for the responses array.  This will track the offset
+       of the current response relative to the start of the responses
+       array.
 
-           +  header list is "headers", and
+   4.  Let "requests" be an initially-empty map ([INFRA]) from HTTP
+       requests ([FETCH]) to structs ([INFRA]) with items named "offset"
+       and "length".
 
-           +  client is null.
+   5.  For each ("cbor-http-request", "length") pair of adjacent
+       elements in "index":
 
-       7.  Let "streamOffset" be "sectionsStart +
-           sectionOffsets["responses"].offset + offset".  That is,
-           offsets in the index are relative to the start of the
-           "responses" section.
+       1.   Let ("headers", "pseudos") be the result of converting
+            "cbor-http-request" to a header list and pseudoheaders using
+            the algorithm in Section 3.5.  If this returns an error,
+            return that error.
 
-       8.  If "offset + length" is greater than
-           "sectionOffsets["responses"].length", return an error.
+       2.   If "pseudos" does not have keys named ':method' and ':url',
+            or its size isn't 2, return an error.
 
-       9.  Set "requests"["http-request"] to a struct whose "offset"
-           item is "streamOffset" and whose "length" item is "length".
+       3.   If "pseudos[':method']" is not 'GET', return an error.
 
-   4.  Set "metadata["requests"]" to "requests".
+
+
+
+
+Yasskin                 Expires December 24, 2018               [Page 9]
+
+Internet-Draft           Bundled HTTP Exchanges                June 2018
+
+
+            Note: This could probably support any cacheable
+            (Section 4.2.3) of [RFC7231]) and safe (Section 4.2.1 of
+            [RFC7231]) method, matching PUSH_PROMISE (Section 8.2 of
+            [RFC7540]), but today that's only HEAD and GET, and HEAD can
+            be served as a transformation of GET, so this version of the
+            specification keeps the method simple.
+
+       4.   Let "parsedUrl" be the result of parsing ([URL])
+            "pseudos[':url']" with no base URL.
+
+       5.   If "parsedUrl" is a failure, its fragment is not null, or it
+            includes credentials, return an error.
+
+       6.   Let "http-request" be a new request ([FETCH]) whose:
+
+            +  method is "pseudos[':method']",
+
+            +  url is "parsedUrl",
+
+            +  header list is "headers", and
+
+            +  client is null.
+
+       7.   Let "responseOffset" be "sectionOffsets["responses"].offset
+            + currentOffset".  This is relative to the start of the
+            stream.
+
+       8.   If "currentOffset + length" is greater than
+            "sectionOffsets["responses"].length", return an error.
+
+       9.   If "requests"["http-request"] exists, return an error.  That
+            is, duplicate requests are forbidden.
+
+       10.  Set "requests"["http-request"] to a struct whose "offset"
+            item is "responseOffset" and whose "length" item is
+            "length".
+
+       11.  Set "currentOffset" to "currentOffset + length".
+
+   6.  Set "metadata["requests"]" to "requests".
 
 3.2.2.  Parsing the manifest section
 
@@ -501,7 +557,7 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
 
 
 
-Yasskin                 Expires December 24, 2018               [Page 9]
+Yasskin                 Expires December 24, 2018              [Page 10]
 
 Internet-Draft           Bundled HTTP Exchanges                June 2018
 
@@ -557,7 +613,7 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
 
 
 
-Yasskin                 Expires December 24, 2018              [Page 10]
+Yasskin                 Expires December 24, 2018              [Page 11]
 
 Internet-Draft           Bundled HTTP Exchanges                June 2018
 
@@ -613,7 +669,7 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
 
 
 
-Yasskin                 Expires December 24, 2018              [Page 11]
+Yasskin                 Expires December 24, 2018              [Page 12]
 
 Internet-Draft           Bundled HTTP Exchanges                June 2018
 
@@ -669,7 +725,7 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
 
 
 
-Yasskin                 Expires December 24, 2018              [Page 12]
+Yasskin                 Expires December 24, 2018              [Page 13]
 
 Internet-Draft           Bundled HTTP Exchanges                June 2018
 
@@ -725,7 +781,7 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
 
 
 
-Yasskin                 Expires December 24, 2018              [Page 13]
+Yasskin                 Expires December 24, 2018              [Page 14]
 
 Internet-Draft           Bundled HTTP Exchanges                June 2018
 
@@ -740,15 +796,30 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
    To get the length of a CBOR bytestring header from a bundle's stream,
    the parser MUST do the following:
 
+   1.  Let ("type", "argument") be the result of parsing the type and
+       argument of a CBOR item from the stream (Section 3.4.3).  If this
+       returns an error, return that error.
+
+   2.  If "type" is not "2", the item is not a bytestring.  Return an
+       error.
+
+   3.  Return "argument".
+
+3.4.3.  Parsing the type and argument of a CBOR item
+
+   To parse the type and argument of a CBOR item from a bundle's stream,
+   the parser MUST do the following.  This algorithm returns a pair of
+   the CBOR major type 0-7 inclusive, and a 64-bit integral argument for
+   the CBOR item:
+
    1.  Let "firstByte" be the result of reading 1 byte from the stream.
        If "firstByte" is an error, return that error.
 
-   2.  If "firstByte & 0xE0" is not "0x40", the item is not a
-       bytestring.  Return an error.
+   2.  Let "type" be "(firstByte & 0xE0) / 0x20".
 
    3.  If "firstByte & 0x1F" is:
 
-       0..23, inclusive  Return "firstByte".
+       0..23, inclusive  Return ("type", "firstByte & 0x1F").
 
        24 Let "content" be the result of reading 1 byte from the stream.
           If "content" is an error or is less than 24, return an error.
@@ -761,13 +832,26 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
           stream.  If "content" is an error or its first two bytes are
           0, return an error.
 
+
+
+
+
+
+Yasskin                 Expires December 24, 2018              [Page 15]
+
+Internet-Draft           Bundled HTTP Exchanges                June 2018
+
+
        27 Let "content" be the result of reading 8 bytes from the
           stream.  If "content" is an error or its first four bytes are
           0, return an error.
 
-       28..31, inclusive  Return an error.
+       28..31, inclusive  Return an error.  Note: This intentionally
+          does not support indefinite-length items.
 
-   4.  Return the big-endian integer encoded in "content".
+   4.  Let "argument" be the big-endian integer encoded in "content".
+
+   5.  Return ("type", "argument").
 
 3.5.  Interpreting CBOR HTTP headers
 
@@ -778,13 +862,6 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
 
    Pseudo-headers starting with a ":" provide the non-header information
    needed to create a request or response as appropriate
-
-
-
-Yasskin                 Expires December 24, 2018              [Page 14]
-
-Internet-Draft           Bundled HTTP Exchanges                June 2018
-
 
    To convert a CBOR item "item" into a [FETCH] header list and
    pseudoheaders, parsers MUST do the following:
@@ -814,6 +891,13 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
        3.  If "name" or "value" doesn't satisfy the requirements for a
            header in [FETCH], return an error.
 
+
+
+Yasskin                 Expires December 24, 2018              [Page 16]
+
+Internet-Draft           Bundled HTTP Exchanges                June 2018
+
+
        4.  Assert: "headers" does not contain ([FETCH]) "name", because
            CBOR maps cannot contain duplicate keys and an earlier step
            rejected upper-case bytes.
@@ -831,16 +915,6 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
    Bundles SHOULD consist of a single CBOR item satisfying the core
    canonicalization requirements (Section 3.4) and matching the
    "webbundle" CDDL rule in Section 3.1.
-
-
-
-
-
-
-Yasskin                 Expires December 24, 2018              [Page 15]
-
-Internet-Draft           Bundled HTTP Exchanges                June 2018
-
 
 5.  Security Considerations
 
@@ -872,6 +946,14 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
 
    o  Encoding considerations: binary
 
+
+
+
+Yasskin                 Expires December 24, 2018              [Page 17]
+
+Internet-Draft           Bundled HTTP Exchanges                June 2018
+
+
    o  Security considerations: See Section 5 of this document.
 
    o  Interoperability considerations: N/A
@@ -890,13 +972,6 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
       *  Magic number(s): 84 48 F0 9F 8C 90 F0 9F 93 A6
 
       *  File extension(s): .wbn
-
-
-
-Yasskin                 Expires December 24, 2018              [Page 16]
-
-Internet-Draft           Bundled HTTP Exchanges                June 2018
-
 
       *  Macintosh file type code(s): N/A
 
@@ -924,6 +999,17 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
 
    Initial Assignments:
 
+
+
+
+
+
+
+Yasskin                 Expires December 24, 2018              [Page 18]
+
+Internet-Draft           Bundled HTTP Exchanges                June 2018
+
+
                 +--------------+---------------+----------+
                 | Section Name | Specification | Metadata |
                 +--------------+---------------+----------+
@@ -944,20 +1030,11 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
    Load a bundle's metadata (Metadata=Yes) or not (Metadata=No).
 
    The section's specification can use the bytes making up the section,
-   the bundle's stream (Section 2.1), the "sectionOffsets" CBOR item
-   (Section 3.2), and the offset within the stream where sections start,
-
-
-
-Yasskin                 Expires December 24, 2018              [Page 17]
-
-Internet-Draft           Bundled HTTP Exchanges                June 2018
-
-
-   as input, and MUST say if an error is returned, and otherwise what
-   items, if any, are added to the map that Section 3.2 returns.  A
-   section's specification MAY say that, if it is present, another
-   section is not processed.
+   the bundle's stream (Section 2.1), and the "sectionOffsets" map
+   (Section 3.2), as input, and MUST say if an error is returned, and
+   otherwise what items, if any, are added to the map that Section 3.2
+   returns.  A section's specification MAY say that, if it is present,
+   another section is not processed.
 
 7.  References
 
@@ -976,6 +1053,18 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
               Bormann, C. and P. Hoffman, "Concise Binary Object
               Representation (CBOR)", draft-ietf-cbor-7049bis-02 (work
               in progress), March 2018.
+
+
+
+
+
+
+
+
+Yasskin                 Expires December 24, 2018              [Page 19]
+
+Internet-Draft           Bundled HTTP Exchanges                June 2018
+
 
    [I-D.ietf-cbor-cddl]
               Birkholz, H., Vigano, C., and C. Bormann, "Concise data
@@ -1001,15 +1090,6 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
               DOI 10.17487/RFC7540, May 2015,
               <https://www.rfc-editor.org/info/rfc7540>.
 
-
-
-
-
-Yasskin                 Expires December 24, 2018              [Page 18]
-
-Internet-Draft           Bundled HTTP Exchanges                June 2018
-
-
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/info/rfc8174>.
@@ -1032,6 +1112,16 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
               Packages", draft-yasskin-webpackage-use-cases-01 (work in
               progress), March 2018.
 
+
+
+
+
+
+Yasskin                 Expires December 24, 2018              [Page 20]
+
+Internet-Draft           Bundled HTTP Exchanges                June 2018
+
+
    [RFC6265]  Barth, A., "HTTP State Management Mechanism", RFC 6265,
               DOI 10.17487/RFC6265, April 2011,
               <https://www.rfc-editor.org/info/rfc6265>.
@@ -1051,20 +1141,21 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
 
    [4] mailto:iesg@ietf.org
 
-Appendix A.  Acknowledgements
+Appendix A.  Change Log
+
+   RFC EDITOR PLEASE DELETE THIS SECTION.
+
+   draft-01
+
+   o  Order the index in the same order as the responses, and require
+      responses to be sequential without gaps.
+
+Appendix B.  Acknowledgements
+
+   Thanks to the Chrome loading team, especially Kinuko Yasuda and
+   Kouhei Ueno for making the format work well when streamed.
 
 Author's Address
-
-
-
-
-
-
-
-Yasskin                 Expires December 24, 2018              [Page 19]
-
-Internet-Draft           Bundled HTTP Exchanges                June 2018
-
 
    Jeffrey Yasskin
    Google
@@ -1082,39 +1173,4 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Yasskin                 Expires December 24, 2018              [Page 20]
+Yasskin                 Expires December 24, 2018              [Page 21]
