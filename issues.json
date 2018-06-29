@@ -1,6 +1,204 @@
 [
 
   {
+    "url": "https://api.github.com/repos/WICG/webpackage/issues/239",
+    "repository_url": "https://api.github.com/repos/WICG/webpackage",
+    "labels_url": "https://api.github.com/repos/WICG/webpackage/issues/239/labels{/name}",
+    "comments_url": "https://api.github.com/repos/WICG/webpackage/issues/239/comments",
+    "events_url": "https://api.github.com/repos/WICG/webpackage/issues/239/events",
+    "html_url": "https://github.com/WICG/webpackage/pull/239",
+    "id": 336888627,
+    "node_id": "MDExOlB1bGxSZXF1ZXN0MTk4MjMzNDAw",
+    "number": 239,
+    "title": "go/bundle: add README.md",
+    "user": {
+      "login": "nyaxt",
+      "id": 18355,
+      "node_id": "MDQ6VXNlcjE4MzU1",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/18355?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/nyaxt",
+      "html_url": "https://github.com/nyaxt",
+      "followers_url": "https://api.github.com/users/nyaxt/followers",
+      "following_url": "https://api.github.com/users/nyaxt/following{/other_user}",
+      "gists_url": "https://api.github.com/users/nyaxt/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/nyaxt/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/nyaxt/subscriptions",
+      "organizations_url": "https://api.github.com/users/nyaxt/orgs",
+      "repos_url": "https://api.github.com/users/nyaxt/repos",
+      "events_url": "https://api.github.com/users/nyaxt/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/nyaxt/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+
+    ],
+    "state": "closed",
+    "locked": false,
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "comments": 1,
+    "created_at": "2018-06-29T07:13:03Z",
+    "updated_at": "2018-06-29T11:18:27Z",
+    "closed_at": "2018-06-29T11:18:27Z",
+    "author_association": "COLLABORATOR",
+    "pull_request": {
+      "url": "https://api.github.com/repos/WICG/webpackage/pulls/239",
+      "html_url": "https://github.com/WICG/webpackage/pull/239",
+      "diff_url": "https://github.com/WICG/webpackage/pull/239.diff",
+      "patch_url": "https://github.com/WICG/webpackage/pull/239.patch"
+    },
+    "body": ""
+  },
+  {
+    "url": "https://api.github.com/repos/WICG/webpackage/issues/238",
+    "repository_url": "https://api.github.com/repos/WICG/webpackage",
+    "labels_url": "https://api.github.com/repos/WICG/webpackage/issues/238/labels{/name}",
+    "comments_url": "https://api.github.com/repos/WICG/webpackage/issues/238/comments",
+    "events_url": "https://api.github.com/repos/WICG/webpackage/issues/238/events",
+    "html_url": "https://github.com/WICG/webpackage/issues/238",
+    "id": 336839129,
+    "node_id": "MDU6SXNzdWUzMzY4MzkxMjk=",
+    "number": 238,
+    "title": "Critical-ness of CanSignHttpExchanges extension",
+    "user": {
+      "login": "irori",
+      "id": 80796,
+      "node_id": "MDQ6VXNlcjgwNzk2",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/80796?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/irori",
+      "html_url": "https://github.com/irori",
+      "followers_url": "https://api.github.com/users/irori/followers",
+      "following_url": "https://api.github.com/users/irori/following{/other_user}",
+      "gists_url": "https://api.github.com/users/irori/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/irori/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/irori/subscriptions",
+      "organizations_url": "https://api.github.com/users/irori/orgs",
+      "repos_url": "https://api.github.com/users/irori/repos",
+      "events_url": "https://api.github.com/users/irori/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/irori/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+
+    ],
+    "state": "open",
+    "locked": false,
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "comments": 0,
+    "created_at": "2018-06-29T02:13:37Z",
+    "updated_at": "2018-06-29T02:13:37Z",
+    "closed_at": null,
+    "author_association": "COLLABORATOR",
+    "body": "This came up in https://crrev.com/c/1111485.\r\n\r\nhttps://wicg.github.io/webpackage/draft-yasskin-http-origin-signed-responses.html#cross-origin-cert-req\r\n\r\n> Conforming CAs MUST mark this extension as critical, and clients MUST NOT accept certificates with this extension in TLS connections (Section 4.4.2.2 of [I-D.ietf-tls-tls13]). \r\n\r\nIn Chrome, certificate path building and verification is performed using underlying operating systems' API. So, if the CanSignHttpExchanges extension is marked as critical, the OS API will reject the cert, until the OS supports CanSignHttpExchanges extension.\r\n\r\nCan we revisit the critical-ness of this extension? What's the security implication of not marking it as critical?\r\n\r\ncc: @sleevi @jyasskin "
+  },
+  {
+    "url": "https://api.github.com/repos/WICG/webpackage/issues/237",
+    "repository_url": "https://api.github.com/repos/WICG/webpackage",
+    "labels_url": "https://api.github.com/repos/WICG/webpackage/issues/237/labels{/name}",
+    "comments_url": "https://api.github.com/repos/WICG/webpackage/issues/237/comments",
+    "events_url": "https://api.github.com/repos/WICG/webpackage/issues/237/events",
+    "html_url": "https://github.com/WICG/webpackage/issues/237",
+    "id": 336788901,
+    "node_id": "MDU6SXNzdWUzMzY3ODg5MDE=",
+    "number": 237,
+    "title": "Idea: use of jws in Signature header",
+    "user": {
+      "login": "ioggstream",
+      "id": 1140844,
+      "node_id": "MDQ6VXNlcjExNDA4NDQ=",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/1140844?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/ioggstream",
+      "html_url": "https://github.com/ioggstream",
+      "followers_url": "https://api.github.com/users/ioggstream/followers",
+      "following_url": "https://api.github.com/users/ioggstream/following{/other_user}",
+      "gists_url": "https://api.github.com/users/ioggstream/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/ioggstream/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/ioggstream/subscriptions",
+      "organizations_url": "https://api.github.com/users/ioggstream/orgs",
+      "repos_url": "https://api.github.com/users/ioggstream/repos",
+      "events_url": "https://api.github.com/users/ioggstream/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/ioggstream/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+
+    ],
+    "state": "open",
+    "locked": false,
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "comments": 1,
+    "created_at": "2018-06-28T21:36:45Z",
+    "updated_at": "2018-06-28T22:26:35Z",
+    "closed_at": null,
+    "author_association": "NONE",
+    "body": "What do you think about using a JWS inside a signature headers instead of redefining a Subset of jws claims?\r\n\r\nWhich is the Right Place for Such a discussion?\r\n"
+  },
+  {
+    "url": "https://api.github.com/repos/WICG/webpackage/issues/236",
+    "repository_url": "https://api.github.com/repos/WICG/webpackage",
+    "labels_url": "https://api.github.com/repos/WICG/webpackage/issues/236/labels{/name}",
+    "comments_url": "https://api.github.com/repos/WICG/webpackage/issues/236/comments",
+    "events_url": "https://api.github.com/repos/WICG/webpackage/issues/236/events",
+    "html_url": "https://github.com/WICG/webpackage/issues/236",
+    "id": 336780191,
+    "node_id": "MDU6SXNzdWUzMzY3ODAxOTE=",
+    "number": 236,
+    "title": "Include a list of used permissions in signed part of bundles",
+    "user": {
+      "login": "jyasskin",
+      "id": 83420,
+      "node_id": "MDQ6VXNlcjgzNDIw",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/83420?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/jyasskin",
+      "html_url": "https://github.com/jyasskin",
+      "followers_url": "https://api.github.com/users/jyasskin/followers",
+      "following_url": "https://api.github.com/users/jyasskin/following{/other_user}",
+      "gists_url": "https://api.github.com/users/jyasskin/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/jyasskin/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/jyasskin/subscriptions",
+      "organizations_url": "https://api.github.com/users/jyasskin/orgs",
+      "repos_url": "https://api.github.com/users/jyasskin/repos",
+      "events_url": "https://api.github.com/users/jyasskin/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/jyasskin/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+
+    ],
+    "state": "open",
+    "locked": false,
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "comments": 0,
+    "created_at": "2018-06-28T21:06:38Z",
+    "updated_at": "2018-06-28T21:06:38Z",
+    "closed_at": null,
+    "author_association": "COLLABORATOR",
+    "body": "@slightlyoff mentioned that we might want to have [third-party security reviewers](https://tools.ietf.org/html/draft-yasskin-webpackage-use-cases-01#section-2.2.3) check more or less stringently depending on which permissions an app uses. To do that, they'll need to be able to sign over the permissions they've checked for."
+  },
+  {
     "url": "https://api.github.com/repos/WICG/webpackage/issues/235",
     "repository_url": "https://api.github.com/repos/WICG/webpackage",
     "labels_url": "https://api.github.com/repos/WICG/webpackage/issues/235/labels{/name}",
@@ -43,7 +241,7 @@
     "milestone": null,
     "comments": 0,
     "created_at": "2018-06-27T16:45:45Z",
-    "updated_at": "2018-06-28T01:12:50Z",
+    "updated_at": "2018-06-28T09:23:08Z",
     "closed_at": null,
     "author_association": "FIRST_TIME_CONTRIBUTOR",
     "pull_request": {
@@ -1402,7 +1600,10 @@
       "patch_url": "https://github.com/WICG/webpackage/pull/210.patch"
     },
     "body": "WebBundling format doesn't require the payload to be MI encoded. This PR splits the encoding of the payload, so that it is possible to create an exchange without MI encoding."
-  },
+  }
+
+,
+
   {
     "url": "https://api.github.com/repos/WICG/webpackage/issues/209",
     "repository_url": "https://api.github.com/repos/WICG/webpackage",
@@ -1612,10 +1813,7 @@
     "closed_at": null,
     "author_association": "NONE",
     "body": "1, navigate to https://example.com/a.sxg\r\n2, a.sxg is signed by https://example.net so browser display it as https://example.net\r\n3, clicking the link on https://example.net\r\n\r\nin request of 3, which origin should on referrer header example.com (actual) or example.net (display) ?\r\n(spec seems not mention this: https://wicg.github.io/webpackage/draft-yasskin-http-origin-signed-responses.html)"
-  }
-
-,
-
+  },
   {
     "url": "https://api.github.com/repos/WICG/webpackage/issues/205",
     "repository_url": "https://api.github.com/repos/WICG/webpackage",
@@ -3124,7 +3322,10 @@
       "patch_url": "https://github.com/WICG/webpackage/pull/180.patch"
     },
     "body": "Per davidben's advice, it's safer to make all similar signature formats\r\nthe same.\r\n\r\nSeparate from #179 since it sounds like you're advising this even if that doesn't go in.\r\n\r\n[Preview](https://jyasskin.github.io/webpackage/re-add-tls-padding/draft-yasskin-http-origin-signed-responses.html), [Diff](https://tools.ietf.org/rfcdiff?url1=https://wicg.github.io/webpackage/draft-yasskin-http-origin-signed-responses.txt&url2=https://jyasskin.github.io/webpackage/re-add-tls-padding/draft-yasskin-http-origin-signed-responses.txt)"
-  },
+  }
+
+,
+
   {
     "url": "https://api.github.com/repos/WICG/webpackage/issues/179",
     "repository_url": "https://api.github.com/repos/WICG/webpackage",
@@ -3328,10 +3529,7 @@
     "closed_at": null,
     "author_association": "COLLABORATOR",
     "body": "Various things in the ecosystem use symlinks, the behavior of symlinks in node and how HTTP redirects is not compatible per https://github.com/nodejs/modules/issues/62 . Could repurpose the `Location` header over `file:` but https://fetch.spec.whatwg.org/#scheme-fetch could be changed in a forwards incompatible way if we do that."
-  }
-
-,
-
+  },
   {
     "url": "https://api.github.com/repos/WICG/webpackage/issues/175",
     "repository_url": "https://api.github.com/repos/WICG/webpackage",
@@ -4888,7 +5086,10 @@
       "patch_url": "https://github.com/WICG/webpackage/pull/150.patch"
     },
     "body": "Found by @irori"
-  },
+  }
+
+,
+
   {
     "url": "https://api.github.com/repos/WICG/webpackage/issues/149",
     "repository_url": "https://api.github.com/repos/WICG/webpackage",
@@ -5092,10 +5293,7 @@
       "patch_url": "https://github.com/WICG/webpackage/pull/146.patch"
     },
     "body": "PTAL"
-  }
-
-,
-
+  },
   {
     "url": "https://api.github.com/repos/WICG/webpackage/issues/145",
     "repository_url": "https://api.github.com/repos/WICG/webpackage",
@@ -6554,7 +6752,10 @@
       "patch_url": "https://github.com/WICG/webpackage/pull/120.patch"
     },
     "body": "[Preview](https://jyasskin.github.io/webpackage/validity-url-lists/draft-yasskin-http-origin-signed-responses.html), [Diff](https://tools.ietf.org/rfcdiff?url1=https://wicg.github.io/webpackage/draft-yasskin-http-origin-signed-responses.txt&url2=https://jyasskin.github.io/webpackage/validity-url-lists/draft-yasskin-http-origin-signed-responses.txt)"
-  },
+  }
+
+,
+
   {
     "url": "https://api.github.com/repos/WICG/webpackage/issues/119",
     "repository_url": "https://api.github.com/repos/WICG/webpackage",
@@ -6764,10 +6965,7 @@
       "patch_url": "https://github.com/WICG/webpackage/pull/116.patch"
     },
     "body": "That draft splits the rsa_pss signature algorithm names to depend on the key's OID. I suspect all RSA keys in the wild use the rsaEncryption OID, so banning that (to avoid Bleichenbacher attacks) would be equivalent to banning RSA keys, but if not, maybe we could allow the RSASSA-PSS ones.\r\n\r\n@sleevi @davidben"
-  }
-
-,
-
+  },
   {
     "url": "https://api.github.com/repos/WICG/webpackage/issues/115",
     "repository_url": "https://api.github.com/repos/WICG/webpackage",
@@ -8111,7 +8309,10 @@
       "patch_url": "https://github.com/WICG/webpackage/pull/90.patch"
     },
     "body": "Preview at https://jyasskin.github.io/webpackage/demote-push-ergonomics/draft-yasskin-webpackage-use-cases.html#push-replacement\r\n\r\n@slightlyoff @dglazkov: I included this as a goal because y'all keep talking about it, but the PUSH experts like @yoavweiss and @igrigorik think we should just stop talking about it and rely on the other benefits instead, so here's a PR to demote it."
-  },
+  }
+
+,
+
   {
     "url": "https://api.github.com/repos/WICG/webpackage/issues/89",
     "repository_url": "https://api.github.com/repos/WICG/webpackage",
@@ -8321,10 +8522,7 @@
     "closed_at": null,
     "author_association": "NONE",
     "body": "Hello web packaging fans - \r\n\r\nWe're just cleaning up issues in possibly obsolete repos under [our organization](github.com/w3ctag/) (W3CTAG). One of these documents was the original packaging on the web which has since been obsoleted by your work. However there are many open issues on our document and before we summarily closed them we wanted to alert you to these issues in case you wanted to bring any of them over into your issues list. Can you please have a look through [these issues](https://github.com/w3ctag/packaging-on-the-web/issues) and leave a note on each issue to let us know that it's OK to close it? If you do take one of them on as an issue, please leave a note including a link to your new issue.\r\n\r\nThanks,\r\nDan Appelquist\r\nCo-Chair, W3CTAG"
-  }
-
-,
-
+  },
   {
     "url": "https://api.github.com/repos/WICG/webpackage/issues/85",
     "repository_url": "https://api.github.com/repos/WICG/webpackage",
@@ -9788,7 +9986,10 @@
       "patch_url": "https://github.com/WICG/webpackage/pull/60.patch"
     },
     "body": ""
-  },
+  }
+
+,
+
   {
     "url": "https://api.github.com/repos/WICG/webpackage/issues/59",
     "repository_url": "https://api.github.com/repos/WICG/webpackage",
@@ -9986,10 +10187,7 @@
       "patch_url": "https://github.com/WICG/webpackage/pull/56.patch"
     },
     "body": "I'll try to get some experienced Go programmers to review this and suggest other ways to improve readability, as requested in https://github.com/dimich-g/webpackage/pull/53#pullrequestreview-38510830."
-  }
-
-,
-
+  },
   {
     "url": "https://api.github.com/repos/WICG/webpackage/issues/55",
     "repository_url": "https://api.github.com/repos/WICG/webpackage",
@@ -11309,7 +11507,10 @@
     "closed_at": null,
     "author_association": "NONE",
     "body": "For subpackage that contains pages and resources downloaded from one domain, but not through pack file offered by that domain, we should not use http://foo.com/something.pack since it does not exist in the server. Probably we should use a generated name."
-  },
+  }
+
+,
+
   {
     "url": "https://api.github.com/repos/WICG/webpackage/issues/29",
     "repository_url": "https://api.github.com/repos/WICG/webpackage",
@@ -11513,10 +11714,7 @@
     "closed_at": null,
     "author_association": "COLLABORATOR",
     "body": "For some use cases like Source Maps packages may wish to not include the full asset within themselves but have another package containing debugging symbols. Currently fragment URLs are proposed for removal, however I don't see a clear way to have a situation like:\r\n\r\n```\r\nminified.webpackage\r\n\\- index.min.js\r\n```\r\n\r\n```\r\nsource-maps.webpackage\r\n\\- index.min.js.map\r\n```\r\n\r\nAnd have `index.min.js` able to point to `index.min.js.map`."
-  }
-
-,
-
+  },
   {
     "url": "https://api.github.com/repos/WICG/webpackage/issues/25",
     "repository_url": "https://api.github.com/repos/WICG/webpackage",
