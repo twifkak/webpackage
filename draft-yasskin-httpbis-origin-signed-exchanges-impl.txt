@@ -5,7 +5,7 @@
 Network Working Group                                         J. Yasskin
 Internet-Draft                                                   K. Ueno
 Intended status: Standards Track                                  Google
-Expires: December 31, 2018                                 June 29, 2018
+Expires: January 3, 2019                                   July 02, 2018
 
 
             Signed HTTP Exchanges Implementation Checkpoints
@@ -41,7 +41,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on December 31, 2018.
+   This Internet-Draft will expire on January 3, 2019.
 
 Copyright Notice
 
@@ -53,9 +53,9 @@ Copyright Notice
 
 
 
-Yasskin & Ueno          Expires December 31, 2018               [Page 1]
+Yasskin & Ueno           Expires January 3, 2019                [Page 1]
 
-Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
+Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
 
 
    (https://trustee.ietf.org/license-info) in effect on the date of
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Yasskin & Ueno          Expires December 31, 2018               [Page 2]
+Yasskin & Ueno           Expires January 3, 2019                [Page 2]
 
-Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
+Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
 
 
 1.  Introduction
@@ -165,9 +165,9 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
 
 
 
-Yasskin & Ueno          Expires December 31, 2018               [Page 3]
+Yasskin & Ueno           Expires January 3, 2019                [Page 3]
 
-Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
+Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
 
 
    Each signature is parameterised with information to let a client
@@ -221,9 +221,9 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
 
 
 
-Yasskin & Ueno          Expires December 31, 2018               [Page 4]
+Yasskin & Ueno           Expires January 3, 2019                [Page 4]
 
-Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
+Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
 
 
    "validityUrl"  A string (Section 4.2 of
@@ -277,9 +277,9 @@ Signature:
 
 
 
-Yasskin & Ueno          Expires December 31, 2018               [Page 5]
+Yasskin & Ueno           Expires January 3, 2019                [Page 5]
 
-Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
+Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
 
 
    signatures, maybe we should add a "parameterised binary content"
@@ -333,9 +333,9 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
 
 
 
-Yasskin & Ueno          Expires December 31, 2018               [Page 6]
+Yasskin & Ueno           Expires January 3, 2019                [Page 6]
 
-Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
+Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
 
 
 GET https://example.com/ HTTP/1.1
@@ -389,9 +389,9 @@ MI: mi-sha256-draft2=20addcf7368837f616d549f035bf6784ea6d4bf4817a3736cd2fc7a7638
 
 
 
-Yasskin & Ueno          Expires December 31, 2018               [Page 7]
+Yasskin & Ueno           Expires January 3, 2019                [Page 7]
 
-Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
+Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
 
 
    1.  Let "raw-chain" be the result of fetching ([FETCH]) "certUrl".
@@ -445,9 +445,9 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
 
 
 
-Yasskin & Ueno          Expires December 31, 2018               [Page 8]
+Yasskin & Ueno           Expires January 3, 2019                [Page 8]
 
-Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
+Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
 
 
    Note: this specification does not use floating point, tags, or other
@@ -501,9 +501,9 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
 
 
 
-Yasskin & Ueno          Expires December 31, 2018               [Page 9]
+Yasskin & Ueno           Expires January 3, 2019                [Page 9]
 
-Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
+Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
 
 
        *  "expires" be the signature's "expires" parameter, interpreted
@@ -557,9 +557,9 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
 
 
 
-Yasskin & Ueno          Expires December 31, 2018              [Page 10]
+Yasskin & Ueno           Expires January 3, 2019               [Page 10]
 
-Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
+Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
 
 
    7.  Let "message" be the concatenation of the following byte strings.
@@ -613,9 +613,9 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
 
 
 
-Yasskin & Ueno          Expires December 31, 2018              [Page 11]
+Yasskin & Ueno           Expires January 3, 2019               [Page 11]
 
-Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
+Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
 
 
    received.  Similarly, if "integrity" identifies a header field like
@@ -669,9 +669,9 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
 
 
 
-Yasskin & Ueno          Expires December 31, 2018              [Page 12]
+Yasskin & Ueno           Expires January 3, 2019               [Page 12]
 
-Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
+Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
 
 
    If the the "update" map is present, that indicates that a new version
@@ -725,9 +725,9 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
 
 
 
-Yasskin & Ueno          Expires December 31, 2018              [Page 13]
+Yasskin & Ueno           Expires January 3, 2019               [Page 13]
 
-Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
+Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
 
 
    replacing the original signature with the new signature provided.
@@ -781,9 +781,9 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
 
 
 
-Yasskin & Ueno          Expires December 31, 2018              [Page 14]
+Yasskin & Ueno           Expires January 3, 2019               [Page 14]
 
-Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
+Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
 
 
        1.  Use "certificate-chain" to validate that its first entry,
@@ -837,9 +837,9 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
 
 
 
-Yasskin & Ueno          Expires December 31, 2018              [Page 15]
+Yasskin & Ueno           Expires January 3, 2019               [Page 15]
 
-Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
+Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
 
 
    o  "Set-Cookie2", [RFC2965]
@@ -893,9 +893,9 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
 
 
 
-Yasskin & Ueno          Expires December 31, 2018              [Page 16]
+Yasskin & Ueno           Expires January 3, 2019               [Page 16]
 
-Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
+Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
 
 
    The first element of the array is interpreted as the exchange's
@@ -949,9 +949,9 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
 
 
 
-Yasskin & Ueno          Expires December 31, 2018              [Page 17]
+Yasskin & Ueno           Expires January 3, 2019               [Page 17]
 
-Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
+Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
 
 
    For non-executable resource types, a signed response can improve the
@@ -1005,9 +1005,9 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
 
 
 
-Yasskin & Ueno          Expires December 31, 2018              [Page 18]
+Yasskin & Ueno           Expires January 3, 2019               [Page 18]
 
-Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
+Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
 
 
    Interoperability considerations: N/A
@@ -1043,10 +1043,10 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
 
 9.1.  Normative References
 
-   [FETCH]    WHATWG, "Fetch", June 2018,
+   [FETCH]    WHATWG, "Fetch", July 2018,
               <https://fetch.spec.whatwg.org/>.
 
-   [HTML]     WHATWG, "HTML", June 2018,
+   [HTML]     WHATWG, "HTML", July 2018,
               <https://html.spec.whatwg.org/multipage>.
 
    [I-D.ietf-cbor-cddl]
@@ -1061,9 +1061,9 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
 
 
 
-Yasskin & Ueno          Expires December 31, 2018              [Page 19]
+Yasskin & Ueno           Expires January 3, 2019               [Page 19]
 
-Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
+Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
 
 
    [I-D.ietf-httpbis-header-structure-02]
@@ -1117,9 +1117,9 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
 
 
 
-Yasskin & Ueno          Expires December 31, 2018              [Page 20]
+Yasskin & Ueno           Expires January 3, 2019               [Page 20]
 
-Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
+Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
 
 
    [RFC7230]  Fielding, R., Ed. and J. Reschke, Ed., "Hypertext Transfer
@@ -1151,7 +1151,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/info/rfc8174>.
 
-   [URL]      WHATWG, "URL", June 2018, <https://url.spec.whatwg.org/>.
+   [URL]      WHATWG, "URL", July 2018, <https://url.spec.whatwg.org/>.
 
 9.2.  Informative References
 
@@ -1173,9 +1173,9 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
 
 
 
-Yasskin & Ueno          Expires December 31, 2018              [Page 21]
+Yasskin & Ueno           Expires January 3, 2019               [Page 21]
 
-Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
+Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
 
 
    [RFC7235]  Fielding, R., Ed. and J. Reschke, Ed., "Hypertext Transfer
@@ -1229,9 +1229,9 @@ Appendix A.  Change Log
 
 
 
-Yasskin & Ueno          Expires December 31, 2018              [Page 22]
+Yasskin & Ueno           Expires January 3, 2019               [Page 22]
 
-Internet-DraSigned HTTP Exchanges Implementation Checkpoints   June 2018
+Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
 
 
    Vs.  [I-D.yasskin-http-origin-signed-responses]:
@@ -1285,4 +1285,4 @@ Authors' Addresses
 
 
 
-Yasskin & Ueno          Expires December 31, 2018              [Page 23]
+Yasskin & Ueno           Expires January 3, 2019               [Page 23]

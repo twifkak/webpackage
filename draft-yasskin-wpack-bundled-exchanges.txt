@@ -4,8 +4,8 @@
 
 Network Working Group                                         J. Yasskin
 Internet-Draft                                                    Google
-Intended status: Standards Track                           June 29, 2018
-Expires: December 31, 2018
+Intended status: Standards Track                           July 02, 2018
+Expires: January 3, 2019
 
 
                          Bundled HTTP Exchanges
@@ -43,7 +43,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on December 31, 2018.
+   This Internet-Draft will expire on January 3, 2019.
 
 Copyright Notice
 
@@ -53,9 +53,9 @@ Copyright Notice
 
 
 
-Yasskin                 Expires December 31, 2018               [Page 1]
+Yasskin                  Expires January 3, 2019                [Page 1]
 
-Internet-Draft           Bundled HTTP Exchanges                June 2018
+Internet-Draft           Bundled HTTP Exchanges                July 2018
 
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Yasskin                 Expires December 31, 2018               [Page 2]
+Yasskin                  Expires January 3, 2019                [Page 2]
 
-Internet-Draft           Bundled HTTP Exchanges                June 2018
+Internet-Draft           Bundled HTTP Exchanges                July 2018
 
 
 1.  Introduction
@@ -165,9 +165,9 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
 
 
 
-Yasskin                 Expires December 31, 2018               [Page 3]
+Yasskin                  Expires January 3, 2019                [Page 3]
 
-Internet-Draft           Bundled HTTP Exchanges                June 2018
+Internet-Draft           Bundled HTTP Exchanges                July 2018
 
 
    A client is expected to load the metadata for a bundle as soon as it
@@ -221,9 +221,9 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
 
 
 
-Yasskin                 Expires December 31, 2018               [Page 4]
+Yasskin                  Expires January 3, 2019                [Page 4]
 
-Internet-Draft           Bundled HTTP Exchanges                June 2018
+Internet-Draft           Bundled HTTP Exchanges                July 2018
 
 
    This operation only waits for a prefix of the stream that, if the
@@ -277,9 +277,9 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
 
 
 
-Yasskin                 Expires December 31, 2018               [Page 5]
+Yasskin                  Expires January 3, 2019                [Page 5]
 
-Internet-Draft           Bundled HTTP Exchanges                June 2018
+Internet-Draft           Bundled HTTP Exchanges                July 2018
 
 
    the range itself, to reduce the amount of work needed to use the
@@ -333,9 +333,9 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
 
 
 
-Yasskin                 Expires December 31, 2018               [Page 6]
+Yasskin                  Expires January 3, 2019                [Page 6]
 
-Internet-Draft           Bundled HTTP Exchanges                June 2018
+Internet-Draft           Bundled HTTP Exchanges                July 2018
 
 
    4.   If "sectionLengthsLength" is TBD or greater, return an error.
@@ -389,9 +389,9 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
 
 
 
-Yasskin                 Expires December 31, 2018               [Page 7]
+Yasskin                  Expires January 3, 2019                [Page 7]
 
-Internet-Draft           Bundled HTTP Exchanges                June 2018
+Internet-Draft           Bundled HTTP Exchanges                July 2018
 
 
         2.  If "sectionOffsets["name"]" exists, return an error.  That
@@ -445,9 +445,9 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
 
 
 
-Yasskin                 Expires December 31, 2018               [Page 8]
+Yasskin                  Expires January 3, 2019                [Page 8]
 
-Internet-Draft           Bundled HTTP Exchanges                June 2018
+Internet-Draft           Bundled HTTP Exchanges                July 2018
 
 
    index = [* (headers, length: uint) ]
@@ -501,9 +501,9 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
 
 
 
-Yasskin                 Expires December 31, 2018               [Page 9]
+Yasskin                  Expires January 3, 2019                [Page 9]
 
-Internet-Draft           Bundled HTTP Exchanges                June 2018
+Internet-Draft           Bundled HTTP Exchanges                July 2018
 
 
             Note: This could probably support any cacheable
@@ -557,9 +557,9 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
 
 
 
-Yasskin                 Expires December 31, 2018              [Page 10]
+Yasskin                  Expires January 3, 2019               [Page 10]
 
-Internet-Draft           Bundled HTTP Exchanges                June 2018
+Internet-Draft           Bundled HTTP Exchanges                July 2018
 
 
    header of "application/manifest+json" ([appmanifest]) and an "accept-
@@ -613,9 +613,9 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
 
 
 
-Yasskin                 Expires December 31, 2018              [Page 11]
+Yasskin                  Expires January 3, 2019               [Page 11]
 
-Internet-Draft           Bundled HTTP Exchanges                June 2018
+Internet-Draft           Bundled HTTP Exchanges                July 2018
 
 
 3.2.5.  Starting from the end
@@ -669,9 +669,9 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
 
 
 
-Yasskin                 Expires December 31, 2018              [Page 12]
+Yasskin                  Expires January 3, 2019               [Page 12]
 
-Internet-Draft           Bundled HTTP Exchanges                June 2018
+Internet-Draft           Bundled HTTP Exchanges                July 2018
 
 
 3.3.  Load a response from a bundle
@@ -725,9 +725,9 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
 
 
 
-Yasskin                 Expires December 31, 2018              [Page 13]
+Yasskin                  Expires January 3, 2019               [Page 13]
 
-Internet-Draft           Bundled HTTP Exchanges                June 2018
+Internet-Draft           Bundled HTTP Exchanges                July 2018
 
 
    11.  Let "body" be a new body ([FETCH]) whose stream is a tee'd copy
@@ -781,9 +781,9 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
 
 
 
-Yasskin                 Expires December 31, 2018              [Page 14]
+Yasskin                  Expires January 3, 2019               [Page 14]
 
-Internet-Draft           Bundled HTTP Exchanges                June 2018
+Internet-Draft           Bundled HTTP Exchanges                July 2018
 
 
 3.4.2.  Parsing variable-length data from a bytestring
@@ -837,9 +837,9 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
 
 
 
-Yasskin                 Expires December 31, 2018              [Page 15]
+Yasskin                  Expires January 3, 2019               [Page 15]
 
-Internet-Draft           Bundled HTTP Exchanges                June 2018
+Internet-Draft           Bundled HTTP Exchanges                July 2018
 
 
        27 Let "content" be the result of reading 8 bytes from the
@@ -893,9 +893,9 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
 
 
 
-Yasskin                 Expires December 31, 2018              [Page 16]
+Yasskin                  Expires January 3, 2019               [Page 16]
 
-Internet-Draft           Bundled HTTP Exchanges                June 2018
+Internet-Draft           Bundled HTTP Exchanges                July 2018
 
 
        4.  Assert: "headers" does not contain ([FETCH]) "name", because
@@ -949,9 +949,9 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
 
 
 
-Yasskin                 Expires December 31, 2018              [Page 17]
+Yasskin                  Expires January 3, 2019               [Page 17]
 
-Internet-Draft           Bundled HTTP Exchanges                June 2018
+Internet-Draft           Bundled HTTP Exchanges                July 2018
 
 
    o  Security considerations: See Section 5 of this document.
@@ -1005,9 +1005,9 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
 
 
 
-Yasskin                 Expires December 31, 2018              [Page 18]
+Yasskin                  Expires January 3, 2019               [Page 18]
 
-Internet-Draft           Bundled HTTP Exchanges                June 2018
+Internet-Draft           Bundled HTTP Exchanges                July 2018
 
 
                 +--------------+---------------+----------+
@@ -1046,7 +1046,7 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
               Wide Web Consortium WD WD-appmanifest-20180523, May 2018,
               <https://www.w3.org/TR/2018/WD-appmanifest-20180523>.
 
-   [FETCH]    WHATWG, "Fetch", June 2018,
+   [FETCH]    WHATWG, "Fetch", July 2018,
               <https://fetch.spec.whatwg.org/>.
 
    [I-D.ietf-cbor-7049bis]
@@ -1061,9 +1061,9 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
 
 
 
-Yasskin                 Expires December 31, 2018              [Page 19]
+Yasskin                  Expires January 3, 2019               [Page 19]
 
-Internet-Draft           Bundled HTTP Exchanges                June 2018
+Internet-Draft           Bundled HTTP Exchanges                July 2018
 
 
    [I-D.ietf-cbor-cddl]
@@ -1072,7 +1072,7 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
               express CBOR data structures", draft-ietf-cbor-cddl-02
               (work in progress), February 2018.
 
-   [INFRA]    WHATWG, "Infra", June 2018,
+   [INFRA]    WHATWG, "Infra", July 2018,
               <https://infra.spec.whatwg.org/>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
@@ -1099,7 +1099,7 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
               Recommendation REC-SRI-20160623, June 2016,
               <http://www.w3.org/TR/2016/REC-SRI-20160623>.
 
-   [URL]      WHATWG, "URL", June 2018, <https://url.spec.whatwg.org/>.
+   [URL]      WHATWG, "URL", July 2018, <https://url.spec.whatwg.org/>.
 
 7.2.  Informative References
 
@@ -1117,9 +1117,9 @@ Internet-Draft           Bundled HTTP Exchanges                June 2018
 
 
 
-Yasskin                 Expires December 31, 2018              [Page 20]
+Yasskin                  Expires January 3, 2019               [Page 20]
 
-Internet-Draft           Bundled HTTP Exchanges                June 2018
+Internet-Draft           Bundled HTTP Exchanges                July 2018
 
 
    [RFC6265]  Barth, A., "HTTP State Management Mechanism", RFC 6265,
@@ -1173,4 +1173,4 @@ Author's Address
 
 
 
-Yasskin                 Expires December 31, 2018              [Page 21]
+Yasskin                  Expires January 3, 2019               [Page 21]
