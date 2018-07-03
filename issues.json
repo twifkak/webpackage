@@ -1,6 +1,114 @@
 [
 
   {
+    "url": "https://api.github.com/repos/WICG/webpackage/issues/241",
+    "repository_url": "https://api.github.com/repos/WICG/webpackage",
+    "labels_url": "https://api.github.com/repos/WICG/webpackage/issues/241/labels{/name}",
+    "comments_url": "https://api.github.com/repos/WICG/webpackage/issues/241/comments",
+    "events_url": "https://api.github.com/repos/WICG/webpackage/issues/241/events",
+    "html_url": "https://github.com/WICG/webpackage/pull/241",
+    "id": 337748343,
+    "node_id": "MDExOlB1bGxSZXF1ZXN0MTk4ODUxODAz",
+    "number": 241,
+    "title": "gen-signedexchange: Add detailed README.md",
+    "user": {
+      "login": "nyaxt",
+      "id": 18355,
+      "node_id": "MDQ6VXNlcjE4MzU1",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/18355?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/nyaxt",
+      "html_url": "https://github.com/nyaxt",
+      "followers_url": "https://api.github.com/users/nyaxt/followers",
+      "following_url": "https://api.github.com/users/nyaxt/following{/other_user}",
+      "gists_url": "https://api.github.com/users/nyaxt/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/nyaxt/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/nyaxt/subscriptions",
+      "organizations_url": "https://api.github.com/users/nyaxt/orgs",
+      "repos_url": "https://api.github.com/users/nyaxt/repos",
+      "events_url": "https://api.github.com/users/nyaxt/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/nyaxt/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+
+    ],
+    "state": "open",
+    "locked": false,
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "comments": 0,
+    "created_at": "2018-07-03T05:15:19Z",
+    "updated_at": "2018-07-03T05:16:24Z",
+    "closed_at": null,
+    "author_association": "COLLABORATOR",
+    "pull_request": {
+      "url": "https://api.github.com/repos/WICG/webpackage/pulls/241",
+      "html_url": "https://github.com/WICG/webpackage/pull/241",
+      "diff_url": "https://github.com/WICG/webpackage/pull/241.diff",
+      "patch_url": "https://github.com/WICG/webpackage/pull/241.patch"
+    },
+    "body": "cc: @kinu "
+  },
+  {
+    "url": "https://api.github.com/repos/WICG/webpackage/issues/240",
+    "repository_url": "https://api.github.com/repos/WICG/webpackage",
+    "labels_url": "https://api.github.com/repos/WICG/webpackage/issues/240/labels{/name}",
+    "comments_url": "https://api.github.com/repos/WICG/webpackage/issues/240/comments",
+    "events_url": "https://api.github.com/repos/WICG/webpackage/issues/240/events",
+    "html_url": "https://github.com/WICG/webpackage/pull/240",
+    "id": 337730510,
+    "node_id": "MDExOlB1bGxSZXF1ZXN0MTk4ODM4ODIz",
+    "number": 240,
+    "title": "gen-certurl: Fix usage messages",
+    "user": {
+      "login": "nyaxt",
+      "id": 18355,
+      "node_id": "MDQ6VXNlcjE4MzU1",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/18355?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/nyaxt",
+      "html_url": "https://github.com/nyaxt",
+      "followers_url": "https://api.github.com/users/nyaxt/followers",
+      "following_url": "https://api.github.com/users/nyaxt/following{/other_user}",
+      "gists_url": "https://api.github.com/users/nyaxt/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/nyaxt/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/nyaxt/subscriptions",
+      "organizations_url": "https://api.github.com/users/nyaxt/orgs",
+      "repos_url": "https://api.github.com/users/nyaxt/repos",
+      "events_url": "https://api.github.com/users/nyaxt/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/nyaxt/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+
+    ],
+    "state": "closed",
+    "locked": false,
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "comments": 0,
+    "created_at": "2018-07-03T03:12:40Z",
+    "updated_at": "2018-07-03T07:20:18Z",
+    "closed_at": "2018-07-03T07:20:18Z",
+    "author_association": "COLLABORATOR",
+    "pull_request": {
+      "url": "https://api.github.com/repos/WICG/webpackage/pulls/240",
+      "html_url": "https://github.com/WICG/webpackage/pull/240",
+      "diff_url": "https://github.com/WICG/webpackage/pull/240.diff",
+      "patch_url": "https://github.com/WICG/webpackage/pull/240.patch"
+    },
+    "body": ""
+  },
+  {
     "url": "https://api.github.com/repos/WICG/webpackage/issues/239",
     "repository_url": "https://api.github.com/repos/WICG/webpackage",
     "labels_url": "https://api.github.com/repos/WICG/webpackage/issues/239/labels{/name}",
@@ -1485,7 +1593,10 @@
     "closed_at": "2018-06-22T18:51:37Z",
     "author_association": "COLLABORATOR",
     "body": "# Goal\r\n- Easier streaming consumption of large bundles.\r\n- Easier non-streaming consumption of the small bundles.\r\n\r\n# Background\r\nIn the current bundle spec, the structure of the responses section is allowed to be very flexible and not required to be a CBOR construct.\r\n\r\n## Streaming loading algorithm for current format\r\nWhen loading a bundle in a streamed fashion, currently the parser will:\r\n1. Consume the index section\r\n1. Sort the exchanges by their response range offset\r\n1. Consume the other sections up till the responses section\r\n1. Discard the bytes until it reaches the first exchange in the sorted list\r\n1. Buffer the bytes until it reaches the end of the the first exchange\r\n1. The first exchange becomes ready for its use:\r\n  1. Parse its responses header CBOR map\r\n  1. Read its payload\r\n1. Append bytes to the buffer until it reaches the end of the next item.\r\n1. The second exchange becomes ready for its use.\r\n1. ...\r\n\r\nSince there may be overlap in the response exchange, we need to keep around the original responses section in the buffer (which probably will reside on memory), since they may theoretically be used more than 1 time in a different CBOR interpretation. It is non-trivial to compute the \"done\" part of the responses section which are not referenced in later exchanges to partially free the original responses bytes buffer.\r\n\r\n## Non-streaming consumption of the small bundles\r\nIf the entire bundle is guaranteed to be a valid CBOR, it will become very easy to consume small packages which will easily fit in memory. If efficiency is not an issue, you can feed the entire package to CBOR parser, and consume the exchanges without implementing the full parsing algorithm.\r\n\r\nFor example, @irori created [a live web demo of unbundler](\r\nhttps://bundle-load-test.surge.sh/) which assumes that the bundler output a CBOR array as response section.\r\n\r\n# Proposals\r\n- Specify the structure of the responses section\r\n  - A valid CBOR array? \r\n- An index section entry references the response via array index, not offset\r\n  - Enforces the start of the response is aligned to the start of the item in the responses CBOR array\r\n  - Can save an alignment assert in the parser\r\n- Require the responses section to be always after the index section"
-  },
+  }
+
+,
+
   {
     "url": "https://api.github.com/repos/WICG/webpackage/issues/211",
     "repository_url": "https://api.github.com/repos/WICG/webpackage",
@@ -1600,10 +1711,7 @@
       "patch_url": "https://github.com/WICG/webpackage/pull/210.patch"
     },
     "body": "WebBundling format doesn't require the payload to be MI encoded. This PR splits the encoding of the payload, so that it is possible to create an exchange without MI encoding."
-  }
-
-,
-
+  },
   {
     "url": "https://api.github.com/repos/WICG/webpackage/issues/209",
     "repository_url": "https://api.github.com/repos/WICG/webpackage",
@@ -3214,7 +3322,10 @@
       "patch_url": "https://github.com/WICG/webpackage/pull/182.patch"
     },
     "body": "Digests require buffering the whole response body before determining that it's\r\nvalid, which unnecessarily increases the complexity in the verifier.\r\n\r\nThis change also puts a bound on the MI record size, also to limit the needed buffering.\r\n\r\n@davidben, have I explained the right reasons for doing this?\r\n\r\nFixes #138\r\n\r\n[Preview](https://jyasskin.github.io/webpackage/remove-digest/draft-yasskin-http-origin-signed-responses.html), [Diff](https://tools.ietf.org/rfcdiff?url1=https://wicg.github.io/webpackage/draft-yasskin-http-origin-signed-responses.txt&url2=https://jyasskin.github.io/webpackage/remove-digest/draft-yasskin-http-origin-signed-responses.txt)\r\n"
-  },
+  }
+
+,
+
   {
     "url": "https://api.github.com/repos/WICG/webpackage/issues/181",
     "repository_url": "https://api.github.com/repos/WICG/webpackage",
@@ -3322,10 +3433,7 @@
       "patch_url": "https://github.com/WICG/webpackage/pull/180.patch"
     },
     "body": "Per davidben's advice, it's safer to make all similar signature formats\r\nthe same.\r\n\r\nSeparate from #179 since it sounds like you're advising this even if that doesn't go in.\r\n\r\n[Preview](https://jyasskin.github.io/webpackage/re-add-tls-padding/draft-yasskin-http-origin-signed-responses.html), [Diff](https://tools.ietf.org/rfcdiff?url1=https://wicg.github.io/webpackage/draft-yasskin-http-origin-signed-responses.txt&url2=https://jyasskin.github.io/webpackage/re-add-tls-padding/draft-yasskin-http-origin-signed-responses.txt)"
-  }
-
-,
-
+  },
   {
     "url": "https://api.github.com/repos/WICG/webpackage/issues/179",
     "repository_url": "https://api.github.com/repos/WICG/webpackage",
@@ -4924,7 +5032,10 @@
     "closed_at": "2018-03-20T07:00:37Z",
     "author_association": "COLLABORATOR",
     "body": "That would be useful for generating test htxg.\r\n\r\ncc: @hajimehoshi "
-  },
+  }
+
+,
+
   {
     "url": "https://api.github.com/repos/WICG/webpackage/issues/151",
     "repository_url": "https://api.github.com/repos/WICG/webpackage",
@@ -5086,10 +5197,7 @@
       "patch_url": "https://github.com/WICG/webpackage/pull/150.patch"
     },
     "body": "Found by @irori"
-  }
-
-,
-
+  },
   {
     "url": "https://api.github.com/repos/WICG/webpackage/issues/149",
     "repository_url": "https://api.github.com/repos/WICG/webpackage",
@@ -6644,7 +6752,10 @@
       "patch_url": "https://github.com/WICG/webpackage/pull/122.patch"
     },
     "body": "Use a custom CBOR certificate chain format instead.\r\n\r\nAlso register this format with IANA.\r\n\r\n@sleevi, better?\r\n\r\n[Preview](https://jyasskin.github.io/webpackage/avoid-tls-messages/draft-yasskin-http-origin-signed-responses.html), [Diff](https://tools.ietf.org/rfcdiff?url1=https://wicg.github.io/webpackage/draft-yasskin-http-origin-signed-responses.txt&url2=https://jyasskin.github.io/webpackage/avoid-tls-messages/draft-yasskin-http-origin-signed-responses.txt)"
-  },
+  }
+
+,
+
   {
     "url": "https://api.github.com/repos/WICG/webpackage/issues/121",
     "repository_url": "https://api.github.com/repos/WICG/webpackage",
@@ -6752,10 +6863,7 @@
       "patch_url": "https://github.com/WICG/webpackage/pull/120.patch"
     },
     "body": "[Preview](https://jyasskin.github.io/webpackage/validity-url-lists/draft-yasskin-http-origin-signed-responses.html), [Diff](https://tools.ietf.org/rfcdiff?url1=https://wicg.github.io/webpackage/draft-yasskin-http-origin-signed-responses.txt&url2=https://jyasskin.github.io/webpackage/validity-url-lists/draft-yasskin-http-origin-signed-responses.txt)"
-  }
-
-,
-
+  },
   {
     "url": "https://api.github.com/repos/WICG/webpackage/issues/119",
     "repository_url": "https://api.github.com/repos/WICG/webpackage",
@@ -8201,7 +8309,10 @@
       "patch_url": "https://github.com/WICG/webpackage/pull/92.patch"
     },
     "body": "In the hopes of getting deep links.\r\n\r\nPointed out in https://lists.w3.org/Archives/Public/ietf-http-wg/2017OctDec/0399.html.\r\n\r\nHowever, https://tools.ietf.org/html/draft-ietf-httpbis-origin-frame-04#section-1 does have a deep link to <a href=\"./rfc7540#section-9.1.2\">[RFC7540], Section&nbsp;9.1.2</a>, so I don't think this ordering is the fundamental problem.\r\n\r\nI can't get any of these syntaxes to result in deep links from https://xml2rfc.tools.ietf.org/, so I'm not sure what the ietf-httpbis drafts are doing to get them. The httpsbis editors' drafts do *not* have deep links: http://httpwg.org/http-extensions/expect-ct.html#response-header-field-syntax\r\n\r\n@MikeBishop, halp! 😺"
-  },
+  }
+
+,
+
   {
     "url": "https://api.github.com/repos/WICG/webpackage/issues/91",
     "repository_url": "https://api.github.com/repos/WICG/webpackage",
@@ -8309,10 +8420,7 @@
       "patch_url": "https://github.com/WICG/webpackage/pull/90.patch"
     },
     "body": "Preview at https://jyasskin.github.io/webpackage/demote-push-ergonomics/draft-yasskin-webpackage-use-cases.html#push-replacement\r\n\r\n@slightlyoff @dglazkov: I included this as a goal because y'all keep talking about it, but the PUSH experts like @yoavweiss and @igrigorik think we should just stop talking about it and rely on the other benefits instead, so here's a PR to demote it."
-  }
-
-,
-
+  },
   {
     "url": "https://api.github.com/repos/WICG/webpackage/issues/89",
     "repository_url": "https://api.github.com/repos/WICG/webpackage",
@@ -9878,7 +9986,10 @@
       "patch_url": "https://github.com/WICG/webpackage/pull/62.patch"
     },
     "body": "This sits on top of #55, #60, #61, #63, #64, #65, and #66. Sorry that it's so long again."
-  },
+  }
+
+,
+
   {
     "url": "https://api.github.com/repos/WICG/webpackage/issues/61",
     "repository_url": "https://api.github.com/repos/WICG/webpackage",
@@ -9986,10 +10097,7 @@
       "patch_url": "https://github.com/WICG/webpackage/pull/60.patch"
     },
     "body": ""
-  }
-
-,
-
+  },
   {
     "url": "https://api.github.com/repos/WICG/webpackage/issues/59",
     "repository_url": "https://api.github.com/repos/WICG/webpackage",
@@ -11405,7 +11513,10 @@
     "closed_at": null,
     "author_association": "COLLABORATOR",
     "body": "@lrosenthol, could you describe the use cases you're interested in for the packaging format, either in this issue or as a PR against the [`README.md`](https://github.com/dimich-g/webpackage/blob/master/README.md)?"
-  },
+  }
+
+,
+
   {
     "url": "https://api.github.com/repos/WICG/webpackage/issues/31",
     "repository_url": "https://api.github.com/repos/WICG/webpackage",
@@ -11507,10 +11618,7 @@
     "closed_at": null,
     "author_association": "NONE",
     "body": "For subpackage that contains pages and resources downloaded from one domain, but not through pack file offered by that domain, we should not use http://foo.com/something.pack since it does not exist in the server. Probably we should use a generated name."
-  }
-
-,
-
+  },
   {
     "url": "https://api.github.com/repos/WICG/webpackage/issues/29",
     "repository_url": "https://api.github.com/repos/WICG/webpackage",
@@ -12920,7 +13028,10 @@
     "closed_at": "2017-01-09T16:38:05Z",
     "author_association": "NONE",
     "body": "Something unclear reading through the current proposal is how a developer would hint that some resources in a web package have a higher priority to fetch (e.g via resource hints) than others - the entire package would be fetched with a single priority. If I want to prefetch or preload certain assets, I'm unsure how those systems interface with packages.\r\n\r\nAre there any thoughts about this?"
-  },
+  }
+
+,
+
   {
     "url": "https://api.github.com/repos/WICG/webpackage/issues/1",
     "repository_url": "https://api.github.com/repos/WICG/webpackage",
