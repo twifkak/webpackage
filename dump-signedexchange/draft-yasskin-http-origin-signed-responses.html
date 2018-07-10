@@ -775,13 +775,13 @@ cert-chain = [
   }
 ]
 </pre>
-<p id="rfc.section.3.3.p.2">The first map (second item) in the CBOR array is treated as the end-entity certificate, and the client will attempt to build a path (<a href="#RFC5280" class="xref">[RFC5280]</a>) to it from a trusted root using the other certificates in the chain.</p>
+<p id="rfc.section.3.3.p.2">The first item in the CBOR array is treated as the end-entity certificate, and the client will attempt to build a path (<a href="#RFC5280" class="xref">[RFC5280]</a>) to it from a trusted root using the other certificates in the chain.</p>
 <p></p>
 
 <ol>
 <li>Each <samp>cert</samp> value MUST be a DER-encoded X.509v3 certificate (<a href="#RFC5280" class="xref">[RFC5280]</a>).  Other key/value pairs in the same array item define properties of this certificate.</li>
-<li>The first certificate&#8217;s <samp>ocsp</samp> value MUST be a complete, DER-encoded OCSP response for that certificate (using the ASN.1 type <samp>OCSPResponse</samp> defined in <a href="#RFC6960" class="xref">[RFC6960]</a>). Subsequent certificates MUST NOT have an <samp>ocsp</samp> value.</li>
-<li>Each certificate&#8217;s <samp>sct</samp> value if any MUST be a <samp>SignedCertificateTimestampList</samp> for that certificate as defined by Section 3.3 of <a href="#RFC6962" class="xref">[RFC6962]</a>.</li>
+<li>The first certificate&#8217;s <samp>ocsp</samp> value if any MUST be a complete, DER-encoded OCSP response for that certificate (using the ASN.1 type <samp>OCSPResponse</samp> defined in <a href="#RFC6960" class="xref">[RFC6960]</a>). Subsequent certificates MUST NOT have an <samp>ocsp</samp> value.</li>
+<li>Each certificate&#8217;s <samp>sct</samp> value MUST be a <samp>SignedCertificateTimestampList</samp> for that certificate as defined by Section 3.3 of <a href="#RFC6962" class="xref">[RFC6962]</a>.</li>
 </ol>
 <p id="rfc.section.3.3.p.4">Loading a <samp>cert-url</samp> takes a <samp>forceFetch</samp> flag. The client MUST:</p>
 <p></p>
@@ -932,7 +932,7 @@ Signature:
   cert-url="https://thirdparty.example.com/certs";
   date=1511478660; expires=1511824260
 </pre>
-<p id="rfc.section.3.6.1.p.2">At 2017-11-27 11:02 UTC, <samp>sig1</samp> and <samp>sig2</samp> have expired, but <samp>thirdpartysig</samp> doesn&#8217;t exipire until 23:11 that night, so the client needs to fetch <samp>https://example.com/resource.validity.1511157180</samp> (the <samp>validity-url</samp> of <samp>sig1</samp> and <samp>sig2</samp>) if it wishes to update those signatures. This URL might contain:</p>
+<p id="rfc.section.3.6.1.p.2">At 2017-11-27 11:02 UTC, <samp>sig1</samp> and <samp>sig2</samp> have expired, but <samp>thirdpartysig</samp> doesn&#8217;t exipire until 23:11 that night, so the client needs to fetch <samp>https://example.com/resource.validity.1511157180</samp> (the <samp>validity-url</samp> of <samp>sig1</samp> and <samp>sig2</samp>) to update those signatures. This URL might contain:</p>
 <pre>
 {
   "signatures": [
@@ -980,7 +980,7 @@ Accept-Signature = sh-param-list
 <h1 id="rfc.section.3.7.1">
 <a href="#rfc.section.3.7.1">3.7.1.</a> <a href="#accept-signature-integrity" id="accept-signature-integrity">Integrity identifiers</a>
 </h1>
-<p id="rfc.section.3.7.1.p.1">Identifiers starting with &#8220;mi/&#8221; indicate that the client supports the <samp>MI</samp> header field (<a href="#I-D.thomson-http-mice" class="xref">[I-D.thomson-http-mice]</a>) with the parameter from the HTTP MI Parameter Registry registry named in lower-case by the rest of the identifier.  For example, &#8220;mi/mi-blake2&#8221; indicates support for Merkle integrity with the as-yet-unspecified mi-blake2 parameter, and &#8220;-mi/mi-sha256&#8221; indicates non-support for Merkle integrity with the mi-sha256 content encoding.</p>
+<p id="rfc.section.3.7.1.p.1">Identifiers starting with &#8220;mi/&#8221; indicate that the client supports the <samp>MI</samp> header field (<a href="#I-D.thomson-http-mice" class="xref">[I-D.thomson-http-mice]</a>) with the parameter from the HTTP MI Parameter Registry registry named in lower-case by the rest of the identifier.  For example, &#8220;mi/mi-blake2&#8221; indicates support for Merkle integrity with the as-yet-unspecified mi-blake2 parameter, and &#8220;-digest/mi-sha256&#8221; indicates non-support for Merkle integrity with the mi-sha256 content encoding.</p>
 <p id="rfc.section.3.7.1.p.2">If the <samp>Accept-Signature</samp> header field is present, servers SHOULD assume support for &#8220;mi/mi-sha256&#8221; unless the header field states otherwise.</p>
 <h1 id="rfc.section.3.7.2">
 <a href="#rfc.section.3.7.2">3.7.2.</a> <a href="#accept-signature-key-types" id="accept-signature-key-types">Key type identifiers</a>
@@ -1214,15 +1214,15 @@ Signed-Headers = sh-list
 <h1 id="rfc.section.5.3.1">
 <a href="#rfc.section.5.3.1">5.3.1.</a> <a href="#co-trust-app-signed-exchange" id="co-trust-app-signed-exchange">Cross-origin trust in application/signed-exchange</a>
 </h1>
-<p id="rfc.section.5.3.1.p.1">To determine whether to trust a cross-origin exchange stored in an <samp>application/signed-exchange</samp> resource, pass the <samp>Signature</samp> header field&#8217;s value and an exchange consisting of the headers from the signed headers section and the payload body, to the algorithm in <a href="#cross-origin-trust" class="xref">Section 4</a>.</p>
+<p id="rfc.section.5.3.1.p.1">To determine whether to trust a cross-origin exchange stored in an <samp>application/signed-exchange</samp> resource, pass the <samp>Signature</samp> header field from the non-signed header section and an exchange consisting of the headers from the signed headers section and the payload body, to the algorithm in <a href="#cross-origin-trust" class="xref">Section 4</a>.</p>
 <h1 id="rfc.section.5.3.2">
 <a href="#rfc.section.5.3.2">5.3.2.</a> <a href="#example-application-signed-exchange" id="example-application-signed-exchange">Example</a>
 </h1>
 <p id="rfc.section.5.3.2.p.1">An example <samp>application/signed-exchange</samp> file representing a possible signed exchange with <a href="https://example.com/">https://example.com/</a> follows, with lengths represented by descriptions in <samp>&lt;&gt;</samp>s, CBOR represented in the extended diagnostic format defined in Appendix G of <a href="#I-D.ietf-cbor-cddl" class="xref">[I-D.ietf-cbor-cddl]</a>, and most of the <samp>Signature</samp> header field and payload elided with a &#8230;:</p>
 <pre>
 sxg1\0&lt;3-byte length of the following header
-value&gt;&lt;3-byte length of the encoding of the
-following array&gt;sig1; sig=*...; integrity="mi"; ...[
+value&gt;sig1; sig=*...; integrity="mi"; ...&lt;3-byte length of the encoding of the
+following array&gt;[
   {
     ':method': 'GET',
     ':url': 'https://example.com/',
@@ -1834,7 +1834,7 @@ Date: Sat, 25 Nov 2017 10:00:00 UTC
 <h1 id="rfc.appendix.E">
 <a href="#rfc.appendix.E">Appendix E.</a> <a href="#acknowledgements" id="acknowledgements">Acknowledgements</a>
 </h1>
-<p id="rfc.section.E.p.1">Thanks to Devin Mullins, Ilari Liusvaara, Justin Schuh, Mark Nottingham, Mike Bishop, Ryan Sleevi, and Yoav Weiss for comments that improved this draft.</p>
+<p id="rfc.section.E.p.1">Thanks to Ilari Liusvaara, Justin Schuh, Mark Nottingham, Mike Bishop, Ryan Sleevi, and Yoav Weiss for comments that improved this draft.</p>
 <h1 id="rfc.authors"><a href="#rfc.authors">Author's Address</a></h1>
 <div class="avoidbreak">
   <address class="vcard">
