@@ -70,42 +70,42 @@ Table of Contents
 
    1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   3
    2.  Terminology . . . . . . . . . . . . . . . . . . . . . . . . .   3
-   3.  Signing an exchange . . . . . . . . . . . . . . . . . . . . .   3
+   3.  Signing an exchange . . . . . . . . . . . . . . . . . . . . .   4
      3.1.  The Signature Header  . . . . . . . . . . . . . . . . . .   4
        3.1.1.  Examples  . . . . . . . . . . . . . . . . . . . . . .   5
-       3.1.2.  Open Questions  . . . . . . . . . . . . . . . . . . .   5
      3.2.  CBOR representation of exchange headers . . . . . . . . .   6
-       3.2.1.  Example . . . . . . . . . . . . . . . . . . . . . . .   6
+       3.2.1.  Example . . . . . . . . . . . . . . . . . . . . . . .   7
      3.3.  Loading a certificate chain . . . . . . . . . . . . . . .   7
-     3.4.  Canonical CBOR serialization  . . . . . . . . . . . . . .   8
+     3.4.  Canonical CBOR serialization  . . . . . . . . . . . . . .   9
      3.5.  Signature validity  . . . . . . . . . . . . . . . . . . .   9
-       3.5.1.  Open Questions  . . . . . . . . . . . . . . . . . . .  12
      3.6.  Updating signature validity . . . . . . . . . . . . . . .  12
        3.6.1.  Examples  . . . . . . . . . . . . . . . . . . . . . .  13
      3.7.  The Accept-Signature header . . . . . . . . . . . . . . .  14
-   4.  Cross-origin trust  . . . . . . . . . . . . . . . . . . . . .  14
-     4.1.  Stateful header fields  . . . . . . . . . . . . . . . . .  15
-     4.2.  Certificate Requirements  . . . . . . . . . . . . . . . .  16
-   5.  Transferring a signed exchange  . . . . . . . . . . . . . . .  16
-     5.1.  Same-origin response  . . . . . . . . . . . . . . . . . .  16
-     5.2.  HTTP/2 extension for cross-origin Server Push . . . . . .  16
-     5.3.  application/signed-exchange format  . . . . . . . . . . .  16
-   6.  Security considerations . . . . . . . . . . . . . . . . . . .  17
-   7.  Privacy considerations  . . . . . . . . . . . . . . . . . . .  17
-   8.  IANA considerations . . . . . . . . . . . . . . . . . . . . .  18
-     8.1.  Internet Media Type application/signed-exchange . . . . .  18
-   9.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  19
-     9.1.  Normative References  . . . . . . . . . . . . . . . . . .  19
-     9.2.  Informative References  . . . . . . . . . . . . . . . . .  21
-     9.3.  URIs  . . . . . . . . . . . . . . . . . . . . . . . . . .  22
-   Appendix A.  Change Log . . . . . . . . . . . . . . . . . . . . .  22
-   Appendix B.  Acknowledgements . . . . . . . . . . . . . . . . . .  23
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  23
-
-
-
-
-
+       3.7.1.  Integrity identifiers . . . . . . . . . . . . . . . .  15
+       3.7.2.  Key type identifiers  . . . . . . . . . . . . . . . .  16
+       3.7.3.  Key value identifiers . . . . . . . . . . . . . . . .  16
+       3.7.4.  Examples  . . . . . . . . . . . . . . . . . . . . . .  16
+   4.  Cross-origin trust  . . . . . . . . . . . . . . . . . . . . .  17
+     4.1.  Stateful header fields  . . . . . . . . . . . . . . . . .  18
+     4.2.  Certificate Requirements  . . . . . . . . . . . . . . . .  19
+   5.  Transferring a signed exchange  . . . . . . . . . . . . . . .  20
+     5.1.  Same-origin response  . . . . . . . . . . . . . . . . . .  20
+       5.1.1.  Significant headers for a same-origin response  . . .  20
+       5.1.2.  The Signed-Headers Header . . . . . . . . . . . . . .  21
+     5.2.  HTTP/2 extension for cross-origin Server Push . . . . . .  22
+     5.3.  application/signed-exchange format  . . . . . . . . . . .  22
+       5.3.1.  Cross-origin trust in application/signed-exchange . .  23
+       5.3.2.  Example . . . . . . . . . . . . . . . . . . . . . . .  23
+   6.  Security considerations . . . . . . . . . . . . . . . . . . .  23
+   7.  Privacy considerations  . . . . . . . . . . . . . . . . . . .  23
+   8.  IANA considerations . . . . . . . . . . . . . . . . . . . . .  24
+     8.1.  Internet Media Type application/signed-exchange . . . . .  24
+   9.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  25
+     9.1.  Normative References  . . . . . . . . . . . . . . . . . .  25
+     9.2.  Informative References  . . . . . . . . . . . . . . . . .  27
+     9.3.  URIs  . . . . . . . . . . . . . . . . . . . . . . . . . .  28
+   Appendix A.  Change Log . . . . . . . . . . . . . . . . . . . . .  28
+   Appendix B.  Acknowledgements . . . . . . . . . . . . . . . . . .  30
 
 
 
@@ -113,6 +113,8 @@ Yasskin & Ueno          Expires January 11, 2019                [Page 2]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
 
+
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  30
 
 1.  Introduction
 
@@ -124,6 +126,15 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
 
 2.  Terminology
 
+   Absolute URL  A string for which the URL parser [3] ([URL]), when run
+      without a base URL, returns a URL rather than a failure, and for
+      which that URL has a null fragment.  This is similar to the
+      absolute-URL string [4] concept defined by ([URL]) but might not
+      include exactly the same strings.
+
+   Author  The entity that wrote the content in a particular resource.
+      This specification deals with publishers rather than authors.
+
    Publisher  The entity that controls the server for a particular
       origin [RFC6454].  The publisher can get a CA to issue
       certificates for their private keys and can run a TLS server for
@@ -134,7 +145,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
       the request in a PUSH_PROMISE and its matching response stream.
       Defined by Section 8 of [RFC7540].
 
-   Intermediate  An entity that fetches signed HTTP exchanges from an
+   Intermediate  An entity that fetches signed HTTP exchanges from a
       publisher or another intermediate and forwards them to another
       intermediate or a client.
 
@@ -142,13 +153,22 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
       able to prove that the publisher vouched for it as coming from its
       claimed origin.
 
-   Unix time  Defined by [POSIX] section 4.16 [3].
+   Unix time  Defined by [POSIX] section 4.16 [5].
 
    The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
    "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
    "OPTIONAL" in this document are to be interpreted as described in BCP
    14 [RFC2119] [RFC8174] when, and only when, they appear in all
    capitals, as shown here.
+
+
+
+
+
+Yasskin & Ueno          Expires January 11, 2019                [Page 3]
+
+Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
+
 
 3.  Signing an exchange
 
@@ -162,13 +182,6 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
    validating that signature with its certificate or public key and
    other metadata against the exchange's headers and content
    (Section 3.5).  This validity then informs higher-level protocols.
-
-
-
-Yasskin & Ueno          Expires January 11, 2019                [Page 3]
-
-Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
-
 
    Each signature is parameterised with information to let a client
    fetch assurance that a signed exchange is still valid, in the face of
@@ -186,36 +199,23 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
    enforces the integrity of the exchange's payload.
 
    The "Signature" header is a Structured Header as defined by
-   [I-D.ietf-httpbis-header-structure-02].  Its value MUST be a list
-   (Section 4.8 of [I-D.ietf-httpbis-header-structure-02]) of
-   parameterised labels (Section 4.4 of
-   [I-D.ietf-httpbis-header-structure-02]), and the list MUST contain
-   exactly one element.
+   [I-D.ietf-httpbis-header-structure].  Its value MUST be a
+   parameterised list (Section 3.3 of
+   [I-D.ietf-httpbis-header-structure]), and the list MUST contain
+   exactly one element.  Its ABNF is:
 
-   Each parameterised label MUST have parameters named "sig",
-   "integrity", "validityUrl", "date", and "expires".  Each
-   parameterised label MUST also have "certUrl" and "certSha256"
-   parameters.  This specification gives no meaning to the label itself,
-   which can be used as a human-readable identifier for the signature
-   (see Section 3.1.2, Paragraph 1).  The present parameters MUST have
-   the following values:
+   Signature = sh-param-list
 
-   "sig"  Binary content (Section 4.5 of
-      [I-D.ietf-httpbis-header-structure-02]) holding the signature of
-      most of these parameters and the exchange's headers.
+   The parameterised identifier in the list MUST have parameters named
+   "sig", "integrity", "validity-url", "date", "expires", "cert-url",
+   and "cert-sha256".  This specification gives no meaning to the
+   identifier itself, which can be used as a human-readable identifier
+   for the signature.  The present parameters MUST have the following
+   values:
 
-   "integrity"  A string (Section 4.2 of
-      [I-D.ietf-httpbis-header-structure-02]) containing the lowercase
-      name of the response header field that guards the response
-      payload's integrity.
-
-   "certUrl"  A string (Section 4.2 of
-      [I-D.ietf-httpbis-header-structure-02]) containing an absolute-URL
-      string [4] ([URL]).
-
-   "certSha256"  Binary content (Section 4.5 of
-      [I-D.ietf-httpbis-header-structure-02]) holding the SHA-256 hash
-      of the first certificate found at "certUrl".
+   "sig"  Binary content (Section 3.9 of
+      [I-D.ietf-httpbis-header-structure]) holding the signature of most
+      of these parameters and the exchange's headers.
 
 
 
@@ -226,14 +226,27 @@ Yasskin & Ueno          Expires January 11, 2019                [Page 4]
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
 
 
-   "validityUrl"  A string (Section 4.2 of
-      [I-D.ietf-httpbis-header-structure-02]) containing an absolute-URL
-      string [5] ([URL]).
+   "integrity"  A string (Section 3.7 of
+      [I-D.ietf-httpbis-header-structure]) containing the lowercase name
+      of the response header field that guards the response payload's
+      integrity.
 
-   "date" and "expires"  An unsigned integer (Section 4.1 of
-      [I-D.ietf-httpbis-header-structure-02]) representing a Unix time.
+   "cert-url"  A string (Section 3.7 of
+      [I-D.ietf-httpbis-header-structure]) containing an absolute URL
+      (Section 2) with a scheme of "https" or "data".
 
-   The "certUrl" parameter is _not_ signed, so intermediates can update
+   "cert-sha256"  Binary content (Section 3.9 of
+      [I-D.ietf-httpbis-header-structure]) holding the SHA-256 hash of
+      the first certificate found at "cert-url".
+
+   "validity-url"  A string (Section 3.7 of
+      [I-D.ietf-httpbis-header-structure]) containing an absolute URL
+      (Section 2) with a scheme of "https".
+
+   "date" and "expires"  An integer (Section 3.5 of
+      [I-D.ietf-httpbis-header-structure]) representing a Unix time.
+
+   The "cert-url" parameter is _not_ signed, so intermediates can update
    it with a pointer to a cached version.
 
 3.1.1.  Examples
@@ -244,35 +257,22 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
 
 Signature:
  sig1;
-  sig=*t7LoYw6vwL2FSZRNJPYdNdYjfZSQkaCQeqpBD1whcy/6AAamVJ2OryXoXv6ACVBQgPV13o5de9oOVcOGGMX9fsf2ve1UDw/ITpeimB7n3zcuDEePzIcPbUnicicN2yodZAfr5il7BBJTs8L+V2ZERI16nJfrOZOvUfhvuUaMDGQXx5StIj7XLiX7/caxPz5ctwglgVAwCmoVPhmYFLq391O+hEssHSk2xkY6r/D9V2cKMikBBOTZ+JFyrnS/f2B4li7YASIY0YX64ifCmCw97cQTngXax6Upoie44IAe+6JngOie9JlDgcMF3YZ1uxNGWl9VwlalSwWgi1YA9Ff7mQ;
+  sig=*MEUCIQDXlI2gN3RNBlgFiuRNFpZXcDIaUpX6HIEwcZEc0cZYLAIga9DsVOMM+g5YpwEBdGW3sS+bvnmAJJiSMwhuBdqp5UY=*;
   integrity="mi-draft2";
-  validityUrl="https://example.com/resource.validity.1511128380";
-  certUrl="https://example.com/certs";
-  certSha256=*W7uB969dFW3Mb5ZefPS9Tq5ZbH5iSmOILpjv2qEArmI;
+  validity-url="https://example.com/resource.validity.1511128380";
+  cert-url="https://example.com/oldcerts";
+  cert-sha256=*W7uB969dFW3Mb5ZefPS9Tq5ZbH5iSmOILpjv2qEArmI=*;
   date=1511128380; expires=1511733180
 
-   The signatures uses a 2048-bit RSA certificate within
+   The signature uses a secp256r1 certificate within
    "https://example.com/".
 
    It relies on the "MI-Draft2" response header to guard the integrity
    of the response payload.
 
-   The signature includes a "validityUrl" that includes the first time
+   The signature includes a "validity-url" that includes the first time
    the resource was seen.  This allows multiple versions of a resource
    at the same URL to be updated with new signatures, which allows
-   clients to avoid transferring extra data while the old versions don't
-   have known security bugs.
-
-   The certificate at "https://example.com/certs" has a "subjectAltName"
-   of "example.com", meaning that if it and its signature validate, the
-   exchange can be trusted as having an origin of
-   "https://example.com/".
-
-3.1.2.  Open Questions
-
-   [I-D.ietf-httpbis-header-structure-02] provides a way to parameterise
-   labels but not other supported types like binary content.  If the
-   "Signature" header field is notionally a list of parameterised
 
 
 
@@ -282,14 +282,13 @@ Yasskin & Ueno          Expires January 11, 2019                [Page 5]
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
 
 
-   signatures, maybe we should add a "parameterised binary content"
-   type.
+   clients to avoid transferring extra data while the old versions don't
+   have known security bugs.
 
-   Should the certUrl and validityUrl be lists so that intermediates can
-   offer a cache without losing the original URLs?  Putting lists in
-   dictionary fields is more complex than
-   [I-D.ietf-httpbis-header-structure-02] allows, so they're single
-   items for now.
+   The certificate at "https://example.com/certs" has a "subjectAltName"
+   of "example.com", meaning that if it and its signature validate, the
+   exchange can be trusted as having an origin of
+   "https://example.com/".
 
 3.2.  CBOR representation of exchange headers
 
@@ -310,11 +309,14 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
 
        *  The byte string ':url' to the byte string containing
           "exchange"'s request's effective request URI, which MUST be an
-          absolute-URL string [6] ([URL]).
+          absolute URL (Section 2) with a scheme of "https".
 
-       *  For each request header field in "exchange", the header
-          field's lowercase name as a byte string to the header field's
-          value as a byte string.
+       *  For each request header field in "exchange" except for the
+          "Host" header field, the header field's lowercase name as a
+          byte string to the header field's value as a byte string.
+
+          Note: "Host" is excluded because it is already part of the
+          effective request URI.
 
    2.  The map mapping:
 
@@ -325,9 +327,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
           field's lowercase name as a byte string to the header field's
           value as a byte string.
 
-3.2.1.  Example
 
-   Given the HTTP exchange:
 
 
 
@@ -338,17 +338,22 @@ Yasskin & Ueno          Expires January 11, 2019                [Page 6]
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
 
 
-GET https://example.com/ HTTP/1.1
-Accept: */*
+3.2.1.  Example
 
-HTTP/1.1 200
-Content-Type: text/html
-Content-Encoding: mi-sha256-draft2
-MI: mi-sha256-draft2=20addcf7368837f616d549f035bf6784ea6d4bf4817a3736cd2fc7a763897fe3
+   Given the HTTP exchange:
 
-<0x0000000000004000><!doctype html>
-<html>
-...
+ GET / HTTP/1.1
+ Host: example.com
+ Accept: */*
+
+ HTTP/1.1 200
+ Content-Type: text/html
+ MI-Draft2: mi-sha256-draft2=dcRDgR2GM35DluAV13PzgnG6-pvQwPywfFvAu1UeFrs
+ Signed-Headers: "content-type", "mi-draft2"
+
+ <!doctype html>
+ <html>
+ ...
 
    The cbor representation consists of the following item, represented
    using the extended diagnostic notation from [I-D.ietf-cbor-cddl]
@@ -356,35 +361,30 @@ MI: mi-sha256-draft2=20addcf7368837f616d549f035bf6784ea6d4bf4817a3736cd2fc7a7638
 
 [
   {
-    ':url': 'https://example.com/'
+    ':url': 'https://example.com/',
+    'accept': '*/*',
     ':method': 'GET',
   },
   {
-    'mi': 'mi-sha256-draft2=20addcf7368837f616d549f035bf6784ea6d4bf4817a3736cd2fc7a763897fe3',
+    'mi-draft2': 'mi-sha256-draft2=dcRDgR2GM35DluAV13PzgnG6-pvQwPywfFvAu1UeFrs',
     ':status': '200',
     'content-type': 'text/html'
-    'content-encoding': 'mi-sha256-draft2',
   }
 ]
 
 3.3.  Loading a certificate chain
 
-   The resource at a signature's "certUrl" MUST contain a TLS 1.3
-   Certificate message (Section 4.4.2 of [I-D.ietf-tls-tls13])
-   containing X.509v3 certificates.
+   The resource at a signature's "cert-url" MUST have the "application/
+   cert-chain+cbor" content type, MUST be canonically-encoded CBOR
+   (Section 3.4), and MUST match the following CDDL:
 
-   Parsing notes:
 
-   1.  This resource MUST NOT include the 4-byte header that would
-       appear in a Handshake message.
 
-   2.  Since this fetch is not in response to a CertificateRequest, the
-       certificate_request_context MUST be empty, and a non-empty value
-       MUST cause the parse to fail.
 
-   The client MUST ignore unknown or unexpected extensions.
 
-   Loading a "certUrl" takes a "forceFetch" flag.  The client MUST:
+
+
+
 
 
 
@@ -394,20 +394,61 @@ Yasskin & Ueno          Expires January 11, 2019                [Page 7]
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
 
 
-   1.  Let "raw-chain" be the result of fetching ([FETCH]) "certUrl".
+   cert-chain = [
+     "&#128220;&#9939;", ; U+1F4DC U+26D3
+     + {
+       cert: bytes,
+       ? ocsp: bytes,
+       ? sct: bytes,
+       * tstr => any,
+     }
+   ]
+
+   The first map (second item) in the CBOR array is treated as the end-
+   entity certificate, and the client will attempt to build a path
+   ([RFC5280]) to it from a trusted root using the other certificates in
+   the chain.
+
+   1.  Each "cert" value MUST be a DER-encoded X.509v3 certificate
+       ([RFC5280]).  Other key/value pairs in the same array item define
+       properties of this certificate.
+
+   2.  The first certificate's "ocsp" value MUST be a complete, DER-
+       encoded OCSP response for that certificate (using the ASN.1 type
+       "OCSPResponse" defined in [RFC6960]).  Subsequent certificates
+       MUST NOT have an "ocsp" value.
+
+   3.  Each certificate's "sct" value if any MUST be a
+       "SignedCertificateTimestampList" for that certificate as defined
+       by Section 3.3 of [RFC6962].
+
+   Loading a "cert-url" takes a "forceFetch" flag.  The client MUST:
+
+   1.  Let "raw-chain" be the result of fetching ([FETCH]) "cert-url".
        If "forceFetch" is _not_ set, the fetch can be fulfilled from a
        cache using normal HTTP semantics [RFC7234].  If this fetch
        fails, return "invalid".
 
    2.  Let "certificate-chain" be the array of certificates and
-       properties produced by parsing "raw-chain" as the TLS Certificate
-       message as described above.  If any of the requirements above
-       aren't satisfied, return "invalid".  Note that this validation
-       requirement might be impractical to completely achieve due to
-       certificate validation implementations that don't enforce DER
-       encoding or other standard constraints.
+       properties produced by parsing "raw-chain" using the CDDL above.
+       If any of the requirements above aren't satisfied, return
+       "invalid".  Note that this validation requirement might be
+       impractical to completely achieve due to certificate validation
+       implementations that don't enforce DER encoding or other standard
+       constraints.
 
    3.  Return "certificate-chain".
+
+
+
+
+
+
+
+Yasskin & Ueno          Expires January 11, 2019                [Page 8]
+
+Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
+
 
 3.4.  Canonical CBOR serialization
 
@@ -440,26 +481,16 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
 
       8.  false, encoded as F4.
 
-
-
-
-
-
-Yasskin & Ueno          Expires January 11, 2019                [Page 8]
-
-Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
-
-
    Note: this specification does not use floating point, tags, or other
    more complex data types, so it doesn't need rules to canonicalize
    those.
 
 3.5.  Signature validity
 
-   The client MUST parse the "Signature" header field as the list of
-   parameterised values (Section 4.8.1 of
-   [I-D.ietf-httpbis-header-structure-02]) described in Section 3.1.  If
-   an error is thrown during this parsing or any of the requirements
+   The client MUST parse the "Signature" header field as the
+   parameterised list (Section 4.2.3 of
+   [I-D.ietf-httpbis-header-structure]) described in Section 3.1.  If an
+   error is thrown during this parsing or any of the requirements
    described there aren't satisfied, the exchange has no valid
    signatures.  Otherwise, each member of this list represents a
    signature with parameters.
@@ -468,6 +499,13 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
    signature with parameters is invalid or potentially-valid for an
    "exchange".  Potentially-valid results include:
 
+
+
+Yasskin & Ueno          Expires January 11, 2019                [Page 9]
+
+Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
+
+
    o  The signed headers of the exchange so that higher-level protocols
       can avoid relying on unsigned headers, and
 
@@ -475,7 +513,10 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
       protocol can determine whether it's actually valid.
 
    This algorithm accepts a "forceFetch" flag that avoids the cache when
-   fetching URLs.
+   fetching URLs.  A client that determines that a potentially-valid
+   certificate chain is actually invalid due to an expired OCSP response
+   MAY retry with "forceFetch" set to retrieve an updated OCSP from the
+   original server.
 
    1.  Let "payload" be the payload body (Section 3.3 of [RFC7230]) of
        "exchange".  Note that the payload body is the message body with
@@ -484,76 +525,35 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
    2.  Let:
 
        *  "signature" be the signature (binary content in the
-          parameterised label's "sig" parameter).
+          parameterised identifier's "sig" parameter).
 
        *  "integrity" be the signature's "integrity" parameter.
 
-       *  "validityUrl" be the signature's "validityUrl" parameter.
+       *  "validity-url" be the signature's "validity-url" parameter.
 
-       *  "certUrl" be the signature's "certUrl" parameter, if any.
+       *  "cert-url" be the signature's "cert-url" parameter, if any.
 
-       *  "certSha256" be the signature's "certSha256" parameter, if
+       *  "cert-sha256" be the signature's "cert-sha256" parameter, if
           any.
 
        *  "date" be the signature's "date" parameter, interpreted as a
           Unix time.
 
-
-
-
-Yasskin & Ueno          Expires January 11, 2019                [Page 9]
-
-Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
-
-
        *  "expires" be the signature's "expires" parameter, interpreted
           as a Unix time.
 
-   3.  If "integrity" names a header field other than "MI-Draft2"
-       ([I-D.thomson-http-mice]) or this header field is not present in
-       "exchange"'s response headers or which the client cannot use to
-       check the integrity of "payload" (for example, the header field
-       is new and hasn't been implemented yet), then return "invalid".
-       Clients MUST be able to check the integrity of "payload" using
-       the "MI-Draft2" header field, which is defined equivalently to
-       the "MI" header from draft 02 of [I-D.thomson-http-mice].
+   3.  If "integrity" names a header field other than "MI-Draft2" or
+       this header field is not present in "exchange"'s response
+       headers, then return "invalid".  If validating integrity using
+       the selected header field requires the client to process records
+       larger than 16kB (for example, if the "mi-sha256-draft2" record
+       length is greater than 16kB), return "invalid".  Clients MUST be
+       able to check the integrity of "payload" using the "MI-Draft2"
+       header field with its "mi-sha256-draft2" content encoding, which
+       are defined equivalently to the "MI" header field and "mi-sha256"
+       content encoding from [I-D.thomson-http-mice].
 
-   4.  Set "publicKey" and "signing-alg" depending on which key fields
-       are present:
 
-       1.  Assert: "certUrl" is present.
-
-           1.  Let "certificate-chain" be the result of loading the
-               certificate chain at "certUrl" passing the "forceFetch"
-               flag (Section 3.3).  If this returns "invalid", return
-               "invalid".
-
-           2.  Let "main-certificate" be the first certificate in
-               "certificate-chain".
-
-           3.  Set "publicKey" to "main-certificate"'s public key.
-
-           4.  If "publicKey" is not a 2048-bit RSA public key, return
-               "invalid".
-
-           5.  The client MUST define a partial function from public key
-               types to signing algorithms, and this function must at
-               the minimum include the following mappings:
-
-               RSA, 2048 bits:  rsa_pss_rsae_sha256 or
-                  rsa_pss_pss_sha256, as defined in Section 4.2.3 of
-                  [I-D.ietf-tls-tls13], depending on which of the
-                  rsaEncryption OID or RSASSA-PSS OID [RFC8017] is used.
-
-               Set "signing-alg" to the result of applying this function
-               to the type of "main-certificate"'s public key.  If the
-               function is undefined on this input, return "invalid".
-
-   5.  If "expires" is more than 7 days (604800 seconds) after "date",
-       return "invalid".
-
-   6.  If the current time is before "date" or after "expires", return
-       "invalid".
 
 
 
@@ -562,27 +562,67 @@ Yasskin & Ueno          Expires January 11, 2019               [Page 10]
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
 
 
+   4.  Set "publicKey" and "signing-alg" depending on which key fields
+       are present:
+
+       1.  Assert: "cert-url" is present.
+
+           1.  Let "certificate-chain" be the result of loading the
+               certificate chain at "cert-url" passing the "forceFetch"
+               flag (Section 3.3).  If this returns "invalid", return
+               "invalid".
+
+           2.  Let "main-certificate" be the first certificate in
+               "certificate-chain".
+
+           3.  Set "publicKey" to "main-certificate"'s public key.
+
+           4.  If "publicKey" is an RSA key, return "invalid".
+
+           5.  If "publicKey" is a key using the secp256r1 elliptic
+               curve, set "signing-alg" to ecdsa_secp256r1_sha256 as
+               defined in Section 4.2.3 of [I-D.ietf-tls-tls13].
+
+           6.  Otherwise, return "invalid".
+
+   5.  If "expires" is more than 7 days (604800 seconds) after "date",
+       return "invalid".
+
+   6.  If the current time is before "date" or after "expires", return
+       "invalid".
+
    7.  Let "message" be the concatenation of the following byte strings.
        This matches the [I-D.ietf-tls-tls13] format to avoid cross-
-       protocol attacks when TLS certificates are used to sign
-       manifests.
+       protocol attacks if anyone uses the same key in a TLS certificate
+       and an exchange-signing certificate.
 
        1.  A string that consists of octet 32 (0x20) repeated 64 times.
 
-       2.  A context string: the ASCII encoding of "HTTP Exchange".
+       2.  A context string: the ASCII encoding of "HTTP Exchange 1 b1".
+
+           Note: As this is a snapshot of a draft of
+           [I-D.yasskin-http-origin-signed-responses], it uses a
+           distinct context string.
 
        3.  A single 0 byte which serves as a separator.
 
        4.  The bytes of the canonical CBOR serialization (Section 3.4)
            of a CBOR map mapping:
 
-           1.  If "certSha256" is set:
+           1.  If "cert-sha256" is set:
 
-               1.  The text string "certSha256" to the byte string value
-                   of "certSha256".
 
-           2.  The text string "validityUrl" to the byte string value of
-               "validityUrl".
+
+Yasskin & Ueno          Expires January 11, 2019               [Page 11]
+
+Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
+
+
+               1.  The text string "cert-sha256" to the byte string
+                   value of "cert-sha256".
+
+           2.  The text string "validity-url" to the byte string value
+               of "validity-url".
 
            3.  The text string "date" to the integer value of "date".
 
@@ -592,8 +632,8 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
            5.  The text string "headers" to the CBOR representation
                (Section 3.2) of "exchange"'s headers.
 
-   8.  If "certUrl" is present and the SHA-256 hash of "main-
-       certificate"'s "cert_data" is not equal to "certSha256" (whose
+   8.  If "cert-url" is present and the SHA-256 hash of "main-
+       certificate"'s "cert_data" is not equal to "cert-sha256" (whose
        presence was checked when the "Signature" header field was
        parsed), return "invalid".
 
@@ -601,8 +641,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
        the entire certificate chain in its Certificate Verify
        (Section 4.4.3 of [I-D.ietf-tls-tls13]), in order to allow
        updating the stapled OCSP response without updating signatures at
-       the same time.  Note that this difference doesn't matter for this
-       version of this draft since OCSP responses aren't checked.
+       the same time.
 
    9.  If "signature" is a valid signature of "message" by "publicKey"
        using "signing-alg", return "potentially-valid" with
@@ -610,14 +649,6 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
 
    Note that the above algorithm can determine that an exchange's
    headers are potentially-valid before the exchange's payload is
-
-
-
-Yasskin & Ueno          Expires January 11, 2019               [Page 11]
-
-Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
-
-
    received.  Similarly, if "integrity" identifies a header field like
    "MI-Draft2" ([I-D.thomson-http-mice]) that can incrementally validate
    the payload, early parts of the payload can be determined to be
@@ -630,18 +661,25 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
    parts of the exchange and MUST wait to process other parts of the
    exchange until they too are determined to be valid.
 
-3.5.1.  Open Questions
-
-   Should the signed message use the TLS format (with an initial 64
-   spaces) even though these certificates can't be used in TLS servers?
-
 3.6.  Updating signature validity
 
-   Signatures are designed to expire a short time after they're signed,
-   so that revoked certificates and signed exchanges with known
-   vulnerabilities are distrusted promptly.
+   Both OCSP responses and signatures are designed to expire a short
+   time after they're signed, so that revoked certificates and signed
+   exchanges with known vulnerabilities are distrusted promptly.
 
-   The "validityUrl" parameter (Paragraph 5) of the signatures provides
+
+
+Yasskin & Ueno          Expires January 11, 2019               [Page 12]
+
+Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
+
+
+   This specification provides no way to update OCSP responses by
+   themselves.  Instead, clients need to re-fetch the "cert-url"
+   (Section 3.5, Paragraph 4) to get a chain including a newer OCSP
+   response.
+
+   The "validity-url" parameter (Paragraph 5) of the signatures provides
    a way to fetch new signatures or learn where to fetch a complete
    updated exchange.
 
@@ -649,7 +687,7 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
    since each version needs different signatures and becomes obsolete at
    different times.
 
-   The resource at a "validityUrl" is "validity data", a CBOR map
+   The resource at a "validity-url" is "validity data", a CBOR map
    matching the following CDDL ([I-D.ietf-cbor-cddl]):
 
    validity = {
@@ -659,20 +697,12 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
      }
    ]
 
-   The elements of the "signatures" array are parameterised labels
-   (Section 4.4 of [I-D.ietf-httpbis-header-structure-02]) meant to
+   The elements of the "signatures" array are parameterised identifiers
+   (Section 4.2.4 of [I-D.ietf-httpbis-header-structure]) meant to
    replace the signatures within the "Signature" header field pointing
    to this validity data.  If the signed exchange contains a bug severe
    enough that clients need to stop using the content, the "signatures"
    array MUST NOT be present.
-
-
-
-
-Yasskin & Ueno          Expires January 11, 2019               [Page 12]
-
-Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
-
 
    If the the "update" map is present, that indicates that a new version
    of the signed exchange is available at its effective request URI
@@ -691,27 +721,36 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
    resource" has the following "Signature" header field (with line
    breaks included and irrelevant fields omitted for ease of reading).
 
+
+
+
+
+Yasskin & Ueno          Expires January 11, 2019               [Page 13]
+
+Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
+
+
    Signature:
     sig1;
-     sig=*MEUCIQ...;
+     sig=*MEUCIQ...*;
      ...
-     validityUrl="https://example.com/resource.validity.1511157180";
-     certUrl="https://example.com/oldcerts";
+     validity-url="https://example.com/resource.validity.1511157180";
+     cert-url="https://example.com/oldcerts";
      date=1511128380; expires=1511733180
 
    At 2017-11-27 11:02 UTC, "sig1" has expired, so the client needs to
    fetch "https://example.com/resource.validity.1511157180" (the
-   "validityUrl" of "sig1") to update that signatures.  This URL might
-   contain:
+   "validity-url" of "sig1") if it wishes to update that signature.
+   This URL might contain:
 
 {
   "signatures": [
     'sig1; '
-    'sig=*MEQCIC/I9Q+7BZFP6cSDsWx43pBAL0ujTbON/+7RwKVk+ba5AiB3FSFLZqpzmDJ0NumNwN04pqgJZE99fcK86UjkPbj4jw; '
-    'validityUrl="https://example.com/resource.validity.1511157180"; '
-    'integrity="mi"; '
-    'certUrl="https://example.com/newcerts"; '
-    'certSha256=*J/lEm9kNRODdCmINbvitpvdYKNQ+YgBj99DlYp4fEXw; '
+    'sig=*MEQCIC/I9Q+7BZFP6cSDsWx43pBAL0ujTbON/+7RwKVk+ba5AiB3FSFLZqpzmDJ0NumNwN04pqgJZE99fcK86UjkPbj4jw==*; '
+    'validity-url="https://example.com/resource.validity.1511157180"; '
+    'integrity="mi-draft2"; '
+    'cert-url="https://example.com/newcerts"; '
+    'cert-sha256=*J/lEm9kNRODdCmINbvitpvdYKNQ+YgBj99DlYp4fEXw=*; '
     'date=1511733180; expires=1512337980'
   ],
   "update": {
@@ -722,28 +761,152 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
    This indicates that the client could fetch a newer version at
    "https://example.com/resource" (the original URL of the exchange), or
    that the validity period of the old version can be extended by
-
-
-
-Yasskin & Ueno          Expires January 11, 2019               [Page 13]
-
-Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
-
-
    replacing the original signature with the new signature provided.
    The signature of the updated signed exchange would be:
 
    Signature:
     sig1;
-     sig=*MEQCIC...;
+     sig=*MEQCIC...*;
      ...
-     validityUrl="https://example.com/resource.validity.1511157180";
-     certUrl="https://example.com/newcerts";
+     validity-url="https://example.com/resource.validity.1511157180";
+     cert-url="https://example.com/newcerts";
      date=1511733180; expires=1512337980
 
 3.7.  The Accept-Signature header
 
-   This section isn't implemented.
+   "Signature" header fields cost on the order of 300 bytes for ECDSA
+   signatures, so servers might prefer to avoid sending them to clients
+   that don't intend to use them.  A client can send the "Accept-
+   Signature" header field to indicate that it does intend to take
+
+
+
+Yasskin & Ueno          Expires January 11, 2019               [Page 14]
+
+Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
+
+
+   advantage of any available signatures and to indicate what kinds of
+   signatures it supports.
+
+   When a server receives an "Accept-Signature" header field in a client
+   request, it SHOULD reply with any available "Signature" header fields
+   for its response that the "Accept-Signature" header field indicates
+   the client supports.  However, if the "Accept-Signature" value
+   violates a requirement in this section, the server MUST behave as if
+   it hadn't received any "Accept-Signature" header at all.
+
+   The "Accept-Signature" header field is a Structured Header as defined
+   by [I-D.ietf-httpbis-header-structure].  Its value MUST be a
+   parameterised list (Section 3.3 of
+   [I-D.ietf-httpbis-header-structure]).  Its ABNF is:
+
+   Accept-Signature = sh-param-list
+
+   The order of identifiers in the "Accept-Signature" list is not
+   significant.  Identifiers, ignoring any initial "-" character, MUST
+   NOT be duplicated.
+
+   Each identifier in the "Accept-Signature" header field's value
+   indicates that a feature of the "Signature" header field
+   (Section 3.1) is supported.  If the identifier begins with a "-"
+   character, it instead indicates that the feature named by the rest of
+   the identifier is not supported.  Unknown identifiers and parameters
+   MUST be ignored because new identifiers and new parameters on
+   existing identifiers may be defined by future specifications.
+
+3.7.1.  Integrity identifiers
+
+   Identifiers starting with "mi-draft2/" indicate that the client
+   supports the "MI-Draft2" header field (equivalent to "MI" in
+   [I-D.thomson-http-mice]) with the parameter from the HTTP MI
+   Parameter Registry registry named in lower-case by the rest of the
+   identifier.  For example, "mi-draft2/mi-blake2" indicates support for
+   Merkle integrity with the as-yet-unspecified mi-blake2 parameter, and
+   "-mi-draft2/mi-sha256-draft2" indicates non-support for Merkle
+   integrity with the mi-sha256-draft2 content encoding.
+
+   If the "Accept-Signature" header field is present, servers SHOULD
+   assume support for "mi-draft2/mi-sha256-draft2" unless the header
+   field states otherwise.
+
+
+
+
+
+
+
+
+Yasskin & Ueno          Expires January 11, 2019               [Page 15]
+
+Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
+
+
+3.7.2.  Key type identifiers
+
+   Identifiers starting with "ecdsa/" indicate that the client supports
+   certificates holding ECDSA public keys on the curve named in lower-
+   case by the rest of the identifier.
+
+   If the "Accept-Signature" header field is present, servers SHOULD
+   assume support for "ecdsa/secp256r1" unless the header field states
+   otherwise.
+
+3.7.3.  Key value identifiers
+
+   The "ed25519key" identifier has parameters indicating the public keys
+   that will be used to validate the returned signature.  Each
+   parameter's name is re-interpreted as binary content (Section 3.9 of
+   [I-D.ietf-httpbis-header-structure]) encoding a prefix of the public
+   key.  For example, if the client will validate signatures using the
+   public key whose base64 encoding is
+   "11qYAYKxCrfVS/7TyWQHOg7hcvPapiMlrwIaaPcHURo=", valid "Accept-
+   Signature" header fields include:
+
+Accept-Signature: ..., ed25519key; *11qYAYKxCrfVS/7TyWQHOg7hcvPapiMlrwIaaPcHURo=*
+Accept-Signature: ..., ed25519key; *11qYAYKxCrfVS/7TyWQHOg==*
+Accept-Signature: ..., ed25519key; *11qYAQ==*
+Accept-Signature: ..., ed25519key; **
+
+   but not
+
+   Accept-Signature: ..., ed25519key; *11qYA===*
+
+   because 5 bytes isn't a valid length for encoded base64, and not
+
+   Accept-Signature: ..., ed25519key; 11qYAQ
+
+   because it doesn't start or end with the "*"s that indicate binary
+   content.
+
+   Note that "ed25519key; **" is an empty prefix, which matches all
+   public keys, so it's useful in subresource integrity cases like
+   "<link rel=preload as=script href="...">" where the public key isn't
+   known until the matching "<script src="..." integrity="...">" tag.
+
+3.7.4.  Examples
+
+   Accept-Signature: mi-draft2/mi-sha256
+
+   states that the client will accept signatures with payload integrity
+   assured by the "MI-Draft2" header and "mi-sha256-draft2" content
+
+
+
+Yasskin & Ueno          Expires January 11, 2019               [Page 16]
+
+Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
+
+
+   encoding and implies that the client will accept integrity assured by
+   the "Digest: SHA-256" header and signatures from ECDSA keys on the
+   secp256r1 curve.
+
+   Accept-Signature: -ecdsa/secp256r1, ecdsa/secp384r1
+
+   states that the client will accept ECDSA keys on the secp384r1 curve
+   but not the secp256r1 curve and payload integrity assured with the
+   "MI-Draft2: mi-sha256-draft2" header field.
 
 4.  Cross-origin trust
 
@@ -755,8 +918,8 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
    that returns "valid".  If any signature returns "valid", return
    "valid".  Otherwise, return "invalid".
 
-   1.  If the signature's "validityUrl" parameter (Paragraph 5) is not
-       same-origin [7] with "exchange"'s effective request URI
+   1.  If the signature's "validity-url" parameter (Paragraph 5) is not
+       same-origin [6] with "exchange"'s effective request URI
        (Section 5.5 of [RFC7230]), return "invalid".
 
    2.  Use Section 3.5 to determine the signature's validity for
@@ -778,20 +941,45 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
        with the "forceFetch" flag set, and restart from step 2.  If a
        substep fails again, return "invalid".
 
-
-
-
-Yasskin & Ueno          Expires January 11, 2019               [Page 14]
-
-Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
-
-
        1.  Use "certificate-chain" to validate that its first entry,
            "main-certificate" is trusted as "authority"'s server
            certificate ([RFC5280] and other undocumented conventions).
            Let "path" be the path that was used from the "main-
+
+
+
+
+Yasskin & Ueno          Expires January 11, 2019               [Page 17]
+
+Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
+
+
            certificate" to a trusted root, including the "main-
            certificate" but excluding the root.
+
+       2.  Validate that "main-certificate" has the CanSignHttpExchanges
+           extension (Section 4.2).
+
+       3.  Validate that "main-certificate" has an "ocsp" property
+           (Section 3.3) with a valid OCSP response whose lifetime
+           ("nextUpdate - thisUpdate") is less than 7 days ([RFC6960]).
+           Note that this does not check for revocation of intermediate
+           certificates, and clients SHOULD implement another mechanism
+           for that.
+
+       4.  Validate that valid SCTs from trusted logs are available from
+           any of:
+
+           +  The "SignedCertificateTimestampList" in "main-
+              certificate"'s "sct" property (Section 3.3),
+
+           +  An OCSP extension in the OCSP response in "main-
+              certificate"'s "ocsp" property, or
+
+           +  An X.509 extension in the certificate in "main-
+              certificate"'s "cert" property,
+
+           as described by Section 3.3 of [RFC6962].
 
    7.  Return "valid".
 
@@ -815,6 +1003,13 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
 
    o  "Proxy-Authorization", [RFC7235]
 
+
+
+Yasskin & Ueno          Expires January 11, 2019               [Page 18]
+
+Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
+
+
    o  "Sec-WebSocket-Key", [RFC6455]
 
    A stateful response header field modifies state, including
@@ -835,13 +1030,6 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
 
    o  "Set-Cookie", [RFC6265]
 
-
-
-Yasskin & Ueno          Expires January 11, 2019               [Page 15]
-
-Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
-
-
    o  "Set-Cookie2", [RFC2965]
 
    o  "SetProfile", [W3C.NOTE-OPS-OverHTTP]
@@ -850,7 +1038,53 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
 
 4.2.  Certificate Requirements
 
-   For this draft, no new X.509 extension is required.
+   We define a new X.509 extension, CanSignHttpExchanges to be used in
+   the certificate when the certificate permits the usage of signed
+   exchanges.  When this extension is not present the client MUST NOT
+   accept a signature from the certificate as proof that a signed
+   exchange is authoritative for a domain covered by the certificate.
+   When it is present, the client MUST follow the validation procedure
+   in Section 4.
+
+      CanSignHttpExchanges ::= NULL
+
+   Note that this extension contains an ASN.1 NULL (bytes "05 00")
+   because some implementations have bugs with empty extensions.
+
+   Leaf certificates without this extension need to be revoked if the
+   private key is exposed to an unauthorized entity, but they generally
+   don't need to be revoked if a signing oracle is exposed and then
+   removed.
+
+   CA certificates, by contrast, need to be revoked if an unauthorized
+   entity is able to make even one unauthorized signature.
+
+
+
+Yasskin & Ueno          Expires January 11, 2019               [Page 19]
+
+Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
+
+
+   Certificates with this extension MUST be revoked if an unauthorized
+   entity is able to make even one unauthorized signature.
+
+   Conforming CAs MUST mark this extension as critical, and clients MUST
+   NOT accept certificates with this extension in TLS connections
+   (Section 4.4.2.2 of [I-D.ietf-tls-tls13]).  This simplifies security
+   analysis of this protocol and avoids encouraging server operators to
+   put exchange-signing keys on servers exposed directly to the
+   internet.
+
+   This draft of the specification identifies the CanSignHttpExchanges
+   extension with the id-ce-canSignHttpExchangesDraft OID:
+
+   id-ce-google OBJECT IDENTIFIER ::= { 1 3 6 1 4 1 11129 }
+   id-ce-canSignHttpExchangesDraft OBJECT IDENTIFIER ::= { id-ce-google 2 1 22 }
+
+   This OID might or might not be used as the final OID for the
+   extension, so certificates including it might need to be reissued
+   once the final RFC is published.
 
 5.  Transferring a signed exchange
 
@@ -859,8 +1093,90 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
 
 5.1.  Same-origin response
 
-   Receiving a Signature header as part of a normal HTTP exchange is not
-   implemented.
+   The signature for a signed exchange can be included in a normal HTTP
+   response.  Because different clients send different request header
+   fields, and intermediate servers add response header fields, it can
+   be impossible to have a signature for the exact request and response
+   that the client sees.  Therefore, when a client validates the
+   "Signature" header field for an exchange represented as a normal HTTP
+   request/response pair, it MUST pass only the subset of header fields
+   defined by Section 5.1.1 to the validation procedure (Section 3.5).
+
+   If the client relies on signature validity for any aspect of its
+   behavior, it MUST ignore any header fields that it didn't pass to the
+   validation procedure.
+
+5.1.1.  Significant headers for a same-origin response
+
+   The significant headers of an exchange represented as a normal HTTP
+   request/response pair (Section 2.1 of [RFC7230] or Section 8.1 of
+   [RFC7540]) are:
+
+   o  The method (Section 4 of [RFC7231]) and effective request URI
+      (Section 5.5 of [RFC7230]) of the request.
+
+
+
+Yasskin & Ueno          Expires January 11, 2019               [Page 20]
+
+Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
+
+
+   o  The response status code (Section 6 of [RFC7231]) and the response
+      header fields whose names are listed in that exchange's "Signed-
+      Headers" header field (Section 5.1.2), in the order they appear in
+      that header field.  If a response header field name from "Signed-
+      Headers" does not appear in the exchange's response header fields,
+      the exchange has no significant headers.
+
+   If the exchange's "Signed-Headers" header field is not present,
+   doesn't parse as a Structured Header
+   ([I-D.ietf-httpbis-header-structure]) or doesn't follow the
+   constraints on its value described in Section 5.1.2, the exchange has
+   no significant headers.
+
+5.1.2.  The Signed-Headers Header
+
+   The "Signed-Headers" header field identifies an ordered list of
+   response header fields to include in a signature.  The request URL
+   and response status are included unconditionally.  This allows a TLS-
+   terminating intermediate to reorder headers without breaking the
+   signature.  This _can_ also allow the intermediate to add headers
+   that will be ignored by some higher-level protocols, but Section 3.5
+   provides a hook to let other higher-level protocols reject such
+   insecure headers.
+
+   This header field appears once instead of being incorporated into the
+   signatures' parameters because the signed header fields need to be
+   consistent across all signatures of an exchange, to avoid forcing
+   higher-level protocols to merge the header field lists of valid
+   signatures.
+
+   "Signed-Headers" is a Structured Header as defined by
+   [I-D.ietf-httpbis-header-structure].  Its value MUST be a list
+   (Section 3.2 of [I-D.ietf-httpbis-header-structure]).  Its ABNF is:
+
+   Signed-Headers = sh-list
+
+   Each element of the "Signed-Headers" list must be a lowercase string
+   (Section 3.7 of [I-D.ietf-httpbis-header-structure]) naming an HTTP
+   response header field.  Pseudo-header field names (Section 8.1.2.1 of
+   [RFC7540]) MUST NOT appear in this list.
+
+   Higher-level protocols SHOULD place requirements on the minimum set
+   of headers to include in the "Signed-Headers" header field.
+
+
+
+
+
+
+
+
+Yasskin & Ueno          Expires January 11, 2019               [Page 21]
+
+Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
+
 
 5.2.  HTTP/2 extension for cross-origin Server Push
 
@@ -868,69 +1184,94 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
 
 5.3.  application/signed-exchange format
 
-   To parse a resource with content type "application/signed-
-   exchange;v=b0", the client MUST run the following algorithm:
+   To allow signed exchanges to be the targets of "<link rel=prefetch>"
+   tags, we define the "application/signed-exchange" content type that
+   represents a signed HTTP exchange, including request metadata and
+   header fields, response metadata and header fields, and a response
+   payload.
 
-   Read 3 bytes and interpret them as a big-endian integer
-   "headerLength".
+   This content type consists of the concatenation of the following
+   items:
 
-   If "headerLength" is larger than 524288 (512kB), parsing MUST fail.
+   1.  The ASCII characters "sxg1-b1" followed by a 0 byte, to serve as
+       a file signature.  This is redundant with the MIME type, and
+       recipients that receive both MUST check that they match and stop
+       parsing if they don't.
 
-   Read "headerLength" bytes, and parse them as a CBOR item.  If this
-   item isn't canonically encoded (Section 3.4) or doesn't match the
-   following CDDL, parsing MUST fail:
+       Note: As this is a snapshot of a draft of
+       [I-D.yasskin-http-origin-signed-responses], it uses a distinct
+       file signature.
 
-   signed-exchange-header = [
-     { ':method': bytes,
-       ':url': bytes,
-       * bytes => bytes,
-     },
-     { ':status': bytes,
-       'signature': bytes,
-       * bytes => bytes,
-     },
-   ]
+   2.  3 bytes storing a big-endian integer "sigLength".  If this is
+       larger than 16kB, parsing MUST fail.
+
+   3.  3 bytes storing a big-endian integer "headerLength".  If this is
+       larger than 16kB, parsing MUST fail.
+
+   4.  "sigLength" bytes holding the "Signature" header field's value
+       (Section 3.1).
+
+   5.  "headerLength" bytes holding the signed headers, the canonical
+       serialization (Section 3.4) of the CBOR representation of the
+       request and response headers of the exchange represented by the
+       "application/signed-exchange" resource (Section 3.2), excluding
+       the "Signature" header field.
+
+       Note that this is exactly the bytes used when checking signature
+       validity in Section 3.5.
+
+   6.  The payload body (Section 3.3 of [RFC7230]) of the exchange
+       represented by the "application/signed-exchange" resource.
+
+       Note that the use of the payload body here means that a
+       "Transfer-Encoding" header field inside the "application/signed-
+       exchange" header block has no effect.  A "Transfer-Encoding"
 
 
 
-Yasskin & Ueno          Expires January 11, 2019               [Page 16]
+Yasskin & Ueno          Expires January 11, 2019               [Page 22]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
 
 
-   The first element of the array is interpreted as the exchange's
-   request headers with lowercase names, with the request method in the
-   ':method' key's value, and the effective request URI, which MUST be
-   an absolute-URL string [8] ([URL]), in the ':url' key's value.
+       header field on the outer HTTP response that transfers this
+       resource still has its normal effect.
 
-   The second element of the array is interpreted as the exchange's
-   response headers with lowercase names, with the 3-digit response
-   status code in the ':status' key's value.
+5.3.1.  Cross-origin trust in application/signed-exchange
 
-   If any header field name includes uppercase characters, parsing MUST
-   fail.
+   To determine whether to trust a cross-origin exchange stored in an
+   "application/signed-exchange" resource, pass the "Signature" header
+   field's value and an exchange consisting of the headers from the
+   signed headers section and the payload body, to the algorithm in
+   Section 4.
 
-   Pass the "Signature" response header and the exchange with that
-   header removed to the algorithm in Section 4.  Fail if this returns
-   "invalid".
+5.3.2.  Example
 
-   The remainder of the resource is the exchange's payload, encoded with
-   the "mi-sha256-draft2" content encoding.  The "mi-sha256-draft2"
-   content encoding is the "mi-sha256" encoding defined in draft 02 of
-   ([I-D.thomson-http-mice]).  If the "mi-sha256-draft2" record length
-   (the first 8 bytes of the payload) is greater than 16kB, or if any of
-   the integrity proofs fail validation, parsing MUST fail.
+   An example "application/signed-exchange" file representing a possible
+   signed exchange with https://example.com/ [7] follows, with lengths
+   represented by descriptions in "<>"s, CBOR represented in the
+   extended diagnostic format defined in Appendix G of
+   [I-D.ietf-cbor-cddl], and most of the "Signature" header field and
+   payload elided with a ...:
+
+   sxg1\0<3-byte length of the following header
+   value><3-byte length of the encoding of the
+   following array>sig1; sig=*...; integrity="mi-draft2"; ...[
+     {
+       ':method': 'GET',
+       ':url': 'https://example.com/',
+       'accept', '*/*'
+     },
+     {
+       ':status': '200',
+       'content-type': 'text/html'
+     }
+   ]<!doctype html>\r\n<html>...
 
 6.  Security considerations
 
    All of the security considerations from Section 6 of
    [I-D.yasskin-http-origin-signed-responses] apply.
-
-   In addition, because this draft does not check for certificate
-   revocation and allows signatures from certificates that can be used
-   in normal TLS servers with no defense against future-dated
-   signatures, clients MUST NOT trust signed exchanges as authoritative
-   for their claimed origin without some explicit opt-in by their user.
 
 7.  Privacy considerations
 
@@ -942,17 +1283,16 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
    Javascript, that could also report the client's interest back to
    "o1.com".
 
-   Often, "o2.com" already knew about the client's interest, because
-   it's the entity that directed the client to "o1resource.js", but
-   there may be cases where this leaks extra information.
 
 
-
-
-Yasskin & Ueno          Expires January 11, 2019               [Page 17]
+Yasskin & Ueno          Expires January 11, 2019               [Page 23]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
 
+
+   Often, "o2.com" already knew about the client's interest, because
+   it's the entity that directed the client to "o1resource.js", but
+   there may be cases where this leaks extra information.
 
    For non-executable resource types, a signed response can improve the
    privacy situation by hiding the client's interest from the original
@@ -969,12 +1309,18 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
 
 8.  IANA considerations
 
-   This depends on the following IANA registration in
+   This depends on the following IANA registrations in
    [I-D.yasskin-http-origin-signed-responses]:
 
    o  The "Signature" header field
 
-   This document also registers:
+   o  The "Accept-Signature" header field
+
+   o  The "Signed-Headers" header field
+
+   o  The application/cert-chain+cbor media type
+
+   This document also modifies the registration for:
 
 8.1.  Internet Media Type application/signed-exchange
 
@@ -986,58 +1332,28 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
 
    o  v: A string denoting the version of the file format.  ([RFC5234]
       ABNF: "version = DIGIT/%x61-7A") The version defined in this
-      specification is "b0".  When used with the "Accept" header field
+      specification is "b1".  When used with the "Accept" header field
       (Section 5.3.1 of [RFC7231]), this parameter can be a comma
       (,)-separated list of version strings.  ([RFC5234] ABNF: "version-
       list = version *( "," version )") The server is then expected to
       reply with a resource using a particular version from that list.
 
-      Note: As this is a snapshot of a draft of
-      [I-D.yasskin-http-origin-signed-responses], it does not use a
-      simple integer to describe its version.
-
-   Optional parameters: N/A
-
-   Encoding considerations: binary
-
-   Security considerations: see Section 6.6 of
-   [I-D.yasskin-http-origin-signed-responses]
 
 
 
-Yasskin & Ueno          Expires January 11, 2019               [Page 18]
+Yasskin & Ueno          Expires January 11, 2019               [Page 24]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
 
 
-   Interoperability considerations: N/A
+      Note: As this is a snapshot of a draft of
+      [I-D.yasskin-http-origin-signed-responses], it uses a distinct
+      version number.
 
-   Published specification: This specification (see Section 5.3).
+   Magic number(s): 73 78 67 31 2D 62 31 00
 
-   Applications that use this media type: N/A
-
-   Fragment identifier considerations: N/A
-
-   Additional information:
-
-   Deprecated alias names for this type: N/A
-
-   Magic number(s): 82 A?
-
-   File extension(s): .sxg
-
-   Macintosh file type code(s): N/A
-
-   Person and email address to contact for further information: See
-   Authors' Addresses section.
-
-   Intended usage: COMMON
-
-   Restrictions on usage: N/A
-
-   Author: See Authors' Addresses section.
-
-   Change controller: IESG
+   The other fields are the same as the registration in
+   [I-D.yasskin-http-origin-signed-responses].
 
 9.  References
 
@@ -1046,31 +1362,16 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
    [FETCH]    WHATWG, "Fetch", July 2018,
               <https://fetch.spec.whatwg.org/>.
 
-   [HTML]     WHATWG, "HTML", July 2018,
-              <https://html.spec.whatwg.org/multipage>.
-
    [I-D.ietf-cbor-cddl]
               Birkholz, H., Vigano, C., and C. Bormann, "Concise data
               definition language (CDDL): a notational convention to
               express CBOR data structures", draft-ietf-cbor-cddl-03
               (work in progress), July 2018.
 
-
-
-
-
-
-
-Yasskin & Ueno          Expires January 11, 2019               [Page 19]
-
-Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
-
-
-   [I-D.ietf-httpbis-header-structure-02]
+   [I-D.ietf-httpbis-header-structure]
               Nottingham, M. and P. Kamp, "Structured Headers for HTTP",
-              draft-ietf-httpbis-header-structure-02 (work in progress),
-              November 2017, <https://tools.ietf.org/html/
-              draft-ietf-httpbis-header-structure-02>.
+              draft-ietf-httpbis-header-structure-07 (work in progress),
+              July 2018.
 
    [I-D.ietf-tls-tls13]
               Rescorla, E., "The Transport Layer Security (TLS) Protocol
@@ -1091,6 +1392,16 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
               <http://pubs.opengroup.org/onlinepubs/9699919799/
               basedefs/>.
 
+
+
+
+
+
+Yasskin & Ueno          Expires January 11, 2019               [Page 25]
+
+Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
+
+
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997,
@@ -1107,20 +1418,19 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
               (CRL) Profile", RFC 5280, DOI 10.17487/RFC5280, May 2008,
               <https://www.rfc-editor.org/info/rfc5280>.
 
+   [RFC6960]  Santesson, S., Myers, M., Ankney, R., Malpani, A.,
+              Galperin, S., and C. Adams, "X.509 Internet Public Key
+              Infrastructure Online Certificate Status Protocol - OCSP",
+              RFC 6960, DOI 10.17487/RFC6960, June 2013,
+              <https://www.rfc-editor.org/info/rfc6960>.
+
+   [RFC6962]  Laurie, B., Langley, A., and E. Kasper, "Certificate
+              Transparency", RFC 6962, DOI 10.17487/RFC6962, June 2013,
+              <https://www.rfc-editor.org/info/rfc6962>.
+
    [RFC7049]  Bormann, C. and P. Hoffman, "Concise Binary Object
               Representation (CBOR)", RFC 7049, DOI 10.17487/RFC7049,
               October 2013, <https://www.rfc-editor.org/info/rfc7049>.
-
-
-
-
-
-
-
-Yasskin & Ueno          Expires January 11, 2019               [Page 20]
-
-Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
-
 
    [RFC7230]  Fielding, R., Ed. and J. Reschke, Ed., "Hypertext Transfer
               Protocol (HTTP/1.1): Message Syntax and Routing",
@@ -1137,15 +1447,21 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
               RFC 7234, DOI 10.17487/RFC7234, June 2014,
               <https://www.rfc-editor.org/info/rfc7234>.
 
+
+
+
+
+
+
+Yasskin & Ueno          Expires January 11, 2019               [Page 26]
+
+Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
+
+
    [RFC7540]  Belshe, M., Peon, R., and M. Thomson, Ed., "Hypertext
               Transfer Protocol Version 2 (HTTP/2)", RFC 7540,
               DOI 10.17487/RFC7540, May 2015,
               <https://www.rfc-editor.org/info/rfc7540>.
-
-   [RFC8017]  Moriarty, K., Ed., Kaliski, B., Jonsson, J., and A. Rusch,
-              "PKCS #1: RSA Cryptography Specifications Version 2.2",
-              RFC 8017, DOI 10.17487/RFC8017, November 2016,
-              <https://www.rfc-editor.org/info/rfc8017>.
 
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
@@ -1154,6 +1470,18 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
    [URL]      WHATWG, "URL", July 2018, <https://url.spec.whatwg.org/>.
 
 9.2.  Informative References
+
+   [I-D.yasskin-http-origin-signed-responses-03]
+              Yasskin, J., "Signed HTTP Exchanges", draft-yasskin-http-
+              origin-signed-responses-03 (work in progress), March 2018,
+              <https://tools.ietf.org/html/
+              draft-yasskin-http-origin-signed-responses-03>.
+
+   [I-D.yasskin-http-origin-signed-responses-04]
+              Yasskin, J., "Signed HTTP Exchanges", draft-yasskin-http-
+              origin-signed-responses-04 (work in progress), June 2018,
+              <https://tools.ietf.org/html/
+              draft-yasskin-http-origin-signed-responses-04>.
 
    [RFC2965]  Kristol, D. and L. Montulli, "HTTP State Management
               Mechanism", RFC 2965, DOI 10.17487/RFC2965, October 2000,
@@ -1171,17 +1499,20 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
               RFC 6455, DOI 10.17487/RFC6455, December 2011,
               <https://www.rfc-editor.org/info/rfc6455>.
 
-
-
-Yasskin & Ueno          Expires January 11, 2019               [Page 21]
-
-Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
-
-
    [RFC7235]  Fielding, R., Ed. and J. Reschke, Ed., "Hypertext Transfer
               Protocol (HTTP/1.1): Authentication", RFC 7235,
               DOI 10.17487/RFC7235, June 2014,
               <https://www.rfc-editor.org/info/rfc7235>.
+
+
+
+
+
+
+Yasskin & Ueno          Expires January 11, 2019               [Page 27]
+
+Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
+
 
    [RFC7615]  Reschke, J., "HTTP Authentication-Info and Proxy-
               Authentication-Info Response Header Fields", RFC 7615,
@@ -1192,6 +1523,11 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
               T., and Y. Ioku, "HTTP Authentication Extensions for
               Interactive Clients", RFC 8053, DOI 10.17487/RFC8053,
               January 2017, <https://www.rfc-editor.org/info/rfc8053>.
+
+   [SRI]      Akhawe, D., Braun, F., Marier, F., and J. Weinberger,
+              "Subresource Integrity", World Wide Web Consortium
+              Recommendation REC-SRI-20160623, June 2016,
+              <http://www.w3.org/TR/2016/REC-SRI-20160623>.
 
    [W3C.NOTE-OPS-OverHTTP]
               Hensley, P., Metral, M., Shardanand, U., Converse, D., and
@@ -1204,37 +1540,51 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
 
    [2] https://github.com/WICG/webpackage
 
-   [3] http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/
-       V1_chap04.html#tag_04_16
+   [3] https://url.spec.whatwg.org/#concept-url-parser
 
    [4] https://url.spec.whatwg.org/#absolute-url-string
 
-   [5] https://url.spec.whatwg.org/#absolute-url-string
+   [5] http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/
+       V1_chap04.html#tag_04_16
 
-   [6] https://url.spec.whatwg.org/#absolute-url-string
+   [6] https://html.spec.whatwg.org/multipage/origin.html#same-origin
 
-   [7] https://html.spec.whatwg.org/multipage/origin.html#same-origin
-
-   [8] https://url.spec.whatwg.org/#absolute-url-string
+   [7] https://example.com/
 
 Appendix A.  Change Log
 
    draft-01
 
-   o  The mi-sha256 content-encoding is renamed to mi-sha256-draft2 in
-      case [I-D.thomson-http-mice] changes.
+   Vs.  [I-D.yasskin-http-origin-signed-responses-04]:
 
-   draft-00
+   o  The MI header and mi-sha256 content-encoding are renamed to MI-
+      Draft2 and mi-sha256-draft2 in case [I-D.thomson-http-mice]
+      changes.
+
+   o  Signed exchanges cannot be transmitted using HTTP/2 Push.
 
 
 
-
-Yasskin & Ueno          Expires January 11, 2019               [Page 22]
+Yasskin & Ueno          Expires January 11, 2019               [Page 28]
 
 Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
 
 
-   Vs.  [I-D.yasskin-http-origin-signed-responses]:
+   o  Removed non-normative sections.
+
+   o  The mi-sha256 encoding must have records <= 16kB.
+
+   o  The signature and HTTP headers must each be <=16kB long.
+
+   o  Versions in file signatures and context strings are "b1".
+
+   o  Only 1 signature is supported.
+
+   o  Removed support for ed25519 signatures.
+
+   draft-00
+
+   Vs.  [I-D.yasskin-http-origin-signed-responses-03]:
 
    o  Removed non-normative sections.
 
@@ -1268,7 +1618,19 @@ Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
 
    o  Require absolute URLs.
 
+
+
+
+Yasskin & Ueno          Expires January 11, 2019               [Page 29]
+
+Internet-DraSigned HTTP Exchanges Implementation Checkpoints   July 2018
+
+
 Appendix B.  Acknowledgements
+
+   Thanks to Devin Mullins, Ilari Liusvaara, Justin Schuh, Mark
+   Nottingham, Mike Bishop, Ryan Sleevi, and Yoav Weiss for comments
+   that improved this draft.
 
 Authors' Addresses
 
@@ -1285,4 +1647,34 @@ Authors' Addresses
 
 
 
-Yasskin & Ueno          Expires January 11, 2019               [Page 23]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Yasskin & Ueno          Expires January 11, 2019               [Page 30]
