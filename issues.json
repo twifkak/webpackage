@@ -149,9 +149,9 @@
 
     ],
     "milestone": null,
-    "comments": 0,
+    "comments": 1,
     "created_at": "2018-07-08T16:22:38Z",
-    "updated_at": "2018-07-08T16:22:38Z",
+    "updated_at": "2018-07-09T22:51:13Z",
     "closed_at": null,
     "author_association": "CONTRIBUTOR",
     "body": "## I wish signed exchanges to cover the non-repudiation use-case\r\n\r\nI wish to use the `Signature` header for non repudiation.\r\n\r\nExample:\r\n\r\n  - client sends a request with a Signature of given headers and payload\r\n  - server replies with a Signature that may contain e.g. the request hash\r\n\r\nAn example of non-repudiation via HTTP Headers is defined in:\r\n\r\n-  [Berlin Group Financial API §11](https://docs.wixstatic.com/ugd/c2914b_5351b289bf844c6881e46ee3561d95bb.pdf) based on [https://tools.ietf.org/html/draft-cavage-http-signatures-10](draft-cavage-http-signatures-10)\r\n\r\n## Questions \r\n\r\nMinimal data was similar to a JWS claim\r\n\r\n  - issuer, audience, subject, issued_at, not_before, expires\r\n\r\nNice to have data, with certificate content:\r\n\r\n  - eg. x5c\r\n\r\n## Questions from #88 \r\n\r\nAbout https://github.com/WICG/webpackage/pull/88#discussion_r152628889\r\n\r\n  - agree JWS security issues though not everybody agrees on deprecating JOSE [see those tweets on jose vs paseto]( https://twitter.com/ioggstream/status/972126134136647687)\r\n\r\n  -  support for different curves and rsa is useful: is `CSP-style` eg `key=ed25519-base64` that dangerous, considering that we should somewhat converge in some way? Clearly RSA would be insanely longer\r\n\r\n  - about algos, in your opinion will ed25519 replace all the other algos in the near future so that we should \"hardcode\" its name? Should we \"deprecate\" RSA signatures?\r\n\r\n  - About `Digest`: which is the difference b/w using `Digest` and eg `MI` for that purpose? See https://github.com/martinthomson/http-mice/issues/11\r\n  \r\n\r\n\r\n"
@@ -197,9 +197,9 @@
 
     ],
     "milestone": null,
-    "comments": 0,
+    "comments": 1,
     "created_at": "2018-07-06T23:54:04Z",
-    "updated_at": "2018-07-07T00:16:17Z",
+    "updated_at": "2018-07-09T20:29:23Z",
     "closed_at": null,
     "author_association": "COLLABORATOR",
     "pull_request": {
@@ -208,7 +208,7 @@
       "diff_url": "https://github.com/WICG/webpackage/pull/247.diff",
       "patch_url": "https://github.com/WICG/webpackage/pull/247.patch"
     },
-    "body": "But warn servers away from using it in TLS servers.\r\n\r\nFixes #238.\r\n\r\n@sleevi and any CA folks who see this, do you think I'm right to say \"Conforming CAs MUST NOT mark this extension as critical.\", or should I leave them without a requirement here?\r\n\r\n[Preview](https://jyasskin.github.io/webpackage/non-critical-extension/draft-yasskin-http-origin-signed-responses.html), [Diff](https://tools.ietf.org/rfcdiff?url1=https://wicg.github.io/webpackage/draft-yasskin-http-origin-signed-responses.txt&url2=https://jyasskin.github.io/webpackage/non-critical-extension/draft-yasskin-http-origin-signed-responses.txt)"
+    "body": "But warn servers away from using it in TLS servers.\r\n\r\nFixes #238.\r\n\r\n@sleevi and any CA folks who see this, do you think I'm right to say \"Conforming CAs MUST NOT mark this extension as critical.\", or should I leave them without a requirement here?\r\n\r\nSpec: [Preview](https://jyasskin.github.io/webpackage/non-critical-extension/draft-yasskin-http-origin-signed-responses.html), [Diff](https://tools.ietf.org/rfcdiff?url1=https://wicg.github.io/webpackage/draft-yasskin-http-origin-signed-responses.txt&url2=https://jyasskin.github.io/webpackage/non-critical-extension/draft-yasskin-http-origin-signed-responses.txt)\r\n\r\nImpl draft: [Preview](https://jyasskin.github.io/webpackage/non-critical-extension/draft-yasskin-httpbis-origin-signed-exchanges-impl.html), [Diff](https://tools.ietf.org/rfcdiff?url1=https://wicg.github.io/webpackage/draft-yasskin-httpbis-origin-signed-exchanges-impl.txt&url2=https://jyasskin.github.io/webpackage/non-critical-extension/draft-yasskin-httpbis-origin-signed-exchanges-impl.txt)"
   },
   {
     "url": "https://api.github.com/repos/WICG/webpackage/issues/246",
@@ -244,7 +244,7 @@
     "labels": [
 
     ],
-    "state": "open",
+    "state": "closed",
     "locked": false,
     "assignee": null,
     "assignees": [
@@ -253,8 +253,8 @@
     "milestone": null,
     "comments": 0,
     "created_at": "2018-07-06T21:08:16Z",
-    "updated_at": "2018-07-09T03:56:05Z",
-    "closed_at": null,
+    "updated_at": "2018-07-10T03:38:37Z",
+    "closed_at": "2018-07-10T03:38:33Z",
     "author_association": "COLLABORATOR",
     "pull_request": {
       "url": "https://api.github.com/repos/WICG/webpackage/pulls/246",
