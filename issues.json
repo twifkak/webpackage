@@ -1,6 +1,114 @@
 [
 
   {
+    "url": "https://api.github.com/repos/WICG/webpackage/issues/256",
+    "repository_url": "https://api.github.com/repos/WICG/webpackage",
+    "labels_url": "https://api.github.com/repos/WICG/webpackage/issues/256/labels{/name}",
+    "comments_url": "https://api.github.com/repos/WICG/webpackage/issues/256/comments",
+    "events_url": "https://api.github.com/repos/WICG/webpackage/issues/256/events",
+    "html_url": "https://github.com/WICG/webpackage/pull/256",
+    "id": 340899892,
+    "node_id": "MDExOlB1bGxSZXF1ZXN0MjAxMjAwNTg2",
+    "number": 256,
+    "title": "gen-certurl: do not parse input certificates twice",
+    "user": {
+      "login": "irori",
+      "id": 80796,
+      "node_id": "MDQ6VXNlcjgwNzk2",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/80796?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/irori",
+      "html_url": "https://github.com/irori",
+      "followers_url": "https://api.github.com/users/irori/followers",
+      "following_url": "https://api.github.com/users/irori/following{/other_user}",
+      "gists_url": "https://api.github.com/users/irori/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/irori/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/irori/subscriptions",
+      "organizations_url": "https://api.github.com/users/irori/orgs",
+      "repos_url": "https://api.github.com/users/irori/repos",
+      "events_url": "https://api.github.com/users/irori/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/irori/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+
+    ],
+    "state": "closed",
+    "locked": false,
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "comments": 0,
+    "created_at": "2018-07-13T06:41:31Z",
+    "updated_at": "2018-07-13T07:00:44Z",
+    "closed_at": "2018-07-13T07:00:40Z",
+    "author_association": "COLLABORATOR",
+    "pull_request": {
+      "url": "https://api.github.com/repos/WICG/webpackage/pulls/256",
+      "html_url": "https://github.com/WICG/webpackage/pull/256",
+      "diff_url": "https://github.com/WICG/webpackage/pull/256.diff",
+      "patch_url": "https://github.com/WICG/webpackage/pull/256.patch"
+    },
+    "body": "Now FetchOCSPResponse and CreateCertChainCBOR (renamed from\r\nCertificateMessageFromPEM) take parsed x509.Certificates."
+  },
+  {
+    "url": "https://api.github.com/repos/WICG/webpackage/issues/255",
+    "repository_url": "https://api.github.com/repos/WICG/webpackage",
+    "labels_url": "https://api.github.com/repos/WICG/webpackage/issues/255/labels{/name}",
+    "comments_url": "https://api.github.com/repos/WICG/webpackage/issues/255/comments",
+    "events_url": "https://api.github.com/repos/WICG/webpackage/issues/255/events",
+    "html_url": "https://github.com/WICG/webpackage/pull/255",
+    "id": 340897543,
+    "node_id": "MDExOlB1bGxSZXF1ZXN0MjAxMTk4OTM5",
+    "number": 255,
+    "title": "signedexchange: Add dump-singedexchange explanation to README",
+    "user": {
+      "login": "hajimehoshi",
+      "id": 16950,
+      "node_id": "MDQ6VXNlcjE2OTUw",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/16950?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/hajimehoshi",
+      "html_url": "https://github.com/hajimehoshi",
+      "followers_url": "https://api.github.com/users/hajimehoshi/followers",
+      "following_url": "https://api.github.com/users/hajimehoshi/following{/other_user}",
+      "gists_url": "https://api.github.com/users/hajimehoshi/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/hajimehoshi/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/hajimehoshi/subscriptions",
+      "organizations_url": "https://api.github.com/users/hajimehoshi/orgs",
+      "repos_url": "https://api.github.com/users/hajimehoshi/repos",
+      "events_url": "https://api.github.com/users/hajimehoshi/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/hajimehoshi/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "labels": [
+
+    ],
+    "state": "closed",
+    "locked": false,
+    "assignee": null,
+    "assignees": [
+
+    ],
+    "milestone": null,
+    "comments": 0,
+    "created_at": "2018-07-13T06:30:50Z",
+    "updated_at": "2018-07-15T10:13:11Z",
+    "closed_at": "2018-07-15T10:13:11Z",
+    "author_association": "COLLABORATOR",
+    "pull_request": {
+      "url": "https://api.github.com/repos/WICG/webpackage/pulls/255",
+      "html_url": "https://github.com/WICG/webpackage/pull/255",
+      "diff_url": "https://github.com/WICG/webpackage/pull/255.diff",
+      "patch_url": "https://github.com/WICG/webpackage/pull/255.patch"
+    },
+    "body": ""
+  },
+  {
     "url": "https://api.github.com/repos/WICG/webpackage/issues/254",
     "repository_url": "https://api.github.com/repos/WICG/webpackage",
     "labels_url": "https://api.github.com/repos/WICG/webpackage/issues/254/labels{/name}",
@@ -34,7 +142,7 @@
     "labels": [
 
     ],
-    "state": "open",
+    "state": "closed",
     "locked": false,
     "assignee": null,
     "assignees": [
@@ -43,8 +151,8 @@
     "milestone": null,
     "comments": 2,
     "created_at": "2018-07-13T02:28:19Z",
-    "updated_at": "2018-07-13T05:02:40Z",
-    "closed_at": null,
+    "updated_at": "2018-07-13T06:03:31Z",
+    "closed_at": "2018-07-13T06:03:01Z",
     "author_association": "COLLABORATOR",
     "pull_request": {
       "url": "https://api.github.com/repos/WICG/webpackage/pulls/254",
@@ -136,7 +244,7 @@
     "labels": [
 
     ],
-    "state": "open",
+    "state": "closed",
     "locked": false,
     "assignee": null,
     "assignees": [
@@ -145,8 +253,8 @@
     "milestone": null,
     "comments": 0,
     "created_at": "2018-07-10T11:42:55Z",
-    "updated_at": "2018-07-13T03:37:15Z",
-    "closed_at": null,
+    "updated_at": "2018-07-13T06:24:40Z",
+    "closed_at": "2018-07-13T06:24:36Z",
     "author_association": "COLLABORATOR",
     "pull_request": {
       "url": "https://api.github.com/repos/WICG/webpackage/pulls/252",
@@ -409,7 +517,7 @@
     "milestone": null,
     "comments": 1,
     "created_at": "2018-07-06T23:54:04Z",
-    "updated_at": "2018-07-09T20:29:23Z",
+    "updated_at": "2018-07-13T06:43:48Z",
     "closed_at": null,
     "author_association": "COLLABORATOR",
     "pull_request": {
@@ -1574,7 +1682,10 @@
       "patch_url": "https://github.com/WICG/webpackage/pull/227.patch"
     },
     "body": "Two instances of receipient => recipient"
-  },
+  }
+
+,
+
   {
     "url": "https://api.github.com/repos/WICG/webpackage/issues/226",
     "repository_url": "https://api.github.com/repos/WICG/webpackage",
@@ -1696,10 +1807,7 @@
       "patch_url": "https://github.com/WICG/webpackage/pull/225.patch"
     },
     "body": "[Preview](https://jyasskin.github.io/webpackage/link-metadata/draft-yasskin-wpack-bundled-exchanges.html), [Diff](https://tools.ietf.org/rfcdiff?url1=https://wicg.github.io/webpackage/draft-yasskin-wpack-bundled-exchanges.txt&url2=https://jyasskin.github.io/webpackage/link-metadata/draft-yasskin-wpack-bundled-exchanges.txt)\r\n\r\n@nyaxt How's this?"
-  }
-
-,
-
+  },
   {
     "url": "https://api.github.com/repos/WICG/webpackage/issues/224",
     "repository_url": "https://api.github.com/repos/WICG/webpackage",
@@ -3267,7 +3375,10 @@
     "closed_at": null,
     "author_association": "CONTRIBUTOR",
     "body": "I suppose the latest draft of the -impl checkpoint basically follows the latest responses draft ('the main draft) with some gaps, so a typical workflow could be like to keep cherry-picking changes from the latest responses into the latest impl draft.  However there are some diffs that are only tracked by the impl checkpoint but not in the main draft, e.g. like https://github.com/WICG/webpackage/pull/155 (`MI` vs `MI-draft2`).  I can see the reason not to track this in the main draft, but I'm afraid tracking such changes that only exist in some branch but not in the master responses draft may become a bit cumbersome, especially if we start to have multiple of such diffs.\r\n\r\nWould it be possible to avoid doing this but instead put some instructions for the implementors in the main draft? (This is something @jyasskin mentioned as a potential alternative in some of our offline chat)  Or could we have some special section in the ChangeLog in the main draft so that all we need to cherry-pick can be still found in the main draft?"
-  },
+  }
+
+,
+
   {
     "url": "https://api.github.com/repos/WICG/webpackage/issues/196",
     "repository_url": "https://api.github.com/repos/WICG/webpackage",
@@ -3375,10 +3486,7 @@
       "patch_url": "https://github.com/WICG/webpackage/pull/195.patch"
     },
     "body": "Thanks @sleevi for noticing the problem.\r\n\r\n[Preview](https://jyasskin.github.io/webpackage/include-version-in-sig-context/draft-yasskin-http-origin-signed-responses.html), [Diff](https://tools.ietf.org/rfcdiff?url1=https://wicg.github.io/webpackage/draft-yasskin-http-origin-signed-responses.txt&url2=https://jyasskin.github.io/webpackage/include-version-in-sig-context/draft-yasskin-http-origin-signed-responses.txt)\r\n"
-  }
-
-,
-
+  },
   {
     "url": "https://api.github.com/repos/WICG/webpackage/issues/194",
     "repository_url": "https://api.github.com/repos/WICG/webpackage",
@@ -4938,7 +5046,10 @@
       "patch_url": "https://github.com/WICG/webpackage/pull/167.patch"
     },
     "body": ""
-  },
+  }
+
+,
+
   {
     "url": "https://api.github.com/repos/WICG/webpackage/issues/166",
     "repository_url": "https://api.github.com/repos/WICG/webpackage",
@@ -5085,10 +5196,7 @@
     "closed_at": "2018-04-11T05:38:27Z",
     "author_association": "COLLABORATOR",
     "body": "https://wicg.github.io/webpackage/draft-yasskin-http-origin-signed-responses.html#cert-chain-format"
-  }
-
-,
-
+  },
   {
     "url": "https://api.github.com/repos/WICG/webpackage/issues/164",
     "repository_url": "https://api.github.com/repos/WICG/webpackage",
@@ -6716,7 +6824,10 @@
       "patch_url": "https://github.com/WICG/webpackage/pull/137.patch"
     },
     "body": "[Preview](https://jyasskin.github.io/webpackage/archival-use-case/draft-yasskin-webpackage-use-cases.html), [Diff](https://tools.ietf.org/rfcdiff?url1=https://wicg.github.io/webpackage/draft-yasskin-webpackage-use-cases.txt&url2=https://jyasskin.github.io/webpackage/archival-use-case/draft-yasskin-webpackage-use-cases.txt)\r\n\r\n@ibnesayeed @craigfrancis @TzviyaSiegman, you've been interested in this topic in issues like #105. What should I write in this section? I don't know enough about the topic to even describe the use case well.\r\n\r\nI'm probably going to merge this without review to get it in time for the IETF deadline, but I'll definitely fix any comments that show up after that."
-  },
+  }
+
+,
+
   {
     "url": "https://api.github.com/repos/WICG/webpackage/issues/136",
     "repository_url": "https://api.github.com/repos/WICG/webpackage",
@@ -6856,10 +6967,7 @@
     "closed_at": "2018-04-04T22:51:53Z",
     "author_association": "COLLABORATOR",
     "body": "@davidben points out that it's hard to write streaming parsers, and that the most reliable protocols send a number of bytes to read, read that number of bytes, and then use a non-streaming parser to pull information out of that contiguous data. The format in https://tools.ietf.org/html/draft-yasskin-http-origin-signed-responses-03#section-5.3 doesn't accomplish this because CBOR items are prefixed by their length in items, not bytes.\r\n\r\nIn multi-process clients, we also want to allow the main/verification process to bound the amount of memory it uses. This implies (1) a length limit on the exchange header set, and (2) mandating use of the MI header instead of the Digest header to verify the payload authenticity, since MI has fixed-size records.\r\n\r\nFinally, it would be nice to be able to check signatures against the literal bytes in the http-exchange format instead of needing to reserialize. Reserialization still needs to be *possible* so that intermediates can receive a signature in a normal same-origin HTTP response and then produce the http-exchange format, but final clients shouldn't need to do it.\r\n\r\nThis probably means the format will move away from being a general http-exchange serialization format and toward being specific to signed exchanges. This has the extra benefit of not needing to say that request payloads and response trailers cause the signature not to verify."
-  }
-
-,
-
+  },
   {
     "url": "https://api.github.com/repos/WICG/webpackage/issues/134",
     "repository_url": "https://api.github.com/repos/WICG/webpackage",
@@ -8330,7 +8438,10 @@
     "closed_at": null,
     "author_association": "NONE",
     "body": "If and when browser support for webpackage arrives, batch cache synchronization [1] or cache initialization [2] might be good use-cases, especially in the context of Service Worker. Using some sort of content negotiation mechanism, Service Worker might be able to ask the server for a webpackage that at least contains desired request URL(s). By unpacking the response and populating the cache, it can serve subsequent requests pretty quickly. What will be packed in the response is something that can be negotiated using some means or the server can decide as it does in case of HTTP/2 Server Hints (`prefetch`).\r\n\r\n[1] https://github.com/WICG/BackgroundSync\r\n[2] https://developer.mozilla.org/en-US/docs/Web/API/Cache/addAll"
-  },
+  }
+
+,
+
   {
     "url": "https://api.github.com/repos/WICG/webpackage/issues/106",
     "repository_url": "https://api.github.com/repos/WICG/webpackage",
@@ -8432,10 +8543,7 @@
     "closed_at": null,
     "author_association": "NONE",
     "body": "While some packages need to be kept up to date, and expired when they become too old; there are also things that should never expire/change.\r\n\r\nFor example the content of a webpage a user wants to keep, a report or invoice created by a website, etc (this is instead of using a PDF or MS Word document).\r\n\r\nSo would it be possible to skip the Expires header, and have some way of marking the package as immutable?\r\n\r\nThat immutable flag could also instruct the browser to never download any resources, and for the JS `Date` object to return a date/time based on the Date header from the package (not the current date/time)... may be related to issue #104?"
-  }
-
-,
-
+  },
   {
     "url": "https://api.github.com/repos/WICG/webpackage/issues/104",
     "repository_url": "https://api.github.com/repos/WICG/webpackage",
@@ -9899,7 +10007,10 @@
       "patch_url": "https://github.com/WICG/webpackage/pull/77.patch"
     },
     "body": "I've heard from at least two people who started reading the TAG's document instead of this one because of how prominently we highlight it."
-  },
+  }
+
+,
+
   {
     "url": "https://api.github.com/repos/WICG/webpackage/issues/76",
     "repository_url": "https://api.github.com/repos/WICG/webpackage",
@@ -10001,10 +10112,7 @@
     "closed_at": "2018-01-24T18:35:26Z",
     "author_association": "NONE",
     "body": "I saw this in your slides and that abbreviation is already quite commonly used for Progressive Web Apps."
-  }
-
-,
-
+  },
   {
     "url": "https://api.github.com/repos/WICG/webpackage/issues/74",
     "repository_url": "https://api.github.com/repos/WICG/webpackage",
@@ -11558,7 +11666,10 @@
     "closed_at": null,
     "author_association": "COLLABORATOR",
     "body": "I received feedback from some of our security people that [DER](https://www.itu.int/ITU-T/studygroups/com17/languages/X.690-0207.pdf) is easier to parse securely than [CBOR](https://tools.ietf.org/html/rfc7049). I'm not 100% sure that's the right choice yet, so here are some pros and cons.\r\n\r\nDER Pro's:\r\n1. Much older, with security-hardened implementations in many languages. e.g. BoringSSL includes a library for memory-safe DER parsing. CBOR has [many implementations](http://cbor.io/impls.html), but they aren't hardened.\r\n1. Prefixing with the length in bytes makes it easier to skip unneeded items. CBOR can work around this by embedding things into bytestrings.\r\n1. Generic parsing has only 2 cases: Primitive, where the interpretation of the bytes depends on the tag, and Constructed, where the content bytes encode a sequence of items. CBOR has 8 cases: integer, string, array, map, tag, simple value, simple value in next byte, and float. This is primarily used to skip unknown fields in structures.\r\n\r\nCBOR Pro's:\r\n1. ~8 primitive types instead of 30+. We can subset ASN.1 to only use INTEGER, OCTET STRING, UTF8String, and SEQUENCE, but we can also subset CBOR to use integers, byte strings, text strings, arrays, and maps.\r\n1. Extensibility based on maps from strings to values is easier to understand and possibly to manage than ASN.1's extensibility based on appending to sequences. However, it's possible I've missed a better way to extend structures in ASN.1.\r\n1. It's easy to find the latest specification.\r\n1. Combining the length into the type saves a byte for smaller items.\r\n1. Serializing canonical CBOR, which is needed for signature checking, is significantly easier to implement.\r\n1. All DER integers and floats have to deal with the complexity of encoding bignums. For our purposes, where bignums aren't needed, CBOR's 8,16,32, and 64-bit integers are simpler. Even if bignums were needed, it's likely that a fixed length would be simpler to specify and implement than DER's variable-length encoding.\r\n\r\n\r\nIf we stick with CBOR, we'll mandate [Canonical CBOR](https://tools.ietf.org/html/rfc7049#section-3.9), which includes minimal integer encodings. That means offsets will need to measure a range that doesn't include the offset itself, but that's doable for both the section list and the resource index.\r\n\r\nI'll update this list as more considerations come up."
-  },
+  }
+
+,
+
   {
     "url": "https://api.github.com/repos/WICG/webpackage/issues/46",
     "repository_url": "https://api.github.com/repos/WICG/webpackage",
@@ -11660,10 +11771,7 @@
     "closed_at": null,
     "author_association": "COLLABORATOR",
     "body": "We have some hints in https://w3ctag.github.io/packaging-on-the-web/#intro, but it's not complete, and it needs to appear in the local explainer, not something remote.\r\n\r\nOther considerations against zip:\r\n* We've seen vulnerabilities caused by validating one copy of a resource but using a different one. #41 will avoid this for the CBOR-based format.\r\n* Zip resources are identified by filename, which isn't the primary key of web resources.\r\n* Zip resources don't include response headers.\r\n* Lots of details in the [format](https://www.iana.org/assignments/media-types/application/zip) are archaic and wouldn't be used.\r\n\r\nWe should probably also list reasons in favor of re-using zip so that proponents know we've considered their arguments:\r\n* A huge number of other formats are based on zip, so we're unlikely to run into something we can't express.\r\n* Existing tools would be able to extract packages."
-  }
-
-,
-
+  },
   {
     "url": "https://api.github.com/repos/WICG/webpackage/issues/44",
     "repository_url": "https://api.github.com/repos/WICG/webpackage",
@@ -13091,7 +13199,10 @@
     "closed_at": "2016-12-07T00:40:56Z",
     "author_association": "NONE",
     "body": "It's not clear from the document whether offsets specified in the header or index of a nested package are to be taken from the start of the containing/primary package data or from the start of the nested package header.  \r\n"
-  },
+  }
+
+,
+
   {
     "url": "https://api.github.com/repos/WICG/webpackage/issues/16",
     "repository_url": "https://api.github.com/repos/WICG/webpackage",
@@ -13187,10 +13298,7 @@
     "closed_at": null,
     "author_association": "NONE",
     "body": "In the [discussion on signing](https://github.com/dimich-g/webpackage#use-case-signed-package-one-origin), it says\r\n> The inclusion of certificate makes it possible to validate the package offline (certificate revocation aside, this can be done out-of-band when device is actually online).\r\n\r\nThis is only true in very few cases as you need to build an entire trust chain from that cert up to the root.  Most processors will not have local access to every cert - in which case, it will need to fetch them."
-  }
-
-,
-
+  },
   {
     "url": "https://api.github.com/repos/WICG/webpackage/issues/14",
     "repository_url": "https://api.github.com/repos/WICG/webpackage",
