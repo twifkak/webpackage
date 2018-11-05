@@ -506,5 +506,14 @@ func (e *Exchange) PrettyPrint(w io.Writer) {
 	}
 	fmt.Fprintf(w, "signature: %s\n", e.SignatureHeaderValue)
 	fmt.Fprintf(w, "payload [%d bytes]:\n", len(e.Payload))
+	r := bytes.NewReader(e.Payload)
+	d, err := mice.Draft03Encoding.NewDecoder(r, e.ResponseHeaders.Get("digest"), 16384)
+	if err != nil {
+		panic(err)
+	}
+	_, err = ioutil.ReadAll(d)
+	if err != nil {
+		panic(err)
+	}
 	w.Write(e.Payload)
 }

@@ -164,7 +164,7 @@ func (enc Encoding) NewDecoder(r io.Reader, digestHeaderValue string, maxRecordS
 		// empty message (i.e. it omits the initial record size), and its
 		// integrity proof is SHA-256("\0"). [spec text]
 		if !validateRecord(nil, toplevelProof, true) {
-			return nil, ErrValidationFailure
+			return nil, errors.New("empty message not allowed in draft2")
 		}
 		// Return an empty reader.
 		return &decoder{encoding: enc}, nil
@@ -206,7 +206,7 @@ func (d *decoder) readNextRecord() error {
 			return errors.New("mice: end of input reached in the middle of hash")
 		}
 		if !validateRecord(d.recordBuf[:readBytes], d.nextProof, true) {
-			return ErrValidationFailure
+			return errors.New("failed to validate final record")
 		}
 		d.out = d.recordBuf[:readBytes]
 		d.nextProof = nil
@@ -216,7 +216,7 @@ func (d *decoder) readNextRecord() error {
 		// Draft02 allows empty final record.
 		if d.encoding == Draft02Encoding {
 			if !validateRecord(nil, d.nextProof, true) {
-				return ErrValidationFailure
+				return errors.New("empty final record not allowed in draft3")
 			}
 			d.out = nil
 			d.nextProof = nil
@@ -228,7 +228,7 @@ func (d *decoder) readNextRecord() error {
 		return err
 	}
 	if !validateRecord(d.recordBuf, d.nextProof, false) {
-		return ErrValidationFailure
+		return errors.New("failed to validate middle record")
 	}
 	d.out = d.recordBuf[:d.recordSize]
 	copy(d.nextProof, d.recordBuf[d.recordSize:])
