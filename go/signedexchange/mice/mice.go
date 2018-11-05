@@ -23,9 +23,6 @@ const (
 	Draft03Encoding Encoding = "mi-sha256-03"
 )
 
-// ErrValidationFailure is returned when integrity check have failed.
-var ErrValidationFailure = errors.New("mice: failed to validate record")
-
 // ContentEncoding returns content encoding name of the Encoding.
 func (enc Encoding) ContentEncoding() string {
 	return string(enc)
@@ -129,6 +126,7 @@ func (enc Encoding) parseDigestHeader(digestHeaderValue string) ([]byte, error) 
 	if algorithm != enc.ContentEncoding() {
 		return nil, fmt.Errorf("mice: unsupported digest algorithm %q", algorithm)
 	}
+	println("digest: ", digest)
 	proof, err := enc.base64Encoding().DecodeString(digest)
 	if err != nil {
 		return nil, fmt.Errorf("mice: failed to decode digest value %q: %v", digest, err)
@@ -152,6 +150,7 @@ type decoder struct {
 // from r to determine the record size, and fails if the record size exceeds
 // maxRecordSize.
 func (enc Encoding) NewDecoder(r io.Reader, digestHeaderValue string, maxRecordSize uint64) (io.Reader, error) {
+	println("digestHeaderValue: ", digestHeaderValue)
 	toplevelProof, err := enc.parseDigestHeader(digestHeaderValue)
 	if err != nil {
 		return nil, err
@@ -200,8 +199,10 @@ func (d *decoder) Read(dst []byte) (int, error) {
 }
 
 func (d *decoder) readNextRecord() error {
+	print("reading... ")
 	readBytes, err := io.ReadFull(d.r, d.recordBuf)
 	if err == io.ErrUnexpectedEOF {
+		println("final record")
 		if uint64(readBytes) > d.recordSize {
 			return errors.New("mice: end of input reached in the middle of hash")
 		}
@@ -213,6 +214,7 @@ func (d *decoder) readNextRecord() error {
 		return nil
 	}
 	if err == io.EOF {
+		println("empty final record")
 		// Draft02 allows empty final record.
 		if d.encoding == Draft02Encoding {
 			if !validateRecord(nil, d.nextProof, true) {
@@ -225,12 +227,15 @@ func (d *decoder) readNextRecord() error {
 		return errors.New("mice: unexpected end of input")
 	}
 	if err != nil {
+		println("error")
 		return err
 	}
+	println("middle record")
 	if !validateRecord(d.recordBuf, d.nextProof, false) {
-		return errors.New("failed to validate middle record")
+		println("failed to validate middle record")
 	}
 	d.out = d.recordBuf[:d.recordSize]
+	println("updating nextProof")
 	copy(d.nextProof, d.recordBuf[d.recordSize:])
 	return nil
 }

@@ -515,5 +515,5 @@ func (e *Exchange) PrettyPrint(w io.Writer) {
 	if err != nil {
 		panic(err)
 	}
-	w.Write(e.Payload)
+	//w.Write(e.Payload)
 }
